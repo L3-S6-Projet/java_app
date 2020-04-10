@@ -1,1 +1,1 @@
-# l3_s6_projet_java_app
+# Projet L3 S6 - Application Desktop Java
