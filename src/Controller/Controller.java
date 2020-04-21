@@ -15,8 +15,8 @@ public class Controller extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Group root = new Group();
-        stage.setTitle("Calendar");
-        Scene scene = new Scene(root, 1000, 700);
+        stage.setTitle("Scolendar");
+        Scene scene = new Scene(root, 1268, 1024);
         stage.setScene(scene);
         new Login(root);
         stage.show();

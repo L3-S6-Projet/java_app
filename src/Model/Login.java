@@ -21,10 +21,9 @@ public class Login {
         VBox fields = new VBox();
         fields.getChildren().addAll(id, password);
         Button connexion = new Button("Connexion");
-        Text mention = new Text("En vous connectant.........");
+        Text copyRigth = new Text("En vous connectant, vous aceptez les termes et conditions.\n© Scolendar 2020 - Tout droits réservés");
 
-
-        left.getChildren().addAll(title, subtitle, fields, connexion, mention);
+        left.getChildren().addAll(title, subtitle, fields, connexion, copyRigth);
         view.getChildren().addAll(left, picture);
         root.getChildren().addAll(view);
     }
