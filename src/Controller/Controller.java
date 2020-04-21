@@ -13,7 +13,7 @@ public class Controller extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         Group root = new Group();
         stage.setTitle("Scolendar");
         Scene scene = new Scene(root, 1268, 1024);
