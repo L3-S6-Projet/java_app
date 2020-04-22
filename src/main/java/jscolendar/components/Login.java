@@ -20,7 +20,6 @@ public class Login extends HBox {
   public VBox left;
   public Label title;
   public Label subtitle;
-  public VBox fieldId;
   public JFXTextField id;
   public JFXTextField password;
   public VBox field;

@@ -29,7 +29,7 @@
 .left {
 }
 
-.button {
+.button1 {
     -fx-background-color: #3F51B5;
     -fx-text-fill: white;
     -fx-font-family: Roboto;
@@ -50,15 +50,8 @@
     -fx-opacity: 0.6;
 }
 
-
-.fieldLabel {
-
-}
-
-
 .field {
     -fx-background-color: lightgray;
-    -fx-pref-height: 15px;
 }
 
 .LabelId {
@@ -69,10 +62,11 @@
     -fx-padding: 9;
 }
 
-.text {
-    -fx-background-color: black;
-    -fx-text-fill: #303F9F;
-    -fx-border-color: black;
-    -fx-padding: 20px;
-    -fx-spacing: 20px;
+.Oubli {
+}
+
+.lol {
+    -fx-background-image: url("Mask.png");
+    -fx-pref-height: 0px;
+    -fx-pref-width: 22px;
 }
