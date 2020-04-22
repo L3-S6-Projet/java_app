@@ -6,6 +6,7 @@
 
 
 .body {
+    -fx-fit-to-height: true;
     -fx-padding: 64px;
     -fx-spacing: 64px;
 }
@@ -36,11 +37,12 @@
     -fx-font-family: Roboto;
     -fx-text-alignment: center;
     -fx-font-size: 24px;
-    -fx-font-weight: 500;
+    -fx-font-weight: 500px;
 
 }
 
 .text-field {
+    -fx-: 28px;
     -fx-background-color: gray;
 
 }

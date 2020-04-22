@@ -13,7 +13,7 @@
          stylesheets="styles.css"
          styleClass="login-box"
 >
-    <HBox fx:id="body" styleClass="body" VBox.vgrow="ALWAYS" maxHeight="-Infinity">
+    <HBox fx:id="body" styleClass="body">
         <VBox fx:id="left" styleClass="left">
             <Label fx:id="title" styleClass="title">Scolendar</Label>
             <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
