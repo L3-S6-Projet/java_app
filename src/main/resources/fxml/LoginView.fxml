@@ -22,9 +22,9 @@
                 <TextField fx:id="password">password</TextField>
             </VBox>
             <Button fx:id="connexion" styleClass="button">connexion</Button>
-            <Text fx:id="copyRight">En vous connectant, vous aceptez les termes et conditions.
-                ©Scolendar 2020 - Tout droits réservés
+            <Text fx:id="copyRight" styleClass="copyRight">En vous connectant, vous aceptez les termes et conditions.
             </Text>
+            <Text styleClass="copyRight">©Scolendar 2020 - Tout droits réservés</Text>
         </VBox>
     </HBox>
 </fx:root>

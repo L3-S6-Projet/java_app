@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import jscolendar.util.FXUtil;
 
 
-public class Login extends VBox {
+public class Login extends HBox {
 
   public HBox body;
   public VBox left;
@@ -32,9 +32,8 @@ public class Login extends VBox {
 
   @FXML
   private void initialize() {
+
     left.setMinHeight(1024);
     field.setPadding(new Insets(266, 0, 0, 0));
-    copyRight.setY(1024 - 64);
-
   }
 }

@@ -1,12 +1,11 @@
 .root {
-    -fx-alignment: top-left;
     -fx-background-image: url("imageLogin.jpg");
     -fx-background-color: #FAFAFA;
 }
 
 
 .body {
-    -fx-fit-to-height: true;
+    -fx-background-color: #FAFAFA;
     -fx-padding: 64px;
     -fx-spacing: 64px;
 }
@@ -28,7 +27,7 @@
 }
 
 .left {
-    -fx-border-color: red;
+
 }
 
 .button {
@@ -47,3 +46,11 @@
 
 }
 
+.copyRight {
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-font-style: normal;
+    -fx-font-family: Roboto;
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.6;
+}
