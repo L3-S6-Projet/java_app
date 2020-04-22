@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import jscolendar.components.Login?>
 <fx:root xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
          type="jscolendar.components.Login"
          styleClass="login-box">
     <HBox fx:id="body">
         <VBox fx:id="left">
-            <Text fx:id="title"></Text>
-            <Text fx:id="subtitle"></Text>
+            <Text fx:id="title">Scolendar</Text>
+            <Text fx:id="subtitle">Server AMU</Text>
             <VBox fx:id="field">
-                <TextField fx:id="id"></TextField>
-                <TextField fx:id="password"></TextField>
+                <TextField fx:id="id">id</TextField>
+                <TextField fx:id="password">password</TextField>
             </VBox>
-            <Button fx:id="connexion"></Button>
-            <Text fx:id="copyRigth"></Text>
+            <Button fx:id="connexion">connexion</Button>
+            <Text fx:id="copyRigth">En vous connectant, vous aceptez les termes et conditions.
+                ©Scolendar 2020 - Tout droits réservés
+            </Text>
         </VBox>
-        <ImageView fx:id="picture"></ImageView>
+        <ImageView fx:id="picture">
+            <image>
+
+            </image>
+        </ImageView>
     </HBox>
 </fx:root>
