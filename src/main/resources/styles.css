@@ -39,10 +39,7 @@
 
 }
 
-.text-field {
-    -fx-: 28px;
-    -fx-background-color: lightgray;
-}
+
 
 .copyRight {
     -fx-font-size: 14px;
@@ -55,8 +52,27 @@
 
 
 .fieldLabel {
-    -fx-font-family: Roboto;
-    -fx-text-fill: #303F9F;
+
 }
 
 
+.field {
+    -fx-background-color: lightgray;
+    -fx-pref-height: 15px;
+}
+
+.LabelId {
+    -fx-font-family: Roboto;
+    -fx-text-fill: #3F51B5;
+    -fx-font-size: 12px;
+    -fx-spacing: 16;
+    -fx-padding: 9;
+}
+
+.text {
+    -fx-background-color: black;
+    -fx-text-fill: #303F9F;
+    -fx-border-color: black;
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+}
