@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+version '0.0.1'
+
+sourceCompatibility = "11"
+targetCompatibility = "11"
+
+repositories {
+    jcenter()
+}
+
+javafx {
+    version = "11"
+    modules = [ 'javafx.controls', 'javafx.fxml','javafx.graphics','javafx.base' ]
+}
+
+dependencies {
+    runtimeOnly 'com.google.flogger:flogger-system-backend:0.5.1'
+    implementation 'com.google.flogger:flogger:0.5.1',
+                   'org.kordamp.ikonli:ikonli-core:11.3.3',
+                   'org.kordamp.ikonli:ikonli-javafx:11.3.5',
+                   'org.kordamp.ikonli:ikonli-ionicons4-pack:11.3.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+}
+
+
+test {
+    dependsOn 'cleanTest'
+    useJUnitPlatform()
+}
+
+javadoc {
+    options.with {
+        links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+
+    }
+    options.tags = [
+            "implNote:a:Implementation Note:"
+    ]
+}
+application {
+    mainClassName = 'jscolendar.App'
+}
