@@ -18,23 +18,29 @@
                 <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
 
                 <VBox fx:id="field">
+
                     <VBox styleClass="field">
-                        <Label styleClass="LabelId">Nom d'utilisateur*</Label>
-                        <JFXTextField fx:id="id" styleClass="fieldLabel"/>
+                        <JFXTextField fx:id="id" styleClass="fieldLabel" promptText="Nom d'utilisateur"></JFXTextField>
                     </VBox>
                     <Text/>
+
                     <VBox styleClass="field">
-                        <Label styleClass="LabelId">Mot de passe*</Label>
                         <HBox>
-                            <JFXTextField fx:id="password" styleClass="fieldLabel" prefWidth="360"/>
-                            <Button styleClass="lol"></Button>
+                            <JFXTextField fx:id="password" styleClass="fieldLabel"
+                                          promptText="Mot de passe"></JFXTextField>
+                            <Button styleClass="showButton"/>
                         </HBox>
                     </VBox>
                 </VBox>
                 <Text/>
                 <HBox>
                     <Button fx:id="connexion" styleClass="button1">connexion</Button>
-                    <Text styleClass="Oubli">Mot de passe oublié?</Text>
+                    <VBox prefHeight="50">
+                        <Text styleClass="copyRight" textOrigin="CENTER" boundsType="LOGICAL_VERTICAL_CENTER">Mot de
+                            passe oublié?
+                        </Text>
+                    </VBox>
+
                 </HBox>
 
             </VBox>
@@ -43,4 +49,10 @@
             <Text styleClass="copyRight">©Scolendar 2020 - Tout droits réservés</Text>
         </VBox>
     </HBox>
+
+    <!--
+        <Label styleClass="LabelId">Nom d'utilisateur*</Label>
+        <Label styleClass="LabelId">Mot de passe*</Label>
+    -->
+
 </fx:root>

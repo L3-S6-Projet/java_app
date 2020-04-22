@@ -58,15 +58,28 @@
     -fx-font-family: Roboto;
     -fx-text-fill: #3F51B5;
     -fx-font-size: 12px;
-    -fx-spacing: 16;
-    -fx-padding: 9;
+    -fx-spacing: 0;
+    -fx-padding: 4;
+    -fx-pref-width: 362;
+    -fx-background-color: lightgray;
+    -fx-max-height: 5px;
 }
 
 .Oubli {
+    -fx-text-fill: #303F9F;
 }
 
-.lol {
+.showButton {
+    -fx-background-repeat: no-repeat;
     -fx-background-image: url("Mask.png");
     -fx-pref-height: 0px;
     -fx-pref-width: 22px;
+}
+
+.fieldLabel {
+    -fx-pref-width: 362px;
+    -fx-font-family: Roboto;
+    -fx-font-size: 16px;
+    -fx-fill: #000000;
+    -fx-opacity: 0.6;
 }

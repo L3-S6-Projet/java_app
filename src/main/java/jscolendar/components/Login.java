@@ -23,6 +23,7 @@ public class Login extends HBox {
   public JFXTextField id;
   public JFXTextField password;
   public VBox field;
+  public Button show;
   @FXML
   Button connexion;
   @FXML
@@ -43,5 +44,6 @@ public class Login extends HBox {
   private void initialize() {
     left.setMinHeight(910);
     field.setPadding(new Insets(266, 0, 0, 0));
+
   }
 }
