@@ -4,7 +4,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Text?>
 <fx:root xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
          type="jscolendar.components.Login"
          styleClass="login-box">
+    <HBox fx:id="body">
+        <VBox fx:id="left">
+            <Text fx:id="title"></Text>
+            <Text fx:id="subtitle"></Text>
+            <VBox fx:id="field">
+                <TextField fx:id="id"></TextField>
+                <TextField fx:id="password"></TextField>
+            </VBox>
+            <Button fx:id="connexion"></Button>
+            <Text fx:id="copyRigth"></Text>
+        </VBox>
+        <ImageView fx:id="picture"></ImageView>
+    </HBox>
 </fx:root>
