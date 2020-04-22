@@ -13,6 +13,9 @@ import jscolendar.util.FXUtil;
 
 public class Login extends HBox {
 
+  int width;
+  int height;
+
   public HBox body;
   public VBox left;
   public Label title;
@@ -26,13 +29,19 @@ public class Login extends HBox {
   Text copyRight;
 
 
+  public Login(int width, int height) {
+    FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
+    this.width = width;
+    this.height = height;
+  }
+
   public Login() {
     FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
   }
 
   @FXML
   private void initialize() {
-    left.setMinHeight(1024 - 100);
+    left.setMinHeight(910);
     field.setPadding(new Insets(266, 0, 0, 0));
   }
 }

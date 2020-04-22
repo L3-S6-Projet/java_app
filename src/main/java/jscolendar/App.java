@@ -7,14 +7,17 @@ import jscolendar.components.Login;
 
 public class App extends Application {
 
-  public static void main (String[] args) {
+  int width = 1024;
+  int height = 1024;
+
+  public static void main(String[] args) {
     launch(args);
   }
 
   @Override
-  public void start (Stage stage) {
+  public void start(Stage stage) {
     var root = new Login();
-    Scene scene = new Scene(root, 1024, 1024);
+    Scene scene = new Scene(root, width, height);
     scene.getStylesheets().add("styles.css");
 
     stage.setScene(scene);
