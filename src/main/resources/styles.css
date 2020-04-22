@@ -1,15 +1,13 @@
 .root {
-}
-
-.login-box {
-    position: absolute;
-    -fx-max-height: 1024px;
     -fx-alignment: top-left;
     -fx-background-image: url("imageLogin.jpg");
     -fx-background-color: #FAFAFA;
 }
 
+
 .body {
+    -fx-padding: 64px;
+    -fx-spacing: 64px;
 }
 
 .subtitle {
@@ -41,3 +39,9 @@
     -fx-font-weight: 500;
 
 }
+
+.text-field {
+    -fx-background-color: gray;
+
+}
+
