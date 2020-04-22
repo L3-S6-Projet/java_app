@@ -32,8 +32,7 @@ public class Login extends HBox {
 
   @FXML
   private void initialize() {
-
-    left.setMinHeight(1024);
+    left.setMinHeight(1024 - 100);
     field.setPadding(new Insets(266, 0, 0, 0));
   }
 }

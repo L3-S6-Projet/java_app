@@ -11,17 +11,19 @@
 <fx:root xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
          type="jscolendar.components.Login"
          stylesheets="styles.css"
-         styleClass="login-box"
 >
     <HBox fx:id="body" styleClass="body">
-        <VBox fx:id="left" styleClass="left">
-            <Label fx:id="title" styleClass="title">Scolendar</Label>
-            <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
-            <VBox fx:id="field">
-                <TextField fx:id="id">id</TextField>
-                <TextField fx:id="password">password</TextField>
+        <VBox>
+            <VBox fx:id="left" styleClass="left">
+                <Label fx:id="title" styleClass="title">Scolendar</Label>
+                <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
+                <VBox fx:id="field">
+                    <TextField fx:id="id">id</TextField>
+                    <TextField fx:id="password">password</TextField>
+                </VBox>
+                <Button fx:id="connexion" styleClass="button">connexion</Button>
+
             </VBox>
-            <Button fx:id="connexion" styleClass="button">connexion</Button>
             <Text fx:id="copyRight" styleClass="copyRight">En vous connectant, vous aceptez les termes et conditions.
             </Text>
             <Text styleClass="copyRight">©Scolendar 2020 - Tout droits réservés</Text>
