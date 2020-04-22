@@ -52,3 +52,11 @@
     -fx-text-fill: #000000;
     -fx-opacity: 0.6;
 }
+
+
+.fieldLabel {
+    -fx-font-family: Roboto;
+    -fx-text-fill: #303F9F;
+}
+
+

@@ -1,10 +1,10 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,8 +20,9 @@ public class Login extends HBox {
   public VBox left;
   public Label title;
   public Label subtitle;
-  public TextField id;
-  public TextField password;
+  public VBox fieldId;
+  public JFXTextField id;
+  public JFXTextField password;
   public VBox field;
   @FXML
   Button connexion;
