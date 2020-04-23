@@ -30,12 +30,6 @@ public class Login extends HBox {
   public Text linkCopyRight;
 
 
-  public Login(int width, int height) {
-    FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
-    this.width = width;
-    this.height = height;
-  }
-
   public Login() {
     FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
   }
@@ -48,7 +42,6 @@ public class Login extends HBox {
 
   @FXML
   private void showMDP() {
-
   }
 
   @FXML
