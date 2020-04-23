@@ -20,19 +20,19 @@
 
                 <VBox fx:id="field">
                     <VBox styleClass="field">
-                        <Label styleClass="LabelId" fx:id="idLabel" onKeyPressed="#showIdLabel"
-                               onMouseClicked="#showIdLabel">Nom d'utilisateur*
+                        <Label styleClass="LabelId" fx:id="idLabel">Nom d'utilisateur*
                         </Label>
-                        <JFXTextField fx:id="id" styleClass="fieldLabel" promptText="Nom d'utilisateur"/>
+                        <JFXTextField fx:id="id" styleClass="fieldLabel" onKeyPressed="#showIdLabel"
+                                      onMouseClicked="#showIdLabel" promptText="Nom d'utilisateur"/>
                     </VBox>
                     <Text/>
 
                     <VBox styleClass="field">
-                        <Label styleClass="LabelId" fx:id="passwordLabel" onKeyPressed="#showIdLabel"
-                               onMouseClicked="#showPasswordLabel">Mot de passe*
+                        <Label styleClass="LabelId" fx:id="passwordLabel">Mot de passe*
                         </Label>
                         <HBox>
-                            <JFXPasswordField fx:id="password" styleClass="fieldLabel"
+                            <JFXPasswordField fx:id="password" styleClass="fieldLabel" onKeyPressed="#showPasswordLabel"
+                                              onMouseClicked="#showPasswordLabel"
                                               promptText="Mot de passe"/>
                             <Button styleClass="showButton" fx:id="show" onAction="#showMDP"/>
                         </HBox>

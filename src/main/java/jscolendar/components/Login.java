@@ -38,18 +38,28 @@ public class Login extends HBox {
   private void initialize() {
     left.setMinHeight(910);
     field.setPadding(new Insets(266, 0, 0, 0));
-    idLabel.setVisible(false);
+    idLabel.setVisible(true);
     passwordLabel.setVisible(false);
   }
 
   @FXML
   private void showIdLabel() {
     idLabel.setVisible(true);
+    id.setPromptText("");
+    if (password.getText().isEmpty()) {
+      passwordLabel.setVisible(false);
+      password.setPromptText("Mot de passe");
+    }
   }
 
   @FXML
   private void showPasswordLabel() {
     passwordLabel.setVisible(true);
+    password.setPromptText("");
+    if (id.getText().isEmpty()) {
+      idLabel.setVisible(false);
+      id.setPromptText("Nom d'utilisateur");
+    }
   }
 
   @FXML
@@ -58,17 +68,22 @@ public class Login extends HBox {
 
   @FXML
   private void forgotPassword() {
-    linkForgotPWD.setStyle("-fx-fill: #3F51B5");
+    linkForgotPWD.setStyle("-fx-text-fill: #3F51B5");
+    //TODO add action when link is clicked
   }
 
   @FXML
   private void connexion() {
+    String userId = id.getText();
+    String mdp = password.getText();
+
 
   }
 
   @FXML
   private void conditions() {
     linkCopyRight.setStyle("-fx-fill: #3F51B5");
+    //TODO add action when link is clicked
   }
 
 }
