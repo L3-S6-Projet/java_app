@@ -20,11 +20,17 @@
 
                 <VBox fx:id="field">
                     <VBox styleClass="field">
+                        <Label styleClass="LabelId" fx:id="idLabel" onKeyPressed="#showIdLabel"
+                               onMouseClicked="#showIdLabel">Nom d'utilisateur*
+                        </Label>
                         <JFXTextField fx:id="id" styleClass="fieldLabel" promptText="Nom d'utilisateur"/>
                     </VBox>
                     <Text/>
 
                     <VBox styleClass="field">
+                        <Label styleClass="LabelId" fx:id="passwordLabel" onKeyPressed="#showIdLabel"
+                               onMouseClicked="#showPasswordLabel">Mot de passe*
+                        </Label>
                         <HBox>
                             <JFXPasswordField fx:id="password" styleClass="fieldLabel"
                                               promptText="Mot de passe"/>
@@ -34,9 +40,10 @@
                 </VBox>
                 <Text/>
                 <HBox>
-                    <Button fx:id="connexion" styleClass="button1">connexion</Button>
+                    <Button fx:id="connexion" styleClass="button1" onAction="#connexion">connexion</Button>
                     <VBox prefHeight="50">
-                        <Label styleClass="Oubli">Mot de passe oublié?
+                        <Label fx:id="linkForgotPWD" styleClass="Oubli" onMouseClicked="#forgotPassword">Mot de passe
+                            oublié?
                         </Label>
                     </VBox>
 
@@ -45,15 +52,15 @@
             </VBox>
             <HBox>
                 <Text fx:id="copyRight" styleClass="copyRight" text="En vous connectant, vous aceptez les "/>
-                <Text fx:id="linkCopyRight" styleClass="copyRight" underline="true" text="termes et conditions."/>
+                <Text fx:id="linkCopyRight" styleClass="copyRight" underline="true" text="termes et conditions."
+                      onMouseClicked="#conditions"/>
             </HBox>
             <Text styleClass="copyRight">©Scolendar 2020 - Tout droits réservés</Text>
         </VBox>
     </HBox>
 
     <!--
-        <Label styleClass="LabelId">Nom d'utilisateur*</Label>
-        <Label styleClass="LabelId">Mot de passe*</Label>
+
     -->
 
 </fx:root>

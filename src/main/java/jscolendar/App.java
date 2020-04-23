@@ -8,7 +8,7 @@ import jscolendar.components.Login;
 public class App extends Application {
 
   int width = 1024;
-  int height = 1024;
+  int height = 720;
 
   public static void main(String[] args) {
     launch(args);
