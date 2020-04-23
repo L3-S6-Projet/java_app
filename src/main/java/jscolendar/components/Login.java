@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import jscolendar.util.FXUtil;
@@ -18,13 +20,22 @@ public class Login extends HBox {
   public VBox left;
   public Label title;
   public Label subtitle;
+
+  public VBox userInputs;
+
+  public StackPane idLayout;
   public Label idLabel;
+  public JFXTextField idInput;
+  public TextField emptyIdInput;
+
+  public StackPane PWDLayout;
   public Label passwordLabel;
-  public JFXTextField id;
-  public JFXPasswordField password;
-  public Label linkForgotPWD;
-  public VBox field;
+  public JFXPasswordField PWDInput;
+  public TextField emptyPWDInput;
   public Button show;
+
+
+  public Label linkForgotPWD;
   public Button connexion;
   public Text copyRight;
   public Text linkCopyRight;
@@ -37,37 +48,49 @@ public class Login extends HBox {
   @FXML
   private void initialize() {
     left.setMinHeight(910);
-    field.setPadding(new Insets(266, 0, 0, 0));
-    idLabel.setVisible(true);
+    userInputs.setPadding(new Insets(266, 0, 0, 0));
     passwordLabel.setVisible(false);
-
+    emptyIdInput.setStyle("-fx-max-height: 50px");
+    emptyIdInput.setStyle("-fx-background-color: lightgray");
+    idInput.setPadding(new Insets(20, 0, 0, 0));
+    idLabel.setPadding(new Insets(-20, 0, 0, 0));
+    idLabel.setVisible(true);
+    idInput.setVisible(false);
+    showIdLabel();
   }
 
   @FXML
   private void showIdLabel() {
-    id.setStyle("-jfx-focus-color : #3F51B5");
-    password.setStyle("-jfx-focus-color : #3F51B5");
+    idInput.setStyle("-jfx-focus-color : #3F51B5");
+    PWDInput.setStyle("-jfx-focus-color : #3F51B5");
     idLabel.setStyle("-fx-text-fill: #3F51B5");
     passwordLabel.setStyle("-fx-text-fill: #3F51B5");
+
     idLabel.setVisible(true);
-    id.setPromptText("");
-    if (password.getText().isEmpty()) {
+    idInput.setVisible(true);
+    emptyIdInput.setVisible(false);
+    if (PWDInput.getText().isEmpty()) {
       passwordLabel.setVisible(false);
-      password.setPromptText("Mot de passe");
+      emptyPWDInput.setVisible(true);
     }
   }
 
   @FXML
   private void showPasswordLabel() {
-    id.setStyle("-jfx-focus-color : #3F51B5");
-    password.setStyle("-jfx-focus-color : #3F51B5");
+    idInput.setStyle("-jfx-focus-color : #3F51B5");
+    PWDInput.setStyle("-jfx-focus-color : #3F51B5");
     idLabel.setStyle("-fx-text-fill: #3F51B5");
     passwordLabel.setStyle("-fx-text-fill: #3F51B5");
+
     passwordLabel.setVisible(true);
-    password.setPromptText("");
-    if (id.getText().isEmpty()) {
+    PWDInput.setVisible(true);
+    emptyPWDInput.setVisible(false);
+
+    if (idInput.getText().isEmpty()) {
       idLabel.setVisible(false);
-      id.setPromptText("Nom d'utilisateur");
+      idInput.setVisible(false);
+      emptyIdInput.setVisible(true);
+      emptyPWDInput.setVisible(true);
     }
   }
 
@@ -84,11 +107,11 @@ public class Login extends HBox {
 
   @FXML
   private void connexion() {
-    String userId = id.getText();
-    String mdp = password.getText();
+    String userId = idInput.getText();
+    String mdp = PWDInput.getText();
     if (true) {//TODO add condition with BDD
-      id.setStyle("-jfx-unfocus-color : #FF0C3E");
-      password.setStyle("-jfx-unfocus-color : #FF0C3E");
+      idInput.setStyle("-jfx-unfocus-color : #FF0C3E");
+      PWDInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       idLabel.setStyle("-fx-text-fill: #FF0C3E");
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
