@@ -98,7 +98,7 @@ public class Login extends HBox {
 
   @FXML
   private void showMDP() {
-    //todo make it works
+
   }
 
   @FXML
