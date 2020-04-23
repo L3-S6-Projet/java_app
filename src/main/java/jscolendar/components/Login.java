@@ -73,6 +73,7 @@ public class Login extends HBox {
 
   @FXML
   private void showMDP() {
+    //todo make it works
   }
 
   @FXML
@@ -85,14 +86,12 @@ public class Login extends HBox {
   private void connexion() {
     String userId = id.getText();
     String mdp = password.getText();
-    if (true) {
+    if (true) {//TODO add condition with BDD
       id.setStyle("-jfx-unfocus-color : #FF0C3E");
       password.setStyle("-jfx-unfocus-color : #FF0C3E");
       idLabel.setStyle("-fx-text-fill: #FF0C3E");
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
-
-
   }
 
   @FXML

@@ -1,6 +1,8 @@
 .root {
-    -fx-background-image: url("imageLogin.jpg");
-    -fx-background-position: -200px;
+    -fx-background-image: url("imageLoginModif.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: auto;
+    /* -fx-background-position: -200px;*/
 }
 
 
@@ -27,6 +29,7 @@
 }
 
 .left {
+
 }
 
 .button1 {
@@ -41,6 +44,7 @@
 
 
 .copyRight {
+
     -fx-font-size: 14px;
     -fx-font-weight: normal;
     -fx-font-style: normal;
