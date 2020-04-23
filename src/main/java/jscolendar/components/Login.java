@@ -54,8 +54,10 @@ public class Login extends HBox {
     emptyIdInput.setStyle("-fx-background-color: lightgray");
     idInput.setPadding(new Insets(20, 0, 0, 0));
     idLabel.setPadding(new Insets(-20, 0, 0, 0));
+    passwordLabel.setPadding(new Insets(-20, 0, 0, 0));
     idLabel.setVisible(true);
     idInput.setVisible(false);
+    show.setTranslateX(170);
     showIdLabel();
   }
 
@@ -71,6 +73,7 @@ public class Login extends HBox {
     emptyIdInput.setVisible(false);
     if (PWDInput.getText().isEmpty()) {
       passwordLabel.setVisible(false);
+      PWDInput.setVisible(false);
       emptyPWDInput.setVisible(true);
     }
   }
@@ -90,7 +93,6 @@ public class Login extends HBox {
       idLabel.setVisible(false);
       idInput.setVisible(false);
       emptyIdInput.setVisible(true);
-      emptyPWDInput.setVisible(true);
     }
   }
 

@@ -80,8 +80,8 @@
     -fx-pref-height: 0px;
     -fx-pref-width: 22px;
     -fx-background-position: center;
-    /*-fx-background-color: transparent;*/
-    -fx-padding: 10px;
+    -fx-background-color: transparent;
+
 }
 
 .fieldLabel {
