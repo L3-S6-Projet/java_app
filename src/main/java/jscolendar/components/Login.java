@@ -40,10 +40,15 @@ public class Login extends HBox {
     field.setPadding(new Insets(266, 0, 0, 0));
     idLabel.setVisible(true);
     passwordLabel.setVisible(false);
+
   }
 
   @FXML
   private void showIdLabel() {
+    id.setStyle("-jfx-focus-color : #3F51B5");
+    password.setStyle("-jfx-focus-color : #3F51B5");
+    idLabel.setStyle("-fx-text-fill: #3F51B5");
+    passwordLabel.setStyle("-fx-text-fill: #3F51B5");
     idLabel.setVisible(true);
     id.setPromptText("");
     if (password.getText().isEmpty()) {
@@ -54,6 +59,10 @@ public class Login extends HBox {
 
   @FXML
   private void showPasswordLabel() {
+    id.setStyle("-jfx-focus-color : #3F51B5");
+    password.setStyle("-jfx-focus-color : #3F51B5");
+    idLabel.setStyle("-fx-text-fill: #3F51B5");
+    passwordLabel.setStyle("-fx-text-fill: #3F51B5");
     passwordLabel.setVisible(true);
     password.setPromptText("");
     if (id.getText().isEmpty()) {
@@ -76,6 +85,12 @@ public class Login extends HBox {
   private void connexion() {
     String userId = id.getText();
     String mdp = password.getText();
+    if (true) {
+      id.setStyle("-jfx-unfocus-color : #FF0C3E");
+      password.setStyle("-jfx-unfocus-color : #FF0C3E");
+      idLabel.setStyle("-fx-text-fill: #FF0C3E");
+      passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
+    }
 
 
   }
