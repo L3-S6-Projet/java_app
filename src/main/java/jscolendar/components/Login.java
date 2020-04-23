@@ -1,5 +1,6 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -21,13 +22,12 @@ public class Login extends HBox {
   public Label title;
   public Label subtitle;
   public JFXTextField id;
-  public JFXTextField password;
+  public JFXPasswordField password;
   public VBox field;
   public Button show;
-  @FXML
-  Button connexion;
-  @FXML
-  Text copyRight;
+  public Button connexion;
+  public Text copyRight;
+  public Text linkCopyRight;
 
 
   public Login(int width, int height) {
@@ -44,6 +44,26 @@ public class Login extends HBox {
   private void initialize() {
     left.setMinHeight(910);
     field.setPadding(new Insets(266, 0, 0, 0));
+  }
+
+  @FXML
+  private void showMDP() {
 
   }
+
+  @FXML
+  private void forgotPassword() {
+
+  }
+
+  @FXML
+  private void connexion() {
+
+  }
+
+  @FXML
+  private void condition() {
+
+  }
+
 }

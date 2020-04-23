@@ -66,7 +66,11 @@
 }
 
 .Oubli {
-    -fx-text-fill: #303F9F;
+    -fx-text-fill: #000000;
+    -fx-opacity: 0.6;
+    -fx-underline: true;
+    -fx-padding: 17px;
+    -fx-pref-height: 60px;
 }
 
 .showButton {
@@ -74,6 +78,9 @@
     -fx-background-image: url("Mask.png");
     -fx-pref-height: 0px;
     -fx-pref-width: 22px;
+    -fx-background-position: center;
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
 }
 
 .fieldLabel {
