@@ -54,6 +54,8 @@ public class Login extends HBox {
     emptyIdInput.setStyle("-fx-max-height: 50px");
     emptyIdInput.setStyle("-fx-background-color: lightgray");
     idInput.setPadding(new Insets(20, 0, 0, 0));
+    PWDInput.setPadding(new Insets(20, 0, 0, 0));
+    PWDShowInput.setPadding(new Insets(20, 0, 0, 0));
     idLabel.setPadding(new Insets(-20, 0, 0, 0));
     passwordLabel.setPadding(new Insets(-20, 0, 0, 0));
     idLabel.setVisible(true);
@@ -100,9 +102,15 @@ public class Login extends HBox {
 
   @FXML
   private void showMDP() {
-    PWDInput.setVisible(!PWDInput.isVisible());
-    PWDShowInput.setText(PWDInput.getText());
-    PWDShowInput.setVisible(!PWDShowInput.isVisible());
+    if (PWDShowInput.isVisible()) {
+      PWDInput.setText(PWDShowInput.getText());
+      PWDShowInput.setVisible(false);
+      PWDInput.setVisible(true);
+    } else {
+      PWDInput.setVisible(false);
+      PWDShowInput.setVisible(true);
+      PWDShowInput.setText(PWDInput.getText());
+    }
   }
 
   @FXML
@@ -115,7 +123,7 @@ public class Login extends HBox {
   private void connexion() {
     String userId = idInput.getText();
     String mdp = PWDInput.getText();
-    if (true) {//TODO add condition with BDD
+    if (userId.equals(userId) && mdp.equals(mdp)) {//TODO add condition with BDD
       idInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       PWDInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       idLabel.setStyle("-fx-text-fill: #FF0C3E");

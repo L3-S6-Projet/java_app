@@ -31,12 +31,11 @@
                         <Label styleClass="LabelId" fx:id="passwordLabel">Mot de passe*</Label>
                         <JFXPasswordField fx:id="PWDInput" styleClass="fieldLabel" onKeyPressed="#showPasswordLabel"
                                           onMouseClicked="#showPasswordLabel"/>
-                        <JFXTextField fx:id="PWDShowInput" styleClass="fieldLabel"></JFXTextField>
+                        <JFXTextField fx:id="PWDShowInput" styleClass="fieldLabel"/>
                         <TextField fx:id="emptyPWDInput" promptText="Mot de passe" styleClass="emptyInput"
                                    onMouseClicked="#showPasswordLabel" onKeyPressed="#showPasswordLabel"/>
                         <Button styleClass="showButton" fx:id="show" onAction="#showMDP"/>
                     </StackPane>
-
                 </VBox>
                 <Text/>
                 <HBox>
