@@ -31,6 +31,7 @@ public class Login extends HBox {
   public StackPane PWDLayout;
   public Label passwordLabel;
   public JFXPasswordField PWDInput;
+  public JFXTextField PWDShowInput;
   public TextField emptyPWDInput;
   public Button show;
 
@@ -58,6 +59,7 @@ public class Login extends HBox {
     idLabel.setVisible(true);
     idInput.setVisible(false);
     show.setTranslateX(170);
+    PWDShowInput.setVisible(false);
     showIdLabel();
   }
 
@@ -98,7 +100,9 @@ public class Login extends HBox {
 
   @FXML
   private void showMDP() {
-
+    PWDInput.setVisible(!PWDInput.isVisible());
+    PWDShowInput.setText(PWDInput.getText());
+    PWDShowInput.setVisible(!PWDShowInput.isVisible());
   }
 
   @FXML
