@@ -20,7 +20,7 @@
                 <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
 
                 <VBox fx:id="userInputs">
-                    <StackPane fx:id="idLayout" onMouseClicked="#showIdLabel" onKeyPressed="#showIdLabel">
+                    <StackPane fx:id="idLayout">
                         <Label styleClass="LabelId" fx:id="idLabel" alignment="TOP_LEFT">Nom d'utilisateur*</Label>
                         <JFXTextField fx:id="idInput" styleClass="fieldLabel" onMouseClicked="#showIdLabel"
                                       onKeyPressed="#showIdLabel"/>

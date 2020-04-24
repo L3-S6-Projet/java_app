@@ -67,6 +67,7 @@ public class Login extends HBox {
 
   @FXML
   private void showIdLabel() {
+
     idInput.setStyle("-jfx-focus-color : #3F51B5");
     PWDInput.setStyle("-jfx-focus-color : #3F51B5");
     idLabel.setStyle("-fx-text-fill: #3F51B5");
@@ -75,6 +76,7 @@ public class Login extends HBox {
     idLabel.setVisible(true);
     idInput.setVisible(true);
     emptyIdInput.setVisible(false);
+    idInput.requestFocus();
     if (PWDInput.getText().isEmpty()) {
       passwordLabel.setVisible(false);
       PWDInput.setVisible(false);
@@ -84,6 +86,7 @@ public class Login extends HBox {
 
   @FXML
   private void showPasswordLabel() {
+
     idInput.setStyle("-jfx-focus-color : #3F51B5");
     PWDInput.setStyle("-jfx-focus-color : #3F51B5");
     idLabel.setStyle("-fx-text-fill: #3F51B5");
@@ -92,7 +95,7 @@ public class Login extends HBox {
     passwordLabel.setVisible(true);
     PWDInput.setVisible(true);
     emptyPWDInput.setVisible(false);
-
+    PWDInput.requestFocus();
     if (idInput.getText().isEmpty()) {
       idLabel.setVisible(false);
       idInput.setVisible(false);
