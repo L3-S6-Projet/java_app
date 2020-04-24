@@ -11,7 +11,7 @@
         <VBox fx:id="menu" styleClass="menu">
             <Label fx:id="title" styleClass="AdminTitle" text="Brooklyn Fisher"/>
             <Label fx:id="subtitle" text="Administrateur à AMU" styleClass="AdminSubtitle"/>
-            <ListView fx:id="menuContent" styleClass="list">
+            <ListView fx:id="menuContent" styleClass="list" onMouseClicked="#selectItem">
                 <Label fx:id="emploiDuTemps" styleClass="EDT">Emploi du temps</Label>
                 <Label fx:id="enseignants" styleClass="Ens">Enseignants</Label>
                 <Label fx:id="etudiants" styleClass="etu">Etudiants</Label>

@@ -34,6 +34,19 @@ public class Admin extends HBox {
   @FXML
   private void initialize() {
     menuContent.setStyle("-fx-tick-label-fill: #3F51B5");
+    resetOpacity();
+  }
+
+  private void resetOpacity() {
+    for (Label item : menuContent.getItems()) {
+      item.setStyle("-fx-opacity: 0.6");
+    }
+  }
+
+  @FXML
+  private void selectItem() {
+    resetOpacity();
+    menuContent.getSelectionModel().getSelectedItem().setStyle("-fx-opacity: 1");
   }
 
 
