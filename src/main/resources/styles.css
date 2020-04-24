@@ -1,7 +1,9 @@
 .root {
-    -fx-background-image: url("imageLoginModif.jpg");
+    -fx-background-image: url("imageLogin.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: auto;
+    -fx-background-position: right -13.56% left 0% top 0%;
+    -fx-pref-height: 1162px;
 }
 
 

@@ -13,8 +13,7 @@
 <fx:root xmlns:fx="http://javafx.com/fxml/1" stylesheets="styles.css" type="jscolendar.components.Login"
          xmlns="http://javafx.com/javafx/10.0.2-internal">
 
-    <HBox fx:id="body" styleClass="body">
-        <VBox>
+        <VBox styleClass="body">
             <VBox fx:id="left" styleClass="left">
                 <Label fx:id="title" styleClass="title">Scolendar</Label>
                 <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
@@ -59,5 +58,4 @@
             </HBox>
             <Text styleClass="copyRight">©Scolendar 2020 - Tout droits réservés</Text>
         </VBox>
-    </HBox>
 </fx:root>

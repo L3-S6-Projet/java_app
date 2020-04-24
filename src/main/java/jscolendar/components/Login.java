@@ -16,7 +16,7 @@ import jscolendar.util.FXUtil;
 
 public class Login extends HBox {
 
-  public HBox body;
+
   public VBox left;
   public Label title;
   public Label subtitle;
