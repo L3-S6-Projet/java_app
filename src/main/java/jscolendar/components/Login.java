@@ -127,6 +127,7 @@ public class Login extends HBox {
   @FXML
   private void forgotPassword() {
     linkForgotPWD.setStyle("-fx-text-fill: #3F51B5");
+    conditions();
     //TODO add action when link is clicked
   }
 
@@ -149,9 +150,12 @@ public class Login extends HBox {
   private void conditions() {
     linkCopyRight.setStyle("-fx-fill: #3F51B5");
     popConditions = new JFXPopup();
-    popConditions.setPopupContent(new TextArea("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."));
-    popConditions.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_TOP_RIGHT);
-    popConditions.show(PWDLayout);
+    TextArea text = new TextArea("Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+      " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,");
+    text.setStyle("-fx-max-height: 50px");
+    popConditions.setPopupContent(text);
+    popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    popConditions.show(title);
     //TODO make a beautiful popup and change the text
   }
 

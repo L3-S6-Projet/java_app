@@ -73,6 +73,10 @@
     -fx-pref-height: 60px;
 }
 
+.text-area {
+    -fx-max-height: 200px;
+}
+
 .showButton {
 
     -fx-background-repeat: no-repeat;
