@@ -26,7 +26,6 @@ public class Admin extends HBox {
   public Label copyRigth1;
   public Label copyRigth2;
 
-
   public Admin() {
     FXUtil.loadFXML("/fxml/AdminView.fxml", this, this);
   }
@@ -79,7 +78,6 @@ public class Admin extends HBox {
   }
 
   private void selectEDT() {
-
   }
 
   private void selectEns() {

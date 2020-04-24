@@ -1,16 +1,19 @@
 package jscolendar.components;
 
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.PopupWindow;
 import jscolendar.util.FXUtil;
 
 
@@ -40,6 +43,7 @@ public class Login extends HBox {
   public Button connexion;
   public Text copyRight;
   public Text linkCopyRight;
+  public JFXPopup popConditions;
 
 
   public Login() {
@@ -48,7 +52,7 @@ public class Login extends HBox {
 
   @FXML
   private void initialize() {
-    left.setMinHeight(910);
+    left.setMinHeight(610);
     userInputs.setPadding(new Insets(266, 0, 0, 0));
     passwordLabel.setVisible(false);
     emptyIdInput.setStyle("-fx-max-height: 50px");
@@ -144,7 +148,11 @@ public class Login extends HBox {
   @FXML
   private void conditions() {
     linkCopyRight.setStyle("-fx-fill: #3F51B5");
-    //TODO add action when link is clicked
+    popConditions = new JFXPopup();
+    popConditions.setPopupContent(new TextArea("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."));
+    popConditions.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_TOP_RIGHT);
+    popConditions.show(PWDLayout);
+    //TODO make a beautiful popup and change the text
   }
 
 }
