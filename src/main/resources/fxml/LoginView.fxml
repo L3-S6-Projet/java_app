@@ -11,17 +11,17 @@
 <?import javafx.scene.text.Text?>
 <?import jscolendar.components.Login?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" stylesheets="styles.css" type="jscolendar.components.Login"
-         xmlns="http://javafx.com/javafx/10.0.2-internal">
+         xmlns="http://javafx.com/javafx/10.0.2-internal" styleClass="root1">
 
-        <VBox styleClass="body">
-            <VBox fx:id="left" styleClass="left">
-                <Label fx:id="title" styleClass="title">Scolendar</Label>
-                <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
+    <VBox styleClass="body">
+        <VBox fx:id="left" styleClass="left">
+            <Label fx:id="title" styleClass="title">Scolendar</Label>
+            <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
 
-                <VBox fx:id="userInputs">
-                    <Label fx:id="wrongLoginMessage" styleClass="wrongLoginMessage">
-                        Nom d'utilisateur et/ou mot de passe non valide.
-                    </Label>
+            <VBox fx:id="userInputs">
+                <Label fx:id="wrongLoginMessage" styleClass="wrongLoginMessage">
+                    Nom d'utilisateur et/ou mot de passe non valide.
+                </Label>
                     <StackPane fx:id="idLayout">
                         <Label styleClass="LabelId" fx:id="idLabel" alignment="TOP_LEFT">Nom d'utilisateur*</Label>
                         <JFXTextField fx:id="idInput" styleClass="fieldLabel" onMouseClicked="#showIdLabel"

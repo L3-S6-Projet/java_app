@@ -148,12 +148,17 @@ public class Login extends HBox {
 
   @FXML
   private void conditions() {
-    linkCopyRight.setStyle("-fx-fill: #3F51B5");
-    popConditions = new JFXPopup();
+
+
     TextArea text = new TextArea("Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
       " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,");
-    text.setStyle("-fx-max-height: 50px");
-    popConditions.setPopupContent(text);
+    VBox lol = new VBox();
+    lol.getChildren().addAll(new Label("fefzef"), text);
+    linkCopyRight.setStyle("-fx-fill: #3F51B5");
+    popConditions = new JFXPopup();
+    popConditions.setPopupContent(lol);
+    //popConditions.setPopupContent(text);
+    popConditions.getPopupContent().setMaxHeight(600);
     popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
     popConditions.show(title);
     //TODO make a beautiful popup and change the text
