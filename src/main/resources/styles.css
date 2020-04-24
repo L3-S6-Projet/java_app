@@ -1,8 +1,8 @@
 .root {
-    -fx-background-image: url("imageLogin.jpg");
+    -fx-background-image: url(" images/imageLoginModif.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: auto;
-    -fx-background-position: right -13.56% left 0% top 0%;
+
     -fx-pref-height: 1162px;
 }
 
@@ -76,7 +76,7 @@
 .showButton {
 
     -fx-background-repeat: no-repeat;
-    -fx-background-image: url("Mask.png");
+    -fx-background-image: url("images/Mask.png");
     -fx-pref-height: 0px;
     -fx-pref-width: 22px;
     -fx-background-position: center;

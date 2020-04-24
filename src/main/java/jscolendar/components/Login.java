@@ -137,6 +137,8 @@ public class Login extends HBox {
       idLabel.setStyle("-fx-text-fill: #FF0C3E");
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
+    new Admin();
+
   }
 
   @FXML

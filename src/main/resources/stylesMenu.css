@@ -1,0 +1,44 @@
+.menu {
+    -fx-background-color: #3F51B5;
+}
+
+.list {
+    -fx-background-color: #3F51B5;
+    -fx-fill: #3F51B5;
+}
+
+.label {
+    -fx-background-color: #3F51B5;
+}
+
+.EDT {
+    -fx-graphic: url("images/EDT.png");
+}
+
+.Ens {
+    -fx-graphic: url("images/Ens.png");
+}
+
+.etu {
+    -fx-graphic: url("images/Etu.png");
+}
+
+.salles {
+    -fx-graphic: url("images/Salles.png");
+}
+
+.classes {
+    -fx-graphic: url("images/Classes.png");
+}
+
+.UE {
+    -fx-graphic: url("images/UE.png");
+}
+
+.Param {
+    -fx-graphic: url("images/Param.png");
+}
+
+.Deco {
+    -fx-graphic: url("images/Deco.png");
+}
