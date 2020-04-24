@@ -20,6 +20,9 @@
                 <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
 
                 <VBox fx:id="userInputs">
+                    <Label fx:id="wrongLoginMessage" styleClass="wrongLoginMessage">
+                        Nom d'utilisateur et/ou mot de passe non valide.
+                    </Label>
                     <StackPane fx:id="idLayout">
                         <Label styleClass="LabelId" fx:id="idLabel" alignment="TOP_LEFT">Nom d'utilisateur*</Label>
                         <JFXTextField fx:id="idInput" styleClass="fieldLabel" onMouseClicked="#showIdLabel"

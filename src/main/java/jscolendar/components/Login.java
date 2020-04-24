@@ -22,7 +22,7 @@ public class Login extends HBox {
   public Label subtitle;
 
   public VBox userInputs;
-
+  public Label wrongLoginMessage;
   public StackPane idLayout;
   public Label idLabel;
   public JFXTextField idInput;
@@ -62,6 +62,8 @@ public class Login extends HBox {
     idInput.setVisible(false);
     show.setTranslateX(170);
     PWDShowInput.setVisible(false);
+    wrongLoginMessage.setVisible(false);
+    wrongLoginMessage.setPadding(new Insets(0, 0, 28, 0));
     showIdLabel();
   }
 
@@ -72,6 +74,7 @@ public class Login extends HBox {
     PWDInput.setStyle("-jfx-focus-color : #3F51B5");
     idLabel.setStyle("-fx-text-fill: #3F51B5");
     passwordLabel.setStyle("-fx-text-fill: #3F51B5");
+    wrongLoginMessage.setVisible(false);
 
     idLabel.setVisible(true);
     idInput.setVisible(true);
@@ -91,6 +94,7 @@ public class Login extends HBox {
     PWDInput.setStyle("-jfx-focus-color : #3F51B5");
     idLabel.setStyle("-fx-text-fill: #3F51B5");
     passwordLabel.setStyle("-fx-text-fill: #3F51B5");
+    wrongLoginMessage.setVisible(false);
 
     passwordLabel.setVisible(true);
     PWDInput.setVisible(true);
@@ -127,6 +131,7 @@ public class Login extends HBox {
     String userId = idInput.getText();
     String mdp = PWDInput.getText();
     if (userId.equals(userId) && mdp.equals(mdp)) {//TODO add condition with BDD
+      wrongLoginMessage.setVisible(true);
       idInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       PWDInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       idLabel.setStyle("-fx-text-fill: #FF0C3E");

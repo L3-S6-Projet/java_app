@@ -2,7 +2,6 @@
     -fx-background-image: url("imageLoginModif.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: auto;
-    /* -fx-background-position: -200px;*/
 }
 
 
@@ -44,7 +43,6 @@
 
 
 .copyRight {
-
     -fx-font-size: 14px;
     -fx-font-weight: normal;
     -fx-font-style: normal;
@@ -96,4 +94,11 @@
 .emptyInput {
     -fx-background-color: lightgray;
     -fx-pref-height: 56px;
+}
+
+.wrongLoginMessage {
+    -fx-text-fill: #FF0C3E;
+    -fx-font-family: Roboto;
+    -fx-font-size: 14px;
+
 }
