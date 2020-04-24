@@ -1,14 +1,40 @@
-.menu {
+.list-cell {
+    -fx-control-inner-background: #3F51B5;
+
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #3F51B5;
+}
+
+.list-cell:odd {
     -fx-background-color: #3F51B5;
 }
+
+.list-cell:filled:hover {
+    -fx-background-color: #3F51B5;
+}
+
+
+.list-cell:filled:selected:focused {
+    -fx-background-color: #3F51B5;
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #303F9F;
+}
+
+.menu {
+    -fx-background-color: #3F51B5;
+    -fx-pref-width: 272px;
+}
+
 
 .list {
     -fx-background-color: #3F51B5;
     -fx-fill: #3F51B5;
+    -fx-pref-width: 220px;
+    -fx-spacing: 0px;
 }
 
-.label {
-    -fx-background-color: #3F51B5;
+.label:hover {
+    -fx-opacity: 1;
 }
 
 .EDT {
@@ -41,4 +67,21 @@
 
 .Deco {
     -fx-graphic: url("images/Deco.png");
+}
+
+.AdminTitle {
+    -fx-pref-width: 272px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: Roboto;
+    -fx-font-size: 24px;
+    -fx-alignment: center;
+}
+
+.AdminSubtitle {
+    -fx-pref-width: 272px;
+    -fx-text-fill: #BDBDBD;
+    -fx-font-family: Roboto;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+
 }

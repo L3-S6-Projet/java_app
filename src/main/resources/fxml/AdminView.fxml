@@ -9,8 +9,8 @@
          xmlns="http://javafx.com/javafx/10.0.2-internal">
     <HBox fx:id="body">
         <VBox fx:id="menu" styleClass="menu">
-            <Label fx:id="title"/>
-            <Label fx:id="subtitle" text="Administrateur à AMU"/>
+            <Label fx:id="title" styleClass="AdminTitle" text="Brooklyn Fisher"/>
+            <Label fx:id="subtitle" text="Administrateur à AMU" styleClass="AdminSubtitle"/>
             <ListView fx:id="menuContent" styleClass="list">
                 <Label fx:id="emploiDuTemps" styleClass="EDT">Emploi du temps</Label>
                 <Label fx:id="enseignants" styleClass="Ens">Enseignants</Label>
@@ -21,8 +21,8 @@
                 <Label fx:id="parametres" styleClass="Param">Paramètres</Label>
                 <Label fx:id="deconnexion" styleClass="Deco">Déconnexion</Label>
             </ListView>
-            <Label fx:id="copyRigth1">© Scolendar 2020</Label>
-            <Label fx:id="copyRigth2">Tout droits réservés</Label>
+            <Label fx:id="copyRigth1" styleClass="AdminSubtitle">© Scolendar 2020</Label>
+            <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>
         </VBox>
     </HBox>
 

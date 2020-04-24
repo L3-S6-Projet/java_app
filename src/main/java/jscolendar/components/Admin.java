@@ -33,8 +33,7 @@ public class Admin extends HBox {
 
   @FXML
   private void initialize() {
-    menuContent.getItems().addAll(emploiDuTemps, enseignants, etudiants, salles, classes, unitesEns, parametres, deconnexion);
-
+    menuContent.setStyle("-fx-tick-label-fill: #3F51B5");
   }
 
 
