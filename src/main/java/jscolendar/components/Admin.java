@@ -47,6 +47,67 @@ public class Admin extends HBox {
   private void selectItem() {
     resetOpacity();
     menuContent.getSelectionModel().getSelectedItem().setStyle("-fx-opacity: 1");
+    String selectedItem = menuContent.getSelectionModel().getSelectedItem().getText();
+    switch (selectedItem) {
+      case "Emploi du temps":
+        selectEDT();
+        break;
+      case "Enseignants":
+        selectEns();
+        break;
+      case "Etudiants":
+        selectEtu();
+        break;
+      case "Salles":
+        selectSalles();
+        break;
+      case "Classes":
+        selectClasses();
+        break;
+      case "Unités d'enseignement":
+        selectUE();
+        break;
+      case "Paramètres":
+        selectParam();
+        break;
+      case "Déconnexion":
+        selectDeco();
+        break;
+      default:
+        break;
+    }
+  }
+
+  private void selectEDT() {
+
+  }
+
+  private void selectEns() {
+
+  }
+
+  private void selectEtu() {
+
+  }
+
+  private void selectSalles() {
+
+  }
+
+  private void selectClasses() {
+
+  }
+
+  private void selectUE() {
+
+  }
+
+  private void selectParam() {
+
+  }
+
+  private void selectDeco() {
+    //todo return too login
   }
 
 

@@ -10,6 +10,7 @@ public class App extends Application {
   int width = 720;
   int height = 480;
 
+
   public static void main(String[] args) {
     launch(args);
   }
