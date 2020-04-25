@@ -17,9 +17,11 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) {
+    //var root  = new Confirmation();
     var root = new Login();
     //var root = new Admin();
     Scene scene = new Scene(root, width, height);
+    //scene.getStylesheets().add("stylesPoppup.css");
     scene.getStylesheets().add("styles.css");
     //scene.getStylesheets().add("stylesMenu.css");
     stage.setScene(scene);

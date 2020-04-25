@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.popup.Confirmation?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="jscolendar.components.popup.Confirmation"
+         stylesheets="stylesPoppup.css">
+    <VBox fx:id="body">
+        <Label fx:id="title" styleClass="poppupTitle">Confirmation</Label>
+        <Label fx:id="message" styleClass="message"/>
+        <HBox fx:id="buttons">
+            <JFXButton fx:id="annuler" styleClass="poppupButton" onMouseClicked="#annul">ANNULER</JFXButton>
+            <JFXButton fx:id="confirm" styleClass="poppupButton" onMouseClicked="#confirm">CONFIRMER</JFXButton>
+        </HBox>
+    </VBox>
+
+</fx:root>

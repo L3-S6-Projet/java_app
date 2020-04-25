@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.PopupWindow;
+import jscolendar.components.popup.Confirmation;
 import jscolendar.util.FXUtil;
 
 
@@ -156,7 +157,7 @@ public class Login extends HBox {
     lol.getChildren().addAll(new Label("fefzef"), text);
     linkCopyRight.setStyle("-fx-fill: #3F51B5");
     popConditions = new JFXPopup();
-    popConditions.setPopupContent(lol);
+    popConditions.setPopupContent(new Confirmation());
     //popConditions.setPopupContent(text);
     popConditions.getPopupContent().setMaxHeight(600);
     popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
