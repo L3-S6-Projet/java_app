@@ -77,10 +77,16 @@ public class Edition extends VBox {
     emptyPrenomInput.setEditable(false);
     emptyNomInput.setEditable(false);
 
-    prenomLabel.setPadding(new Insets(-60, 0, 0, -150));
-    nomLabel.setPadding(new Insets(-60, 0, 0, -150));
-    classeLabel.setPadding(new Insets(-60, 0, 0, -150));
-    mdpLabel.setPadding(new Insets(-60, 0, 0, -150));
+    prenomLabel.setTranslateY(-20);
+    nomLabel.setTranslateY(-20);
+    classeLabel.setTranslateY(-20);
+    mdpLabel.setTranslateY(-20);
+//todo modif margin of fields
+    prenomInput.setTranslateY(10);
+    nomInput.setTranslateY(10);
+    classeInput.setTranslateY(10);
+    mdpInput.setTranslateY(10);
+    mdpShowInput.setTranslateY(10);
 
     show.setTranslateX(150);
 
