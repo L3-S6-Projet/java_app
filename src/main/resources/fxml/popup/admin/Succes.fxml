@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.popup.admin.Succes?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx" type="jscolendar.components.popup.admin.Succes"
+         stylesheets="stylesPoppup.css">
+    <VBox fx:id="body">
+        <Label fx:id="title" text="Succès" styleClass="poppupTitle"/>
+        <Label fx:id="msg" text="Veuillez transmettre les informations suivantes :" styleClass="popupMessage"/>
+        <Label fx:id="id" styleClass="popupMessage"/>
+        <Label fx:id="mdp" styleClass="popupMessage"/>
+        <JFXButton fx:id="ok" styleClass="poppupButton">OK</JFXButton>
+    </VBox>
+
+</fx:root>

@@ -1,4 +1,4 @@
-package jscolendar.components.popup;
+package jscolendar.components.popup.admin;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;

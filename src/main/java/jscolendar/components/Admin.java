@@ -7,8 +7,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow;
-import jscolendar.components.popup.Confirmation;
+import jscolendar.components.popup.admin.Confirmation;
 import jscolendar.components.popup.admin.Edition;
+import jscolendar.components.popup.admin.Succes;
 import jscolendar.util.FXUtil;
 
 
@@ -99,7 +100,10 @@ public class Admin extends HBox {
   }
 
   private void selectEtu() {
-
+    popConfirm = new JFXPopup();
+    popConfirm.setPopupContent(new Succes());
+    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    popConfirm.show(deconnexion);
   }
 
   private void selectSalles() {
