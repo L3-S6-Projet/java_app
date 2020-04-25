@@ -101,7 +101,7 @@ public class Admin extends HBox {
 
   private void selectEtu() {
     popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new Succes());
+    popConfirm.setPopupContent(new Succes("lol", "xd"));
     popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
     popConfirm.show(deconnexion);
   }

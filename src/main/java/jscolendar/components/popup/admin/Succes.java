@@ -9,6 +9,8 @@ import jscolendar.util.FXUtil;
 
 public class Succes extends VBox {
 
+  private final String userName;
+  private final String userMdp;
   public VBox body;
   public Label title;
   public Label msg;
@@ -16,16 +18,17 @@ public class Succes extends VBox {
   public Label mdp;
   public JFXButton ok;
 
-  public Succes() {
+  public Succes(String id, String mdp) {
+    userName = id;
+    userMdp = mdp;
     FXUtil.loadFXML("/fxml/popup/admin/Succes.fxml", this, this);
   }
 
-
   @FXML
   private void initialize() {
-    id.setText("Nom d'utilisateur : lol");
-    mdp.setText("Mot de passe : lol");
     ok.setTranslateX(280);
+    this.id.setText("Nom d'utilisateur : " + userName);
+    this.mdp.setText("Mot de passe : " + userMdp);
   }
 
 }
