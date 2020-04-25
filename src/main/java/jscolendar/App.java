@@ -9,7 +9,7 @@ public class App extends Application {
 
   int width = 1024;
   int height = 720;
-
+//TODO waring an hover css on all field i don't know d'où ça sort
 
   public static void main(String[] args) {
     launch(args);

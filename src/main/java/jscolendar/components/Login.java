@@ -54,21 +54,24 @@ public class Login extends HBox {
   @FXML
   private void initialize() {
     left.setMinHeight(610);
+
     userInputs.setPadding(new Insets(266, 0, 0, 0));
-    passwordLabel.setVisible(false);
     emptyIdInput.setStyle("-fx-max-height: 50px");
     emptyIdInput.setStyle("-fx-background-color: lightgray");
-    idInput.setPadding(new Insets(20, 0, 0, 0));
-    PWDInput.setPadding(new Insets(20, 0, 0, 0));
-    PWDShowInput.setPadding(new Insets(20, 0, 0, 0));
     idLabel.setPadding(new Insets(-20, 0, 0, 0));
-    passwordLabel.setPadding(new Insets(-20, 0, 0, 0));
+    idInput.setPadding(new Insets(20, 0, 0, 0));
     idLabel.setVisible(true);
     idInput.setVisible(false);
-    show.setTranslateX(170);
+
+    passwordLabel.setVisible(false);
+    PWDInput.setPadding(new Insets(20, 0, 0, 0));
+    PWDShowInput.setPadding(new Insets(20, 0, 0, 0));
+    passwordLabel.setPadding(new Insets(-20, 0, 0, 0));
     PWDShowInput.setVisible(false);
     wrongLoginMessage.setVisible(false);
     wrongLoginMessage.setPadding(new Insets(0, 0, 28, 0));
+    show.setTranslateX(170);
+
     showIdLabel();
   }
 

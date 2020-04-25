@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import jscolendar.components.popup.admin.Edition?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
@@ -10,6 +13,16 @@
          type="jscolendar.components.popup.admin.Edition" stylesheets="stylesPoppup.css">
     <VBox fx:id="body">
         <Label fx:id="title" styleClass="poppupTitle"/>
+        <VBox fx:id="prenom">
+            <Label fx:id="emptyField" styleClass="errorEmptyField"/>
+            <StackPane fx:id="prenomLayout">
+                <Label fx:id="prenomLabel" styleClass="labelInput1" text="Prénom"/>
+                <JFXTextField fx:id="prenomInput" onMouseClicked="#fieldPrenom" promptText="Prénom"
+                              onKeyPressed="#fieldPrenom" styleClass="labelInput1"/>
+                <TextField fx:id="emptyPrenomInput" onMouseClicked="#fieldPrenom" promptText="Prénom"
+                           onKeyPressed="#fieldPrenom" styleClass="emptyInput"/>
+            </StackPane>
+        </VBox>
         <Label fx:id="msg"/>
         <HBox fx:id="buttons">
             <JFXButton fx:id="annuler" styleClass="poppupButton"/>
