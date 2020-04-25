@@ -21,3 +21,26 @@
     -fx-font-size: 16px;
     -fx-text-fill: #3F51B5;
 }
+
+
+.errorEmptyField {
+    -fx-text-fill: #FF0C3E;
+    -fx-font-family: Roboto;
+    -fx-font-size: 14px;
+}
+
+.fieldLabelpop {
+    -fx-font-family: Roboto;
+    -fx-font-size: 12px;
+    -fx-pref-width: 362;
+    -fx-max-height: 5px;
+}
+
+.labelInput1 {
+    -fx-background-color: lightgray;
+    -fx-pref-width: 362px;
+    -fx-font-family: Roboto;
+    -fx-font-size: 16px;
+    -fx-fill: #000000;
+    -fx-opacity: 0.6;
+}

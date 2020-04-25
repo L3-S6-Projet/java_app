@@ -58,8 +58,18 @@ public class Edition extends VBox {
 
   @FXML
   private void fieldPrenom() {
-    prenomInput.setStyle("-jfx-focus-color : #3F51B5");
-    prenomLabel.setStyle("-fx-text-fill: #3F51B5");
     emptyField.setVisible(false);
+  }
+
+
+  @FXML
+  private void annul() {
+
+    emptyField.setVisible(true);
+  }
+
+  @FXML
+  private void saveButton() {
+    emptyField.setVisible(true);
   }
 }

@@ -16,7 +16,7 @@
         <VBox fx:id="prenom">
             <Label fx:id="emptyField" styleClass="errorEmptyField"/>
             <StackPane fx:id="prenomLayout">
-                <Label fx:id="prenomLabel" styleClass="labelInput1" text="Prénom"/>
+                <Label fx:id="prenomLabel" styleClass="fieldLabelpop" text="Prénom"/>
                 <JFXTextField fx:id="prenomInput" onMouseClicked="#fieldPrenom" promptText="Prénom"
                               onKeyPressed="#fieldPrenom" styleClass="labelInput1"/>
                 <TextField fx:id="emptyPrenomInput" onMouseClicked="#fieldPrenom" promptText="Prénom"
@@ -25,8 +25,8 @@
         </VBox>
         <Label fx:id="msg"/>
         <HBox fx:id="buttons">
-            <JFXButton fx:id="annuler" styleClass="poppupButton"/>
-            <JFXButton fx:id="save" styleClass="poppupButton"/>
+            <JFXButton fx:id="annuler" styleClass="poppupButton" onMouseClicked="#annul"/>
+            <JFXButton fx:id="save" styleClass="poppupButton" onMouseClicked="#saveButton"/>
         </HBox>
     </VBox>
 
