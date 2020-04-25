@@ -89,7 +89,6 @@ public class Edition extends VBox {
     mdpShowInput.setTranslateY(10);
 
     show.setTranslateX(150);
-
     msg.setText("A remplir seulement pour changer de mot de passe.");
     msg.setPadding(new Insets(0, 24, 35, 24));
     buttons.setPadding(new Insets(0, 16, 8, 80));
@@ -198,11 +197,12 @@ public class Edition extends VBox {
 
   @FXML
   private void annul() {
-
+    //todo add action
   }
 
   @FXML
   private void saveButton() {
+    //todo add action
   }
 
 
