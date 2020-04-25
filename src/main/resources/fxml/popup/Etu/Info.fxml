@@ -23,7 +23,7 @@
                 <Label fx:id="group1"/>
                 <Label fx:id="group2"/>
             </VBox>
-            <JFXButton fx:id="close" text="FERMER"/>
+            <JFXButton fx:id="close" text="FERMER" styleClass="poppupButton"/>
         </HBox>
     </VBox>
 

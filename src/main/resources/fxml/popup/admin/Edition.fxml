@@ -58,7 +58,7 @@
                 <Button styleClass="popupShowButton" fx:id="show" onMouseClicked="#showButton"/>
             </StackPane>
         </VBox>
-        <Label fx:id="msg"/>
+        <Label fx:id="msg" styleClass="message"/>
         <HBox fx:id="buttons">
             <JFXButton fx:id="annuler" styleClass="poppupButton" onMouseClicked="#annul"/>
             <JFXButton fx:id="save" styleClass="poppupButton" onMouseClicked="#saveButton"/>

@@ -202,7 +202,23 @@ public class Edition extends VBox {
 
   @FXML
   private void saveButton() {
-    //todo add action
+    boolean isValid = true;
+    if (prenomInput.getText().isEmpty()) {
+      emptyFieldPrenom.setVisible(true);
+      isValid = false;
+    }
+    if (nomInput.getText().isEmpty()) {
+      emptyFieldNom.setVisible(true);
+      isValid = false;
+    }
+    if (classeInput.getText().isEmpty()) {
+      emptyFieldClasse.setVisible(true);
+      isValid = false;
+    }
+    if (isValid) {
+      //todo add action
+    }
+
   }
 
 
