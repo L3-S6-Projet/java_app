@@ -18,7 +18,9 @@ import java.util.ArrayList;
 public class Edition extends VBox {
 
   private final ArrayList<Label> emptyFiledLabel = new ArrayList<>();
-
+  private final ArrayList<JFXTextField> jfxTextFields = new ArrayList<>();
+  private final ArrayList<TextField> textFields = new ArrayList<>();
+  private final ArrayList<Label> labelOfField = new ArrayList<>();
 
   public VBox body;
   public Label title;
@@ -47,7 +49,8 @@ public class Edition extends VBox {
 
 
   public VBox mdp;
-  public StackPane PWDLayout;
+  public Label emptyFieldMdp;
+  public StackPane mdpLayout;
   public Label mdpLabel;
   public JFXPasswordField mdpInput;
   public JFXTextField mdpShowInput;
@@ -66,21 +69,20 @@ public class Edition extends VBox {
 
   @FXML
   private void initialize() {
+    initList();
 
-    emptyFiledLabel.add(emptyFieldPrenom);
-    emptyFiledLabel.add(emptyFieldNom);
-    emptyFiledLabel.add(emptyFieldClasse);
     title.setText("Edition");
     title.setPadding(new Insets(21, 24, 27, 24));
 
     emptyPrenomInput.setEditable(false);
     emptyNomInput.setEditable(false);
 
-    prenomLabel.setPadding(new Insets(-40, 0, 0, -150));
+    prenomLabel.setPadding(new Insets(-60, 0, 0, -150));
+    nomLabel.setPadding(new Insets(-60, 0, 0, -150));
+    classeLabel.setPadding(new Insets(-60, 0, 0, -150));
+    mdpLabel.setPadding(new Insets(-60, 0, 0, -150));
 
-
-    nomLabel.setPadding(new Insets(-40, 0, 0, -150));
-    nomLabel.setVisible(false);
+    show.setTranslateX(150);
 
     msg.setText("A remplir seulement pour changer de mot de passe.");
     msg.setPadding(new Insets(0, 24, 35, 24));
@@ -91,36 +93,100 @@ public class Edition extends VBox {
     fieldPrenom();
   }
 
+  private void animField() {
+    hideEmptyFieldMessage();
+    for (int i = 0; i < jfxTextFields.size(); i++) {
+      if (jfxTextFields.get(i).getText().isEmpty()) {
+        emptyFiledLabel.get(i).setVisible(false);
+        labelOfField.get(i).setVisible(false);
+        jfxTextFields.get(i).setVisible(false);
+        textFields.get(i).setVisible(true);
+      }
+    }
+    animMdpField();
+  }
+
+
+  private void initList() {
+    emptyFiledLabel.add(emptyFieldPrenom);
+    emptyFiledLabel.add(emptyFieldNom);
+    emptyFiledLabel.add(emptyFieldClasse);
+
+    labelOfField.add(prenomLabel);
+    labelOfField.add(nomLabel);
+    labelOfField.add(classeLabel);
+    labelOfField.add(mdpLabel);
+
+    jfxTextFields.add(prenomInput);
+    jfxTextFields.add(nomInput);
+    jfxTextFields.add(classeInput);
+
+    textFields.add(emptyPrenomInput);
+    textFields.add(emptyNomInput);
+    textFields.add(emptyClasseInupt);
+  }
+
   @FXML
   private void fieldPrenom() {
-    hideEmptyFieldMessage();
-
+    animField();
     prenomLabel.setVisible(true);
     prenomInput.setVisible(true);
     emptyPrenomInput.setVisible(false);
+    prenomInput.requestFocus();
 
-    if (nomInput.getText().isEmpty()) {
-      nomLabel.setVisible(false);
-      nomInput.setVisible(false);
-      emptyNomInput.setVisible(true);
-    }
   }
 
   @FXML
   private void fieldNom() {
-    hideEmptyFieldMessage();
-
+    animField();
     nomLabel.setVisible(true);
     nomInput.setVisible(true);
     emptyNomInput.setVisible(false);
+    nomInput.requestFocus();
 
+  }
 
-    if (prenomInput.getText().isEmpty()) {
-      prenomLabel.setVisible(false);
-      prenomInput.setVisible(false);
-      emptyPrenomInput.setVisible(true);
+  @FXML
+  private void fieldClasse() {
+    animField();
+    classeLabel.setVisible(true);
+    classeInput.setVisible(true);
+    emptyClasseInupt.setVisible(false);
+    classeInput.requestFocus();
+
+  }
+
+  private void animMdpField() {
+    if (mdpInput.getText().isEmpty()) {
+      emptyMdpInput.setVisible(true);
+      mdpInput.setVisible(false);
+      mdpLabel.setVisible(false);
     }
+  }
 
+  @FXML
+  private void fieldMDP() {
+    animField();
+    mdpLabel.setVisible(true);
+    mdpInput.setVisible(true);
+    mdpInput.requestFocus();
+    emptyMdpInput.setVisible(false);
+    mdpShowInput.setVisible(false);
+  }
+
+
+  @FXML
+  private void showButton() {
+    if (mdpInput.isVisible()) {
+      mdpInput.setVisible(false);
+      mdpShowInput.setVisible(true);
+      mdpShowInput.setText(mdpInput.getText());
+    } else {
+      mdpInput.setVisible(true);
+      mdpShowInput.setVisible(false);
+      mdpInput.setText(mdpShowInput.getText());
+      emptyMdpInput.setVisible(false);
+    }
   }
 
 
