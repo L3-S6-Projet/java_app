@@ -3,7 +3,7 @@ package jscolendar;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import jscolendar.components.Login;
+import jscolendar.components.Admin;
 
 public class App extends Application {
 
@@ -17,13 +17,8 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) {
-    //var root  = new Conditions();
-    var root = new Login();
-    //var root = new Admin();
+    var root = new Admin();
     Scene scene = new Scene(root, width, height);
-    //scene.getStylesheets().add("stylesPoppup.css");
-    //scene.getStylesheets().add("styles.css");
-    //scene.getStylesheets().add("stylesMenu.css");
     stage.setScene(scene);
     stage.setTitle("JScolendar");
     stage.show();

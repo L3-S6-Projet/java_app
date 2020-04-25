@@ -8,7 +8,7 @@
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
          type="jscolendar.components.popup.Confirmation"
-         stylesheets="login/stylesPoppup.css">
+         stylesheets="stylesPoppup.css">
     <VBox fx:id="body">
         <Label fx:id="title" styleClass="poppupTitle">Confirmation</Label>
         <Label fx:id="message" styleClass="message"/>

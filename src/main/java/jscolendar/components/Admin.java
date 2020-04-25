@@ -1,10 +1,14 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXPopup;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.PopupWindow;
+import jscolendar.components.popup.Confirmation;
+import jscolendar.components.popup.admin.Edition;
 import jscolendar.util.FXUtil;
 
 
@@ -25,6 +29,7 @@ public class Admin extends HBox {
   public Label deconnexion;
   public Label copyRigth1;
   public Label copyRigth2;
+  public JFXPopup popConfirm;
 
   public Admin() {
     FXUtil.loadFXML("/fxml/AdminView.fxml", this, this);
@@ -77,11 +82,20 @@ public class Admin extends HBox {
     }
   }
 
+  //TODO Warning add temp popup just to test it
   private void selectEDT() {
+    popConfirm = new JFXPopup();
+    popConfirm.setPopupContent(new Confirmation());
+    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    popConfirm.show(title);
+
   }
 
   private void selectEns() {
-
+    popConfirm = new JFXPopup();
+    popConfirm.setPopupContent(new Edition());
+    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    popConfirm.show(title);
   }
 
   private void selectEtu() {
