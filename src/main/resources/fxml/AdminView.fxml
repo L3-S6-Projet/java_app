@@ -12,14 +12,14 @@
             <Label fx:id="title" styleClass="AdminTitle" text="Brooklyn Fisher"/>
             <Label fx:id="subtitle" text="Administrateur à AMU" styleClass="AdminSubtitle"/>
             <ListView fx:id="menuContent" styleClass="list" onMouseClicked="#selectItem">
-                <Label fx:id="emploiDuTemps" styleClass="EDT">Emploi du temps</Label>
-                <Label fx:id="enseignants" styleClass="Ens">Enseignants</Label>
-                <Label fx:id="etudiants" styleClass="etu">Etudiants</Label>
-                <Label fx:id="salles" styleClass="salles">Salles</Label>
-                <Label fx:id="classes" styleClass="classes">Classes</Label>
-                <Label fx:id="unitesEns" styleClass="UE">Unités d'enseignement</Label>
-                <Label fx:id="parametres" styleClass="Param">Paramètres</Label>
-                <Label fx:id="deconnexion" styleClass="Deco">Déconnexion</Label>
+                <Label fx:id="emploiDuTemps" styleClass="EDT" id="EDT">Emploi du temps</Label>
+                <Label fx:id="enseignants" styleClass="Ens" id="Ens">Enseignants</Label>
+                <Label fx:id="etudiants" styleClass="etu" id="Etu">Etudiants</Label>
+                <Label fx:id="salles" styleClass="salles" id="salles">Salles</Label>
+                <Label fx:id="classes" styleClass="classes" id="classes">Classes</Label>
+                <Label fx:id="unitesEns" styleClass="UE" id="UE">Unités d'enseignement</Label>
+                <Label fx:id="parametres" styleClass="Param" id="Param">Paramètres</Label>
+                <Label fx:id="deconnexion" styleClass="Deco" id="Deco">Déconnexion</Label>
             </ListView>
             <Label fx:id="copyRigth1" styleClass="AdminSubtitle">© Scolendar 2020</Label>
             <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>

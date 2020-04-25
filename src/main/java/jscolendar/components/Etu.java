@@ -38,26 +38,25 @@ public class Etu extends HBox {
     resetOpacity();
   }
 
-  //TODO fix pb with accentuated character because switch doesn't work
   @FXML
   private void selectItem() {
     resetOpacity();
     menuContent.getSelectionModel().getSelectedItem().setStyle("-fx-opacity: 1");
-    String selectedItem = menuContent.getSelectionModel().getSelectedItem().getText();
+    String selectedItem = menuContent.getSelectionModel().getSelectedItem().getId();
     switch (selectedItem) {
       case "Home":
         selectHome();
         break;
-      case "Emploi du temps":
+      case "EDT":
         selectEDT();
         break;
-      case "Unités d'enseignement":
+      case "UE":
         selectUE();
         break;
-      case "Paramètres":
+      case "Param":
         selectParam();
         break;
-      case "Déconnexion":
+      case "Deco":
         selectDeco();
         break;
       default:

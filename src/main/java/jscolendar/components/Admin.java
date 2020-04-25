@@ -54,15 +54,15 @@ public class Admin extends HBox {
   private void selectItem() {
     resetOpacity();
     menuContent.getSelectionModel().getSelectedItem().setStyle("-fx-opacity: 1");
-    String selectedItem = menuContent.getSelectionModel().getSelectedItem().getText();
+    String selectedItem = menuContent.getSelectionModel().getSelectedItem().getId();
     switch (selectedItem) {
-      case "Emploi du temps":
+      case "EDT":
         selectEDT();
         break;
-      case "Enseignants":
+      case "Ens":
         selectEns();
         break;
-      case "Etudiants":
+      case "Etu":
         selectEtu();
         break;
       case "Salles":
@@ -71,13 +71,13 @@ public class Admin extends HBox {
       case "Classes":
         selectClasses();
         break;
-      case "Unités d'enseignement":
+      case "UE":
         selectUE();
         break;
-      case "Paramètres":
+      case "Param":
         selectParam();
         break;
-      case "Déconnexion":
+      case "Deco":
         selectDeco();
         break;
       default:
@@ -86,7 +86,6 @@ public class Admin extends HBox {
     }
   }
 
-  //TODO Warning add temp popup just to test it
   private void selectEDT() {
     popConfirm = new JFXPopup();
     popConfirm.setPopupContent(new Confirmation());

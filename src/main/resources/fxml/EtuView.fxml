@@ -13,11 +13,11 @@
             <Label fx:id="title"/>
             <Label fx:id="subtitle"/>
             <ListView fx:id="menuContent" styleClass="list" onMouseClicked="#selectItem">
-                <Label fx:id="home" styleClass="Home">Home</Label>
-                <Label fx:id="emploiDuTemps" styleClass="EDT">Emploi du temps</Label>
-                <Label fx:id="unitesEns" styleClass="UE">Unités d'enseignement</Label>
-                <Label fx:id="parametres" styleClass="Param">Paramètres</Label>
-                <Label fx:id="deconnexion" styleClass="Deco">Déconnexion</Label>
+                <Label fx:id="home" styleClass="Home" id="Home">Home</Label>
+                <Label fx:id="emploiDuTemps" styleClass="EDT" id="EDT">Emploi du temps</Label>
+                <Label fx:id="unitesEns" styleClass="UE" id="UE">Unités d'enseignement</Label>
+                <Label fx:id="parametres" styleClass="Param" id="Param">Paramètres</Label>
+                <Label fx:id="deconnexion" styleClass="Deco" id="Deco">Déconnexion</Label>
             </ListView>
             <Label fx:id="copyRigth1" styleClass="AdminSubtitle">© Scolendar 2020</Label>
             <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>
