@@ -29,26 +29,30 @@
     -fx-font-size: 14px;
 }
 
-.fieldLabelpop {
+.cell {
     -fx-background-color: lightgray;
+}
+
+.popopLabelField {
+    -fx-fill: lightgray;
     -fx-font-family: Roboto;
     -fx-font-size: 12px;
 }
 
-.labelInput1 {
+.popupInputField {
+    -fx-fill: lightgray;
     -fx-background-color: lightgray;
-    -fx-font-family: Roboto;
-    -fx-font-size: 16px;
-    -fx-fill: #000000;
-    -fx-opacity: 0.6;
+
+
+}
+
+.popupEmptyInputField {
+    -fx-fill: lightgray;
+    -fx-background-color: lightgray;
     -fx-border-style: none;
+    -fx-min-height: 56px;
 }
 
-.stackField {
+.popupStack {
     -fx-background-color: lightgray;
-}
-
-.emptyInputpop {
-    -fx-background-color: lightgray;
-    -fx-pref-height: 56px;
 }
