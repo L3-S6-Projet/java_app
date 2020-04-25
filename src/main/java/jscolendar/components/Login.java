@@ -7,14 +7,14 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.PopupWindow;
-import jscolendar.components.popup.Confirmation;
+import jscolendar.components.popup.login.Conditions;
+import jscolendar.components.popup.login.ForgotPWD;
 import jscolendar.util.FXUtil;
 
 
@@ -128,7 +128,10 @@ public class Login extends HBox {
   @FXML
   private void forgotPassword() {
     linkForgotPWD.setStyle("-fx-text-fill: #3F51B5");
-    conditions();
+    popConditions = new JFXPopup();
+    popConditions.setPopupContent(new ForgotPWD());
+    popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    popConditions.show(title);
     //TODO add action when link is clicked
   }
 
@@ -149,17 +152,9 @@ public class Login extends HBox {
 
   @FXML
   private void conditions() {
-
-
-    TextArea text = new TextArea("Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
-      " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,");
-    VBox lol = new VBox();
-    lol.getChildren().addAll(new Label("fefzef"), text);
     linkCopyRight.setStyle("-fx-fill: #3F51B5");
     popConditions = new JFXPopup();
-    popConditions.setPopupContent(new Confirmation());
-    //popConditions.setPopupContent(text);
-    popConditions.getPopupContent().setMaxHeight(600);
+    popConditions.setPopupContent(new Conditions());
     popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
     popConditions.show(title);
     //TODO make a beautiful popup and change the text

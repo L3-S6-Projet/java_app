@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import jscolendar.components.popup.login.ForgotPWD?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="jscolendar.components.popup.login.ForgotPWD" stylesheets="stylesPoppup.css">
+    <VBox fx:id="body">
+        <Text fx:id="msg"/>
+    </VBox>
+</fx:root>

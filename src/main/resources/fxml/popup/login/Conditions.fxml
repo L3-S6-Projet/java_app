@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
+<?import jscolendar.components.popup.login.Conditions?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="Conditions" stylesheets="stylesPoppup.css">
+
+    <Label fx:id="title" styleClass="poppupTitle"/>
+    <Text fx:id="text"/>
+</fx:root>
