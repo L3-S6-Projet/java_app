@@ -14,13 +14,22 @@
     <VBox fx:id="body">
         <Label fx:id="title" styleClass="poppupTitle"/>
         <VBox fx:id="prenom">
-            <Label fx:id="emptyField" styleClass="errorEmptyField"/>
-            <StackPane fx:id="prenomLayout">
+            <Label fx:id="emptyFieldPrenom" styleClass="errorEmptyField">Champ vide</Label>
+            <StackPane fx:id="prenomLayout" styleClass="stackField">
                 <Label fx:id="prenomLabel" styleClass="fieldLabelpop" text="Prénom"/>
                 <JFXTextField fx:id="prenomInput" onMouseClicked="#fieldPrenom" promptText="Prénom"
                               onKeyPressed="#fieldPrenom" styleClass="labelInput1"/>
                 <TextField fx:id="emptyPrenomInput" onMouseClicked="#fieldPrenom" promptText="Prénom"
-                           onKeyPressed="#fieldPrenom" styleClass="emptyInput"/>
+                           onKeyPressed="#fieldPrenom" styleClass="emptyInputpop"/>
+            </StackPane>
+        </VBox>
+        <VBox fx:id="nom">
+            <Label fx:id="emptyFieldNom" styleClass="errorEmptyField">Champ vide</Label>
+            <StackPane fx:id="nomLayout">
+                <Label fx:id="nomLabel" styleClass="fieldLabelpop" text="Nom"/>
+                <JFXTextField fx:id="nomInput" styleClass="labelInput1"/>
+                <TextField fx:id="emptyNomInput" styleClass="emptyInputpop" promptText="Nom" onMouseClicked="#fieldNom"
+                           onKeyPressed="#fieldNom"/>
             </StackPane>
         </VBox>
         <Label fx:id="msg"/>

@@ -87,7 +87,7 @@ public class Admin extends HBox {
     popConfirm = new JFXPopup();
     popConfirm.setPopupContent(new Confirmation());
     popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(title);
+    popConfirm.show(deconnexion);
 
   }
 
@@ -95,7 +95,7 @@ public class Admin extends HBox {
     popConfirm = new JFXPopup();
     popConfirm.setPopupContent(new Edition());
     popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(title);
+    popConfirm.show(deconnexion);
   }
 
   private void selectEtu() {

@@ -11,18 +11,30 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
 
+import java.util.ArrayList;
+
 public class Edition extends VBox {
+
+  private final ArrayList<Label> emptyFiledLabel = new ArrayList<Label>();
+
 
   public VBox body;
   public Label title;
 
-  public Label emptyField;
 
   public VBox prenom;
+  public Label emptyFieldPrenom;
   public StackPane prenomLayout;
   public Label prenomLabel;
   public JFXTextField prenomInput;
   public TextField emptyPrenomInput;
+
+  public VBox nom;
+  public Label emptyFieldNom;
+  public StackPane nomLayout;
+  public Label nomLabel;
+  public JFXTextField nomInput;
+  public TextField emptyNomInput;
 
 
   public Label msg;
@@ -36,40 +48,76 @@ public class Edition extends VBox {
 
   @FXML
   private void initialize() {
-    title.setText("Edition");
-    msg.setText("A remplir seulement pour changer de mot de passe.");
-    annuler.setText("ANNULER");
-    save.setText("SAVE");
-    emptyField.setText("Champ vide");
-    emptyField.setVisible(false);
 
+    emptyFiledLabel.add(emptyFieldPrenom);
+    emptyFiledLabel.add(emptyFieldNom);
+    title.setText("Edition");
+    title.setPadding(new Insets(21, 24, 27, 24));
+
+    emptyPrenomInput.setEditable(false);
+    emptyNomInput.setEditable(false);
 
     prenomLabel.setVisible(true);
-    prenomLabel.setPadding(new Insets(-40, 0, 0, 0));
+    prenomLabel.setPadding(new Insets(-40, 0, 0, -150));
 
-    prenomInput.setVisible(true);
     emptyPrenomInput.setVisible(false);
 
+    nomLabel.setPadding(new Insets(-60, 0, 0, -150));
+    nomLabel.setVisible(false);
 
-    title.setPadding(new Insets(21, 24, 27, 24));
+    msg.setText("A remplir seulement pour changer de mot de passe.");
     msg.setPadding(new Insets(0, 24, 35, 24));
     buttons.setPadding(new Insets(0, 16, 8, 80));
+    annuler.setText("ANNULER");
+    save.setText("SAVE");
+    hideEmptyFieldMessage();
   }
 
   @FXML
   private void fieldPrenom() {
-    emptyField.setVisible(false);
+    hideEmptyFieldMessage();
+
+    prenomLabel.setVisible(true);
+    prenomInput.setVisible(true);
+    emptyFieldPrenom.setVisible(false);
+
+    if (nomInput.getText().isEmpty()) {
+      nomLabel.setVisible(false);
+      nomInput.setVisible(false);
+      emptyNomInput.setVisible(true);
+    }
+  }
+
+  @FXML
+  private void fieldNom() {
+    hideEmptyFieldMessage();
+
+    nomLabel.setVisible(true);
+    nomInput.setVisible(true);
+    emptyFieldNom.setVisible(false);
+
+    if (prenomInput.getText().isEmpty()) {
+      prenomLabel.setVisible(false);
+      prenomInput.setVisible(false);
+      emptyPrenomInput.setVisible(true);
+    }
+
   }
 
 
   @FXML
   private void annul() {
 
-    emptyField.setVisible(true);
   }
 
   @FXML
   private void saveButton() {
-    emptyField.setVisible(true);
+  }
+
+
+  private void hideEmptyFieldMessage() {
+    for (Label field : emptyFiledLabel) {
+      field.setVisible(false);
+    }
   }
 }
