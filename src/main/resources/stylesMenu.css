@@ -85,3 +85,7 @@
     -fx-alignment: center;
 
 }
+
+.Home {
+    -fx-graphic: url("images/Home.png");
+}

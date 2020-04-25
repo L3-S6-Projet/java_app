@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.popup.etu.Info?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx" type="jscolendar.components.popup.etu.Info"
+         stylesheets="stylesPoppup.css">
+    <VBox fx:id="body">
+        <VBox fx:id="classe">
+            <Label fx:id="year"/>
+            <Label fx:id="ue"/>
+        </VBox>
+        <VBox fx:id="ens">
+            <Label fx:id="ensTitle" text="Enseignants"/>
+            <Label fx:id="coordinates"/>
+        </VBox>
+        <HBox fx:id="group">
+            <VBox fx:id="infoGroup">
+                <Label fx:id="groupTitle" text="Groupes"/>
+                <Label fx:id="group1"/>
+                <Label fx:id="group2"/>
+            </VBox>
+            <JFXButton fx:id="close" text="FERMER"/>
+        </HBox>
+    </VBox>
+
+</fx:root>

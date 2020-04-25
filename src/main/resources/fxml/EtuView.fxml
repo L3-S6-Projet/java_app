@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.Etu?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx" type="jscolendar.components.Etu"
+         stylesheets="stylesMenu.css">
+    <HBox fx:id="body">
+        <VBox fx:id="menu">
+            <Label fx:id="title"/>
+            <Label fx:id="subtitle"/>
+            <ListView fx:id="menuContent" styleClass="list" onMouseClicked="#selectItem">
+                <Label fx:id="home" styleClass="Home">Home</Label>
+                <Label fx:id="emploiDuTemps" styleClass="EDT">Emploi du temps</Label>
+                <Label fx:id="unitesEns" styleClass="UE">Unités d'enseignement</Label>
+                <Label fx:id="parametres" styleClass="Param">Paramètres</Label>
+                <Label fx:id="deconnexion" styleClass="Deco">Déconnexion</Label>
+            </ListView>
+            <Label fx:id="copyRigth1" styleClass="AdminSubtitle">© Scolendar 2020</Label>
+            <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>
+        </VBox>
+    </HBox>
+
+</fx:root>

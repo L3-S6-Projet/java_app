@@ -18,6 +18,7 @@ public class App extends Application {
   @Override
   public void start(Stage stage) {
     var root = new Admin();
+    //var root = new Etu();
     Scene scene = new Scene(root, width, height);
     stage.setScene(scene);
     stage.setTitle("JScolendar");
