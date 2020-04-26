@@ -17,5 +17,6 @@ public class ForgotPWD extends VBox {
   @FXML
   private void initialize() {
     msg.setText("mot de passe oublié");
+    msg.setWrappingWidth(500);
   }
 }
