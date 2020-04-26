@@ -80,7 +80,7 @@ public class NewUE extends VBox {
 
     textFields.add(emptyNomInput);
     textFields.add(emptyClasseInupt);
-    textFields.add(enseignantInput);
+    textFields.add(emptyEnseignantInput);
   }
 
   private void hideEmptyFieldMessage() {

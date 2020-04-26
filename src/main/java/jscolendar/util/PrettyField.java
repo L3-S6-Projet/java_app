@@ -4,9 +4,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
-public class PrettyField extends VBox {
+public class PrettyField extends StackPane {
 
   private final StackPane layout;
   private final Label label;

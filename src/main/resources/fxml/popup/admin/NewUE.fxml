@@ -40,9 +40,11 @@
             <Label fx:id="emptyFieldEnseignant" styleClass="errorEmptyField">Champ vide</Label>
             <StackPane fx:id="enseignantLayout" styleClass="popupStack">
                 <Label fx:id="enseignantLabel" styleClass="popopLabelField" text="Enseignant responsable*"/>
-                <JFXTextField fx:id="enseignantInput" onMouseClicked="#fieldEnseignant" promptText="Prénom"
+                <JFXTextField fx:id="enseignantInput" onMouseClicked="#fieldEnseignant"
+                              promptText="Enseignant responsable*"
                               onKeyPressed="#fieldEnseignant" styleClass="popupInputField"/>
-                <TextField fx:id="emptyEnseignantInput" onMouseClicked="#fieldEnseignant" promptText="Prénom"
+                <TextField fx:id="emptyEnseignantInput" onMouseClicked="#fieldEnseignant"
+                           promptText="Enseignant responsable*"
                            onKeyPressed="#fieldEnseignant" styleClass="popupEmptyInputField"/>
             </StackPane>
         </VBox>
