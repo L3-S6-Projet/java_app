@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow;
 import jscolendar.components.popup.admin.Confirmation;
 import jscolendar.components.popup.admin.Edition;
+import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.components.popup.etu.Info;
 import jscolendar.util.FXUtil;
@@ -116,7 +117,10 @@ public class Admin extends HBox {
   }
 
   private void selectClasses() {
-
+    popConfirm = new JFXPopup();
+    popConfirm.setPopupContent(new NewUE());
+    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    popConfirm.show(deconnexion);
   }
 
   private void selectUE() {

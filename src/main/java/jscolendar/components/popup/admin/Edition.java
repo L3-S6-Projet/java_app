@@ -201,11 +201,12 @@ public class Edition extends VBox {
 
   @FXML
   private void annul() {
-    //todo add action
   }
 
   @FXML
   private void saveButton() {
+    animField();
+    animMdpField();
     boolean isValid = true;
     if (prenomInput.getText().isEmpty()) {
       emptyFieldPrenom.setVisible(true);

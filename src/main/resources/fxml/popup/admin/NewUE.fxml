@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.popup.admin.NewUE?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="jscolendar.components.popup.admin.NewUE"
+         stylesheets="stylesPoppup.css">
+    <VBox fx:id="body">
+        <Label fx:id="title" styleClass="poppupTitle" text="Nouvelle unité d'ensignement"/>
+
+        <VBox fx:id="nom">
+            <Label fx:id="emptyFieldNom" styleClass="errorEmptyField">Champ vide</Label>
+            <StackPane fx:id="nomLayout" styleClass="popupStack">
+                <Label fx:id="nomLabel" styleClass="popopLabelField" text="Nom*"/>
+                <JFXTextField fx:id="nomInput" styleClass="popupInputField" onMouseClicked="#fieldNom"
+                              onKeyPressed="#fieldNom" promptText="Nom"/>
+                <TextField fx:id="emptyNomInput" styleClass="popupEmptyInputField" promptText="Nom"
+                           onMouseClicked="#fieldNom"
+                           onKeyPressed="#fieldNom"/>
+            </StackPane>
+        </VBox>
+        <VBox fx:id="classe">
+            <Label fx:id="emptyFieldClasse" styleClass="errorEmptyField">Champ vide</Label>
+            <StackPane fx:id="classeLayout" styleClass="popupStack">
+                <Label fx:id="classeLabel" styleClass="popopLabelField" text="Classe*"/>
+                <JFXTextField fx:id="classeInput" styleClass="popupInputField" promptText="Classe"
+                              onKeyPressed="#fieldClasse" onMouseClicked="#fieldClasse"/>
+                <TextField fx:id="emptyClasseInupt" styleClass="popupEmptyInputField" promptText="Classe"
+                           onKeyPressed="#fieldClasse" onMouseClicked="#fieldClasse"/>
+            </StackPane>
+        </VBox>
+        <VBox fx:id="enseignant">
+            <Label fx:id="emptyFieldEnseignant" styleClass="errorEmptyField">Champ vide</Label>
+            <StackPane fx:id="enseignantLayout" styleClass="popupStack">
+                <Label fx:id="enseignantLabel" styleClass="popopLabelField" text="Enseignant responsable*"/>
+                <JFXTextField fx:id="enseignantInput" onMouseClicked="#fieldEnseignant" promptText="Prénom"
+                              onKeyPressed="#fieldEnseignant" styleClass="popupInputField"/>
+                <TextField fx:id="emptyEnseignantInput" onMouseClicked="#fieldEnseignant" promptText="Prénom"
+                           onKeyPressed="#fieldEnseignant" styleClass="popupEmptyInputField"/>
+            </StackPane>
+        </VBox>
+
+        <HBox fx:id="buttons">
+            <JFXButton fx:id="annuler" styleClass="poppupButton" onMouseClicked="#annul" text="ANNULER"/>
+            <JFXButton fx:id="create" styleClass="poppupButton" onMouseClicked="#create" text="CREER"/>
+        </HBox>
+    </VBox>
+
+</fx:root>
