@@ -12,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
-import jscolendar.util.PrettyField;
 
 import java.util.ArrayList;
 
@@ -57,9 +56,6 @@ public class Edition extends VBox {
   public JFXTextField mdpShowInput;
   public TextField emptyMdpInput;
   public Button show;
-
-  public PrettyField lol;
-
 
   public Label msg;
   public HBox buttons;
