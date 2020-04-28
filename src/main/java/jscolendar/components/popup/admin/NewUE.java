@@ -12,7 +12,7 @@ import jscolendar.util.FXUtil;
 
 import java.util.ArrayList;
 
-public class NewUE extends VBox {
+public class NewUE extends StackPane {
   private final ArrayList<Label> emptyFiledLabel = new ArrayList<>();
   private final ArrayList<JFXTextField> jfxTextFields = new ArrayList<>();
   private final ArrayList<TextField> textFields = new ArrayList<>();

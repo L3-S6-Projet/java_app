@@ -3,11 +3,12 @@ package jscolendar.components.popup.admin;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
 
 
-public class Succes extends VBox {
+public class Succes extends StackPane {
 
   private final String userName;
   private final String userMdp;

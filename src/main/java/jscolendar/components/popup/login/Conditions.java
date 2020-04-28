@@ -3,11 +3,12 @@ package jscolendar.components.popup.login;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import jscolendar.util.FXUtil;
 
-public class Conditions extends VBox {
+public class Conditions extends StackPane {
 
   public VBox body;
   public Label title;

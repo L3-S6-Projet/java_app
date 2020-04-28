@@ -8,7 +8,7 @@ import jscolendar.components.Admin;
 public class App extends Application {
 
   int width = 1024;
-  int height = 720;
+  int height = 700;//dont touch this is my screen resolution
 
   public static void main(String[] args) {
     launch(args);
@@ -20,6 +20,7 @@ public class App extends Application {
     //var root = new Etu();
     //var root = new Login();
     Scene scene = new Scene(root, width, height);
+    stage.setResizable(false);//todo make autoresize before remove it
     stage.setScene(scene);
     stage.setTitle("JScolendar");
     stage.show();

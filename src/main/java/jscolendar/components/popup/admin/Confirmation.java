@@ -5,10 +5,11 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
 
-public class Confirmation extends VBox {
+public class Confirmation extends StackPane {
 
   public VBox body;
   public Label title;

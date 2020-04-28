@@ -15,7 +15,7 @@ import jscolendar.util.FXUtil;
 
 import java.util.ArrayList;
 
-public class Edition extends VBox {
+public class Edition extends StackPane {
 
   private final ArrayList<Label> emptyFiledLabel = new ArrayList<>();
   private final ArrayList<JFXTextField> jfxTextFields = new ArrayList<>();
@@ -197,6 +197,7 @@ public class Edition extends VBox {
 
   @FXML
   private void annul() {
+
   }
 
   @FXML

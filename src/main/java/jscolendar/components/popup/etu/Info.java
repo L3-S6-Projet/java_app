@@ -4,11 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
 
 
-public class Info extends VBox {
+public class Info extends StackPane {
 
   public VBox body;
   public VBox classe;

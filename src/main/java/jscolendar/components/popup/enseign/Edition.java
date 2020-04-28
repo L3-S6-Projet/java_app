@@ -15,7 +15,7 @@ import jscolendar.util.FXUtil;
 
 import java.util.ArrayList;
 
-public class Edition extends VBox {
+public class Edition extends StackPane {
 
   public VBox body;
   public Label title;
