@@ -26,7 +26,7 @@ public class Info extends VBox {
 
 
   public Info() {
-    FXUtil.loadFXML("/fxml/popup/Etu/Info.fxml", this, this);
+    FXUtil.loadFXML("/fxml/popup/etu/Info.fxml", this, this);
   }
 
   @FXML

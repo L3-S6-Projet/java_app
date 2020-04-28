@@ -1,21 +1,22 @@
 package jscolendar.components;
 
-import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXDialog;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.PopupWindow;
 import jscolendar.components.popup.admin.Confirmation;
 import jscolendar.components.popup.admin.Edition;
 import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.components.popup.etu.Info;
+import jscolendar.components.popup.login.Conditions;
 import jscolendar.util.FXUtil;
 
 
-public class Admin extends HBox {
+public class Admin extends StackPane {
 
   public HBox body;
   public VBox menu;
@@ -32,7 +33,7 @@ public class Admin extends HBox {
   public Label deconnexion;
   public Label copyRigth1;
   public Label copyRigth2;
-  public JFXPopup popConfirm;
+  public JFXDialog popup;
 
   public Admin() {
     FXUtil.loadFXML("/fxml/AdminView.fxml", this, this);
@@ -88,46 +89,46 @@ public class Admin extends HBox {
   }
 
   private void selectEDT() {
-    popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new Confirmation());
-    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(deconnexion);
+    popup = new JFXDialog();
+    popup.setContent(new Confirmation());
+    popup.show(this);
 
   }
 
   private void selectEns() {
-    popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new Edition());
-    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(deconnexion);
+    popup = new JFXDialog();
+    popup.setContent(new Edition());
+    popup.show(this);
   }
 
   private void selectEtu() {
-    popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new Succes("lol", "xd"));
-    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(deconnexion);
+    popup = new JFXDialog();
+    popup.setContent(new NewUE());
+    popup.show(this);
   }
 
   private void selectSalles() {
-    popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new Info());
-    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(deconnexion);
+    popup = new JFXDialog();
+    popup.setContent(new Succes("Test", "LOL"));
+    popup.show(this);
   }
 
   private void selectClasses() {
-    popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new NewUE());
-    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(deconnexion);
+    popup = new JFXDialog();
+    popup.setContent(new jscolendar.components.popup.enseign.Edition());
+    popup.show(this);
   }
 
   private void selectUE() {
-
+    popup = new JFXDialog();
+    popup.setContent(new Info());
+    popup.show(this);
   }
 
   private void selectParam() {
+    popup = new JFXDialog();
+    popup.setContent(new Conditions());
+    popup.show(this);
 
   }
 

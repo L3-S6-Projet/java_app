@@ -1,24 +1,22 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.PopupWindow;
 import jscolendar.components.popup.login.Conditions;
 import jscolendar.components.popup.login.ForgotPWD;
 import jscolendar.util.FXUtil;
 
 
-public class Login extends HBox {
+public class Login extends StackPane {
 
 
   public VBox left;
@@ -44,7 +42,7 @@ public class Login extends HBox {
   public Button connexion;
   public Text copyRight;
   public Text linkCopyRight;
-  public JFXPopup popConditions;
+  public JFXDialog popup;
 
 
   public Login() {
@@ -131,10 +129,9 @@ public class Login extends HBox {
   @FXML
   private void forgotPassword() {
     linkForgotPWD.setStyle("-fx-text-fill: #3F51B5");
-    popConditions = new JFXPopup();
-    popConditions.setPopupContent(new ForgotPWD());
-    popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConditions.show(title);
+    popup = new JFXDialog();
+    popup.setContent(new ForgotPWD());
+    popup.show(this);
     //TODO add action when link is clicked
   }
 
@@ -156,10 +153,9 @@ public class Login extends HBox {
   @FXML
   private void conditions() {
     linkCopyRight.setStyle("-fx-fill: #3F51B5");
-    popConditions = new JFXPopup();
-    popConditions.setPopupContent(new Conditions());
-    popConditions.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConditions.show(title);
+    popup = new JFXDialog();
+    popup.setContent(new Conditions());
+    popup.show(this);
     //TODO make a beautiful popup and change the text
   }
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.popup.enseign.Edition?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="jscolendar.components.popup.enseign.Edition" stylesheets="stylesPoppup.css">
+    <VBox fx:id="body">
+        <Label fx:id="title" text="Edition" styleClass="poppupTitle"/>
+        <VBox fx:id="salle">
+            <Label fx:id="salleLabel" text="Salle" styleClass="popopLabelField"/>
+            <JFXComboBox fx:id="box" promptText="Salle">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Label text="Salle 1"/>
+                        <Label text="Salle 2"/>
+                    </FXCollections>
+                </items>
+            </JFXComboBox>
+        </VBox>
+        <VBox fx:id="classe">
+            <Label fx:id="classeLabel" text="Classe"/>
+            <JFXComboBox fx:id="classeList" promptText="Classe">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Label text="Classe 1"/>
+                        <Label text="Classe 2"/>
+                    </FXCollections>
+                </items>
+            </JFXComboBox>
+        </VBox>
+        <VBox fx:id="effectif">
+            <Label fx:id="effectifLabel" text="Effectif"/>
+            <JFXComboBox fx:id="effectifList" promptText="Effectif">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Label text="Effectif 1"/>
+                        <Label text="Effectif 2"/>
+                    </FXCollections>
+                </items>
+            </JFXComboBox>
+        </VBox>
+        <VBox fx:id="duration">
+            <Label fx:id="wrongDurationMessage" text="Champ vide ou incorrect"/>
+            <StackPane fx:id="durationLayout">
+                <Label fx:id="durationLabel" text="Durée (en minutes)"/>
+                <JFXTextField fx:id="durationInput" promptText="Durée"/>
+                <TextField fx:id="emptyDurationInput" promptText="Durée"/>
+            </StackPane>
+        </VBox>
+        <VBox fx:id="date">
+            <Label fx:id="wrongDateMessage" text="Champ vide ou incorrect"/>
+            <StackPane fx:id="dateLayout">
+                <Label fx:id="dateLabel" text="Date et Heure"/>
+                <JFXTextField fx:id="dateInput" promptText="Date et Heure"/>
+                <TextField fx:id="emptyDateInput" promptText="Date et Heure"/>
+            </StackPane>
+
+        </VBox>
+        <HBox fx:id="buttons">
+            <JFXButton fx:id="annuler" text="ANNULER" styleClass="poppupButton"/>
+            <JFXButton fx:id="save" text="SAUVER" styleClass="poppupButton"/>
+        </HBox>
+    </VBox>
+
+</fx:root>

@@ -27,7 +27,7 @@ public class Etu extends HBox {
   public Label copyRigth1;
   public Label copyRigth2;
   public JFXPopup popConfirm;
-
+//todo change popup to JFXDialog
   public Etu() {
     FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
   }
