@@ -16,7 +16,7 @@
         <Label fx:id="title" text="Edition" styleClass="poppupTitle"/>
         <VBox fx:id="salle">
             <Label fx:id="salleLabel" text="Salle" styleClass="popopLabelField"/>
-            <JFXComboBox fx:id="box" promptText="Salle">
+            <JFXComboBox fx:id="salleList" promptText="Salle">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <Label text="Salle 1"/>
@@ -48,19 +48,23 @@
             </JFXComboBox>
         </VBox>
         <VBox fx:id="duration">
-            <Label fx:id="wrongDurationMessage" text="Champ vide ou incorrect"/>
+            <Label fx:id="wrongDurationMessage" text="Champ vide ou incorrect" styleClass="errorEmptyField"/>
             <StackPane fx:id="durationLayout">
-                <Label fx:id="durationLabel" text="Durée (en minutes)"/>
-                <JFXTextField fx:id="durationInput" promptText="Durée"/>
-                <TextField fx:id="emptyDurationInput" promptText="Durée"/>
+                <Label fx:id="durationLabel" text="Durée (en minutes)" styleClass="popopLabelField"/>
+                <JFXTextField fx:id="durationInput" promptText="Durée" onMouseClicked="#onDuration"
+                              onKeyPressed="#onDuration" styleClass="popupInputField"/>
+                <TextField fx:id="emptyDurationInput" promptText="Durée" onMouseClicked="#onDuration"
+                           onKeyPressed="#onDuration" styleClass="popupEmptyInputField"/>
             </StackPane>
         </VBox>
         <VBox fx:id="date">
-            <Label fx:id="wrongDateMessage" text="Champ vide ou incorrect"/>
+            <Label fx:id="wrongDateMessage" text="Champ vide ou incorrect" styleClass="errorEmptyField"/>
             <StackPane fx:id="dateLayout">
-                <Label fx:id="dateLabel" text="Date et Heure"/>
-                <JFXTextField fx:id="dateInput" promptText="Date et Heure"/>
-                <TextField fx:id="emptyDateInput" promptText="Date et Heure"/>
+                <Label fx:id="dateLabel" text="Date et Heure" styleClass="popopLabelField"/>
+                <JFXTextField fx:id="dateInput" promptText="Date et Heure" onMouseClicked="#onDate"
+                              onKeyPressed="#onDate" styleClass="popupInputField"/>
+                <TextField fx:id="emptyDateInput" promptText="Date et Heure" onMouseClicked="#onDate"
+                           onKeyPressed="#onDate" styleClass="popupEmptyInputField"/>
             </StackPane>
 
         </VBox>

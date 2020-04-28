@@ -12,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
 
+import java.util.ArrayList;
+
 public class Edition extends VBox {
 
   public VBox body;
@@ -43,6 +45,10 @@ public class Edition extends VBox {
   public JFXTextField dateInput;
   public TextField emptyDateInput;
 
+  private final ArrayList<Label> emptyLabel = new ArrayList<>();
+  private final ArrayList<Label> labelList = new ArrayList<>();
+  private final ArrayList<JFXTextField> jfxTextFieldsList = new ArrayList<>();
+  private final ArrayList<TextField> textFieldsList = new ArrayList<>();
 
   public HBox buttons;
   public JFXButton annuler;
@@ -55,6 +61,57 @@ public class Edition extends VBox {
 
   @FXML
   private void initialize() {
+
+    emptyLabel.add(wrongDurationMessage);
+    emptyLabel.add(wrongDateMessage);
+    labelList.add(durationLabel);
+    labelList.add(dateLabel);
+    jfxTextFieldsList.add(durationInput);
+    jfxTextFieldsList.add(dateInput);
+    textFieldsList.add(emptyDurationInput);
+    textFieldsList.add(emptyDateInput);
+
+    durationLabel.setTranslateY(-20);
+    dateLabel.setTranslateY(-20);
+
+    animField();
+    onDuration();
+  }
+
+  @FXML
+  private void onDuration() {
+    animField();
+    durationLabel.setVisible(true);
+    durationInput.setVisible(true);
+    emptyDurationInput.setVisible(false);
+    durationInput.requestFocus();
+  }
+
+  @FXML
+  private void onDate() {
+    animField();
+    dateLabel.setVisible(true);
+    dateInput.setVisible(true);
+    emptyDateInput.setVisible(false);
+    dateInput.requestFocus();
+  }
+
+  private void hideEmptyFieldMessage() {
+    for (Label field : emptyLabel) {
+      field.setVisible(false);
+    }
+  }
+
+  private void animField() {
+    hideEmptyFieldMessage();
+    for (int i = 0; i < jfxTextFieldsList.size(); i++) {
+      if (jfxTextFieldsList.get(i).getText().isEmpty()) {
+        emptyLabel.get(i).setVisible(false);
+        labelList.get(i).setVisible(false);
+        jfxTextFieldsList.get(i).setVisible(false);
+        textFieldsList.get(i).setVisible(true);
+      }
+    }
   }
 
 
