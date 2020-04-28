@@ -22,6 +22,12 @@
     -fx-text-fill: #3F51B5;
 }
 
+.popupMenuField {
+    -fx-min-width: 362px;
+    -fx-background-color: lightgray;
+    -fx-font-family: "Roboto Light";
+}
+
 
 .errorEmptyField {
     -fx-text-fill: #FF0C3E;
@@ -69,4 +75,15 @@
     -fx-font-family: Roboto;
     -fx-font-size: 16px;
     -fx-opacity: 0.87;
+}
+
+.popopMenuLabel {
+    -fx-font-family: "Roboto Light";
+    opacity: 0.6;
+    -fx-font-size: 12px;
+    -fx-pref-width: 362px;
+}
+
+.backgroundGray {
+    -fx-background-color: lightgray;
 }

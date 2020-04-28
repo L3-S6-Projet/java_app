@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -61,6 +62,8 @@ public class Edition extends VBox {
 
   @FXML
   private void initialize() {
+    body.setPadding(new Insets(0, 0, 0, 24));
+
 
     emptyLabel.add(wrongDurationMessage);
     emptyLabel.add(wrongDateMessage);
@@ -73,6 +76,9 @@ public class Edition extends VBox {
 
     durationLabel.setTranslateY(-20);
     dateLabel.setTranslateY(-20);
+    durationInput.setTranslateY(10);
+    dateInput.setTranslateY(10);
+
 
     animField();
     onDuration();

@@ -14,9 +14,9 @@
          type="jscolendar.components.popup.enseign.Edition" stylesheets="stylesPoppup.css">
     <VBox fx:id="body">
         <Label fx:id="title" text="Edition" styleClass="poppupTitle"/>
-        <VBox fx:id="salle">
-            <Label fx:id="salleLabel" text="Salle" styleClass="popopLabelField"/>
-            <JFXComboBox fx:id="salleList" promptText="Salle">
+        <VBox fx:id="salle" styleClass="backgroundGray">
+            <Label fx:id="salleLabel" text="Salle" styleClass="popopMenuLabel"/>
+            <JFXComboBox fx:id="salleList" promptText="Salle" styleClass="popupMenuField">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <Label text="Salle 1"/>
@@ -25,9 +25,10 @@
                 </items>
             </JFXComboBox>
         </VBox>
-        <VBox fx:id="classe">
-            <Label fx:id="classeLabel" text="Classe"/>
-            <JFXComboBox fx:id="classeList" promptText="Classe">
+        <Label/>
+        <VBox fx:id="classe" styleClass="backgroundGray">
+            <Label fx:id="classeLabel" text="Classe" styleClass="popopMenuLabel"/>
+            <JFXComboBox fx:id="classeList" promptText="Classe" styleClass="popupMenuField">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <Label text="Classe 1"/>
@@ -36,9 +37,10 @@
                 </items>
             </JFXComboBox>
         </VBox>
-        <VBox fx:id="effectif">
-            <Label fx:id="effectifLabel" text="Effectif"/>
-            <JFXComboBox fx:id="effectifList" promptText="Effectif">
+        <Label/>
+        <VBox fx:id="effectif" styleClass="backgroundGray">
+            <Label fx:id="effectifLabel" text="Effectif" styleClass="popopMenuLabel"/>
+            <JFXComboBox fx:id="effectifList" promptText="Effectif" styleClass="popupMenuField">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <Label text="Effectif 1"/>
@@ -47,20 +49,22 @@
                 </items>
             </JFXComboBox>
         </VBox>
+        <Label/>
         <VBox fx:id="duration">
             <Label fx:id="wrongDurationMessage" text="Champ vide ou incorrect" styleClass="errorEmptyField"/>
-            <StackPane fx:id="durationLayout">
-                <Label fx:id="durationLabel" text="Durée (en minutes)" styleClass="popopLabelField"/>
+            <StackPane fx:id="durationLayout" styleClass="popupStack">
+                <Label fx:id="durationLabel" text="Durée (en minutes)" styleClass="popopMenuLabel"/>
                 <JFXTextField fx:id="durationInput" promptText="Durée" onMouseClicked="#onDuration"
                               onKeyPressed="#onDuration" styleClass="popupInputField"/>
                 <TextField fx:id="emptyDurationInput" promptText="Durée" onMouseClicked="#onDuration"
                            onKeyPressed="#onDuration" styleClass="popupEmptyInputField"/>
             </StackPane>
         </VBox>
+        <Label/>
         <VBox fx:id="date">
             <Label fx:id="wrongDateMessage" text="Champ vide ou incorrect" styleClass="errorEmptyField"/>
-            <StackPane fx:id="dateLayout">
-                <Label fx:id="dateLabel" text="Date et Heure" styleClass="popopLabelField"/>
+            <StackPane fx:id="dateLayout" styleClass="popupStack">
+                <Label fx:id="dateLabel" text="Date et Heure" styleClass="popopMenuLabel"/>
                 <JFXTextField fx:id="dateInput" promptText="Date et Heure" onMouseClicked="#onDate"
                               onKeyPressed="#onDate" styleClass="popupInputField"/>
                 <TextField fx:id="emptyDateInput" promptText="Date et Heure" onMouseClicked="#onDate"
@@ -68,6 +72,7 @@
             </StackPane>
 
         </VBox>
+        <Label/>
         <HBox fx:id="buttons">
             <JFXButton fx:id="annuler" text="ANNULER" styleClass="poppupButton"/>
             <JFXButton fx:id="save" text="SAUVER" styleClass="poppupButton"/>
