@@ -74,8 +74,8 @@
         </VBox>
         <Label/>
         <HBox fx:id="buttons">
-            <JFXButton fx:id="annuler" text="ANNULER" styleClass="poppupButton"/>
-            <JFXButton fx:id="save" text="SAUVER" styleClass="poppupButton"/>
+            <JFXButton fx:id="annuler" text="ANNULER" styleClass="poppupButton" onMouseClicked="#annul"/>
+            <JFXButton fx:id="save" text="SAUVER" styleClass="poppupButton" onMouseClicked="#saveButton"/>
         </HBox>
     </VBox>
 

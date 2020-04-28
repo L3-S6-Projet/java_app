@@ -102,6 +102,17 @@ public class Edition extends VBox {
     dateInput.requestFocus();
   }
 
+  @FXML
+  private void annul() {
+  }
+
+  @FXML
+  private void saveButton() {
+    animField();
+    boolean isValid = true;
+  }
+
+
   private void hideEmptyFieldMessage() {
     for (Label field : emptyLabel) {
       field.setVisible(false);
