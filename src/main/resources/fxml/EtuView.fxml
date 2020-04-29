@@ -49,5 +49,4 @@
             <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>
         </VBox>
     </HBox>
-
 </fx:root>

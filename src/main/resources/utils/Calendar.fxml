@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.util.Calendar?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1"
+         xmlns="http://javafx.com/javafx/10.0.2-internal"
+         stylesheets="stylesCalendar.css"
+         type="jscolendar.util.Calendar"
+>
+    <VBox fx:id="body">
+        <HBox fx:id="header" styleClass="calendarHeader">
+            <Label fx:id="day" text="AUJOURD'HUI"/>
+            <HBox fx:id="dateBox">
+                <JFXButton fx:id="previous" text="prev"/>
+                <Label fx:id="date" text="Avril2020"/>
+                <JFXButton fx:id="next" text="next"/>
+            </HBox>
+            <JFXComboBox fx:id="month">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Label text="Jour"/>
+                        <Label text="Semaine"/>
+                        <Label text="Mois"/>
+                    </FXCollections>
+                </items>
+            </JFXComboBox>
+        </HBox>
+        <StackPane fx:id="layout" styleClass="tableLayout">
+            <HBox fx:id="col" styleClass="table">
+                <VBox fx:id="lund" styleClass="col">
+                    <Label text="Lundi" styleClass="ColTitle"/>
+                </VBox>
+                <VBox fx:id="mard" styleClass="col">
+                    <Label text="Mardi" styleClass="ColTitle"/>
+                </VBox>
+                <VBox fx:id="merc" styleClass="col">
+                    <Label text="Mercredi" styleClass="ColTitle"/>
+                </VBox>
+                <VBox fx:id="jeud" styleClass="col">
+                    <Label text="Jeudi" styleClass="ColTitle"/>
+                </VBox>
+                <VBox fx:id="vend" styleClass="col">
+                    <Label text="Vendredi" styleClass="ColTitle"/>
+                </VBox>
+                <VBox fx:id="sam" styleClass="col">
+                    <Label text="Samedi" styleClass="ColTitle"/>
+                </VBox>
+                <VBox fx:id="dim" styleClass="col">
+                    <Label text="Dimanche" styleClass="ColTitle"/>
+                </VBox>
+            </HBox>
+        </StackPane>
+
+    </VBox>
+</fx:root>

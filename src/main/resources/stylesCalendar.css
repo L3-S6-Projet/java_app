@@ -1,0 +1,49 @@
+.calendarHeader {
+    -fx-pref-height: 50px;
+    -fx-pref-width: 665px;
+    -fx-background-color: #FAFAFA;
+    -fx-alignment: center;
+    -fx-border-color: black;
+}
+
+.table {
+    -fx-background-color: transparent;
+
+    -fx-pref-width: 765px;
+    -fx-pref-height: 500px;
+    -fx-border-color: #FF0C3E;
+    -fx-alignment: bottom-right;
+}
+
+.col {
+    -fx-background-color: transparent;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 500px;
+
+}
+
+.ColTitle {
+    -fx-background-color: transparent;
+
+    -fx-font-family: "Roboto Light";
+    -fx-text-fill: #212121;
+    -fx-font-size: 18px;
+    -fx-text-alignment: center;
+    -fx-border-color: blue;
+    -fx-pref-width: 100;
+    -fx-alignment: center;
+    -fx-pref-height: 50px;
+}
+
+.tableLayout {
+
+    -fx-pref-width: 750px;
+    -fx-pref-height: 700px;
+}
+
+.vbox {
+    -fx-pref-height: 700px;
+    -fx-pref-width: 750px;
+    -fx-border-width: 10px;
+    -fx-border-color: purple;
+}
