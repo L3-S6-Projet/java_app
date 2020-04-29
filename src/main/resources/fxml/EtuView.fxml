@@ -5,19 +5,45 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import jscolendar.components.Etu?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx" type="jscolendar.components.Etu"
          stylesheets="stylesMenu.css">
     <HBox fx:id="body">
-        <VBox fx:id="menu">
-            <Label fx:id="title"/>
-            <Label fx:id="subtitle"/>
+        <VBox fx:id="menu" styleClass="menu">
+            <Label fx:id="title" text="NAME" styleClass="AdminTitle"/>
+            <Label fx:id="subtitle" text="Etudiant" styleClass="AdminSubtitle"/>
             <ListView fx:id="menuContent" styleClass="list" onMouseClicked="#selectItem">
-                <Label fx:id="home" styleClass="Home" id="Home">Home</Label>
-                <Label fx:id="emploiDuTemps" styleClass="EDT" id="EDT">Emploi du temps</Label>
-                <Label fx:id="unitesEns" styleClass="UE" id="UE">Unités d'enseignement</Label>
-                <Label fx:id="parametres" styleClass="Param" id="Param">Paramètres</Label>
-                <Label fx:id="deconnexion" styleClass="Deco" id="Deco">Déconnexion</Label>
+                <Label fx:id="home" styleClass="iconMenu" id="home">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-home" styleClass="iconMenu"/>
+                    </graphic>
+                    Home
+                </Label>
+                <Label fx:id="emploiDuTemps" id="EDT">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-calendar-blank" styleClass="iconMenu"/>
+                    </graphic>
+                    Emploi du temps
+                </Label>
+                <Label fx:id="unitesEns" styleClass="UE" id="UE">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-library-books" styleClass="iconMenu"/>
+                    </graphic>
+                    Unités d'enseignement
+                </Label>
+                <Label fx:id="parametres" styleClass="Param" id="Param">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-settings" styleClass="iconMenu"/>
+                    </graphic>
+                    Paramètres
+                </Label>
+                <Label fx:id="deconnexion" styleClass="Deco" id="Deco">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-login-variant" styleClass="iconMenu"/>
+                    </graphic>
+                    Déconnexion
+                </Label>
             </ListView>
             <Label fx:id="copyRigth1" styleClass="AdminSubtitle">© Scolendar 2020</Label>
             <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>
