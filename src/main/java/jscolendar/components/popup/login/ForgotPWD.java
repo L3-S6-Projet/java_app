@@ -1,6 +1,7 @@
 package jscolendar.components.popup.login;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,6 +18,7 @@ public class ForgotPWD extends StackPane {
 
   @FXML
   private void initialize() {
+    body.setPadding(new Insets(0, 0, 0, 24));
     msg.setText("mot de passe oublié");
     msg.setWrappingWidth(500);
   }

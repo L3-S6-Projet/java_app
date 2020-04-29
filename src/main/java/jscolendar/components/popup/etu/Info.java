@@ -2,6 +2,7 @@ package jscolendar.components.popup.etu;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -32,5 +33,6 @@ public class Info extends StackPane {
 
   @FXML
   private void initialize() {
+    body.setPadding(new Insets(0, 0, 0, 24));
   }
 }

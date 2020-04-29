@@ -3,6 +3,7 @@ package jscolendar.components.popup.admin;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -53,6 +54,7 @@ public class NewUE extends StackPane {
 
   @FXML
   private void initialize() {
+    body.setPadding(new Insets(0, 0, 0, 24));
     initList();
 
     nomLabel.setTranslateY(-20);

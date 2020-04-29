@@ -85,3 +85,8 @@
 .Home {
     -fx-graphic: url("images/Home.png");
 }
+
+.iconMenu {
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 20px;
+}

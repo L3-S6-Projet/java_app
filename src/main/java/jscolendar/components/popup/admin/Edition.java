@@ -68,10 +68,11 @@ public class Edition extends StackPane {
 
   @FXML
   private void initialize() {
+    body.setPadding(new Insets(0, 0, 0, 24));
     initList();
 
     title.setText("Edition");
-    title.setPadding(new Insets(21, 24, 27, 24));
+    title.setPadding(new Insets(21, 0, 0, 0));
 
     emptyPrenomInput.setEditable(false);
     emptyNomInput.setEditable(false);

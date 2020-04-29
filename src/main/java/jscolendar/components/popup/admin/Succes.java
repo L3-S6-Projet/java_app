@@ -2,6 +2,7 @@ package jscolendar.components.popup.admin;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -27,6 +28,7 @@ public class Succes extends StackPane {
 
   @FXML
   private void initialize() {
+    body.setPadding(new Insets(0, 0, 0, 24));
     ok.setTranslateX(280);
     this.id.setText("Nom d'utilisateur : " + userName);
     this.mdp.setText("Mot de passe : " + userMdp);

@@ -25,8 +25,9 @@ public class Confirmation extends StackPane {
 
   @FXML
   private void initialize() {
-    title.setPadding(new Insets(21, 24, 27, 24));
-    message.setPadding(new Insets(0, 24, 35, 24));
+    body.setPadding(new Insets(0, 0, 0, 24));
+    title.setPadding(new Insets(21, 0, 0, 0));
+    message.setPadding(new Insets(0, 0, 35, 0));
     message.setText("Voulez-vous...\n...\n...");
     buttons.setPadding(new Insets(0, 16, 8, 80));
   }

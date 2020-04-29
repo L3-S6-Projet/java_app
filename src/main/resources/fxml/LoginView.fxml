@@ -36,7 +36,9 @@
                         <JFXTextField fx:id="PWDShowInput" styleClass="fieldLabel"/>
                         <TextField fx:id="emptyPWDInput" promptText="Mot de passe" styleClass="emptyInput"
                                    onMouseClicked="#showPasswordLabel" onKeyPressed="#showPasswordLabel"/>
-                        <Button styleClass="showButton" fx:id="show" onAction="#showMDP"/>
+                        <Button
+                                styleClass="showButton" fx:id="show" onAction="#showMDP">
+                        </Button>
                     </StackPane>
                 </VBox>
                 <Text/>
