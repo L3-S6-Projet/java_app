@@ -13,7 +13,7 @@ import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.components.popup.etu.Info;
 import jscolendar.components.popup.login.Conditions;
-import jscolendar.util.Calendar;
+import jscolendar.util.CalendarWeek;
 import jscolendar.util.FXUtil;
 
 
@@ -135,7 +135,7 @@ public class Admin extends StackPane {
 
   private void selectDeco() {
     popup = new JFXDialog();
-    popup.setContent(new Calendar());
+    popup.setContent(new CalendarWeek());
     popup.show(this);
 
     //todo return too login

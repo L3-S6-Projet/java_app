@@ -3,25 +3,34 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import jscolendar.util.Calendar?>
+<?import jscolendar.util.CalendarWeek?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1"
          xmlns="http://javafx.com/javafx/10.0.2-internal"
          stylesheets="stylesCalendar.css"
-         type="jscolendar.util.Calendar"
+         type="jscolendar.util.CalendarWeek"
 >
     <VBox fx:id="body">
         <HBox fx:id="header" styleClass="calendarHeader">
-            <Label fx:id="day" text="AUJOURD'HUI"/>
+            <Label fx:id="day" text="AUJOURD'HUI" styleClass="day"/>
             <HBox fx:id="dateBox">
-                <JFXButton fx:id="previous" text="prev"/>
-                <Label fx:id="date" text="Avril2020"/>
-                <JFXButton fx:id="next" text="next"/>
+                <JFXButton fx:id="previous">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-left" styleClass="arrow"/>
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="date" text="Avril2020" styleClass="date"/>
+                <JFXButton fx:id="next">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-right" styleClass="arrow"/>
+                    </graphic>
+                </JFXButton>
             </HBox>
-            <JFXComboBox fx:id="month">
+            <JFXComboBox fx:id="month" styleClass="select">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <Label text="Jour"/>
@@ -35,24 +44,31 @@
             <HBox fx:id="col" styleClass="table">
                 <VBox fx:id="lund" styleClass="col">
                     <Label text="Lundi" styleClass="ColTitle"/>
+                    <Label fx:id="lundDate" styleClass="dayDate" text="20"/>
                 </VBox>
                 <VBox fx:id="mard" styleClass="col">
                     <Label text="Mardi" styleClass="ColTitle"/>
+                    <Label fx:id="mardDate" styleClass="dayDate" text="21"/>
                 </VBox>
                 <VBox fx:id="merc" styleClass="col">
                     <Label text="Mercredi" styleClass="ColTitle"/>
+                    <Label fx:id="mercDate" styleClass="dayDate" text="22"/>
                 </VBox>
                 <VBox fx:id="jeud" styleClass="col">
                     <Label text="Jeudi" styleClass="ColTitle"/>
+                    <Label fx:id="jeudDate" styleClass="dayDate" text="23"/>
                 </VBox>
                 <VBox fx:id="vend" styleClass="col">
                     <Label text="Vendredi" styleClass="ColTitle"/>
+                    <Label fx:id="vendDate" styleClass="dayDate" text="24"/>
                 </VBox>
                 <VBox fx:id="sam" styleClass="col">
                     <Label text="Samedi" styleClass="ColTitle"/>
+                    <Label fx:id="samDate" styleClass="dayDate" text="25"/>
                 </VBox>
                 <VBox fx:id="dim" styleClass="col">
                     <Label text="Dimanche" styleClass="ColTitle"/>
+                    <Label fx:id="dimDate" styleClass="dayDate" text="26"/>
                 </VBox>
             </HBox>
         </StackPane>

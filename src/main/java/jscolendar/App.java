@@ -7,8 +7,8 @@ import jscolendar.components.Admin;
 
 public class App extends Application {
 
-  int width = 1024;
-  int height = 700;//dont touch this is my screen resolution
+  int width = 1920;
+  int height = 1080;//dont touch this is my screen resolution
 
   public static void main(String[] args) {
     launch(args);
