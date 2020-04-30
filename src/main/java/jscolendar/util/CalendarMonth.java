@@ -35,6 +35,10 @@ public class CalendarMonth extends StackPane {
   int yOrigin = 50;
 
 
+  //// Get the number of days in that month
+  //YearMonth yearMonthObject = YearMonth.of(1999, 2);
+  //int daysInMonth = yearMonthObject.lengthOfMonth(); //28
+
   public CalendarMonth() {
     FXUtil.loadFXML("/utils/CalendarMonth.fxml", this, this);
   }
@@ -107,8 +111,6 @@ public class CalendarMonth extends StackPane {
       canvas.getGraphicsContext2D().clearRect(xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50 - 14, 112, 15);
       canvas.getGraphicsContext2D().fillText(cells[x][y] - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
     }
-
-
   }
 
 }

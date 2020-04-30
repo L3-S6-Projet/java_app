@@ -62,6 +62,8 @@ public class Edition extends StackPane {
   public JFXButton annuler;
   public JFXButton save;
 
+
+  //todo fix PWD field
   public Edition() {
     FXUtil.loadFXML("/fxml/popup/admin/Edition.fxml", this, this);
   }
