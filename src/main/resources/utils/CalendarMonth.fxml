@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.util.CalendarMonth?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         stylesheets="stylesCalendar.css"
+         type="jscolendar.util.CalendarMonth">
+    <VBox fx:id="body">
+        <HBox fx:id="header" styleClass="calendarHeader">
+            <Label fx:id="day" text="AUJOURD'HUI" styleClass="day"/>
+            <HBox fx:id="dateBox">
+                <JFXButton fx:id="previous">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-left" styleClass="arrow"/>
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="date" text="Avril2020" styleClass="date"/>
+                <JFXButton fx:id="next">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-right" styleClass="arrow"/>
+                    </graphic>
+                </JFXButton>
+            </HBox>
+            <JFXComboBox fx:id="month" styleClass="select">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Label text="Jour"/>
+                        <Label text="Semaine"/>
+                        <Label text="Mois"/>
+                    </FXCollections>
+                </items>
+            </JFXComboBox>
+        </HBox>
+        <StackPane fx:id="layout" styleClass="tableLayout">
+            <HBox fx:id="col" styleClass="table">
+                <Label text="Lundi" styleClass="MonthTitle"/>
+                <Label text="Mardi" styleClass="MonthTitle"/>
+                <Label text="Mercredi" styleClass="MonthTitle"/>
+                <Label text="Jeudi" styleClass="MonthTitle"/>
+                <Label text="Vendredi" styleClass="MonthTitle"/>
+                <Label text="Samedi" styleClass="MonthTitle"/>
+                <Label text="Dimanche" styleClass="MonthTitle"/>
+            </HBox>
+        </StackPane>
+
+    </VBox>
+
+
+</fx:root>
