@@ -12,7 +12,7 @@ import jscolendar.components.popup.admin.Edition;
 import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.components.popup.etu.Info;
-import jscolendar.components.popup.login.Conditions;
+import jscolendar.util.CalendarDay;
 import jscolendar.util.CalendarWeek;
 import jscolendar.util.FXUtil;
 
@@ -128,7 +128,7 @@ public class Admin extends StackPane {
 
   private void selectParam() {
     popup = new JFXDialog();
-    popup.setContent(new Conditions());
+    popup.setContent(new CalendarDay());
     popup.show(this);
 
   }

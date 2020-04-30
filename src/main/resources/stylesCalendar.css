@@ -81,3 +81,15 @@
     -fx-pref-width: 125px;
     -fx-alignment: center-right;
 }
+
+.dayDateSelct {
+    -fx-background-color: #FF9800;
+    -fx-border-radius: 50px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-font-family: Roboto;
+    -fx-font-size: 36px;
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+    -fx-background-radius: 50px;
+}
