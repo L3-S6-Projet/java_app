@@ -33,6 +33,8 @@ public class CalendarMonth extends StackPane {
   int xOrigin = 38;
   int yOrigin = 50;
 
+  double xClosePos, yClosePos;
+
 
   //// Get the number of days in that month
   //YearMonth yearMonthObject = YearMonth.of(1999, 2);
@@ -44,7 +46,6 @@ public class CalendarMonth extends StackPane {
 
   @FXML
   private void initialize() {
-    //initCells();
     initList();
     initTable();
     select.getSelectionModel().selectLast();
@@ -74,7 +75,6 @@ public class CalendarMonth extends StackPane {
 
     for (int line = 0; line < 5; line++) {
       for (int col = 0; col < 7; col++) {
-        canvas.getGraphicsContext2D().strokeRect(xOrigin - 20 + 107 + 214 * col, yOrigin + 175 * line, 20, 36);
         canvas.getGraphicsContext2D().fillText("10", xOrigin - 20 + 107 + 214 * col, yOrigin + 36 + 175 * line);
       }
     }
@@ -102,9 +102,10 @@ public class CalendarMonth extends StackPane {
   }
 
   private void thirdLevelContent(int x, int y) {
-    canvas.getGraphicsContext2D().setFill(Color.GRAY);
+    canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 14));
     canvas.getGraphicsContext2D().fillRect(xOrigin + x * 250, yOrigin + 157 + y * 175, 112, 15);
+    canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
     canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(x, y)).size() - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
   }
 
@@ -160,7 +161,7 @@ public class CalendarMonth extends StackPane {
     }
   }
 
-  private void redraw() {
+  private void redraw() {//todo fix third case redraw
     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     initTable();
     for (ArrayList<CellContent> cell : calendarContent) {
@@ -197,9 +198,14 @@ public class CalendarMonth extends StackPane {
 
 
     //todo refactor
-    //todo button for close popup + icons
+    //todo icons
+    //todo check if popup is show you can't click behind before it's close
     int cellX = (int) (x - 38) / 214;
     int cellY = (int) (y - 50) / 175;
+    if (clicOnClose(x, y)) {
+      redraw();
+      return;
+    }
     int index = getIndexOfSelction(x, y);
     if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0 && index != -1) {
       redraw();
@@ -235,7 +241,22 @@ public class CalendarMonth extends StackPane {
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 186 + modifierY, 240);
       canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 186 + modifierY);
+
+      xClosePos = cellX * 214 + modifierX + 260 + 38;
+      yClosePos = cellY * 175 + modifierY + 20 + 50;
+
+      canvas.getGraphicsContext2D().strokeLine(xClosePos, yClosePos, xClosePos + 15, yClosePos + 15);
+      canvas.getGraphicsContext2D().strokeLine(xClosePos, yClosePos + 15, xClosePos + 15, yClosePos);
+
+
     }
+
+  }
+
+  private boolean clicOnClose(double x, double y) {
+    System.out.println(x + " " + y);
+    System.out.println(xClosePos + "--" + yClosePos);
+    return x > xClosePos && x < xClosePos + 20 && y > yClosePos && y < yClosePos + 20;
 
   }
 
