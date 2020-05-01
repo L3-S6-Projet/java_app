@@ -7,7 +7,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import jscolendar.components.popup.admin.Confirmation;
 import jscolendar.components.popup.admin.Edition;
 import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
@@ -44,6 +43,7 @@ public class Admin extends StackPane {
   private void initialize() {
     menuContent.setStyle("-fx-tick-label-fill: #3F51B5");
     resetOpacity();
+
   }
 
   private void resetOpacity() {
@@ -90,10 +90,8 @@ public class Admin extends StackPane {
   }
 
   private void selectEDT() {
-    popup = new JFXDialog();
-    popup.setContent(new Confirmation());
-    popup.show(this);
-
+    if (body.getChildren().size() == 1)
+      body.getChildren().add(new CalendarMonth());
   }
 
   private void selectEns() {

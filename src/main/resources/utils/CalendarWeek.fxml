@@ -30,12 +30,12 @@
                     </graphic>
                 </JFXButton>
             </HBox>
-            <JFXComboBox fx:id="month" styleClass="select">
+            <JFXComboBox fx:id="select" styleClass="select" onAction="#selectCalendarType">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <Label text="Jour"/>
-                        <Label text="Semaine"/>
-                        <Label text="Mois"/>
+                        <Label text="Jour" id="jour"/>
+                        <Label text="Semaine" id="semaine"/>
+                        <Label text="Mois" id="mois"/>
                     </FXCollections>
                 </items>
             </JFXComboBox>

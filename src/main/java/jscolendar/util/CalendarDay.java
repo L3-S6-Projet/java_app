@@ -22,7 +22,7 @@ public class CalendarDay extends StackPane {
   public Label date;
   public JFXButton previous;
   public JFXButton next;
-  public JFXComboBox<Label> month;
+  public JFXComboBox<Label> select;
 
   public StackPane layout;
   public Canvas canvas = new Canvas(1536, 859);//221 = height of header
@@ -42,7 +42,8 @@ public class CalendarDay extends StackPane {
   @FXML
   private void initialize() {
     initCanvas();
-    month.setTranslateX(507);
+    select.getSelectionModel().selectFirst();
+    select.setTranslateX(507);
     day.setTranslateX(-506);
     dayDate.setTranslateX(75);
 
@@ -79,5 +80,24 @@ public class CalendarDay extends StackPane {
     canvas.getGraphicsContext2D().setFill(Color.GRAY);
     canvas.getGraphicsContext2D().fillText(salle, xOrigin, 20 + yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16 + 20, 1436);
 
+  }
+
+  @FXML
+  private void selectCalendarType() {
+    body.getChildren().removeAll(header, layout);
+    switch (select.getSelectionModel().getSelectedItem().getId()) {
+      case "jour":
+        body.getChildren().add(new CalendarDay());
+        break;
+      case "semaine":
+        body.getChildren().add(new CalendarWeek());
+        break;
+      case "mois":
+        body.getChildren().add(new CalendarMonth());
+        break;
+      default:
+        System.out.println("error selection type");
+        break;
+    }
   }
 }

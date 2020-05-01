@@ -23,7 +23,7 @@ public class CalendarWeek extends StackPane {
   public Label date;
   public JFXButton previous;
   public JFXButton next;
-  public JFXComboBox<Label> month;
+  public JFXComboBox<Label> select;
 
   public StackPane layout;
   public Canvas canvas = new Canvas(1536, 859);//221 = height of header
@@ -53,8 +53,9 @@ public class CalendarWeek extends StackPane {
 
   @FXML
   private void initialize() {
+    select.getSelectionModel().select(1);
     initCanvas();
-    month.setTranslateX(507);
+    select.setTranslateX(507);
     day.setTranslateX(-506);
     addElement(1, 15, 15, 60, " Algorithmique", " L3 Informatique", " F.01.1");
     addElement(2, 14, 0, 120, " Algorithmique", " L3 Informatique", " F.01.1");
@@ -96,4 +97,22 @@ public class CalendarWeek extends StackPane {
 
   }
 
+  @FXML
+  private void selectCalendarType() {
+    body.getChildren().removeAll(header, layout);
+    switch (select.getSelectionModel().getSelectedItem().getId()) {
+      case "jour":
+        body.getChildren().add(new CalendarDay());
+        break;
+      case "semaine":
+        body.getChildren().add(new CalendarWeek());
+        break;
+      case "mois":
+        body.getChildren().add(new CalendarMonth());
+        break;
+      default:
+        System.out.println("error selection type");
+        break;
+    }
+  }
 }

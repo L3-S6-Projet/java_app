@@ -23,7 +23,7 @@ public class CalendarMonth extends StackPane {
   public Label date;
   public JFXButton previous;
   public JFXButton next;
-  public JFXComboBox<Label> month;
+  public JFXComboBox<Label> select;
 
   public StackPane layout;
   public Canvas canvas = new Canvas(1536, 934);//221 = height of header
@@ -45,12 +45,25 @@ public class CalendarMonth extends StackPane {
 
   @FXML
   private void initialize() {
-    for (int x = 0; x < 7; x++) {
-      for (int y = 0; y < 5; y++) {
-        cells[x][y] = 0;
-      }
-    }
+    initCells();
+    initTable();
+    select.getSelectionModel().selectLast();
 
+    addElement("Algèbre", "Amphi 7", 2, 1);
+    addElement("Algèbre", "Amphi 7", 2, 1);
+    addElement("Algèbre", "Amphi 7", 2, 4);
+    addElement("Algèbre", "Amphi 7", 2, 1);
+    addElement("Algèbre", "Amphi 7", 2, 4);
+    addElement("Algèbre", "Amphi 7", 3, 1);
+    addElement("Algèbre", "Amphi 7", 4, 1);
+    addElement("Algèbre", "Amphi 7", 5, 2);
+    addElement("Algèbre", "Amphi 7", 6, 2);
+    addElement("Algèbre", "Amphi 7", 6, 2);
+    addElement("Algèbre", "Amphi 7", 6, 4);
+    layout.getChildren().add(canvas);
+  }
+
+  private void initTable() {
     for (int i = 0; i < 6; i++) {
       canvas.getGraphicsContext2D().strokeLine(xOrigin, yOrigin + i * 175, 1536, yOrigin + i * 175);
     }
@@ -64,18 +77,14 @@ public class CalendarMonth extends StackPane {
         canvas.getGraphicsContext2D().fillText("10", xOrigin - 20 + 107 + 214 * col, yOrigin + 36 + 175 * line);
       }
     }
-    addElement("Algèbre", "Amphi 7", 2, 1);
-    addElement("Algèbre", "Amphi 7", 2, 1);
-    addElement("Algèbre", "Amphi 7", 2, 4);
-    addElement("Algèbre", "Amphi 7", 2, 1);
-    addElement("Algèbre", "Amphi 7", 2, 4);
-    addElement("Algèbre", "Amphi 7", 3, 1);
-    addElement("Algèbre", "Amphi 7", 4, 1);
-    addElement("Algèbre", "Amphi 7", 5, 2);
-    addElement("Algèbre", "Amphi 7", 6, 2);
-    addElement("Algèbre", "Amphi 7", 6, 2);
-    addElement("Algèbre", "Amphi 7", 6, 4);
-    layout.getChildren().add(canvas);
+  }
+
+  private void initCells() {
+    for (int x = 0; x < 7; x++) {
+      for (int y = 0; y < 5; y++) {
+        cells[x][y] = 0;
+      }
+    }
   }
 
 
@@ -110,6 +119,25 @@ public class CalendarMonth extends StackPane {
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 14));
       canvas.getGraphicsContext2D().clearRect(xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50 - 14, 112, 15);
       canvas.getGraphicsContext2D().fillText(cells[x][y] - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
+    }
+  }
+
+  @FXML
+  private void selectCalendarType() {
+    body.getChildren().removeAll(header, layout);
+    switch (select.getSelectionModel().getSelectedItem().getId()) {
+      case "jour":
+        body.getChildren().add(new CalendarDay());
+        break;
+      case "semaine":
+        body.getChildren().add(new CalendarWeek());
+        break;
+      case "mois":
+        body.getChildren().add(new CalendarMonth());
+        break;
+      default:
+        System.out.println("error selection type");
+        break;
     }
   }
 

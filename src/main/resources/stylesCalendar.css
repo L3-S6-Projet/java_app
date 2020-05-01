@@ -79,7 +79,6 @@
 .select {
     -fx-pref-height: 36px;
     -fx-pref-width: 125px;
-    -fx-alignment: center-right;
 }
 
 .dayDateSelct {
