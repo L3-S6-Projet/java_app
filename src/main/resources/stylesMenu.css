@@ -23,6 +23,7 @@
 .menu {
     -fx-background-color: #3F51B5;
     -fx-pref-width: 384px;
+   /* -fx-pref-height: 1080px;*/
 }
 
 
@@ -33,37 +34,7 @@
     -fx-spacing: 0px;
 }
 
-.EDT {
-    -fx-graphic: url("images/EDT.png");
-}
 
-.Ens {
-    -fx-graphic: url("images/Ens.png");
-}
-
-.etu {
-    -fx-graphic: url("images/Etu.png");
-}
-
-.salles {
-    -fx-graphic: url("images/Salles.png");
-}
-
-.classes {
-    -fx-graphic: url("images/Classes.png");
-}
-
-.UE {
-    -fx-graphic: url("images/UE.png");
-}
-
-.Param {
-    -fx-graphic: url("images/Param.png");
-}
-
-.Deco {
-    -fx-graphic: url("images/Deco.png");
-}
 
 .AdminTitle {
     -fx-pref-width: 384px;
@@ -82,9 +53,6 @@
 
 }
 
-.Home {
-    -fx-graphic: url("images/Home.png");
-}
 
 .iconMenu {
     -fx-fill: #FFFFFF;

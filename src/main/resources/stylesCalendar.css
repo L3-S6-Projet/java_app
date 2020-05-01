@@ -9,7 +9,6 @@
     -fx-background-color: transparent;
 
     -fx-pref-width: 1536px;
-    -fx-pref-height: 500px;
     -fx-alignment: top-right;
 }
 
@@ -32,13 +31,12 @@
 }
 
 .tableLayout {
+    -fx-min-height: 934px;
+    -fx-min-width: 1536px;
 
-    -fx-pref-width: 750px;
-    -fx-pref-height: 700px;
 }
 
 .vbox {
-    -fx-pref-height: 700px;
     -fx-pref-width: 750px;
     -fx-border-width: 10px;
 }

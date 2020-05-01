@@ -2,7 +2,6 @@ package jscolendar.util;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXPopup;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -12,10 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
-import javafx.stage.PopupWindow;
-import jscolendar.components.popup.etu.Info;
 
-import java.awt.*;
+import java.util.ArrayList;
 
 public class CalendarMonth extends StackPane {
   //todo extract header in a new component to reformat code
@@ -30,11 +27,11 @@ public class CalendarMonth extends StackPane {
   public JFXButton next;
   public JFXComboBox<Label> select;
 
-  public StackPane mouse;
   public StackPane layout;
   public Canvas canvas = new Canvas(1536, 934);//221 = height of header
   public HBox col;
 
+  private final ArrayList<ArrayList<CellContent>> calendarContent = new ArrayList<ArrayList<CellContent>>();
   private final int[][] cells = new int[7][5];
 
   int xOrigin = 38;
@@ -51,11 +48,22 @@ public class CalendarMonth extends StackPane {
 
   @FXML
   private void initialize() {
-    initCells();
+    //initCells();
+    initList();
     initTable();
     select.getSelectionModel().selectLast();
+    addContent(new CellContent(0, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(4, 3, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
 
-    addElement("Algèbre", "Amphi 7", 2, 1);
+    addContent(new CellContent(5, 2, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+
+    addContent(new CellContent(0, 4, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+
+
+    /* addElement("Algèbre", "Amphi 7", 2, 1);
     addElement("Algèbre", "Amphi 7", 2, 1);
     addElement("Algèbre", "Amphi 7", 2, 4);
     addElement("Algèbre", "Amphi 7", 2, 1);
@@ -65,7 +73,9 @@ public class CalendarMonth extends StackPane {
     addElement("Algèbre", "Amphi 7", 5, 2);
     addElement("Algèbre", "Amphi 7", 6, 2);
     addElement("Algèbre", "Amphi 7", 6, 2);
-    addElement("Algèbre", "Amphi 7", 6, 4);
+    addElement("Algèbre", "Amphi 7", 6, 4);*/
+    canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
+
     layout.getChildren().add(canvas);
   }
 
@@ -85,16 +95,75 @@ public class CalendarMonth extends StackPane {
     }
   }
 
+  private void initList() {
+    for (int i = 0; i < 35; i++) {
+      calendarContent.add(new ArrayList<CellContent>());
+    }
+  }
+
+  private void addContent(CellContent content) {
+    //todo refactor
+    int x = content.x;
+    int y = content.y;
+    calendarContent.get(flatIndex(x, y)).add(content);
+    if (calendarContent.get(flatIndex(x, y)).size() == 1) {
+      firstLevelContent(content);
+    } else if (calendarContent.get(flatIndex(x, y)).size() == 2) {
+      secondLevelContent(content);
+    } else if (calendarContent.get(flatIndex(x, y)).size() >= 3) {
+      thirdLevelContent(x, y);
+    }
+  }
+
+  private void thirdLevelContent(int x, int y) {
+    canvas.getGraphicsContext2D().setFill(Color.GRAY);
+    canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 14));
+    canvas.getGraphicsContext2D().clearRect(xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50 - 14, 112, 15);
+    canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(x, y)).size() - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
+  }
+
+  private void secondLevelContent(CellContent content) {
+    canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
+    canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+    canvas.getGraphicsContext2D().fillRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 55, 214, 50, 20, 20);
+    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 55, 214, 50, 20, 20);
+    canvas.getGraphicsContext2D().setFontSmoothingType(FontSmoothingType.GRAY);
+    canvas.getGraphicsContext2D().setFill(Color.BLACK);
+    canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
+    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 20 + 55);
+    canvas.getGraphicsContext2D().setFill(Color.GRAY);
+    canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
+    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 36 + 55, 214);
+  }
+
+  private void firstLevelContent(CellContent content) {
+    canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
+    canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+    canvas.getGraphicsContext2D().fillRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175, 214, 50, 20, 20);
+    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175, 214, 50, 20, 20);
+    canvas.getGraphicsContext2D().setFontSmoothingType(FontSmoothingType.GRAY);
+    canvas.getGraphicsContext2D().setFill(Color.BLACK);
+    canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
+    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 20);
+    canvas.getGraphicsContext2D().setFill(Color.GRAY);
+    canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
+    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 36, 214);
+  }
+
+  private int flatIndex(int x, int y) {
+    return y * 7 + x;
+  }
+/*
   private void initCells() {
     for (int x = 0; x < 7; x++) {
       for (int y = 0; y < 5; y++) {
         cells[x][y] = 0;
       }
     }
-  }
+  }*/
 
 
-  private void addElement(String name, String salle, int x, int y) {
+  /*private void addElement(String name, String salle, int x, int y) {
     cells[x][y]++;
     if (cells[x][y] == 1) {
       canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
@@ -126,7 +195,7 @@ public class CalendarMonth extends StackPane {
       canvas.getGraphicsContext2D().clearRect(xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50 - 14, 112, 15);
       canvas.getGraphicsContext2D().fillText(cells[x][y] - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
     }
-  }
+  }*/
 
   @FXML
   private void selectCalendarType() {
@@ -147,18 +216,49 @@ public class CalendarMonth extends StackPane {
     }
   }
 
-  @FXML
-  private void onClick() {
-    double x = MouseInfo.getPointerInfo().getLocation().getX();
-    double y = MouseInfo.getPointerInfo().getLocation().getY();
+  private void redraw() {
+    canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    initTable();
+    for (int i = 0; i < 35; i++) {
+      for (int j = 0; j < calendarContent.get(i).size(); i++) {
+        if (calendarContent.get(i).size() == 0) continue;
+        else {
+          CellContent content = calendarContent.get(i).get(j);
+          if (j == 0) {
+            firstLevelContent(content);
+          } else if (j == 1) {
+            secondLevelContent(content);
+          } else {
+            thirdLevelContent(content.x, content.y);
+          }
+        }
+      }
+    }
+  }
 
-    mouse.setLayoutX(x - 434);
-    mouse.setLayoutY(y - 146);
-    JFXPopup pop = new JFXPopup();
-    pop.setPopupContent(new Info());
 
-    pop.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    pop.show(mouse);
+  private void onClick(double x, double y) {
+    int cellX = (int) x / (1498 / 7);
+    int cellY = (int) y / (884 / 5);
+    if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0) {
+      redraw();
+      canvas.getGraphicsContext2D().setFill(Color.WHITE);
+      canvas.getGraphicsContext2D().fillRect(cellX * 214 + 38, cellY * 175 + 50, 300, 250);
+      canvas.getGraphicsContext2D().setFill(Color.BLACK);
+      canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 18));
+
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).name, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40, 240);
+
+      canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).date, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40 + 18, 240);
+      canvas.getGraphicsContext2D().setFill(Color.BLACK);
+      canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).group, cellX * 214 + 38 + 56, cellY * 175 + 50 + 96, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).promo, cellX * 214 + 38 + 56, cellY * 175 + 50 + 126, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).prof, cellX * 214 + 38 + 56, cellY * 175 + 50 + 156, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).room, cellX * 214 + 38 + 56, cellY * 175 + 50 + 186, 240);
+    }
+
   }
 
 
