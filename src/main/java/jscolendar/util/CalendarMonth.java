@@ -32,7 +32,6 @@ public class CalendarMonth extends StackPane {
   public HBox col;
 
   private final ArrayList<ArrayList<CellContent>> calendarContent = new ArrayList<ArrayList<CellContent>>();
-  private final int[][] cells = new int[7][5];
 
   int xOrigin = 38;
   int yOrigin = 50;
@@ -52,28 +51,16 @@ public class CalendarMonth extends StackPane {
     initList();
     initTable();
     select.getSelectionModel().selectLast();
+
     addContent(new CellContent(0, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 0", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "math", "Group 1", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
     addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
     addContent(new CellContent(4, 3, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-
     addContent(new CellContent(5, 2, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-
     addContent(new CellContent(0, 4, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
 
 
-    /* addElement("Algèbre", "Amphi 7", 2, 1);
-    addElement("Algèbre", "Amphi 7", 2, 1);
-    addElement("Algèbre", "Amphi 7", 2, 4);
-    addElement("Algèbre", "Amphi 7", 2, 1);
-    addElement("Algèbre", "Amphi 7", 2, 4);
-    addElement("Algèbre", "Amphi 7", 3, 1);
-    addElement("Algèbre", "Amphi 7", 4, 1);
-    addElement("Algèbre", "Amphi 7", 5, 2);
-    addElement("Algèbre", "Amphi 7", 6, 2);
-    addElement("Algèbre", "Amphi 7", 6, 2);
-    addElement("Algèbre", "Amphi 7", 6, 4);*/
     canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
 
     layout.getChildren().add(canvas);
@@ -106,6 +93,7 @@ public class CalendarMonth extends StackPane {
     int x = content.x;
     int y = content.y;
     calendarContent.get(flatIndex(x, y)).add(content);
+
     if (calendarContent.get(flatIndex(x, y)).size() == 1) {
       firstLevelContent(content);
     } else if (calendarContent.get(flatIndex(x, y)).size() == 2) {
@@ -177,27 +165,37 @@ public class CalendarMonth extends StackPane {
   private void redraw() {
     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     initTable();
-    for (int i = 0; i < 35; i++) {
-      for (int j = 0; j < calendarContent.get(i).size(); i++) {
-        if (calendarContent.get(i).size() == 0) continue;
-        else {
-          CellContent content = calendarContent.get(i).get(j);
-          if (j == 0) {
-            firstLevelContent(content);
-          } else if (j == 1) {
-            secondLevelContent(content);
-          } else {
-            thirdLevelContent(content.x, content.y);
-          }
+    for (ArrayList<CellContent> cell : calendarContent) {
+      int rank = 0;
+      for (CellContent content : cell) {
+        if (rank == 0) {
+          firstLevelContent(content);
+        } else if (rank == 1) {
+          secondLevelContent(content);
+        } else {
+          firstLevelContent(content);
         }
+        rank++;
       }
     }
+
+
   }
 
 
   private void onClick(double x, double y) {
+    //todo fix pos
+    double yPos = y / (884 / 5);
     int cellX = (int) x / (1498 / 7);
     int cellY = (int) y / (884 / 5);
+    int index;
+    System.out.println(yPos);
+    if (yPos - cellY > 0.5) {
+      index = 0;
+    } else {
+      index = 1;
+    }
+
     if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0) {
       redraw();
       canvas.getGraphicsContext2D().setFill(Color.WHITE);
@@ -205,16 +203,16 @@ public class CalendarMonth extends StackPane {
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 18));
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).name, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).name, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40, 240);
 
       canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).date, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40 + 18, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40 + 18, 240);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).group, cellX * 214 + 38 + 56, cellY * 175 + 50 + 96, 240);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).promo, cellX * 214 + 38 + 56, cellY * 175 + 50 + 126, 240);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).prof, cellX * 214 + 38 + 56, cellY * 175 + 50 + 156, 240);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(0).room, cellX * 214 + 38 + 56, cellY * 175 + 50 + 186, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + 38 + 56, cellY * 175 + 50 + 96, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + 38 + 56, cellY * 175 + 50 + 126, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).prof, cellX * 214 + 38 + 56, cellY * 175 + 50 + 156, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + 38 + 56, cellY * 175 + 50 + 186, 240);
     }
 
   }
