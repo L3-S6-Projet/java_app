@@ -197,37 +197,44 @@ public class CalendarMonth extends StackPane {
 
 
     //todo refactor
-    //todo set popup position depend position in calendar (border cases)
     //todo button for close popup + icons
     int cellX = (int) (x - 38) / 214;
     int cellY = (int) (y - 50) / 175;
     int index = getIndexOfSelction(x, y);
     if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0 && index != -1) {
       redraw();
+      int modifierX = 214, modifierY = 0;
+      if (cellX > 4) {
+        modifierX = -300;
+      }
+      if (cellY > 3) {
+        modifierY = -150;
+      }
+
       canvas.getGraphicsContext2D().setFill(Color.WHITE);
-      canvas.getGraphicsContext2D().fillRect(cellX * 214 + 38, cellY * 175 + 50, 300, 250);
+      canvas.getGraphicsContext2D().fillRect(cellX * 214 + 38 + modifierX, cellY * 175 + 50 + modifierY, 300, 250);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 18));
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).name, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).name, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 40 + modifierY, 240);
 
       canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date, cellX * 214 + 38 + 56, cellY * 175 + 50 + 40 + 18, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 40 + 18 + modifierY, 240);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
 
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + 38 + 56, cellY * 175 + 50 + 96, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56, cellY * 175 + 38 + 96);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 96 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 96 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + 38 + 56, cellY * 175 + 50 + 126, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56, cellY * 175 + 38 + 126);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 126 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 126 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).prof, cellX * 214 + 38 + 56, cellY * 175 + 50 + 156, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56, cellY * 175 + 38 + 156);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).prof, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 156 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 156 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + 38 + 56, cellY * 175 + 50 + 186, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56, cellY * 175 + 38 + 186);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 186 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 186 + modifierY);
     }
 
   }
