@@ -39,7 +39,8 @@
                 </items>
             </JFXComboBox>
         </HBox>
-        <StackPane fx:id="layout" styleClass="tableLayout">
+        <StackPane fx:id="layout" styleClass="tableLayout" onMouseClicked="#onClick">
+            <StackPane fx:id="mouse"/>
             <HBox fx:id="col" styleClass="table">
                 <Label text="Lundi" styleClass="MonthTitle"/>
                 <Label text="Mardi" styleClass="MonthTitle"/>

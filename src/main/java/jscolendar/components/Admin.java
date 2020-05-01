@@ -52,7 +52,6 @@ public class Admin extends StackPane {
     }
   }
 
-  //TODO fix pb with accentuated character because switch doesn't work
   @FXML
   private void selectItem() {
     resetOpacity();

@@ -2,6 +2,7 @@ package jscolendar.util;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPopup;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -11,6 +12,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
+import javafx.stage.PopupWindow;
+import jscolendar.components.popup.etu.Info;
+
+import java.awt.*;
 
 public class CalendarMonth extends StackPane {
   //todo extract header in a new component to reformat code
@@ -25,6 +30,7 @@ public class CalendarMonth extends StackPane {
   public JFXButton next;
   public JFXComboBox<Label> select;
 
+  public StackPane mouse;
   public StackPane layout;
   public Canvas canvas = new Canvas(1536, 934);//221 = height of header
   public HBox col;
@@ -140,5 +146,20 @@ public class CalendarMonth extends StackPane {
         break;
     }
   }
+
+  @FXML
+  private void onClick() {
+    double x = MouseInfo.getPointerInfo().getLocation().getX();
+    double y = MouseInfo.getPointerInfo().getLocation().getY();
+
+    mouse.setLayoutX(x - 434);
+    mouse.setLayoutY(y - 146);
+    JFXPopup pop = new JFXPopup();
+    pop.setPopupContent(new Info());
+
+    pop.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
+    pop.show(mouse);
+  }
+
 
 }
