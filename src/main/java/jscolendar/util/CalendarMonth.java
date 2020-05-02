@@ -90,7 +90,6 @@ public class CalendarMonth extends StackPane {
   }
 
   private void addContent(CellContent content) {
-    //todo refactor
     int x = content.x;
     int y = content.y;
     calendarContent.get(flatIndex(x, y)).add(content);
@@ -146,7 +145,7 @@ public class CalendarMonth extends StackPane {
 
 
   @FXML
-  private void selectCalendarType() {
+  private void selectCalendarType() {//fix pos of selection
     body.getChildren().removeAll(header, layout);
     switch (select.getSelectionModel().getSelectedItem().getId()) {
       case "jour":
@@ -164,7 +163,7 @@ public class CalendarMonth extends StackPane {
     }
   }
 
-  private void redraw() {//todo fix third case redraw
+  private void redraw() {
     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     initTable();
     for (ArrayList<CellContent> cell : calendarContent) {
@@ -241,13 +240,13 @@ public class CalendarMonth extends StackPane {
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
 
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 96 + modifierY, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).location, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 96 + modifierY, 240);
       canvas.getGraphicsContext2D().drawImage(new Image("images/group.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 96 + modifierY);
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 126 + modifierY, 240);
       canvas.getGraphicsContext2D().drawImage(new Image("images/promo.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 126 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).prof, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 156 + modifierY, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).professor, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 156 + modifierY, 240);
       canvas.getGraphicsContext2D().drawImage(new Image("images/prof.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 156 + modifierY);
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 186 + modifierY, 240);

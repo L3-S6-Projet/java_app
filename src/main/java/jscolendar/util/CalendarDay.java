@@ -3,6 +3,7 @@ package jscolendar.util;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
+
+import java.util.ArrayList;
 
 public class CalendarDay extends StackPane {
 
@@ -34,6 +37,11 @@ public class CalendarDay extends StackPane {
   int xOrigin = 100;
   int yOrigin = 120;
   int beginHour = 8;
+
+  private final ArrayList<CellContent> calendarContent = new ArrayList<CellContent>();
+  double xClosePos, yClosePos;
+  boolean popIsShow = false;
+  Point2D popOrigin;
 
   public CalendarDay() {
     FXUtil.loadFXML("/utils/CalendarDay.fxml", this, this);
@@ -65,8 +73,9 @@ public class CalendarDay extends StackPane {
     layout.getChildren().add(canvas);
   }
 
-
   private void addElement(int beginHour, int BeginMinutes, int duration, String title, String salle) {
+
+
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
 
@@ -99,5 +108,15 @@ public class CalendarDay extends StackPane {
         System.out.println("error selection type");
         break;
     }
+  }
+
+
+  private boolean clicOnClose(double x, double y) {
+    popIsShow = false;
+    return x > xClosePos && x < xClosePos + 20 && y > yClosePos && y < yClosePos + 20;
+  }
+
+  private boolean clicOnPop(double x, double y) {
+    return x > popOrigin.getX() || x < popOrigin.getX() + 300 || y > popOrigin.getY() || y < popOrigin.getY() + 250;
   }
 }
