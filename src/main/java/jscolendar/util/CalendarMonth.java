@@ -3,6 +3,7 @@ package jscolendar.util;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -34,6 +35,8 @@ public class CalendarMonth extends StackPane {
   int yOrigin = 50;
 
   double xClosePos, yClosePos;
+  boolean popIsShow = false;
+  Point2D popOrigin;
 
 
   //// Get the number of days in that month
@@ -105,7 +108,7 @@ public class CalendarMonth extends StackPane {
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 14));
     canvas.getGraphicsContext2D().fillRect(xOrigin + x * 250, yOrigin + 157 + y * 175, 112, 15);
-    canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
+    canvas.getGraphicsContext2D().setFill(Color.GRAY);
     canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(x, y)).size() - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
   }
 
@@ -172,7 +175,7 @@ public class CalendarMonth extends StackPane {
         } else if (rank == 1) {
           secondLevelContent(content);
         } else {
-          firstLevelContent(content);
+          thirdLevelContent(content.x, content.y);
         }
         rank++;
       }
@@ -198,14 +201,22 @@ public class CalendarMonth extends StackPane {
 
 
     //todo refactor
-    //todo icons
-    //todo check if popup is show you can't click behind before it's close
     int cellX = (int) (x - 38) / 214;
     int cellY = (int) (y - 50) / 175;
-    if (clicOnClose(x, y)) {
-      redraw();
-      return;
+
+    if (popIsShow) {
+      if (clicOnClose(x, y)) {
+        redraw();
+        return;
+      } else if (clicOnPop(x, y)) {
+        return;
+      } else {
+        redraw();
+        popIsShow = false;
+      }
+
     }
+
     int index = getIndexOfSelction(x, y);
     if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0 && index != -1) {
       redraw();
@@ -231,33 +242,36 @@ public class CalendarMonth extends StackPane {
 
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 96 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 96 + modifierY);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/group.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 96 + modifierY);
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 126 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 126 + modifierY);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/promo.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 126 + modifierY);
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).prof, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 156 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 156 + modifierY);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/prof.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 156 + modifierY);
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 186 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/Mask.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 186 + modifierY);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/room.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 186 + modifierY);
 
       xClosePos = cellX * 214 + modifierX + 260 + 38;
       yClosePos = cellY * 175 + modifierY + 20 + 50;
 
       canvas.getGraphicsContext2D().strokeLine(xClosePos, yClosePos, xClosePos + 15, yClosePos + 15);
       canvas.getGraphicsContext2D().strokeLine(xClosePos, yClosePos + 15, xClosePos + 15, yClosePos);
-
+      popOrigin = new Point2D(cellX * 214 + modifierX, cellY * 175 + modifierY);
+      popIsShow = true;
 
     }
 
   }
 
   private boolean clicOnClose(double x, double y) {
-    System.out.println(x + " " + y);
-    System.out.println(xClosePos + "--" + yClosePos);
+    popIsShow = false;
     return x > xClosePos && x < xClosePos + 20 && y > yClosePos && y < yClosePos + 20;
+  }
 
+  private boolean clicOnPop(double x, double y) {
+    return x > popOrigin.getX() || x < popOrigin.getX() + 300 || y > popOrigin.getY() || y < popOrigin.getY() + 250;
   }
 
 
