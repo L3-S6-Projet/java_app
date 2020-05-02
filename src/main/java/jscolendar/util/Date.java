@@ -1,5 +1,7 @@
 package jscolendar.util;
 
+import java.time.Month;
+
 public class Date {
   int day, month, year, beginHour, beginMinute, duration;
 
@@ -14,11 +16,14 @@ public class Date {
 
   @Override
   public String toString() {
-    return "Date{" +
-      "day=" + day +
-      ", month=" + month +
-      ", beginHour=" + beginHour +
-      ", beginMinute=" + beginMinute +
-      '}';
+    return day +
+      " " + Month.of(month) +
+      "." + beginHour +
+      ":" + beginMinute;
   }
+
+  //// Get the number of days in that month
+  //YearMonth yearMonthObject = YearMonth.of(1999, 2);
+  //int daysInMonth = yearMonthObject.lengthOfMonth(); //28
+
 }

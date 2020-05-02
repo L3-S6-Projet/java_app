@@ -230,9 +230,6 @@ public class CalendarMonth extends StackPane {
     int index = getIndexOfSelction(x, y);
     if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0 && index != -1) {
       redraw();
-
-      System.out.println("on field");
-
       canvas.getGraphicsContext2D().setFill(Color.WHITE);
       canvas.getGraphicsContext2D().fillRect(cellX * 214 + 38 + modifierX, cellY * 175 + 50 + modifierY, 300, 250);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
