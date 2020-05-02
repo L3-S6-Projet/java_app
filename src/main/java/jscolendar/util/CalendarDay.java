@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontSmoothingType;
 
 import java.util.ArrayList;
 
@@ -55,11 +54,20 @@ public class CalendarDay extends StackPane {
     day.setTranslateX(-506);
     dayDate.setTranslateX(75);
 
-    addElement(8, 30, 90, "Algorithmique", "Amphi. 4");
+    canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
+
+    addElement(new CellContent("Algorithmique", "Group 2", "L3 Info", "IDK", "Amphi 4", new Date(22, 4, 2020, 8, 15, 90)));
+    addElement(new CellContent("Algorithmique", "Group 2", "L3 Info", "IDK", "Amphi 4", new Date(22, 4, 2020, 10, 0, 120)));
+    addElement(new CellContent("Algorithmique", "Group 2", "L3 Info", "IDK", "Amphi 4", new Date(22, 4, 2020, 13, 0, 60)));
+    addElement(new CellContent("Algorithmique", "Group 2", "L3 Info", "IDK", "Amphi 4", new Date(22, 4, 2020, 14, 15, 90)));
+    addElement(new CellContent("Algorithmique", "Group 2", "L3 Info", "IDK", "Amphi 4", new Date(22, 4, 2020, 16, 0, 60)));
+    addElement(new CellContent("Algorithmique", "Group 2", "L3 Info", "IDK", "Amphi 4", new Date(22, 4, 2020, 17, 15, 90)));
+    layout.getChildren().add(canvas);
   }
 
   private void initCanvas() {
     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
     for (int i = 0; i < 12; i++) {
       if (beginHour + i < 10) {
@@ -70,24 +78,24 @@ public class CalendarDay extends StackPane {
       canvas.getGraphicsContext2D().strokeLine(xOrigin - 5, yOrigin + i * 64, xOrigin + 1436, yOrigin + i * 64);
     }
     canvas.getGraphicsContext2D().strokeLine(xOrigin, yOrigin - 5, xOrigin, yOrigin + 739);
-    layout.getChildren().add(canvas);
   }
 
-  private void addElement(int beginHour, int BeginMinutes, int duration, String title, String salle) {
-
-
+  private void addElement(CellContent content) {
+    System.out.println(content.date);
+    calendarContent.add(content);
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+    int topLeftY = yOrigin + ((content.date.beginHour - 8) * 64) + (content.date.beginMinute / 15) * 16;
+    int duration = (content.date.duration / 15) * 16;
 
-    canvas.getGraphicsContext2D().fillRoundRect(xOrigin, yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16, 1436, (duration / 15) * 16, 20, 20);
-    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin, yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16, 1436, (duration / 15) * 16, 20, 20);
+    canvas.getGraphicsContext2D().fillRoundRect(xOrigin, topLeftY, 1436, duration, 20, 20);
+    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin, topLeftY, 1436, duration, 20, 20);
 
-    canvas.getGraphicsContext2D().setFontSmoothingType(FontSmoothingType.GRAY);
     canvas.getGraphicsContext2D().setFill(Color.BLACK);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
-    canvas.getGraphicsContext2D().fillText(title, xOrigin, yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16 + 20, 1436);
+    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + 5, topLeftY + 20, 1436);
     canvas.getGraphicsContext2D().setFill(Color.GRAY);
-    canvas.getGraphicsContext2D().fillText(salle, xOrigin, 20 + yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16 + 20, 1436);
+    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + 5, topLeftY + 40, 1436);
 
   }
 
@@ -107,6 +115,21 @@ public class CalendarDay extends StackPane {
       default:
         System.out.println("error selection type");
         break;
+    }
+  }
+
+  private void onClick(double x, double y) {
+
+
+    //here
+
+  }
+
+  private void redraw() {
+    canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    initCanvas();
+    for (CellContent cell : calendarContent) {
+      //draw
     }
   }
 

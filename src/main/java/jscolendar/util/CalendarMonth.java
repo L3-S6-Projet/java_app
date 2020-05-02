@@ -53,13 +53,13 @@ public class CalendarMonth extends StackPane {
     initTable();
     select.getSelectionModel().selectLast();
 
-    addContent(new CellContent(0, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "Algèbre", "Group 0", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "math", "Group 1", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(4, 3, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(5, 2, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(0, 4, "Algèbre", "Group 2", "Lundi 30", "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(0, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 0", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "math", "Group 1", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(4, 3, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(5, 2, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(0, 4, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
 
 
     canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
@@ -241,12 +241,12 @@ public class CalendarMonth extends StackPane {
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).name, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 40 + modifierY, 240);
 
       canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 40 + 18 + modifierY, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date.toString(), cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 40 + 18 + modifierY, 240);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
 
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).location, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 96 + modifierY, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 96 + modifierY, 240);
       canvas.getGraphicsContext2D().drawImage(new Image("images/group.png"), cellX * 214 + 56 + modifierX, cellY * 175 + 38 + 96 + modifierY);
 
       canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + 38 + 56 + modifierX, cellY * 175 + 50 + 126 + modifierY, 240);
