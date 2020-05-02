@@ -21,7 +21,7 @@ public class App extends Application {
 
     var root = new Login();
     Scene scene = new Scene(root, width, height);
-    stage.setResizable(false);//todo make autoresize before remove it
+    //stage.setResizable(false);//todo make autoresize before remove it
     stage.setScene(scene);
     stage.setTitle("JScolendar");
     stage.show();

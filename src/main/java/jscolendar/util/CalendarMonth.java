@@ -34,9 +34,9 @@ public class CalendarMonth extends StackPane {
   int xOrigin = 38;
   int yOrigin = 50;
 
-  double xClosePos, yClosePos;
+  double xClosePos = -20, yClosePos = -20;
   boolean popIsShow = false;
-  Point2D popOrigin;
+  Point2D popOrigin = new Point2D(-1000, -1000);
 
 
   //// Get the number of days in that month
@@ -68,6 +68,9 @@ public class CalendarMonth extends StackPane {
   }
 
   private void initTable() {
+    canvas.getGraphicsContext2D().setStroke(Color.BLACK);
+    canvas.getGraphicsContext2D().setFill(Color.BLACK);
+
     for (int i = 0; i < 6; i++) {
       canvas.getGraphicsContext2D().strokeLine(xOrigin, yOrigin + i * 175, 1536, yOrigin + i * 175);
     }
@@ -198,34 +201,37 @@ public class CalendarMonth extends StackPane {
 
   private void onClick(double x, double y) {
 
-
     //todo refactor
     int cellX = (int) (x - 38) / 214;
     int cellY = (int) (y - 50) / 175;
-
+    int modifierX = 214, modifierY = 0;
+    if (cellX > 4) {
+      modifierX = -300;
+    }
+    if (cellY > 3) {
+      modifierY = -150;
+    }
     if (popIsShow) {
       if (clicOnClose(x, y)) {
+        popIsShow = false;
         redraw();
         return;
       } else if (clicOnPop(x, y)) {
+        popIsShow = true;
         return;
       } else {
         redraw();
         popIsShow = false;
       }
-
     }
+
+
 
     int index = getIndexOfSelction(x, y);
     if (calendarContent.get(flatIndex(cellX, cellY)).size() > 0 && index != -1) {
       redraw();
-      int modifierX = 214, modifierY = 0;
-      if (cellX > 4) {
-        modifierX = -300;
-      }
-      if (cellY > 3) {
-        modifierY = -150;
-      }
+
+      System.out.println("on field");
 
       canvas.getGraphicsContext2D().setFill(Color.WHITE);
       canvas.getGraphicsContext2D().fillRect(cellX * 214 + 38 + modifierX, cellY * 175 + 50 + modifierY, 300, 250);
@@ -261,7 +267,6 @@ public class CalendarMonth extends StackPane {
       popIsShow = true;
 
     }
-
   }
 
   private boolean clicOnClose(double x, double y) {
@@ -270,7 +275,7 @@ public class CalendarMonth extends StackPane {
   }
 
   private boolean clicOnPop(double x, double y) {
-    return x > popOrigin.getX() || x < popOrigin.getX() + 300 || y > popOrigin.getY() || y < popOrigin.getY() + 250;
+    return x > popOrigin.getX() && x < popOrigin.getX() + 300 && y > popOrigin.getY() && y < popOrigin.getY() + 250;
   }
 
 
