@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Text?>
 <?import jscolendar.components.Login?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" stylesheets="styles.css" type="jscolendar.components.Login"
-         xmlns="http://javafx.com/javafx/10.0.2-internal" styleClass="root1">
+         xmlns="http://javafx.com/javafx/10.0.2-internal">
 
-    <VBox styleClass="body">
+    <HBox fx:id="body" styleClass="body">
         <VBox fx:id="left" styleClass="left">
             <Label fx:id="title" styleClass="title">Scolendar</Label>
             <Label fx:id="subtitle" styleClass="subtitle">Server AMU</Label>
@@ -22,8 +22,8 @@
                 <Label fx:id="wrongLoginMessage" styleClass="wrongLoginMessage">
                     Nom d'utilisateur et/ou mot de passe non valide.
                 </Label>
-                    <StackPane fx:id="idLayout">
-                        <Label styleClass="LabelId" fx:id="idLabel" alignment="TOP_LEFT">Nom d'utilisateur*</Label>
+                <StackPane fx:id="idLayout">
+                    <Label styleClass="LabelId" fx:id="idLabel" alignment="TOP_LEFT">Nom d'utilisateur*</Label>
                         <JFXTextField fx:id="idInput" styleClass="fieldLabel" onMouseClicked="#showIdLabel"
                                       onKeyPressed="#showIdLabel"/>
                         <TextField fx:id="emptyIdInput" promptText="Nom d'utilisateur" styleClass="emptyInput"
@@ -41,18 +41,16 @@
                         </Button>
                     </StackPane>
                 </VBox>
-                <Text/>
-                <HBox>
-                    <Button fx:id="connexion" styleClass="button1" onAction="#connexion">connexion</Button>
-                    <VBox prefHeight="50">
-                        <Label fx:id="linkForgotPWD" styleClass="Oubli" onMouseClicked="#forgotPassword">Mot de passe
-                            oublié?
-                        </Label>
-                    </VBox>
+            <Text/>
+            <HBox>
+                <Button fx:id="connexion" styleClass="button1">connexion</Button>
+                <VBox prefHeight="50">
+                    <Label fx:id="linkForgotPWD" styleClass="Oubli" onMouseClicked="#forgotPassword">Mot de passe
+                        oublié?
+                    </Label>
+                </VBox>
 
-                </HBox>
-
-            </VBox>
+            </HBox>
             <HBox>
                 <Text fx:id="copyRight" styleClass="copyRight" text="En vous connectant, vous aceptez les "/>
                 <Text fx:id="linkCopyRight" styleClass="copyRight" underline="true" text="termes et conditions."
@@ -60,4 +58,7 @@
             </HBox>
             <Text styleClass="copyRight">©Scolendar 2020 - Tout droits réservés</Text>
         </VBox>
+        <VBox id="right" styleClass="right"/>
+
+    </HBox>
 </fx:root>

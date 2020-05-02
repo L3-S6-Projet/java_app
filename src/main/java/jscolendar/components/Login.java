@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -19,6 +20,7 @@ import jscolendar.util.FXUtil;
 public class Login extends StackPane {
 
 
+  public HBox body;
   public VBox left;
   public Label title;
   public Label subtitle;
@@ -53,7 +55,7 @@ public class Login extends StackPane {
   private void initialize() {
     left.setMinHeight(610);
 
-    userInputs.setPadding(new Insets(266, 0, 0, 0));
+    userInputs.setPadding(new Insets(175, 0, 0, 0));
     emptyIdInput.setStyle("-fx-max-height: 50px");
     emptyIdInput.setStyle("-fx-background-color: lightgray");
     idLabel.setPadding(new Insets(-20, 0, 0, 0));
@@ -69,6 +71,7 @@ public class Login extends StackPane {
     wrongLoginMessage.setVisible(false);
     wrongLoginMessage.setPadding(new Insets(0, 0, 28, 0));
     show.setTranslateX(170);
+    connexion.setOnAction(event -> connexion());
 
     showIdLabel();
   }
@@ -146,7 +149,8 @@ public class Login extends StackPane {
       idLabel.setStyle("-fx-text-fill: #FF0C3E");
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
-    new Admin();
+    this.getChildren().clear();
+    this.getChildren().add(new Admin());
 
   }
 

@@ -1,16 +1,12 @@
-.root1 {
+.loginBody {
     -fx-background-image: url(" images/imageLoginModif.jpg");
     -fx-background-repeat: no-repeat;
-    -fx-background-size: auto;
-
-    -fx-pref-height: 1162px;
 }
 
 
 .body {
     -fx-background-color: #FAFAFA;
-    -fx-padding: 64px;
-    -fx-spacing: 64px;
+
 }
 
 .subtitle {
@@ -30,7 +26,9 @@
 }
 
 .left {
-
+    -fx-padding: 64px;
+    -fx-spacing: 64px;
+    -fx-background-color: #FFFFFF;
 }
 
 .button1 {
@@ -107,4 +105,11 @@
     -fx-font-family: Roboto;
     -fx-font-size: 14px;
 
+}
+
+.right {
+    -fx-background-image: url(" images/imageLoginModif.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-pref-width: 1920px;
+    -fx-min-height: 1080px;
 }
