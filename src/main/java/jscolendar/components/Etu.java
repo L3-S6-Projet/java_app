@@ -7,10 +7,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow;
-import jscolendar.components.popup.admin.Confirmation;
 import jscolendar.components.popup.admin.Edition;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.components.popup.etu.Info;
+import jscolendar.util.CalendarMonth;
 import jscolendar.util.FXUtil;
 
 public class Etu extends HBox {
@@ -80,10 +80,9 @@ public class Etu extends HBox {
   }
 
   private void selectEDT() {
-    popConfirm = new JFXPopup();
-    popConfirm.setPopupContent(new Confirmation());
-    popConfirm.setAnchorLocation(PopupWindow.AnchorLocation.CONTENT_TOP_LEFT);
-    popConfirm.show(deconnexion);
+    if (body.getChildren().size() == 1) {
+      body.getChildren().add(new CalendarMonth());
+    }
 
   }
 

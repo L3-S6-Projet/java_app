@@ -150,7 +150,7 @@ public class Login extends StackPane {
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
     this.getChildren().clear();
-    this.getChildren().add(new Admin());
+    this.getChildren().add(new Etu());
 
   }
 
