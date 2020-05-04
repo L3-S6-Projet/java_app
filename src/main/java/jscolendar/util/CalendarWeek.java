@@ -67,13 +67,13 @@ public class CalendarWeek extends StackPane {
     canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
     select.setTranslateX(507);
     day.setTranslateX(-506);
-    addContent(new CellContent(0, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "Algèbre", "Group 0", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "math", "Group 1", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(1, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(4, 3, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(5, 2, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
-    addContent(new CellContent(0, 4, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(0, 0, "Algèbre", "Group 2", new Date(1, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 0", new Date(1, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "math", "Group 1", new Date(2, 4, 2020, 10, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 2", new Date(1, 4, 2020, 12, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(4, 3, "Algèbre", "Group 2", new Date(2, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(5, 2, "Algèbre", "Group 2", new Date(3, 4, 2020, 16, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(0, 4, "Algèbre", "Group 2", new Date(5, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
 
   }
 
@@ -95,18 +95,14 @@ public class CalendarWeek extends StackPane {
   }
 
   private void initList() {
-    for (int i = 0; i < 7 * 12; i++) {
+    for (int i = 0; i < 7; i++) {
       calendarContent.add(new ArrayList<>());
     }
   }
 
-  private int flatIndex(int x, int y) {
-    return y * 7 + x;
-  }
-
-
   private void addContent(CellContent content) {
-    calendarContent.get(flatIndex(content.x, content.y)).add(content);
+    //todo add content from day in week
+    calendarContent.get(content.date.day).add(content);
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
     canvas.getGraphicsContext2D().fillRoundRect(content.date.day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16, 205, (content.date.duration / 15) * 16, 20, 20);
@@ -141,38 +137,48 @@ public class CalendarWeek extends StackPane {
   }
 
   private void redraw() {
-    canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+   /* canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     initCanvas();
     for (ArrayList<CellContent> cell : calendarContent) {
       for (CellContent content : cell) {
-        addContent(content);
+
       }
     }
-
+*/
 
   }
 
-  private int getIndexOfSelection(double x, double y) {
-    if (x < xOrigin || y < yOrigin || y > 925) return -1;
-    for (int i = 0; i < 5; i++) {
-      if (yOrigin + 157 + i * 175 < y && y < yOrigin + 172 + i * 175) {
-        return 2;
-      } else if (yOrigin + 101 + i * 175 < y && y < yOrigin + 151 + i * 175) {
-        return 1;
-      } else if (yOrigin + 46 + i * 175 < y && y < yOrigin + 96 + i * 175) {
-        return 0;
-      }
-    }
-    return -1;
-  }
 
 
   private void onClick(double x, double y) {
 
-    if (x > xOrigin && y > yOrigin) {
-      System.out.println("on calendar");
+    int topLeftContentY = yOrigin;
+    int duration = 0;
+    int index = -1;
+
+    if (x > xOrigin && y > yOrigin) {//if click is valid
+      int cellX = (int) (x - xOrigin) / 205;
+      int compt = 0;
+      for (CellContent content : calendarContent.get(cellX)) {//check if you are on a content
+        topLeftContentY = yOrigin + (content.date.beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16;
+        duration = (content.date.duration / 15) * 16;
+        if (y > topLeftContentY && y < topLeftContentY + duration) {
+          index = compt;
+          break;
+        } else {
+          compt++;
+        }
+      }
+
+      if (index != -1) {//if click on content
+        System.out.println("on a content");
+      } else {
+        System.out.println("not on a content");
+      }
+
+
     } else {
-      System.out.println("OOB");
+      redraw();
     }
 
   }
