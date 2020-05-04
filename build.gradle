@@ -4,7 +4,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
-version '0.0.1'
+version '1.0.0'
 
 sourceCompatibility = "11"
 targetCompatibility = "11"
@@ -19,6 +19,9 @@ javafx {
 }
 
 dependencies {
+
+    /*compile "io.swagger:swagger-java-client:1.0.0"*/
+    compile 'com.jfoenix:jfoenix:9.0.8'
     runtimeOnly 'com.google.flogger:flogger-system-backend:0.5.1'
     implementation 'com.google.flogger:flogger:0.5.1',
                    'com.jfoenix:jfoenix:9.0.8',

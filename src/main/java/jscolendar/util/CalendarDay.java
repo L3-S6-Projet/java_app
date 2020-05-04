@@ -49,7 +49,6 @@ public class CalendarDay extends StackPane {
     select.setTranslateX(507);
     day.setTranslateX(-506);
     dayDate.setTranslateX(75);
-    canvas.setStyle("-fx-border-color: red");
     canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
 
 
@@ -124,10 +123,10 @@ public class CalendarDay extends StackPane {
     int index = -1;
     if (x > xOrigin && y > yOrigin && y < 824) {//is valid click
       if (popIsShow) {
-        if (clicOnClose(x, y)) {
+        if (clickOnClose(x, y)) {
           redraw();
           return;
-        } else if (clicOnPop(x, y)) {
+        } else if (clickOnPop(x, y)) {
           popIsShow = true;
           return;
         }
@@ -191,12 +190,12 @@ public class CalendarDay extends StackPane {
   }
 
 
-  private boolean clicOnClose(double x, double y) {
+  private boolean clickOnClose(double x, double y) {
     popIsShow = false;
     return x > xClosePos && x < xClosePos + 20 && y > yClosePos && y < yClosePos + 20;
   }
 
-  private boolean clicOnPop(double x, double y) {
+  private boolean clickOnPop(double x, double y) {
     return x > popOrigin.getX() && x < popOrigin.getX() + 300 && y > popOrigin.getY() && y < popOrigin.getY() + 250;
   }
 }

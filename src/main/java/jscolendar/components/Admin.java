@@ -89,6 +89,7 @@ public class Admin extends StackPane {
   }
 
   private void selectEDT() {
+
     if (body.getChildren().size() == 1)
       body.getChildren().add(new CalendarDay());
   }

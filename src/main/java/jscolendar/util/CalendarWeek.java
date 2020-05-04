@@ -3,6 +3,7 @@ package jscolendar.util;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
+
+import java.util.ArrayList;
 
 
 public class CalendarWeek extends StackPane {
@@ -47,6 +50,11 @@ public class CalendarWeek extends StackPane {
   int yOrigin = 120;
   int beginHour = 8;
 
+  private final ArrayList<ArrayList<CellContent>> calendarContent = new ArrayList<>();
+  boolean popIsShow = false;
+  Point2D popOrigin;
+  Point2D closePos;
+
   public CalendarWeek() {
     FXUtil.loadFXML("/utils/CalendarWeek.fxml", this, this);
   }
@@ -55,13 +63,18 @@ public class CalendarWeek extends StackPane {
   private void initialize() {
     select.getSelectionModel().select(1);
     initCanvas();
+    initList();
+    canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
     select.setTranslateX(507);
     day.setTranslateX(-506);
-    addElement(1, 15, 15, 60, " Algorithmique", " L3 Informatique", " F.01.1");
-    addElement(2, 14, 0, 120, " Algorithmique", " L3 Informatique", " F.01.1");
-    addElement(3, 10, 15, 90, " Algorithmique", " L3 Informatique", " F.01.1");
-    addElement(4, 8, 30, 120, " Algorithmique", " L3 Informatique", " F.01.1");
-    addElement(5, 17, 0, 60, " Algorithmique", " L3 Informatique", " F.01.1");
+    addContent(new CellContent(0, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 0", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "math", "Group 1", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(1, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(4, 3, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(5, 2, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+    addContent(new CellContent(0, 4, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
+
   }
 
   private void initCanvas() {
@@ -81,19 +94,30 @@ public class CalendarWeek extends StackPane {
     layout.getChildren().add(canvas);
   }
 
+  private void initList() {
+    for (int i = 0; i < 7 * 12; i++) {
+      calendarContent.add(new ArrayList<>());
+    }
+  }
 
-  private void addElement(int day, int beginHour, int BeginMinutes, int duration, String title, String subtitle, String salle) {
+  private int flatIndex(int x, int y) {
+    return y * 7 + x;
+  }
+
+
+  private void addContent(CellContent content) {
+    calendarContent.get(flatIndex(content.x, content.y)).add(content);
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
-    canvas.getGraphicsContext2D().fillRoundRect(day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16, 205, (duration / 15) * 16, 20, 20);
-    canvas.getGraphicsContext2D().strokeRoundRect(day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16, 205, (duration / 15) * 16, 20, 20);
+    canvas.getGraphicsContext2D().fillRoundRect(content.date.day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16, 205, (content.date.duration / 15) * 16, 20, 20);
+    canvas.getGraphicsContext2D().strokeRoundRect(content.date.day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16, 205, (content.date.duration / 15) * 16, 20, 20);
     canvas.getGraphicsContext2D().setFontSmoothingType(FontSmoothingType.GRAY);
     canvas.getGraphicsContext2D().setFill(Color.BLACK);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
-    canvas.getGraphicsContext2D().fillText(title, day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16 + 20, 205);
+    canvas.getGraphicsContext2D().fillText(content.name, content.date.day * 205 - 105, yOrigin + (beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16 + 20, 205);
     canvas.getGraphicsContext2D().setFill(Color.GRAY);
-    canvas.getGraphicsContext2D().fillText(subtitle, day * 205 - 105, 20 + yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16 + 20, 205);
-    canvas.getGraphicsContext2D().fillText(salle, day * 205 - 105, 40 + yOrigin + (beginHour - 8) * 64 + (BeginMinutes / 15) * 16 + 20, 205);
+    canvas.getGraphicsContext2D().fillText(content.promo, content.date.day * 205 - 105, 20 + yOrigin + (beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16 + 20, 205);
+    canvas.getGraphicsContext2D().fillText(content.room, content.date.day * 205 - 105, 40 + yOrigin + (beginHour - 8) * 64 + (content.date.beginMinute / 15) * 16 + 20, 205);
 
   }
 
@@ -114,5 +138,51 @@ public class CalendarWeek extends StackPane {
         System.out.println("error selection type");
         break;
     }
+  }
+
+  private void redraw() {
+    canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    initCanvas();
+    for (ArrayList<CellContent> cell : calendarContent) {
+      for (CellContent content : cell) {
+        addContent(content);
+      }
+    }
+
+
+  }
+
+  private int getIndexOfSelection(double x, double y) {
+    if (x < xOrigin || y < yOrigin || y > 925) return -1;
+    for (int i = 0; i < 5; i++) {
+      if (yOrigin + 157 + i * 175 < y && y < yOrigin + 172 + i * 175) {
+        return 2;
+      } else if (yOrigin + 101 + i * 175 < y && y < yOrigin + 151 + i * 175) {
+        return 1;
+      } else if (yOrigin + 46 + i * 175 < y && y < yOrigin + 96 + i * 175) {
+        return 0;
+      }
+    }
+    return -1;
+  }
+
+
+  private void onClick(double x, double y) {
+
+    if (x > xOrigin && y > yOrigin) {
+      System.out.println("on calendar");
+    } else {
+      System.out.println("OOB");
+    }
+
+  }
+
+  private boolean clickOnClose(double x, double y) {
+    popIsShow = false;
+    return x > closePos.getX() && x < closePos.getX() + 20 && y > closePos.getY() && y < closePos.getY() + 20;
+  }
+
+  private boolean clickOnPop(double x, double y) {
+    return x > popOrigin.getX() && x < popOrigin.getX() + 300 && y > popOrigin.getY() && y < popOrigin.getY() + 250;
   }
 }

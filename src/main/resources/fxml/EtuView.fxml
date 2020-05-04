@@ -14,31 +14,31 @@
             <Label fx:id="title" text="NAME" styleClass="AdminTitle"/>
             <Label fx:id="subtitle" text="Etudiant" styleClass="AdminSubtitle"/>
             <ListView fx:id="menuContent" styleClass="list" onMouseClicked="#selectItem">
-                <Label fx:id="home" styleClass="iconMenu" id="home">
+                <Label fx:id="home" styleClass="iconMenu" id="Home">
                     <graphic>
                         <FontIcon iconLiteral="mdi-home" styleClass="iconMenu"/>
                     </graphic>
                     Home
                 </Label>
-                <Label fx:id="emploiDuTemps" id="EDT">
+                <Label fx:id="emploiDuTemps" styleClass="iconMenu" id="EDT">
                     <graphic>
                         <FontIcon iconLiteral="mdi-calendar-blank" styleClass="iconMenu"/>
                     </graphic>
                     Emploi du temps
                 </Label>
-                <Label fx:id="unitesEns" styleClass="UE" id="UE">
+                <Label fx:id="unitesEns" styleClass="iconMenu" id="UE">
                     <graphic>
                         <FontIcon iconLiteral="mdi-library-books" styleClass="iconMenu"/>
                     </graphic>
                     Unités d'enseignement
                 </Label>
-                <Label fx:id="parametres" styleClass="Param" id="Param">
+                <Label fx:id="parametres" styleClass="iconMenu" id="Param">
                     <graphic>
                         <FontIcon iconLiteral="mdi-settings" styleClass="iconMenu"/>
                     </graphic>
                     Paramètres
                 </Label>
-                <Label fx:id="deconnexion" styleClass="Deco" id="Deco">
+                <Label fx:id="deconnexion" styleClass="iconMenu" id="Deco">
                     <graphic>
                         <FontIcon iconLiteral="mdi-login-variant" styleClass="iconMenu"/>
                     </graphic>
