@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import jscolendar.components.popup.login.Conditions;
 import jscolendar.components.popup.login.ForgotPWD;
 import jscolendar.util.FXUtil;
@@ -46,31 +47,76 @@ public class Login extends StackPane {
   public Text linkCopyRight;
   public JFXDialog popup;
 
+  public HBox connectItems;
+  public VBox copyRightItems;
+  public VBox rigth;
 
+  //window
+  Stage stage;
+  int width;
+  int height;
+/*
   public Login() {
+
+    FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
+  }*/
+
+  public Login(Stage stage, int width, int height) {
+    this.stage = stage;
+    this.width = width;
+    this.height = height;
+
     FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
   }
 
   @FXML
-  private void initialize() {
-    left.setMinHeight(610);
+  private void initialize() {//todo finish resize of button and copyRight + (background image?)
+    stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+      width = newVal.intValue();
 
-    userInputs.setPadding(new Insets(175, 0, 0, 0));
-    emptyIdInput.setStyle("-fx-max-height: 50px");
-    emptyIdInput.setStyle("-fx-background-color: lightgray");
-    idLabel.setPadding(new Insets(-20, 0, 0, 0));
-    idInput.setPadding(new Insets(20, 0, 0, 0));
+      left.setMinWidth(width / (13 / 4));
+      left.setPadding(new Insets((height / (13 / 4)) * 0.1, 0, 0, (width / (13 / 4)) * 0.1));
+
+      idLayout.setMaxWidth((width / (13 / 4)) - (width / (13 / 4)) * 0.2);
+      PWDLayout.setMaxWidth((width / (13 / 4)) - (width / (13 / 4)) * 0.2);
+
+      show.setTranslateX(((width / (13 / 4)) - (width / (13 / 4)) * 0.2) / 2.25);
+      linkForgotPWD.setTranslateX(10);
+
+      rigth.setMinWidth(width - width / (13 / 4));
+    });
+
+    stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+      height = newVal.intValue();
+      body.setMinHeight(height);
+
+      userInputs.setTranslateY(height / 3);
+      PWDLayout.setTranslateY((height / 3) * 0.05);
+
+      idInput.setMinHeight((height / (13 / 4)) * 0.15);
+      emptyIdInput.setMinHeight((height / (13 / 4)) * 0.15);
+      PWDInput.setMinHeight((height / (13 / 4)) * 0.15);
+      emptyPWDInput.setMinHeight((height / (13 / 4)) * 0.15);
+      PWDShowInput.setMinHeight((height / (13 / 4)) * 0.15);
+
+      connectItems.setTranslateY((height / 3) + ((height / 3) * 0.05) + (((height / (13 / 4)) * 0.15) * 0.5));
+
+      connexion.setMinHeight((height / (13 / 4)) * 0.15);
+      connexion.setMaxHeight((height / (13 / 4)) * 0.15);
+      linkForgotPWD.setTranslateY(-8 + ((height / (13 / 4)) * 0.15) / 2);
+
+
+      copyRightItems.setTranslateY(height - ((height / (13 / 4)) * 1.2));
+
+      rigth.setMinHeight(height);
+    });
+
     idLabel.setVisible(true);
     idInput.setVisible(false);
 
     passwordLabel.setVisible(false);
-    PWDInput.setPadding(new Insets(20, 0, 0, 0));
-    PWDShowInput.setPadding(new Insets(20, 0, 0, 0));
-    passwordLabel.setPadding(new Insets(-20, 0, 0, 0));
     PWDShowInput.setVisible(false);
     wrongLoginMessage.setVisible(false);
-    wrongLoginMessage.setPadding(new Insets(0, 0, 28, 0));
-    show.setTranslateX(170);
     connexion.setOnAction(event -> connexion());
 
     showIdLabel();
@@ -142,15 +188,15 @@ public class Login extends StackPane {
   private void connexion() {
     String userId = idInput.getText();
     String mdp = PWDInput.getText();
-    if (userId.equals(userId) && mdp.equals(mdp)) {//TODO add condition with BDD
+    if (userId.equals(userId) && mdp.equals(mdp) && true) {//TODO add condition with BDD
       wrongLoginMessage.setVisible(true);
       idInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       PWDInput.setStyle("-jfx-unfocus-color : #FF0C3E");
       idLabel.setStyle("-fx-text-fill: #FF0C3E");
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
-    this.getChildren().clear();
-    this.getChildren().add(new Etu());
+    /*this.getChildren().clear();
+    this.getChildren().add(new Etu((int) this.getWidth(), (int) this.getHeight()));*/
 
   }
 

@@ -19,7 +19,7 @@ public class App extends Application {
     // var root = new Admin();
     //var root = new Etu();
 
-    var root = new Login();
+    var root = new Login(stage, width, height);
     Scene scene = new Scene(root, width, height);
     //stage.setResizable(false);//todo make autoresize before remove it
     stage.setScene(scene);

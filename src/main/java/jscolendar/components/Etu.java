@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow;
 import jscolendar.components.popup.admin.Edition;
@@ -13,7 +14,7 @@ import jscolendar.components.popup.etu.Info;
 import jscolendar.util.CalendarMonth;
 import jscolendar.util.FXUtil;
 
-public class Etu extends HBox {
+public class Etu extends StackPane {
   public HBox body;
   public VBox menu;
   public Label title;
@@ -27,8 +28,22 @@ public class Etu extends HBox {
   public Label copyRigth1;
   public Label copyRigth2;
   public JFXPopup popConfirm;
+
+  //window
+  int width;
+  int height;
+
+
 //todo change popup to JFXDialog
-  public Etu() {
+
+  /*
+    public Etu() {
+      FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
+    }
+  */
+  public Etu(int width, int height) {
+    this.width = width;
+    this.height = height;
     FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
   }
 
@@ -101,6 +116,7 @@ public class Etu extends HBox {
   }
 
   private void selectDeco() {
-    //todo return too login
+    /*this.getChildren().remove(0,this.getChildren().size());
+    this.getChildren().add(new Login());*/
   }
 }

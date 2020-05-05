@@ -19,6 +19,9 @@ import java.util.ArrayList;
 public class CalendarMonth extends StackPane {
   //todo extract header in a new component to reformat code
 
+  int width;
+  int height;
+
   private final ArrayList<ArrayList<CellContent>> calendarContent = new ArrayList<>();
   public VBox body;
   public HBox header;
@@ -34,9 +37,17 @@ public class CalendarMonth extends StackPane {
   int xOrigin = 38;
   int yOrigin = 50;
 
+  //cell
+  int cellWidth = 214;
+  int cellHeight = 175;
+
+
+  //popup
   double xClosePos = -20, yClosePos = -20;
   boolean popIsShow = false;
   Point2D popOrigin = new Point2D(-1000, -1000);
+  int popupWidth = 300;
+  int poppupHeight = 250;
 
 
   //// Get the number of days in that month
@@ -46,6 +57,7 @@ public class CalendarMonth extends StackPane {
   public CalendarMonth() {
     FXUtil.loadFXML("/utils/CalendarMonth.fxml", this, this);
   }
+
 
   @FXML
   private void initialize() {
@@ -74,16 +86,16 @@ public class CalendarMonth extends StackPane {
     canvas.getGraphicsContext2D().setFill(Color.BLACK);
 
     for (int i = 0; i < 6; i++) {
-      canvas.getGraphicsContext2D().strokeLine(xOrigin, yOrigin + i * 175, 1536, yOrigin + i * 175);
+      canvas.getGraphicsContext2D().strokeLine(xOrigin, yOrigin + i * cellHeight, 1536, yOrigin + i * cellHeight);
     }
     for (int i = 0; i < 7; i++) {
-      canvas.getGraphicsContext2D().strokeLine(xOrigin + i * 214, yOrigin, xOrigin + i * 214, 925);
+      canvas.getGraphicsContext2D().strokeLine(xOrigin + i * cellWidth, yOrigin, xOrigin + i * cellWidth, 925);
     }
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 36));
 
     for (int line = 0; line < 5; line++) {
       for (int col = 0; col < 7; col++) {
-        canvas.getGraphicsContext2D().fillText("10", xOrigin - 20 + 107 + 214 * col, yOrigin + 36 + 175 * line);
+        canvas.getGraphicsContext2D().fillText("10", xOrigin - 20 + 107 + cellWidth * col, yOrigin + 36 + cellHeight * line);
       }
     }
   }
@@ -111,37 +123,37 @@ public class CalendarMonth extends StackPane {
   private void thirdLevelContent(int x, int y) {
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 14));
-    canvas.getGraphicsContext2D().fillRect(xOrigin + x * 250, yOrigin + 157 + y * 175, 112, 15);
+    canvas.getGraphicsContext2D().fillRect(xOrigin + x * 250, yOrigin + 157 + y * cellHeight, 112, 15);
     canvas.getGraphicsContext2D().setFill(Color.GRAY);
-    canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(x, y)).size() - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * 175 + 20 + 55 + 50, 112);
+    canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(x, y)).size() - 2 + " de plus", xOrigin + x * 250, yOrigin + 46 + y * cellHeight + 20 + 55 + 50, 112);
   }
 
   private void secondLevelContent(CellContent content) {
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
-    canvas.getGraphicsContext2D().fillRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 55, 214, 50, 20, 20);
-    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 55, 214, 50, 20, 20);
+    canvas.getGraphicsContext2D().fillRoundRect(xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight + 55, cellWidth, 50, 20, 20);
+    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight + 55, cellWidth, 50, 20, 20);
     canvas.getGraphicsContext2D().setFontSmoothingType(FontSmoothingType.GRAY);
     canvas.getGraphicsContext2D().setFill(Color.BLACK);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
-    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 20 + 55);
+    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight + 20 + 55);
     canvas.getGraphicsContext2D().setFill(Color.GRAY);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
-    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 36 + 55, 214);
+    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight + 36 + 55, cellWidth);
   }
 
   private void firstLevelContent(CellContent content) {
     canvas.getGraphicsContext2D().setFill(Color.WHITESMOKE);
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
-    canvas.getGraphicsContext2D().fillRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175, 214, 50, 20, 20);
-    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin + content.x * 214, yOrigin + 46 + content.y * 175, 214, 50, 20, 20);
+    canvas.getGraphicsContext2D().fillRoundRect(xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight, cellWidth, 50, 20, 20);
+    canvas.getGraphicsContext2D().strokeRoundRect(xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight, cellWidth, 50, 20, 20);
     canvas.getGraphicsContext2D().setFontSmoothingType(FontSmoothingType.GRAY);
     canvas.getGraphicsContext2D().setFill(Color.BLACK);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 20));
-    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 20);
+    canvas.getGraphicsContext2D().fillText(content.name, xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight + 20);
     canvas.getGraphicsContext2D().setFill(Color.GRAY);
     canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
-    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + content.x * 214, yOrigin + 46 + content.y * 175 + 36, 214);
+    canvas.getGraphicsContext2D().fillText(content.room, xOrigin + content.x * cellWidth, yOrigin + 46 + content.y * cellHeight + 36, cellWidth);
   }
 
   private int flatIndex(int x, int y) {
@@ -191,11 +203,11 @@ public class CalendarMonth extends StackPane {
   private int getIndexOfSelection(double x, double y) {
     if (x < xOrigin || y < yOrigin || y > 925) return -1;
     for (int i = 0; i < 5; i++) {
-      if (yOrigin + 157 + i * 175 < y && y < yOrigin + 172 + i * 175) {
+      if (yOrigin + 157 + i * cellHeight < y && y < yOrigin + 172 + i * cellHeight) {
         return 2;
-      } else if (yOrigin + 101 + i * 175 < y && y < yOrigin + 151 + i * 175) {
+      } else if (yOrigin + 101 + i * cellHeight < y && y < yOrigin + 151 + i * cellHeight) {
         return 1;
-      } else if (yOrigin + 46 + i * 175 < y && y < yOrigin + 96 + i * 175) {
+      } else if (yOrigin + 46 + i * cellHeight < y && y < yOrigin + 96 + i * cellHeight) {
         return 0;
       }
     }
@@ -206,9 +218,9 @@ public class CalendarMonth extends StackPane {
   private void onClick(double x, double y) {
 
     //todo refactor
-    int cellX = (int) (x - xOrigin) / 214;
-    int cellY = (int) (y - yOrigin) / 175;
-    int modifierX = 214, modifierY = 0;
+    int cellX = (int) (x - xOrigin) / cellWidth;
+    int cellY = (int) (y - yOrigin) / cellHeight;
+    int modifierX = cellWidth, modifierY = 0;
     if (cellX > 4) {
       modifierX = -300;
     }
@@ -238,36 +250,36 @@ public class CalendarMonth extends StackPane {
       }
       redraw();
       canvas.getGraphicsContext2D().setFill(Color.WHITE);
-      canvas.getGraphicsContext2D().fillRect(cellX * 214 + xOrigin + modifierX, cellY * 175 + yOrigin + modifierY, 300, 250);
+      canvas.getGraphicsContext2D().fillRect(cellX * cellWidth + xOrigin + modifierX, cellY * cellHeight + yOrigin + modifierY, popupWidth, poppupHeight);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 18));
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).name, cellX * 214 + xOrigin + 56 + modifierX, cellY * 175 + yOrigin + 40 + modifierY, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).name, cellX * cellWidth + xOrigin + 56 + modifierX, cellY * cellHeight + yOrigin + 40 + modifierY, 240);
 
       canvas.getGraphicsContext2D().setFill(Color.LIGHTGRAY);
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date.toString(), cellX * 214 + xOrigin + 56 + modifierX, cellY * 175 + yOrigin + 40 + 18 + modifierY, 240);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).date.toString(), cellX * cellWidth + xOrigin + 56 + modifierX, cellY * cellHeight + yOrigin + 40 + 18 + modifierY, 240);
       canvas.getGraphicsContext2D().setFill(Color.BLACK);
       canvas.getGraphicsContext2D().setFont(new Font("Roboto Light", 16));
 
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * 214 + xOrigin + 56 + modifierX, cellY * 175 + yOrigin + 96 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/group.png"), cellX * 214 + 56 + modifierX, cellY * 175 + xOrigin + 96 + modifierY);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).group, cellX * cellWidth + xOrigin + 56 + modifierX, cellY * cellHeight + yOrigin + 96 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/group.png"), cellX * cellWidth + 56 + modifierX, cellY * cellHeight + xOrigin + 96 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * 214 + xOrigin + 56 + modifierX, cellY * 175 + yOrigin + 126 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/promo.png"), cellX * 214 + 56 + modifierX, cellY * 175 + xOrigin + 126 + modifierY);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).promo, cellX * cellWidth + xOrigin + 56 + modifierX, cellY * cellHeight + yOrigin + 126 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/promo.png"), cellX * cellWidth + 56 + modifierX, cellY * cellHeight + xOrigin + 126 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).professor, cellX * 214 + xOrigin + 56 + modifierX, cellY * 175 + yOrigin + 156 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/prof.png"), cellX * 214 + 56 + modifierX, cellY * 175 + xOrigin + 156 + modifierY);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).professor, cellX * cellWidth + xOrigin + 56 + modifierX, cellY * cellHeight + yOrigin + 156 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/prof.png"), cellX * cellWidth + 56 + modifierX, cellY * cellHeight + xOrigin + 156 + modifierY);
 
-      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * 214 + xOrigin + 56 + modifierX, cellY * 175 + yOrigin + 186 + modifierY, 240);
-      canvas.getGraphicsContext2D().drawImage(new Image("images/room.png"), cellX * 214 + 56 + modifierX, cellY * 175 + xOrigin + 186 + modifierY);
+      canvas.getGraphicsContext2D().fillText(calendarContent.get(flatIndex(cellX, cellY)).get(index).room, cellX * cellWidth + xOrigin + 56 + modifierX, cellY * cellHeight + yOrigin + 186 + modifierY, 240);
+      canvas.getGraphicsContext2D().drawImage(new Image("images/room.png"), cellX * cellWidth + 56 + modifierX, cellY * cellHeight + xOrigin + 186 + modifierY);
 
-      xClosePos = cellX * 214 + modifierX + 260 + xOrigin;
-      yClosePos = cellY * 175 + modifierY + 20 + 50;
+      xClosePos = cellX * cellWidth + modifierX + 260 + xOrigin;
+      yClosePos = cellY * cellHeight + modifierY + 20 + 50;
 
       canvas.getGraphicsContext2D().strokeLine(xClosePos, yClosePos, xClosePos + 15, yClosePos + 15);
       canvas.getGraphicsContext2D().strokeLine(xClosePos, yClosePos + 15, xClosePos + 15, yClosePos);
-      popOrigin = new Point2D(cellX * 214 + modifierX, cellY * 175 + modifierY);
+      popOrigin = new Point2D(cellX * cellWidth + modifierX, cellY * cellHeight + modifierY);
       popIsShow = true;
 
     }
@@ -279,7 +291,7 @@ public class CalendarMonth extends StackPane {
   }
 
   private boolean clickOnPop(double x, double y) {
-    return x > popOrigin.getX() && x < popOrigin.getX() + 300 && y > popOrigin.getY() && y < popOrigin.getY() + 250;
+    return x > popOrigin.getX() && x < popOrigin.getX() + popupWidth && y > popOrigin.getY() && y < popOrigin.getY() + poppupHeight;
   }
 
 

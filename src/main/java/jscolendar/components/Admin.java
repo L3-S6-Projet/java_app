@@ -12,7 +12,6 @@ import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.util.CalendarDay;
 import jscolendar.util.CalendarMonth;
-import jscolendar.util.CalendarWeek;
 import jscolendar.util.FXUtil;
 
 
@@ -43,6 +42,7 @@ public class Admin extends StackPane {
   private void initialize() {
     menuContent.setStyle("-fx-tick-label-fill: #3F51B5");
     resetOpacity();
+    deconnexion.setOnMouseClicked(mouseEvent -> selectDeco());
 
   }
 
@@ -132,11 +132,8 @@ public class Admin extends StackPane {
   }
 
   private void selectDeco() {
-    popup = new JFXDialog();
-    popup.setContent(new CalendarWeek());
-    popup.show(this);
-
-    //todo return too login
+    /*this.getChildren().remove(0,this.getChildren().size());
+    this.getChildren().add(new Login());*/
   }
 
 
