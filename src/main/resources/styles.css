@@ -1,3 +1,67 @@
-.root {}
+@font-face {
+    font-family: "Roboto";
+    src: url("fonts/Roboto-Medium.ttf");
+}
 
-.login-box {}
+.root {
+    -fx-font-family: "Roboto";
+    -fx-text-fill:rgba(0, 0, 0, 0.6);
+}
+
+.login-box {
+    -fx-background-image: url("images/imageLogin.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+.login-box .hyperlink,
+.login-box .hyperlink:visited {
+    -fx-border-color: transparent;
+    -fx-underline: true;
+    -fx-text-fill:rgba(0, 0, 0, 0.6);
+}
+
+.login-main {
+    -fx-background-color: #FAFAFA;
+    -fx-padding: 6em 4em;
+}
+
+.login-title-outer {
+}
+
+.login-title {
+    -fx-text-fill: #303F9F;
+    -fx-font-size: 3em;
+}
+
+.login-subtitle {
+    -fx-text-fill: #757575;
+    -fx-font-size: 1.5em;
+}
+
+.login-form-outer {
+    -fx-spacing: 4em;
+}
+
+.login-form-outer .jfx-text-field,
+.login-form-outer .jfx-password-field {
+    -fx-text-fill:rgba(0, 0, 0, 0.6);
+    -fx-font-size: 1.2em;
+    -fx-border-radius: 8px 0px;
+    -fx-background-color: #E8E8E8;
+    -jfx-focus-color: #3F51B5;
+    -jfx-unfocus-color: #E8E8E8;
+}
+
+.input-line {
+
+}
+
+.login-button {
+    -fx-padding: .8em 1em;
+    -fx-background-color: #3F51B5;
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+}
+
+

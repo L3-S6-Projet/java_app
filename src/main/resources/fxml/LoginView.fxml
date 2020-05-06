@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import com.jfoenix.validation.RegexValidator?>
 
 <fx:root xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
          type="jscolendar.components.Login"
          styleClass="login-box">
+
+    <VBox styleClass="login-main" GridPane.columnIndex="0">
+        <GridPane VBox.vgrow="ALWAYS">
+            <VBox styleClass="login-title-outer" GridPane.rowIndex="0">
+                <Label text="Scolendar" styleClass="login-title" />
+                <Label text="Serveur AMU" styleClass="login-subtitle" />
+            </VBox>
+            <VBox styleClass="login-form-outer" GridPane.rowIndex="1" alignment="CENTER">
+                <JFXTextField fx:id="usernameField"
+                    labelFloat="true"
+                    promptText="Nom d'utilisateur" focusTraversable="false">
+                    <validators>
+                        <RequiredFieldValidator message="le nom d'utilisateur est requis."/>
+                        <RegexValidator
+                                regexPattern="[_A-Za-z0-9-+]{3,}"
+                                message="le nom d'utilisateur doit avoir au moins 3 caractères." />
+                    </validators>
+                </JFXTextField>
+                <JFXPasswordField fx:id="passwordField"
+                    labelFloat="true"
+                    focusTraversable="false"
+                    promptText="Mot de passe">
+                    <validators>
+                        <RequiredFieldValidator message="le mot de passe est requis" />
+                        <RegexValidator
+                                regexPattern="[_A-Za-z0-9-+]{3,}"
+                                 message="le mot de passe doit avoir au moins 3 caractères." />
+                    </validators>
+                </JFXPasswordField>
+                <HBox alignment="BASELINE_LEFT" spacing="10">
+                    <JFXButton text="CONNEXION" onAction="#onSubmit" styleClass="login-button"/>
+                    <Hyperlink text="Mot de passe oublié ?" />
+                </HBox>
+            </VBox>
+            <VBox GridPane.rowIndex="2" alignment="BOTTOM_LEFT">
+                <TextFlow>
+                    <Text>en se connectant, vous acceptez les </Text>
+                    <Hyperlink text="termes et condition"/>
+                </TextFlow>
+                <Text>©Scolendar 2020 - Tout droits réservés</Text>
+            </VBox>
+
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="250.0" percentWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+            </rowConstraints>
+        </GridPane>
+    </VBox>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" percentWidth="50.0" prefWidth="250.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="50.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    </rowConstraints>
 </fx:root>

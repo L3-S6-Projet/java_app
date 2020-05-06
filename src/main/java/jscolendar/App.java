@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import jscolendar.components.Login;
 
 public class App extends Application {
-
   public static void main (String[] args) {
     launch(args);
   }
@@ -14,7 +13,7 @@ public class App extends Application {
   @Override
   public void start (Stage stage) {
     var root = new Login();
-    Scene scene = new Scene(root, 1024, 1204);
+    Scene scene = new Scene(root, 1920, 1080);
     scene.getStylesheets().add("styles.css");
 
     stage.setScene(scene);
