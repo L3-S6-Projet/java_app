@@ -195,8 +195,8 @@ public class Login extends StackPane {
       idLabel.setStyle("-fx-text-fill: #FF0C3E");
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
-    /*this.getChildren().clear();
-    this.getChildren().add(new Etu((int) this.getWidth(), (int) this.getHeight()));*/
+    this.getChildren().clear();
+    this.getChildren().add(new Etu(stage));
 
   }
 

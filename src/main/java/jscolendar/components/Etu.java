@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
 import jscolendar.components.popup.admin.Edition;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.components.popup.etu.Info;
@@ -30,6 +31,7 @@ public class Etu extends StackPane {
   public JFXPopup popConfirm;
 
   //window
+  Stage stage;
   int width;
   int height;
 
@@ -41,9 +43,10 @@ public class Etu extends StackPane {
       FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
     }
   */
-  public Etu(int width, int height) {
-    this.width = width;
-    this.height = height;
+  public Etu(Stage stage) {
+    this.stage = stage;
+    this.width = (int) stage.getWidth();
+    this.height = (int) stage.getHeight();
     FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
   }
 

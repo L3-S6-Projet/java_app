@@ -23,6 +23,7 @@ public class App extends Application {
     Scene scene = new Scene(root, width, height);
     //stage.setResizable(false);//todo make autoresize before remove it
     stage.setScene(scene);
+    stage.setMaximized(true);
     stage.setTitle("JScolendar");
     stage.show();
   }
