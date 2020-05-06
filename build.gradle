@@ -21,9 +21,10 @@ javafx {
 dependencies {
     runtimeOnly 'com.google.flogger:flogger-system-backend:0.5.1'
     implementation 'com.google.flogger:flogger:0.5.1',
+                   'com.jfoenix:jfoenix:9.0.8',
                    'org.kordamp.ikonli:ikonli-core:11.3.3',
                    'org.kordamp.ikonli:ikonli-javafx:11.3.5',
-                   'org.kordamp.ikonli:ikonli-ionicons4-pack:11.3.5'
+                   'org.kordamp.ikonli:ikonli-materialdesign-pack:11.4.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
