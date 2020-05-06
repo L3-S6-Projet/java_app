@@ -11,7 +11,6 @@ import jscolendar.components.popup.admin.Edition;
 import jscolendar.components.popup.admin.NewUE;
 import jscolendar.components.popup.admin.Succes;
 import jscolendar.util.CalendarDay;
-import jscolendar.util.CalendarMonth;
 import jscolendar.util.FXUtil;
 
 
@@ -119,9 +118,9 @@ public class Admin extends StackPane {
   }
 
   private void selectUE() {
-    popup = new JFXDialog();
+  /*  popup = new JFXDialog();
     popup.setContent(new CalendarMonth());
-    popup.show(this);
+    popup.show(this);*/
   }
 
   private void selectParam() {

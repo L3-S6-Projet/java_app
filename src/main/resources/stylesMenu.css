@@ -22,22 +22,22 @@
 
 .menu {
     -fx-background-color: #3F51B5;
-    -fx-pref-width: 384px;
-   /* -fx-pref-height: 1080px;*/
+   /* -fx-pref-width: 384px;*/
+    /* -fx-pref-height: 1080px;*/
 }
 
 
 .list {
     -fx-background-color: #3F51B5;
     -fx-fill: #3F51B5;
-    -fx-pref-width: 384px;
+    /*-fx-pref-width: 384px;*/
     -fx-spacing: 0px;
 }
 
 
 
 .AdminTitle {
-    -fx-pref-width: 384px;
+    /*-fx-pref-width: 384px;*/
     -fx-text-fill: #FFFFFF;
     -fx-font-family: Roboto;
     -fx-font-size: 24px;
@@ -45,7 +45,7 @@
 }
 
 .AdminSubtitle {
-    -fx-pref-width: 384px;
+    /* -fx-pref-width: 384px;*/
     -fx-text-fill: #BDBDBD;
     -fx-font-family: Roboto;
     -fx-font-size: 14px;

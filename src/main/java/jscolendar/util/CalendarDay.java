@@ -108,7 +108,7 @@ public class CalendarDay extends StackPane {
         body.getChildren().add(new CalendarWeek());
         break;
       case "mois":
-        body.getChildren().add(new CalendarMonth());
+        //body.getChildren().add(new CalendarMonth());
         break;
       default:
         System.out.println("error selection type");

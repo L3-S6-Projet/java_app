@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class CalendarMonth extends StackPane {
 
   int width;
   int height;
+  public Canvas canvas;//221 = height of header//todo make header size respinsive
 
   private final ArrayList<ArrayList<CellContent>> calendarContent = new ArrayList<>();
   public VBox body;
@@ -32,14 +34,14 @@ public class CalendarMonth extends StackPane {
   public JFXButton next;
   public JFXComboBox<Label> select;
   public StackPane layout;
-  public Canvas canvas = new Canvas(1536, 934);//221 = height of header
+  Stage stage;
   public HBox col;
-  int xOrigin = 38;
-  int yOrigin = 50;
+  int xOrigin;
+  int yOrigin;
 
   //cell
-  int cellWidth = 214;
-  int cellHeight = 175;
+  int cellWidth;
+  int cellHeight;
 
 
   //popup
@@ -49,24 +51,51 @@ public class CalendarMonth extends StackPane {
   int popupWidth = 300;
   int poppupHeight = 250;
 
+  public CalendarMonth(Stage stage, int width, int height) {
+    this.width = width;
+    this.height = height;
+    this.stage = stage;
+    FXUtil.loadFXML("/utils/CalendarMonth.fxml", this, this);
+  }
+
 
   //// Get the number of days in that month
   //YearMonth yearMonthObject = YearMonth.of(1999, 2);
   //int daysInMonth = yearMonthObject.lengthOfMonth(); //28
 
-  public CalendarMonth() {
-    FXUtil.loadFXML("/utils/CalendarMonth.fxml", this, this);
+  @Override
+  public boolean isResizable() {
+    return true;
   }
-
 
   @FXML
   private void initialize() {
-    initList();
-    initTable();
-    select.setTranslateX(507);
-    day.setTranslateX(-506);
-    select.getSelectionModel().selectLast();
 
+    stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+      width = newVal.intValue();
+      select.setTranslateX(width / 3.3);
+      day.setTranslateX(-width / 3.3);
+      canvas.setWidth(width);
+      cellWidth = (width * (4 / 5)) / 7;
+    });
+
+    stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+      height = newVal.intValue();
+      body.setMinHeight(height);
+      header.setTranslateY(height * 0.05);
+      layout.setTranslateY(height * 0.05);
+      canvas.setHeight(height - (height / 5));
+      cellHeight = (height - (height / 5)) / 5;
+    });
+
+
+    canvas = new ResizableCanvas();
+
+    body.setStyle("-fx-border-color: red");
+
+
+    select.getSelectionModel().selectLast();
+    initList();
     addContent(new CellContent(0, 0, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
     addContent(new CellContent(1, 0, "Algèbre", "Group 0", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
     addContent(new CellContent(1, 0, "math", "Group 1", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
@@ -76,14 +105,20 @@ public class CalendarMonth extends StackPane {
     addContent(new CellContent(0, 4, "Algèbre", "Group 2", new Date(10, 4, 2020, 8, 30, 90), "L3 Info", "PAS d'idées", "Amphi 4"));
 
 
+    redraw();
     canvas.setOnMouseClicked(event -> onClick(event.getX(), event.getY()));
 
-    layout.getChildren().add(canvas);
+    body.getChildren().add(canvas);
   }
 
   private void initTable() {
+
+    System.out.println("mais what");
+    System.out.println("w : " + canvas.getWidth());
+    System.out.println("h : " + canvas.getHeight());
     canvas.getGraphicsContext2D().setStroke(Color.BLACK);
     canvas.getGraphicsContext2D().setFill(Color.BLACK);
+
 
     for (int i = 0; i < 6; i++) {
       canvas.getGraphicsContext2D().strokeLine(xOrigin, yOrigin + i * cellHeight, 1536, yOrigin + i * cellHeight);
@@ -172,7 +207,7 @@ public class CalendarMonth extends StackPane {
         body.getChildren().add(new CalendarWeek());
         break;
       case "mois":
-        body.getChildren().add(new CalendarMonth());
+        body.getChildren().add(new CalendarMonth(stage, width, height));
         break;
       default:
         System.out.println("error selection type");
@@ -183,6 +218,8 @@ public class CalendarMonth extends StackPane {
   private void redraw() {
     canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     initTable();
+    System.out.println(canvas.getWidth());
+    System.out.println(canvas.getHeight());
     for (ArrayList<CellContent> cell : calendarContent) {
       int rank = 0;
       for (CellContent content : cell) {
@@ -292,6 +329,12 @@ public class CalendarMonth extends StackPane {
 
   private boolean clickOnPop(double x, double y) {
     return x > popOrigin.getX() && x < popOrigin.getX() + popupWidth && y > popOrigin.getY() && y < popOrigin.getY() + poppupHeight;
+  }
+
+  public class ResizableCanvas extends Canvas {
+    public boolean isResizable() {
+      return true;
+    }
   }
 
 

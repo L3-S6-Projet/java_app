@@ -48,5 +48,6 @@
             <Label fx:id="copyRigth1" styleClass="AdminSubtitle">© Scolendar 2020</Label>
             <Label fx:id="copyRigth2" styleClass="AdminSubtitle">Tout droits réservés</Label>
         </VBox>
+        <VBox fx:id="right"/>
     </HBox>
 </fx:root>

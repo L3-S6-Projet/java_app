@@ -1,6 +1,6 @@
 .calendarHeader {
-    -fx-pref-height: 96px;
-    -fx-pref-width: 1536px;
+    /*-fx-pref-height: 96px;*/
+    /*  -fx-pref-width: 1536px;*/
     -fx-background-color: #FAFAFA;
     -fx-alignment: center;
 }
@@ -8,7 +8,7 @@
 .table {
     -fx-background-color: transparent;
 
-    -fx-pref-width: 1536px;
+    /* -fx-pref-width: 1536px;*/
     -fx-alignment: top-right;
 }
 
@@ -31,14 +31,13 @@
 }
 
 .tableLayout {
-    -fx-min-height: 934px;
-    -fx-min-width: 1536px;
+    /*-fx-min-height: 934px;
+    -fx-min-width: 1536px;*/
 
 }
 
 .vbox {
-    -fx-pref-width: 750px;
-    -fx-border-width: 10px;
+    /* -fx-pref-width: 750px;*/
 }
 
 .day {

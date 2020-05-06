@@ -55,11 +55,6 @@ public class Login extends StackPane {
   Stage stage;
   int width;
   int height;
-/*
-  public Login() {
-
-    FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
-  }*/
 
   public Login(Stage stage, int width, int height) {
     this.stage = stage;
@@ -70,46 +65,17 @@ public class Login extends StackPane {
   }
 
   @FXML
-  private void initialize() {//todo finish resize of button and copyRight + (background image?)
+  private void initialize() {//todo finish resize of button and copyRight + (background image?)+check when you return on this page
     stage.widthProperty().addListener((obs, oldVal, newVal) -> {
       width = newVal.intValue();
-
-      left.setMinWidth(width / (13 / 4));
-      left.setPadding(new Insets((height / (13 / 4)) * 0.1, 0, 0, (width / (13 / 4)) * 0.1));
-
-      idLayout.setMaxWidth((width / (13 / 4)) - (width / (13 / 4)) * 0.2);
-      PWDLayout.setMaxWidth((width / (13 / 4)) - (width / (13 / 4)) * 0.2);
-
-      show.setTranslateX(((width / (13 / 4)) - (width / (13 / 4)) * 0.2) / 2.25);
-      linkForgotPWD.setTranslateX(10);
-
-      rigth.setMinWidth(width - width / (13 / 4));
+      System.out.println(width + " " + oldVal.intValue());
+      setItemsOnWidth();
     });
-
     stage.heightProperty().addListener((obs, oldVal, newVal) -> {
       height = newVal.intValue();
-      body.setMinHeight(height);
-
-      userInputs.setTranslateY(height / 3);
-      PWDLayout.setTranslateY((height / 3) * 0.05);
-
-      idInput.setMinHeight((height / (13 / 4)) * 0.15);
-      emptyIdInput.setMinHeight((height / (13 / 4)) * 0.15);
-      PWDInput.setMinHeight((height / (13 / 4)) * 0.15);
-      emptyPWDInput.setMinHeight((height / (13 / 4)) * 0.15);
-      PWDShowInput.setMinHeight((height / (13 / 4)) * 0.15);
-
-      connectItems.setTranslateY((height / 3) + ((height / 3) * 0.05) + (((height / (13 / 4)) * 0.15) * 0.5));
-
-      connexion.setMinHeight((height / (13 / 4)) * 0.15);
-      connexion.setMaxHeight((height / (13 / 4)) * 0.15);
-      linkForgotPWD.setTranslateY(-8 + ((height / (13 / 4)) * 0.15) / 2);
-
-
-      copyRightItems.setTranslateY(height - ((height / (13 / 4)) * 1.2));
-
-      rigth.setMinHeight(height);
+      setItemsOnHeight();
     });
+
 
     idLabel.setVisible(true);
     idInput.setVisible(false);
@@ -117,9 +83,47 @@ public class Login extends StackPane {
     passwordLabel.setVisible(false);
     PWDShowInput.setVisible(false);
     wrongLoginMessage.setVisible(false);
-    connexion.setOnAction(event -> connexion());
 
+    connexion.setOnAction(event -> connexion());
     showIdLabel();
+  }
+
+  private void setItemsOnHeight() {
+    body.setMinHeight(height);
+    int temp = (height / (13 / 4));
+    userInputs.setTranslateY(height / 3);
+    PWDLayout.setTranslateY((height / 3) * 0.05);
+
+    idInput.setMinHeight(temp * 0.15);
+    emptyIdInput.setMinHeight(temp * 0.15);
+    PWDInput.setMinHeight(temp * 0.15);
+    emptyPWDInput.setMinHeight(temp * 0.15);
+    PWDShowInput.setMinHeight(temp * 0.15);
+
+    connectItems.setTranslateY((height / 3) + ((height / 3) * 0.05) + ((temp * 0.15) * 0.5));
+
+    connexion.setMinHeight(temp * 0.18);
+    connexion.setMaxHeight(temp * 0.18);
+    linkForgotPWD.setTranslateY(-8 + (temp * 0.15) / 2);
+
+
+    copyRightItems.setTranslateY(height - (temp * 1.3));
+
+    rigth.setMinHeight(height);
+  }
+
+  private void setItemsOnWidth() {
+    int temp = width / (13 / 4);
+    left.setMinWidth(temp);
+    left.setPadding(new Insets((height / (13 / 4)) * 0.1, 0, 0, temp * 0.1));
+
+    idLayout.setMaxWidth(temp - temp * 0.2);
+    PWDLayout.setMaxWidth(temp - temp * 0.2);
+
+    show.setTranslateX((temp - temp * 0.2) / 2.25);
+    linkForgotPWD.setTranslateX(10);
+
+    rigth.setMinWidth(width - temp);
   }
 
   @FXML
@@ -196,7 +200,7 @@ public class Login extends StackPane {
       passwordLabel.setStyle("-fx-text-fill: #FF0C3E");
     }
     this.getChildren().clear();
-    this.getChildren().add(new Etu(stage));
+    this.getChildren().add(new Etu(stage, width, height));
 
   }
 

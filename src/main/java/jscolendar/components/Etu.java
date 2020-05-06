@@ -17,6 +17,7 @@ import jscolendar.util.FXUtil;
 
 public class Etu extends StackPane {
   public HBox body;
+  public VBox right;
   public VBox menu;
   public Label title;
   public Label subtitle;
@@ -43,17 +44,43 @@ public class Etu extends StackPane {
       FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
     }
   */
-  public Etu(Stage stage) {
+  public Etu(Stage stage, int width, int height) {
     this.stage = stage;
-    this.width = (int) stage.getWidth();
-    this.height = (int) stage.getHeight();
+    this.width = width;
+    this.height = height;
     FXUtil.loadFXML("/fxml/EtuView.fxml", this, this);
   }
 
   @FXML
   private void initialize() {
+    stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+      width = newVal.intValue();
+    });
+    stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+      height = newVal.intValue();
+    });
+
+    setOnWidth();
+    setonHeight();
     menuContent.setStyle("-fx-tick-label-fill: #3F51B5");
     resetOpacity();
+  }
+
+  private void setOnWidth() {
+    menu.setMinWidth(width / (32 / 5));
+    menuContent.setMaxWidth(width / (32 / 5) - 5);
+    for (Label item : menuContent.getItems()) {
+      item.setMaxWidth(width / (32 / 5) - 10);
+    }
+  }
+
+  private void setonHeight() {
+    menu.setMinHeight(height);
+    title.setTranslateY(height * 0.05);
+    subtitle.setTranslateY(height * 0.05);
+    menuContent.setTranslateY(height * 0.2);
+    copyRigth1.setTranslateY(height * 0.35);
+    copyRigth2.setTranslateY(height * 0.35);
   }
 
   @FXML
@@ -98,9 +125,8 @@ public class Etu extends StackPane {
   }
 
   private void selectEDT() {
-    if (body.getChildren().size() == 1) {
-      body.getChildren().add(new CalendarMonth());
-    }
+    right.getChildren().clear();
+    right.getChildren().add(new CalendarMonth(stage, width - (width / (32 / 5)), height));
 
   }
 
@@ -119,7 +145,7 @@ public class Etu extends StackPane {
   }
 
   private void selectDeco() {
-    /*this.getChildren().remove(0,this.getChildren().size());
-    this.getChildren().add(new Login());*/
+    this.getChildren().remove(0, this.getChildren().size());
+    this.getChildren().add(new Login(stage, width, height));
   }
 }
