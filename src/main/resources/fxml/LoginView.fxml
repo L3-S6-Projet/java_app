@@ -9,6 +9,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import com.jfoenix.validation.RegexValidator?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <fx:root xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
          type="jscolendar.components.Login"
@@ -31,17 +32,32 @@
                                 message="le nom d'utilisateur doit avoir au moins 3 caractères." />
                     </validators>
                 </JFXTextField>
-                <JFXPasswordField fx:id="passwordField"
-                    labelFloat="true"
-                    focusTraversable="false"
-                    promptText="Mot de passe">
-                    <validators>
-                        <RequiredFieldValidator message="le mot de passe est requis" />
-                        <RegexValidator
-                                regexPattern="[_A-Za-z0-9-+]{3,}"
-                                 message="le mot de passe doit avoir au moins 3 caractères." />
-                    </validators>
-                </JFXPasswordField>
+                <StackPane>
+                    <StackPane>
+                        <JFXTextField fx:id="accessiblePassword" visible="${toggleButton.selected}"
+                                      labelFloat="true"
+                                      focusTraversable="false"
+                                      promptText="${passwordField.promptText}"/>
+                        <JFXPasswordField fx:id="passwordField" visible="${!accessiblePassword.visible}"
+                            labelFloat="true"
+                            focusTraversable="false"
+                            promptText="Mot de passe">
+                            <validators>
+                                <RequiredFieldValidator message="le mot de passe est requis" />
+                                <RegexValidator
+                                    regexPattern="[_A-Za-z0-9-+]{3,}"
+                                    message="le mot de passe doit avoir au moins 3 caractères." />
+                            </validators>
+                        </JFXPasswordField>
+
+                    </StackPane>
+                    <ToggleButton fx:id="toggleButton" styleClass="password-reveal-button"
+                          StackPane.alignment="CENTER_RIGHT">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi-eye" iconSize="22" />
+                        </graphic>
+                    </ToggleButton>
+                </StackPane>
                 <HBox alignment="BASELINE_LEFT" spacing="10">
                     <JFXButton text="CONNEXION" onAction="#onSubmit" styleClass="login-button"/>
                     <Hyperlink text="Mot de passe oublié ?" />

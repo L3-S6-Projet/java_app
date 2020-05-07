@@ -53,8 +53,20 @@
     -jfx-unfocus-color: #E8E8E8;
 }
 
-.input-line {
+.jfx-text-field Pane {}
 
+.input-line, .input-focused-line {}
+
+.password-reveal-button {
+    -fx-background-color: transparent;
+}
+
+.password-reveal-button .ikonli-font-icon {
+    -fx-icon-color: rgba(128, 128, 128, .5);
+}
+
+.password-reveal-button:hover .ikonli-font-icon {
+    -fx-icon-color: #3F51B5;
 }
 
 .login-button {
