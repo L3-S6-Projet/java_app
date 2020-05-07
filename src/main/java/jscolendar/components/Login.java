@@ -1,19 +1,14 @@
 package jscolendar.components;
 
-import jscolendar.util.FXUtil;
-
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
 
-public class Login extends GridPane {
+public class Login {
   @FXML private JFXTextField usernameField, accessiblePassword;
   @FXML private JFXPasswordField passwordField;
 
-  public Login () {
-    FXUtil.loadFXML("/fxml/LoginView.fxml", this, this);
-
+  @FXML public void initialize () {
     accessiblePassword.textProperty().bindBidirectional(passwordField.textProperty());
     accessiblePassword.getValidators().addAll(passwordField.getValidators());
 
