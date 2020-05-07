@@ -1,5 +1,7 @@
 package jscolendar.components;
 
+import jscolendar.router.AppRouter;
+
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -36,5 +38,6 @@ public class Login {
     if (!usernameField.validate() || !passwordField.validate()) return;
 
     // @TODO
+    AppRouter.goTo("/main", "admin");
   }
 }

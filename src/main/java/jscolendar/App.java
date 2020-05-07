@@ -1,9 +1,12 @@
 package jscolendar;
 
-import jscolendar.util.FXRouter;
+import jscolendar.router.AppRouter;
+import jscolendar.router.ContentManageable;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class App extends Application {
   public static void main (String[] args) {
@@ -11,10 +14,20 @@ public class App extends Application {
   }
 
   @Override
-  public void start (Stage stage) throws Exception {
-    FXRouter.bind(stage, "JScolendar", 1920, 1080);
-    FXRouter.when("login", "fxml/LoginView.fxml");
-    FXRouter.goTo("login");
+  public void start (Stage stage) {
+    AppRouter.bind("", new ContentManageable() {
+      private final Stage primaryStage = stage;
+
+      @Override
+      public void setContent (Parent root) {
+        primaryStage.setTitle("JScolendar");
+        primaryStage.setScene(new Scene(root, 1920, 1080));
+        primaryStage.show();
+      }
+    });
+    AppRouter.when("/login", "fxml/LoginView.fxml");
+    AppRouter.when("/main", "fxml/MainPane.fxml");
+    AppRouter.goTo("/login");
   }
 
   @Override
