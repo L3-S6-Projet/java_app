@@ -59,6 +59,14 @@ public class AppRouter {
     getInstance().routers.put(mountPath, new Router(layout));
   }
 
+  public static void unbind (String mountPath) {
+    if (!isMounted(mountPath)) return;
+
+    var routers = getInstance().routers;
+    routers.get(mountPath).routes.clear();
+    routers.remove(mountPath);
+  }
+
   public static void when (String routeLabel, String path) {
     var routePath = new RoutePath(routeLabel);
     var route = new Route(path);
