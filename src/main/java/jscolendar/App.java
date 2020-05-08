@@ -15,7 +15,7 @@ public class App extends Application {
 
   @Override
   public void start (Stage stage) {
-    AppRouter.bind("", new ContentManageable() {
+    AppRouter.bind(new ContentManageable() {
       private final Stage primaryStage = stage;
 
       @Override
@@ -25,8 +25,8 @@ public class App extends Application {
         primaryStage.show();
       }
     });
-    AppRouter.when("/login", "fxml/LoginView.fxml");
-    AppRouter.when("/main", "fxml/MainPane.fxml");
+    AppRouter.when("/login", "LoginView");
+    AppRouter.when("/main", "MainPane");
     AppRouter.goTo("/login");
   }
 

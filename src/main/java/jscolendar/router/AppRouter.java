@@ -23,10 +23,10 @@ public class AppRouter {
 
   private static class Router {
     private final Map<String, Route> routes = new HashMap<>();
-    private final ContentManageable layout;
+    private final ContentManageable container;
 
-    private Router (ContentManageable layout) {
-      this.layout = layout;
+    private Router (ContentManageable container) {
+      this.container = container;
     }
   }
 
@@ -55,8 +55,12 @@ public class AppRouter {
     }
   }
 
-  public static void bind (String mountPath, ContentManageable layout) {
-    getInstance().routers.put(mountPath, new Router(layout));
+  public static void bind (ContentManageable container) {
+    AppRouter.bind("", container);
+  }
+
+  public static void bind (String mountPath, ContentManageable container) {
+    getInstance().routers.put(mountPath, new Router(container));
   }
 
   public static void unbind (String mountPath) {
@@ -79,7 +83,7 @@ public class AppRouter {
     var router = getInstance().routers.get(routePath.base);
     var route = router.routes.get(routePath.param);
 
-    getInstance().loadNewRoute(route, router.layout);
+    getInstance().loadNewRoute(route, router.container);
   }
 
   public static void goTo (String routeLabel, Object data) {
@@ -88,12 +92,12 @@ public class AppRouter {
     var route = router.routes.get(routePath.param);
 
     route.data = data;
-    getInstance().loadNewRoute(route, router.layout);
+    getInstance().loadNewRoute(route, router.container);
   }
 
   private void loadNewRoute (Route route, ContentManageable layout) {
     currentRoute = route;
-    String fxml = "/".concat(route.path);
+    String fxml = "/fxml/".concat(route.path).concat(".fxml");
 
     try {
       Parent root = FXMLLoader.load(new Object() {}.getClass().getResource(fxml));
