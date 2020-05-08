@@ -6,11 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
-public class CreateTeacher extends StackPane {
-
+public class CreateStudent extends StackPane {
 
   @FXML
-  private JFXTextField firstName, lastName, email, phoneNumber, level;
+  private JFXTextField firstName, lastName, promo;
   @FXML
   private Label errorLabel;
   @FXML

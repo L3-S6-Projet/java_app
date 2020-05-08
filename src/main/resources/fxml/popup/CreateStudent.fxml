@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          fx:controller="jscolendar.components.popup.CreateTeacher">
+          fx:controller="jscolendar.components.popup.CreateStudent">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
             <Label text="Nouvel enseignant" GridPane.rowIndex="0"/>
@@ -35,22 +35,14 @@
                                 message="le nom doit avoir au moins 3 caractères."/>
                     </validators>
                 </JFXTextField>
-                <JFXTextField fx:id="email"
+                <JFXTextField fx:id="promo"
                               labelFloat="true"
-                              promptText="Email" focusTraversable="false">
-                </JFXTextField>
-                <JFXTextField fx:id="phoneNumber"
-                              labelFloat="true"
-                              promptText="Numéro de téléphone" focusTraversable="false">
-                </JFXTextField>
-                <JFXTextField fx:id="level"
-                              labelFloat="true"
-                              promptText="Grade*" focusTraversable="false">
+                              promptText="Classe*" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="le grade est requis."/>
+                        <RequiredFieldValidator message="la classe est requise."/>
                         <RegexValidator
                                 regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le grade doit avoir au moins 3 caractères."/>
+                                message="la classe doit avoir au moins 3 caractères."/>
                     </validators>
                 </JFXTextField>
             </VBox>
