@@ -1,0 +1,73 @@
+.main {
+}
+
+.sidebar-outer {
+    -fx-background-color: #3F51B5;
+}
+
+.sidebar-header {
+    -fx-padding: 4em;
+}
+
+.sidebar-username {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 2em;
+}
+
+.sidebar-user-role {
+    -fx-text-fill: #BDBDBD;
+}
+
+.main-nav {}
+
+
+.list-view {
+    -fx-background-insets: 0px; -fx-padding: 0px;
+}
+
+.nav-cell-container {
+    -fx-spacing: 1em;
+    -fx-padding: 0.4em;
+}
+
+.list-cell {
+    -fx-control-inner-background: #3F51B5;
+    -fx-border-width: 0 0 0 4;
+    -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #3F51B5;
+    -fx-background-insets: 0;
+}
+
+.list-cell .ikonli-font-icon {
+    -fx-icon-color: #BDBDBD;
+}
+
+.list-cell Label {
+    -fx-text-fill: #BDBDBD;
+}
+
+.list-cell:odd {
+    -fx-background-color: #3F51B5;
+}
+
+.list-cell:hover .ikonli-font-icon, .list-cell:selected .ikonli-font-icon {
+    -fx-icon-color: #FFFFFF;
+}
+
+.list-cell:hover Label, .list-cell:selected Label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.list-cell:filled:selected:focused {
+    -fx-background-color: #3F51B5;
+    -fx-border-width: 0 0 0 4;
+    -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #303F9F;
+}
+
+.sidebar-footer {
+    -fx-padding: 2em;
+}
+
+.sidebar-footer Label {
+    -fx-font-size: 14px;
+     -fx-text-fill: #BDBDBD;
+}

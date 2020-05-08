@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.*?>
-<?import com.jfoenix.controls.JFXButton?>
+<?import jscolendar.components.SideBar?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="jscolendar.components.Main"
-            prefHeight="400.0" prefWidth="600.0">
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          styleClass="main" stylesheets="styles.css, application.css"
+          fx:controller="jscolendar.components.Main">
 
-    <JFXButton onAction="#onLogout">Logout</JFXButton>
-</AnchorPane>
+    <SideBar GridPane.columnIndex="0"/>
+    <VBox fx:id="viewContainer" GridPane.columnIndex="1"/>
+
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" />
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+</GridPane>

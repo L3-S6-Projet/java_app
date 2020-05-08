@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          type="jscolendar.components.SideBar" styleClass="sidebar-outer">
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0"
+          alignment="CENTER" styleClass="sidebar-header">
+        <Label fx:id="username" styleClass="sidebar-username" >Brookline Fisher</Label>
+        <Label fx:id="userRoleLabel" styleClass="sidebar-user-role" >Administrateur à AMU</Label>
+    </VBox>
+
+    <ListView fx:id="nav" styleClass="main-nav" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+    <VBox GridPane.rowIndex="2" GridPane.columnIndex="0"
+          alignment="BOTTOM_CENTER" styleClass="sidebar-footer">
+        <Label>© Scolendar 2020</Label>
+        <Label>Tout droits réservés</Label>
+    </VBox>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+</fx:root>
