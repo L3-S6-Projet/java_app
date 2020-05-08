@@ -7,25 +7,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          fx:controller="jscolendar.components.popup.CreateStudent">
+          fx:controller="jscolendar.components.popup.CreateRoom">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
-            <Label text="Nouvel étudiant" GridPane.rowIndex="0"/>
+            <Label text="Nouvelle salle" GridPane.rowIndex="0"/>
             <VBox GridPane.rowIndex="1" alignment="CENTER">
                 <HBox alignment="BASELINE_LEFT" spacing="10">
                     <Label fx:id="errorLabel"/>
                 </HBox>
-                <JFXTextField fx:id="firstName"
-                              labelFloat="true"
-                              promptText="Prénom*" focusTraversable="false">
-                    <validators>
-                        <RequiredFieldValidator message="le prénom est requis."/>
-                        <RegexValidator
-                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le prénom doit avoir au moins 3 caractères."/>
-                    </validators>
-                </JFXTextField>
-                <JFXTextField fx:id="lastName"
+                <JFXTextField fx:id="name"
                               labelFloat="true"
                               promptText="Nom*" focusTraversable="false">
                     <validators>
@@ -35,14 +25,14 @@
                                 message="le nom doit avoir au moins 3 caractères."/>
                     </validators>
                 </JFXTextField>
-                <JFXTextField fx:id="promo"
+                <JFXTextField fx:id="capacity"
                               labelFloat="true"
-                              promptText="Classe*" focusTraversable="false">
+                              promptText="Capacité*" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="la classe est requise."/>
+                        <RequiredFieldValidator message="la capacité est requise."/>
                         <RegexValidator
-                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="la classe doit avoir au moins 3 caractères."/>
+                                regexPattern="[0-9]{1,}"
+                                message="la capacité doit avoir au moins 1 caractères."/>
                     </validators>
                 </JFXTextField>
             </VBox>
