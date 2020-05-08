@@ -10,6 +10,7 @@ sourceCompatibility = "11"
 targetCompatibility = "11"
 
 repositories {
+    mavenLocal()
     jcenter()
 }
 
@@ -27,6 +28,7 @@ dependencies {
                    'org.kordamp.ikonli:ikonli-materialdesign-pack:11.4.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    implementation "io.swagger:swagger-java-client:1.0.0"
 }
 
 
