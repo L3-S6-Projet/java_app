@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
+import jscolendar.UserSession;
 import jscolendar.router.AppRouter;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -82,6 +83,9 @@ public class Login {
 
         @Override
         public void onSuccess(SuccessfulLoginResponse successfulLoginResponse, int i, Map<String, List<String>> map) {
+          UserSession session = UserSession.getInstance();
+          session.init(successfulLoginResponse);
+
           Platform.runLater(() -> {
             setFormDisabled(false);
 
