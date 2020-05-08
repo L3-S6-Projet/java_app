@@ -63,10 +63,11 @@
             </VBox>
             <VBox GridPane.rowIndex="2" alignment="BOTTOM_LEFT">
                 <TextFlow>
-                    <Text>en se connectant, vous acceptez les </Text>
+                    <Text>En se connectant, vous acceptez les </Text>
                     <Hyperlink text="termes et condition"/>
+                    <Text>.</Text>
                 </TextFlow>
-                <Text>©Scolendar 2020 - Tout droits réservés</Text>
+                <Text>© Scolendar 2020 - Tout droits réservés</Text>
             </VBox>
 
             <columnConstraints>
