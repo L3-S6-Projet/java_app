@@ -61,7 +61,7 @@ public class SideBar extends GridPane {
 
     nav.setCellFactory(listView -> new NavElementListCell());
     nav.setItems(FXCollections.observableList(
-      Nav.create().filter(Nav.visibilityFilter(Role.ADM)).collect(Collectors.toList())
+      Nav.create().filter(Nav.visibilityFilter(user.getKind())).collect(Collectors.toList())
     ));
     // @TODO :: handle logout case
     nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
