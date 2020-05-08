@@ -30,7 +30,7 @@
                     <validators>
                         <RequiredFieldValidator message="le nom d'utilisateur est requis."/>
                         <RegexValidator
-                                regexPattern="[_A-Za-z0-9-+]{3,}"
+                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
                                 message="le nom d'utilisateur doit avoir au moins 3 caractères." />
                     </validators>
                 </JFXTextField>
@@ -47,7 +47,7 @@
                             <validators>
                                 <RequiredFieldValidator message="le mot de passe est requis" />
                                 <RegexValidator
-                                    regexPattern="[_A-Za-z0-9-+]{3,}"
+                                    regexPattern=".{3,}"
                                     message="le mot de passe doit avoir au moins 3 caractères." />
                             </validators>
                         </JFXPasswordField>
