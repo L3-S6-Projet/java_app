@@ -20,6 +20,10 @@
                 <Label text="Serveur AMU" styleClass="login-subtitle" />
             </VBox>
             <VBox styleClass="login-form-outer" GridPane.rowIndex="1" alignment="CENTER">
+                <HBox alignment="BASELINE_LEFT" spacing="10">
+                    <Label fx:id="errorLabel" />
+                </HBox>
+
                 <JFXTextField fx:id="usernameField"
                     labelFloat="true"
                     promptText="Nom d'utilisateur" focusTraversable="false">
