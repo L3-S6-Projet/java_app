@@ -7,7 +7,10 @@ import io.swagger.client.api.AuthApi;
 import io.swagger.client.model.LoginRequest;
 import io.swagger.client.model.SuccessfulLoginResponse;
 import javafx.application.Platform;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
 import jscolendar.router.AppRouter;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -22,6 +25,7 @@ public class Login {
   @FXML private JFXTextField usernameField, accessiblePassword;
   @FXML private JFXPasswordField passwordField;
   @FXML private Label errorLabel;
+  @FXML private ToggleButton toggleButton;
 
   @FXML public void initialize () {
     accessiblePassword.textProperty().bindBidirectional(passwordField.textProperty());
@@ -49,7 +53,14 @@ public class Login {
   @FXML
   private void onSubmit () {
     if (!usernameField.validate() || !passwordField.validate()) return;
+    setFormDisabled(true);
     doLogin(usernameField.getText(), usernameField.getText());
+  }
+
+  private void setFormDisabled(boolean disabled) {
+    usernameField.setDisable(disabled);
+    passwordField.setDisable(disabled);
+    toggleButton.setDisable(disabled);
   }
 
   private void doLogin(String username, String password) {
@@ -63,13 +74,20 @@ public class Login {
       apiInstance.loginAsync(request, new ApiCallback<>() {
         @Override
         public void onFailure(ApiException e, int i, Map<String, List<String>> map) {
-          Platform.runLater(() -> errorLabel.setText(APIErrorUtil.getErrorMessage(apiInstance.getApiClient(), e)));
+          Platform.runLater(() -> {
+            setFormDisabled(false);
+            errorLabel.setText(APIErrorUtil.getErrorMessage(apiInstance.getApiClient(), e));
+          });
         }
 
         @Override
         public void onSuccess(SuccessfulLoginResponse successfulLoginResponse, int i, Map<String, List<String>> map) {
-          // TODO: authenticate user
-          AppRouter.goTo("/main", "admin");
+          Platform.runLater(() -> {
+            setFormDisabled(false);
+
+            // TODO: authenticate user
+            AppRouter.goTo("/main", "admin");
+          });
         }
 
         @Override
