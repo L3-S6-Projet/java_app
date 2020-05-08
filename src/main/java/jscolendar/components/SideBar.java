@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import jscolendar.UserSession;
 import jscolendar.models.Nav;
+import jscolendar.router.AppRouter;
 import jscolendar.util.FXUtil;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -62,6 +63,9 @@ public class SideBar extends GridPane {
     nav.setItems(FXCollections.observableList(
       Nav.create().filter(Nav.visibilityFilter(Role.ADM)).collect(Collectors.toList())
     ));
+    // @TODO :: handle logout case
+    nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+      AppRouter.goTo(newValue.linkTo));
   }
 
   private String RoleToLabel (Role role) {
