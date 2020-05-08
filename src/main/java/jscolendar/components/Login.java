@@ -2,8 +2,10 @@ package jscolendar.components;
 
 import com.jfoenix.controls.JFXTextArea;
 import io.swagger.client.ApiCallback;
+import io.swagger.client.ApiClient;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.AuthApi;
+import io.swagger.client.auth.ApiKeyAuth;
 import io.swagger.client.model.LoginRequest;
 import io.swagger.client.model.SuccessfulLoginResponse;
 import javafx.application.Platform;
@@ -85,6 +87,13 @@ public class Login {
         public void onSuccess(SuccessfulLoginResponse successfulLoginResponse, int i, Map<String, List<String>> map) {
           UserSession session = UserSession.getInstance();
           session.init(successfulLoginResponse);
+
+          // Configure API for future requests
+          // TODO: undo this when logging out
+          ApiClient client = apiInstance.getApiClient();
+          ApiKeyAuth auth = (ApiKeyAuth) client.getAuthentication("token");
+          auth.setApiKey(successfulLoginResponse.getToken());
+          auth.setApiKeyPrefix("Bearer");
 
           Platform.runLater(() -> {
             setFormDisabled(false);
