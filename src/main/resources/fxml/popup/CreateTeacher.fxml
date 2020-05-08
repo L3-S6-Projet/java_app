@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.validation.RegexValidator?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
@@ -8,17 +9,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          fx:controller="jscolendar.components.popup.CreateTeacher" stylesheets="styles.css" styleClass="login-box">
+          fx:controller="jscolendar.components.popup.CreateTeacher" stylesheets="styles.css">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
-            <Label fx:id="title" text="Nouvel enseignant" GridPane.rowIndex="0"/>
+            <Label text="Nouvel enseignant" GridPane.rowIndex="0"/>
             <VBox GridPane.rowIndex="1" alignment="CENTER">
                 <HBox alignment="BASELINE_LEFT" spacing="10">
                     <Label fx:id="errorLabel"/>
                 </HBox>
                 <JFXTextField fx:id="firstName"
                               labelFloat="true"
-                              promptText="Nom d'utilisateur" focusTraversable="false">
+                              promptText="Prénom*" focusTraversable="false">
                     <validators>
                         <RequiredFieldValidator message="le prénom est requis."/>
                         <RegexValidator
@@ -26,10 +27,40 @@
                                 message="le prénom doit avoir au moins 3 caractères."/>
                     </validators>
                 </JFXTextField>
+                <JFXTextField fx:id="lastName"
+                              labelFloat="true"
+                              promptText="Nom*" focusTraversable="false">
+                    <validators>
+                        <RequiredFieldValidator message="le nom est requis."/>
+                        <RegexValidator
+                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                                message="le nom doit avoir au moins 3 caractères."/>
+                    </validators>
+                </JFXTextField>
+                <JFXTextField fx:id="email"
+                              labelFloat="true"
+                              promptText="Email" focusTraversable="false">
+                </JFXTextField>
+                <JFXTextField fx:id="phoneNumber"
+                              labelFloat="true"
+                              promptText="Numéro de téléphone" focusTraversable="false">
+                </JFXTextField>
+                <JFXTextField fx:id="level"
+                              labelFloat="true"
+                              promptText="Grade*" focusTraversable="false">
+                    <validators>
+                        <RequiredFieldValidator message="le grade est requis."/>
+                        <RegexValidator
+                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                                message="le grade doit avoir au moins 3 caractères."/>
+                    </validators>
+                </JFXTextField>
             </VBox>
+            <HBox GridPane.rowIndex="2" alignment="CENTER_RIGHT">
+                <JFXButton fx:id="cancel" text="ANNULER"/>
+                <JFXButton fx:id="save" text="CRÉER"/>
+            </HBox>
         </GridPane>
-
-
     </VBox>
 
 
