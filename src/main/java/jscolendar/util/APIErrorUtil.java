@@ -1,9 +1,7 @@
 package jscolendar.util;
 
 import com.google.gson.annotations.SerializedName;
-import io.swagger.client.ApiClient;
-import io.swagger.client.ApiException;
-import io.swagger.client.JSON;
+import io.swagger.client.*;
 import io.swagger.client.model.ErrorResponse;
 
 import java.util.HashMap;
@@ -42,6 +40,20 @@ public class APIErrorUtil {
     Map.entry(ErrorResponse.CodeEnum.UNKNOWN, "Unknown")
   );
 
+  public static String getDefaultMessage() {
+    return messages.get(ErrorResponse.CodeEnum.UNKNOWN);
+  }
+
+  public static String getErrorMessage(Throwable exception) {
+    // TODO: change this if the client changes ony day
+    ApiClient client = Configuration.getDefaultApiClient();
+
+    if (exception instanceof ApiException)
+      return APIErrorUtil.getErrorMessage(client, (ApiException) exception);
+    else
+      return APIErrorUtil.getDefaultMessage();
+  }
+
   public static String getErrorMessage(ApiClient client, ApiException e) {
     // Local / Network error
     if (e.getResponseBody() == null) {
@@ -55,7 +67,7 @@ public class APIErrorUtil {
       ErrorResponse parsed = json.deserialize(e.getResponseBody(), ErrorResponse.class);
       return messages.getOrDefault(parsed.getCode(), messages.get(ErrorResponse.CodeEnum.UNKNOWN));
     } catch (Exception exc) {
-      return messages.get(ErrorResponse.CodeEnum.UNKNOWN);
+      return getDefaultMessage();
     }
   }
 

@@ -1,28 +1,17 @@
 package jscolendar.components;
 
-import com.jfoenix.controls.JFXTextArea;
-import io.swagger.client.ApiCallback;
-import io.swagger.client.ApiClient;
-import io.swagger.client.ApiException;
 import io.swagger.client.api.AuthApi;
-import io.swagger.client.auth.ApiKeyAuth;
 import io.swagger.client.model.LoginRequest;
-import io.swagger.client.model.SuccessfulLoginResponse;
-import javafx.application.Platform;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
-import jscolendar.UserSession;
-import jscolendar.router.AppRouter;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import jscolendar.UserSession;
+import jscolendar.router.AppRouter;
 import jscolendar.util.APIErrorUtil;
-
-import java.util.List;
-import java.util.Map;
+import jscolendar.util.FXApiService;
 
 public class Login {
   @FXML private JFXTextField usernameField, accessiblePassword;
@@ -73,50 +62,25 @@ public class Login {
     request.setUsername(username);
     request.setPassword(password);
 
-    try {
-      apiInstance.loginAsync(request, new ApiCallback<>() {
-        @Override
-        public void onFailure(ApiException e, int i, Map<String, List<String>> map) {
-          Platform.runLater(() -> {
-            setFormDisabled(false);
-            errorLabel.setText(APIErrorUtil.getErrorMessage(apiInstance.getApiClient(), e));
-          });
-        }
+    var service = new FXApiService<>(request, apiInstance::login);
 
-        @Override
-        public void onSuccess(SuccessfulLoginResponse successfulLoginResponse, int i, Map<String, List<String>> map) {
-          UserSession session = UserSession.getInstance();
-          session.init(successfulLoginResponse);
+    service.setOnSucceeded(event -> {
+      var response = service.getValue();
 
-          // Configure API for future requests
-          // TODO: undo this when logging out
-          ApiClient client = apiInstance.getApiClient();
-          ApiKeyAuth auth = (ApiKeyAuth) client.getAuthentication("token");
-          auth.setApiKey(successfulLoginResponse.getToken());
-          auth.setApiKeyPrefix("Bearer");
+      UserSession session = UserSession.getInstance();
+      session.init(response);
 
-          Platform.runLater(() -> {
-            setFormDisabled(false);
+      setFormDisabled(false);
+      AppRouter.goTo("/main", "admin");
+    });
 
-            // TODO: authenticate user
-            AppRouter.goTo("/main", "admin");
-          });
-        }
+    service.setOnFailed(_e -> {
+      var errorMessage = APIErrorUtil.getErrorMessage(service.getException());
+      setFormDisabled(false);
+      errorLabel.setText(errorMessage);
+    });
 
-        @Override
-        public void onUploadProgress(long l, long l1, boolean b) {
-
-        }
-
-        @Override
-        public void onDownloadProgress(long l, long l1, boolean b) {
-
-        }
-      });
-    } catch (ApiException e) {
-      System.err.println("Exception when calling AuthApi#login");
-      e.printStackTrace();
-    }
+    service.start();
   }
 
 }
