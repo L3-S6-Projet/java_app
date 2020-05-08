@@ -1,25 +1,33 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXPopup;
+import com.jfoenix.controls.JFXTextField;
 import io.swagger.client.api.AuthApi;
 import io.swagger.client.model.LoginRequest;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
-import javafx.fxml.FXML;
+import javafx.scene.layout.StackPane;
 import jscolendar.UserSession;
+import jscolendar.components.popup.CreateTeacher;
 import jscolendar.router.AppRouter;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
 
-public class Login {
-  @FXML private JFXTextField usernameField, accessiblePassword;
-  @FXML private JFXPasswordField passwordField;
-  @FXML private Label errorLabel;
-  @FXML private ToggleButton toggleButton;
+public class Login extends StackPane {//extend just to test pop
+  @FXML
+  private JFXTextField usernameField, accessiblePassword;
+  @FXML
+  private JFXPasswordField passwordField;
+  @FXML
+  private Label errorLabel;
+  @FXML
+  private ToggleButton toggleButton;
+  private JFXPopup popTest;
 
-  @FXML public void initialize () {
+  @FXML
+  public void initialize () {
     accessiblePassword.textProperty().bindBidirectional(passwordField.textProperty());
     accessiblePassword.getValidators().addAll(passwordField.getValidators());
 
@@ -44,9 +52,12 @@ public class Login {
 
   @FXML
   private void onSubmit () {
-    if (!usernameField.validate() || !passwordField.validate()) return;
+    popTest = new JFXPopup();
+    popTest.setPopupContent(new CreateTeacher());
+    popTest.show(this);
+    /*if (!usernameField.validate() || !passwordField.validate()) return;
     setFormDisabled(true);
-    doLogin(usernameField.getText(), usernameField.getText());
+    doLogin(usernameField.getText(), usernameField.getText());*/
   }
 
   private void setFormDisabled(boolean disabled) {

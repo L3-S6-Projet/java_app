@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+          fx:controller="jscolendar.components.popup.CreateTeacher" stylesheets="styles.css" styleClass="login-box">
+    <VBox GridPane.columnIndex="0">
+        <GridPane VBox.vgrow="ALWAYS">
+            <Label fx:id="title" text="Nouvel enseignant" GridPane.rowIndex="0"/>
+            <VBox GridPane.rowIndex="1" alignment="CENTER">
+                <HBox alignment="BASELINE_LEFT" spacing="10">
+                    <Label fx:id="errorLabel"/>
+                </HBox>
+                <JFXTextField fx:id="firstName"
+                              labelFloat="true"
+                              promptText="Nom d'utilisateur" focusTraversable="false">
+                    <validators>
+                        <RequiredFieldValidator message="le prénom est requis."/>
+                        <RegexValidator
+                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                                message="le prénom doit avoir au moins 3 caractères."/>
+                    </validators>
+                </JFXTextField>
+            </VBox>
+        </GridPane>
+
+
+    </VBox>
+
+
+</GridPane>
