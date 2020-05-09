@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableColumn?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
@@ -9,12 +8,5 @@
 >
     <Label>Teachers view</Label>
 
-    <JFXTreeTableView>
-        <columns>
-            <JFXTreeTableColumn text="Prénom"/>
-            <JFXTreeTableColumn text="Nom"/>
-            <JFXTreeTableColumn text="Email"/>
-            <JFXTreeTableColumn text="Numéro de téléphone"/>
-        </columns>
-    </JFXTreeTableView>
+    <JFXTreeTableView fx:id="table"/>
 </HBox>

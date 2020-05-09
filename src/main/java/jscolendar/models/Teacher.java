@@ -1,8 +1,9 @@
 package jscolendar.models;
 
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-public class Teacher {
+public class Teacher extends RecursiveTreeObject<Teacher> {
 
   private JFXCheckBox isSelected;
   private String id, firstName, lastName, email, phoneNumber;
