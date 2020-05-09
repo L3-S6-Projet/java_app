@@ -18,7 +18,7 @@
     <VBox GridPane.rowIndex="2" GridPane.columnIndex="0"
           alignment="BOTTOM_CENTER" styleClass="sidebar-footer">
         <Label>© Scolendar 2020</Label>
-        <Label>Tout droits réservés</Label>
+        <Label text="%sidebar.copyright"/>
     </VBox>
     <rowConstraints>
         <RowConstraints />

@@ -1,6 +1,7 @@
 package jscolendar.models;
 
 import io.swagger.client.model.Role;
+import jscolendar.util.I18n;
 
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -61,31 +62,31 @@ public class Nav {
 
   public static Stream<NavElement> create () {
     return Stream.of(
-      new NavElement.Builder("Home").withIcon("mdi-home")
+      new NavElement.Builder(I18n.get("sidebar.home")).withIcon("mdi-home")
         .withLinkTo("main/home").withFXML("Home")
         .withVisibilityRoles(Role.STU, Role.TEA).build(),
-      new NavElement.Builder("Emploi du temps").withIcon("mdi-calendar-blank")
+      new NavElement.Builder(I18n.get("sidebar.calendar")).withIcon("mdi-calendar-blank")
         .withLinkTo("main/calendar").withFXML("Calendar")
         .withVisibilityRoles(Role.ADM, Role.STU, Role.TEA).build(),
-      new NavElement.Builder("Enseignants").withIcon("mdi-account-circle")
+      new NavElement.Builder(I18n.get("sidebar.teachers")).withIcon("mdi-account-circle")
         .withLinkTo("main/teachers").withFXML("Teachers")
         .withVisibilityRoles(Role.ADM).build(),
-      new NavElement.Builder("Etudiants").withIcon("mdi-account")
+      new NavElement.Builder(I18n.get("sidebar.students")).withIcon("mdi-account")
         .withLinkTo("main/students").withFXML("Students")
         .withVisibilityRoles(Role.ADM).build(),
-      new NavElement.Builder("Salles").withIcon("mdi-map-marker")
+      new NavElement.Builder(I18n.get("sidebar.rooms")).withIcon("mdi-map-marker")
         .withLinkTo("main/rooms").withFXML("Rooms")
         .withVisibilityRoles(Role.ADM).build(),
-      new NavElement.Builder("Classes").withIcon("mdi-format-list-bulleted")
+      new NavElement.Builder(I18n.get("sidebar.classes")).withIcon("mdi-format-list-bulleted")
         .withLinkTo("main/classes").withFXML("Classes")
         .withVisibilityRoles(Role.ADM).build(),
-      new NavElement.Builder("Unités d'enseignement").withIcon("mdi-library-books")
+      new NavElement.Builder(I18n.get("sidebar.ue")).withIcon("mdi-library-books")
         .withLinkTo("main/ue").withFXML("UE")
         .withVisibilityRoles(Role.ADM, Role.STU, Role.TEA).build(),
-      new NavElement.Builder("Paramètres").withIcon("mdi-settings")
+      new NavElement.Builder(I18n.get("sidebar.settings")).withIcon("mdi-settings")
         .withLinkTo("main/settings").withFXML("Settings")
         .withVisibilityRoles(Role.ADM, Role.STU, Role.TEA).build(),
-      new NavElement.Builder("Déconnexion").withIcon("mdi-login-variant")
+      new NavElement.Builder(I18n.get("sidebar.logout")).withIcon("mdi-login-variant")
         .withLinkTo("main/logout")
         .withVisibilityRoles(Role.ADM, Role.STU, Role.TEA).build()
     );
