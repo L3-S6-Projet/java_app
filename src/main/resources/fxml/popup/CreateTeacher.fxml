@@ -10,53 +10,53 @@
           fx:controller="jscolendar.components.popup.CreateTeacher">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
-            <Label text="Nouvel enseignant" GridPane.rowIndex="0"/>
+            <Label text="%poup.title.creation.teacher" GridPane.rowIndex="0"/>
             <VBox GridPane.rowIndex="1" alignment="CENTER">
                 <HBox alignment="BASELINE_LEFT" spacing="10">
                     <Label fx:id="errorLabel"/>
                 </HBox>
                 <JFXTextField fx:id="firstName"
                               labelFloat="true"
-                              promptText="Prénom*" focusTraversable="false">
+                              promptText="%popup.field.firstName" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="le prénom est requis."/>
+                        <RequiredFieldValidator message="%popup.field.firstName.message.required"/>
                         <RegexValidator
                                 regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le prénom doit avoir au moins 3 caractères."/>
+                                message="%popup.field.firstName.message.minLength"/>
                     </validators>
                 </JFXTextField>
                 <JFXTextField fx:id="lastName"
                               labelFloat="true"
-                              promptText="Nom*" focusTraversable="false">
+                              promptText="%popup.field.name" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="le nom est requis."/>
+                        <RequiredFieldValidator message="%popup.field.name.message.required"/>
                         <RegexValidator
                                 regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le nom doit avoir au moins 3 caractères."/>
+                                message="%popup.field.name.message.minLength"/>
                     </validators>
                 </JFXTextField>
                 <JFXTextField fx:id="email"
                               labelFloat="true"
-                              promptText="Email" focusTraversable="false">
+                              promptText="%popup.field.email" focusTraversable="false">
                 </JFXTextField>
                 <JFXTextField fx:id="phoneNumber"
                               labelFloat="true"
-                              promptText="Numéro de téléphone" focusTraversable="false">
+                              promptText="%popup.field.phoneNumber" focusTraversable="false">
                 </JFXTextField>
-                <JFXTextField fx:id="level"
+                <JFXTextField fx:id="grade"
                               labelFloat="true"
-                              promptText="Grade*" focusTraversable="false">
+                              promptText="%popup.field.grade" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="le grade est requis."/>
+                        <RequiredFieldValidator message="%popup.field.grade.message.required"/>
                         <RegexValidator
                                 regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le grade doit avoir au moins 3 caractères."/>
+                                message="%popup.field.grade.message.minLength"/>
                     </validators>
                 </JFXTextField>
             </VBox>
             <HBox GridPane.rowIndex="2" alignment="CENTER_RIGHT">
-                <JFXButton fx:id="cancel" text="ANNULER" onAction="#onCancel"/>
-                <JFXButton fx:id="save" text="CRÉER" onAction="#onCreate"/>
+                <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+                <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
             </HBox>
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" minWidth="250.0" percentWidth="100.0"/>

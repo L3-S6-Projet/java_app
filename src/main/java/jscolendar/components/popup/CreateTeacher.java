@@ -10,7 +10,7 @@ public class CreateTeacher extends StackPane {
 
 
   @FXML
-  private JFXTextField firstName, lastName, email, phoneNumber, level;
+  private JFXTextField firstName, lastName, email, phoneNumber, grade;
   @FXML
   private Label errorLabel;
   @FXML

@@ -10,35 +10,35 @@
           fx:controller="jscolendar.components.popup.CreateRoom">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
-            <Label text="Nouvelle salle" GridPane.rowIndex="0"/>
+            <Label text="%popup.title.creation.room" GridPane.rowIndex="0"/>
             <VBox GridPane.rowIndex="1" alignment="CENTER">
                 <HBox alignment="BASELINE_LEFT" spacing="10">
                     <Label fx:id="errorLabel"/>
                 </HBox>
                 <JFXTextField fx:id="name"
                               labelFloat="true"
-                              promptText="Nom*" focusTraversable="false">
+                              promptText="%popup.field.name" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="le nom est requis."/>
+                        <RequiredFieldValidator message="%popup.field.name.message.required"/>
                         <RegexValidator
                                 regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le nom doit avoir au moins 3 caractères."/>
+                                message="%popup.field.name.message.minLength"/>
                     </validators>
                 </JFXTextField>
                 <JFXTextField fx:id="capacity"
                               labelFloat="true"
-                              promptText="Capacité*" focusTraversable="false">
+                              promptText="%popup.field.capacity" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="la capacité est requise."/>
+                        <RequiredFieldValidator message="%popup.field.capacity.message.required"/>
                         <RegexValidator
                                 regexPattern="[0-9]{1,}"
-                                message="la capacité doit avoir au moins 1 caractères."/>
+                                message="%popup.field.capacity.message.minLength"/>
                     </validators>
                 </JFXTextField>
             </VBox>
             <HBox GridPane.rowIndex="2" alignment="CENTER_RIGHT">
-                <JFXButton fx:id="cancel" text="ANNULER" onAction="#onCancel"/>
-                <JFXButton fx:id="save" text="CRÉER" onAction="#onCreate"/>
+                <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+                <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
             </HBox>
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" minWidth="250.0" percentWidth="100.0"/>

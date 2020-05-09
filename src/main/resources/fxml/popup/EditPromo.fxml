@@ -27,18 +27,18 @@
                 </JFXTextField>
                 <JFXTextField fx:id="level"
                               labelFloat="true"
-                              promptText="Niveau*" focusTraversable="false">
+                              promptText="%popup.field.level" focusTraversable="false">
                     <validators>
-                        <RequiredFieldValidator message="le niveau est requis."/>
+                        <RequiredFieldValidator message="%popup.field.level.message.required"/>
                         <RegexValidator
                                 regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le niveau doit avoir au moins 3 caractères."/>
+                                message="%popup.field.level.message.minLength"/>
                     </validators>
                 </JFXTextField>
             </VBox>
             <HBox GridPane.rowIndex="2" alignment="CENTER_RIGHT">
-                <JFXButton fx:id="cancel" text="ANNULER" onAction="#onCancel"/>
-                <JFXButton fx:id="save" text="CRÉER" onAction="#onCreate"/>
+                <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+                <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
             </HBox>
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" minWidth="250.0" percentWidth="100.0"/>
