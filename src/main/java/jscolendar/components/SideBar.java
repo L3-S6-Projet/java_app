@@ -1,6 +1,5 @@
 package jscolendar.components;
 
-import io.swagger.client.model.Role;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -14,6 +13,7 @@ import jscolendar.UserSession;
 import jscolendar.models.Nav;
 import jscolendar.router.AppRouter;
 import jscolendar.util.FXUtil;
+import jscolendar.util.I18n;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.List;
@@ -34,9 +34,10 @@ public class SideBar extends GridPane {
     @Override
     protected void updateItem (Nav.NavElement item, boolean empty) {
       super.updateItem(item, empty);
+      if (empty) return;
+
       setGraphic(null);
       setText(null);
-      if (item == null) return;
 
       var icon = new FontIcon(item.icon);
       icon.setIconSize(24);
@@ -53,11 +54,11 @@ public class SideBar extends GridPane {
   }
 
   public SideBar () {
-    FXUtil.loadFXML("/fxml/SideBar.fxml", this, this);
+    FXUtil.loadFXML("/fxml/SideBar.fxml", this, this, I18n.getBundle());
 
     var user = UserSession.getInstance().getUser();
     username.textProperty().set(user.getFirstName().concat(" ").concat(user.getLastName()));
-    userRoleLabel.textProperty().set(RoleToLabel(user.getKind()).concat(" ").concat("à Amu"));
+    userRoleLabel.textProperty().set(I18n.get("sidebar.role.".concat(user.getKind().toString())));
 
     nav.setCellFactory(listView -> new NavElementListCell());
     nav.setItems(FXCollections.observableList(
@@ -66,13 +67,5 @@ public class SideBar extends GridPane {
     // @TODO :: handle logout case
     nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
       AppRouter.goTo(newValue.linkTo));
-  }
-
-  private String RoleToLabel (Role role) {
-    return role == Role.ADM
-      ? "Administrateur"
-      : role == Role.STU
-        ? "Étudiant"
-        : "Enseignant";
   }
 }

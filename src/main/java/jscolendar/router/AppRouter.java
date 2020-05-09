@@ -2,6 +2,7 @@ package jscolendar.router;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import jscolendar.util.I18n;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -95,16 +96,15 @@ public class AppRouter {
     getInstance().loadNewRoute(route, router.container);
   }
 
-  private void loadNewRoute (Route route, ContentManageable layout) {
+  private void loadNewRoute (Route route, ContentManageable container) {
     currentRoute = route;
     String fxml = "/fxml/".concat(route.path).concat(".fxml");
 
     try {
-      Parent root = FXMLLoader.load(new Object() {}.getClass().getResource(fxml));
-      layout.setContent(root);
+      Parent root = FXMLLoader.load(new Object() {}.getClass().getResource(fxml), I18n.getBundle());
+      container.setContent(root);
     } catch (IOException e) {
-      e.printStackTrace();
-      throw new RuntimeException("");
+      throw new RuntimeException(e);
     }
   }
 
