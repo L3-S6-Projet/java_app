@@ -1,6 +1,5 @@
 package jscolendar.components;
 
-import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import io.swagger.client.api.AuthApi;
@@ -10,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
 import jscolendar.UserSession;
-import jscolendar.components.popup.CreateTeacher;
 import jscolendar.router.AppRouter;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
@@ -51,13 +49,13 @@ public class Login extends StackPane {//extend just to test pop
 
   @FXML
   private void onSubmit () {
-    JFXDialog popTest = new JFXDialog();
+    /*JFXDialog popTest = new JFXDialog();
     popTest.setContent(new CreateTeacher());
     popTest.show(this);
-    System.out.println("done");
-    /*if (!usernameField.validate() || !passwordField.validate()) return;
+    System.out.println("done");*/
+    if (!usernameField.validate() || !passwordField.validate()) return;
     setFormDisabled(true);
-    doLogin(usernameField.getText(), usernameField.getText());*/
+    doLogin(usernameField.getText(), usernameField.getText());
   }
 
   private void setFormDisabled (boolean disabled) {

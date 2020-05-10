@@ -2,11 +2,12 @@
 
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<HBox xmlns="http://javafx.com/javafx"
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
+      fx:controller="jscolendar.components.TabView"
 >
-    <Label>Teachers view</Label>
+    <Label styleClass="login-title">Teachers view</Label>
 
-    <JFXTreeTableView fx:id="table"/>
-</HBox>
+    <JFXTreeTableView fx:id="table" prefWidth="300"/>
+</VBox>
