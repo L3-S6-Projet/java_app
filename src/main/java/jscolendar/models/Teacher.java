@@ -6,9 +6,10 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 public class Teacher extends RecursiveTreeObject<Teacher> {
 
   private JFXCheckBox isSelected;
-  private String id, firstName, lastName, email, phoneNumber;
+  private Integer id;
+  private String firstName, lastName, email, phoneNumber;
 
-  public Teacher (String id, String firstName, String lastName, String email, String phoneNumber) {
+  public Teacher (Integer id, String firstName, String lastName, String email, String phoneNumber) {
     isSelected = new JFXCheckBox();
     this.id = id;
     this.firstName = firstName;
@@ -17,11 +18,11 @@ public class Teacher extends RecursiveTreeObject<Teacher> {
     this.phoneNumber = phoneNumber;
   }
 
-  public String getId () {
+  public Integer getId () {
     return id;
   }
 
-  public void setId (String id) {
+  public void setId (Integer id) {
     this.id = id;
   }
 

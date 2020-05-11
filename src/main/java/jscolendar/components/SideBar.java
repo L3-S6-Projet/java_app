@@ -10,9 +10,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import jscolendar.UserSession;
-import jscolendar.components.popup.CreateTeacher;
-import jscolendar.events.ModalEvent;
 import jscolendar.models.Nav;
+import jscolendar.router.AppRouter;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -67,9 +66,6 @@ public class SideBar extends GridPane {
     ));
     // @TODO :: handle logout case
     nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-      this.fireEvent(
-        new ModalEvent(ModalEvent.OPEN, new CreateTeacher()))
-    );
-    //AppRouter.goTo(newValue.linkTo));
+      AppRouter.goTo(newValue.linkTo));
   }
 }
