@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import jscolendar.events.ModalEvent;
 
 public class CreatePromo extends StackPane {
   @FXML
@@ -21,7 +22,9 @@ public class CreatePromo extends StackPane {
 
   @FXML
   private void onCancel () {
-
+    this.fireEvent(
+      new ModalEvent(ModalEvent.CLOSE, new CreateTeacher())
+    );
   }
 
   @FXML

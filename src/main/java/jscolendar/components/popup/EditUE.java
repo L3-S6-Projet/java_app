@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import jscolendar.events.ModalEvent;
 
 public class EditUE extends StackPane {
 
@@ -22,7 +23,9 @@ public class EditUE extends StackPane {
 
   @FXML
   private void onCancel () {
-
+    this.fireEvent(
+      new ModalEvent(ModalEvent.CLOSE, new CreateTeacher())
+    );
   }
 
   @FXML

@@ -5,9 +5,14 @@
 <?import com.jfoenix.validation.RegexValidator?>
 <?import com.jfoenix.validation.RequiredFieldValidator?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          fx:controller="jscolendar.components.popup.EditPromo">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.popup.EditPromo?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+         type="jscolendar.components.popup.EditPromo">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
             <Label text="Édition" GridPane.rowIndex="0"/>
@@ -50,4 +55,4 @@
             </rowConstraints>
         </GridPane>
     </VBox>
-</GridPane>
+</fx:root>

@@ -53,6 +53,7 @@ public class Login extends StackPane {//extend just to test pop
     popTest.setContent(new CreateTeacher());
     popTest.show(this);
     System.out.println("done");*/
+
     if (!usernameField.validate() || !passwordField.validate()) return;
     setFormDisabled(true);
     doLogin(usernameField.getText(), usernameField.getText());
