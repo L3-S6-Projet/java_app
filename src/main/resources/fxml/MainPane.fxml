@@ -3,19 +3,20 @@
 <?import javafx.scene.layout.*?>
 <?import jscolendar.components.SideBar?>
 
-<GridPane xmlns="http://javafx.com/javafx"
+<StackPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           styleClass="main" stylesheets="styles.css, application.css"
-          fx:controller="jscolendar.components.Main">
+          fx:id="root" fx:controller="jscolendar.components.Main">
+    <GridPane>
+        <SideBar GridPane.columnIndex="0"/>
+        <VBox fx:id="viewContainer" GridPane.columnIndex="1"/>
 
-    <SideBar GridPane.columnIndex="0"/>
-    <VBox fx:id="viewContainer" GridPane.columnIndex="1"/>
-
-    <rowConstraints>
-        <RowConstraints vgrow="ALWAYS"/>
-    </rowConstraints>
-    <columnConstraints>
-        <ColumnConstraints hgrow="NEVER" />
-        <ColumnConstraints hgrow="ALWAYS" />
-    </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
 </GridPane>
+</StackPane>
