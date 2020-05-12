@@ -7,8 +7,10 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import jscolendar.UserSession;
 import jscolendar.models.Nav;
 import jscolendar.router.AppRouter;
@@ -67,5 +69,12 @@ public class SideBar extends GridPane {
     // @TODO :: handle logout case
     nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
       AppRouter.goTo(newValue.linkTo));
+
+    DropShadow dropShadow = new DropShadow();
+    dropShadow.setRadius(4.0);
+    dropShadow.setOffsetX(4.0);
+    dropShadow.setOffsetY(0.0);
+    dropShadow.setColor(new Color(0, 0, 0, .25));
+    setEffect(dropShadow);
   }
 }
