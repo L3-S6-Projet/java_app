@@ -3,10 +3,11 @@
 
 .sidebar-outer {
     -fx-background-color: #3F51B5;
+    -fx-padding: 64px 0;
 }
 
 .sidebar-header {
-    -fx-padding: 4em;
+    -fx-padding: 0 0 64px 0;
 }
 
 .sidebar-username {
@@ -63,11 +64,7 @@
     -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #303F9F;
 }
 
-.sidebar-footer {
-    -fx-padding: 2em;
-}
-
-.sidebar-footer Label {
+.sidebar-copyright-text {
     -fx-font-size: 14px;
-     -fx-text-fill: #BDBDBD;
+    -fx-text-fill: #BDBDBD;
 }
