@@ -72,7 +72,8 @@ public class Login extends StackPane {//extend just to test pop
     request.setUsername(username);
     request.setPassword(password);
 
-    var service = new FXApiService<>(request, apiInstance::login);
+    var service = new FXApiService<>(apiInstance::login);
+    service.setRequest(request);
 
     service.setOnSucceeded(event -> {
       var response = service.getValue();
