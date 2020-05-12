@@ -25,7 +25,7 @@ public class ChangePassWord extends StackPane {
   @FXML
   private void onCancel () {
     this.fireEvent(
-      new ModalEvent(ModalEvent.CLOSE, new CreateTeacher())
+      new ModalEvent(ModalEvent.CLOSE, new ChangePassWord())
     );
   }
 
