@@ -1,6 +1,8 @@
 package jscolendar.util;
 
 import io.swagger.client.ApiException;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -10,12 +12,15 @@ public class FXApiService<Request, Response> extends Service<Response> {
     Response handle(Request request) throws ApiException;
   }
 
-  private final Request request;
+  private final ObjectProperty<Request> request = new SimpleObjectProperty<>();
   private final APIHandler<Request, Response> method;
 
-  public FXApiService(Request request, APIHandler<Request, Response> method) {
-    this.request = request;
+  public FXApiService(APIHandler<Request, Response> method) {
     this.method = method;
+  }
+
+  public void setRequest(Request request) {
+    this.request.set(request);
   }
 
   @Override
@@ -23,9 +28,8 @@ public class FXApiService<Request, Response> extends Service<Response> {
     return new Task<>() {
       @Override
       protected Response call() throws Exception {
-        return method.handle(request);
+        return method.handle(request.get());
       }
     };
   }
-
 }
