@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="jscolendar.components.TabView"
 >
     <Label styleClass="login-title">Teachers view</Label>
-
-    <JFXTreeTableView fx:id="table" prefWidth="300"/>
+    <JFXTextField fx:id="searchField">Chercher</JFXTextField>
+    <JFXTreeTableView fx:id="table"/>
+    <HBox>
+        <JFXButton fx:id="previous" text="prev" onAction="#previousPage"/>
+        <JFXButton fx:id="next" text="next" onAction="#nextPage"/>
+    </HBox>
 </VBox>
