@@ -101,6 +101,7 @@ public class TabView {
       actualPage--;
       TeacherListResponse result = getTeacherListResponse();
       ObservableList<Teacher> data = createDataFromAPI(result);
+      initTableWithColums(checkBoxColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn);
       addDataToTable(checkBoxColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn, data);
 
     }
@@ -116,6 +117,7 @@ public class TabView {
       return;
     }
     ObservableList<Teacher> data = createDataFromAPI(result);
+    initTableWithColums(checkBoxColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn);
     addDataToTable(checkBoxColumn, firstNameColumn, lastNameColumn, emailColumn, phoneNumberColumn, data);
   }
 }
