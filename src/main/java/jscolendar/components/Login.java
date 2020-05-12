@@ -4,14 +4,23 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import io.swagger.client.api.AuthApi;
 import io.swagger.client.model.LoginRequest;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.SkinBase;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.skin.TextFieldSkin;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.robot.Robot;
 import jscolendar.UserSession;
 import jscolendar.router.AppRouter;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
+
+import javax.swing.*;
 
 public class Login extends StackPane {//extend just to test pop
   @FXML
@@ -45,6 +54,32 @@ public class Login extends StackPane {//extend just to test pop
         accessiblePassword.validate();
       }
     }));
+
+    usernameField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+      KeyCode code = event.getCode();
+
+      if ((code == KeyCode.TAB || code == KeyCode.ENTER) && !event.isShiftDown() && !event.isControlDown()) {
+        event.consume();
+        passwordField.requestFocus();
+      }
+    });
+
+    passwordField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+      KeyCode code = event.getCode();
+
+      if (code == KeyCode.TAB && event.isShiftDown() && !event.isControlDown()) {
+        event.consume();
+        usernameField.requestFocus();
+      }
+
+      else if (code == KeyCode.ENTER && !event.isShiftDown() && !event.isControlDown()) {
+        event.consume();
+        onSubmit();
+      }
+    });
+
+    // Auto-focus the username field
+    Platform.runLater(() -> usernameField.requestFocus());
   }
 
   @FXML
