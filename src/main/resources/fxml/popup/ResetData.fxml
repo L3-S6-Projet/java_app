@@ -15,5 +15,4 @@
             <JFXButton text="%popup.button.save" onAction="#onCreate"/>
         </HBox>
     </VBox>
-
 </fx:root>

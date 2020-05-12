@@ -3,7 +3,7 @@ package jscolendar.components;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import jscolendar.components.popup.ChangePassWord;
-import jscolendar.components.popup.CreateTeacher;
+import jscolendar.components.popup.ResetData;
 import jscolendar.events.ModalEvent;
 
 public class SettingsView extends StackPane {
@@ -19,8 +19,7 @@ public class SettingsView extends StackPane {
   @FXML
   private void resetData () {
     this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new CreateTeacher())
+      new ModalEvent(ModalEvent.OPEN, new ResetData())
     );
-    //todo make popup
   }
 }
