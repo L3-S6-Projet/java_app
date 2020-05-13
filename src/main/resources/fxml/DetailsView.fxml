@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.DetailsView?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx" type="jscolendar.components.DetailsView">
+
+    <VBox style="-fx-min-height: 500px;-fx-min-width: 500px">
+        <HBox id="header">
+            <JFXButton fx:id="returnButton">
+                <FontIcon iconLiteral="mdi-arrow-left"/>
+            </JFXButton>
+            <Label fx:id="title"/>
+            <JFXComboBox fx:id="select">
+                <items>
+                    <Label text="%calendar.type.day"/>
+                    <Label text="%calendar.type.week"/>
+                    <Label text="%calendar.type.month"/>
+                </items>
+            </JFXComboBox>
+            <FontIcon iconLiteral="mdi-border-color"/>
+        </HBox>
+        <HBox>
+            <VBox fx:id="subLeft">
+                <VBox fx:id="info">
+                    <Label text="%calendar.title.information"/>
+                </VBox>
+
+            </VBox>
+            <VBox style="-fx-background-color: red;-fx-min-width: 250px;-fx-min-height: 250px; "/>
+        </HBox>
+    </VBox>
+
+
+</fx:root>
+
+
