@@ -84,6 +84,8 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
 
     var checkbox = new JFXCheckBox();
     checkbox.getStyleClass().add("table-check-box");
+    System.out.println(table.getRoot());
+    // FIXME :: table.getRoot() can be null
     checkbox.selectedProperty().addListener(((observable, oldValue, newValue) ->
       table.getRoot().getChildren().forEach(tTreeItem -> {
         ((Selectable) tTreeItem.getValue()).selectedProperty().set(newValue);

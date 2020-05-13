@@ -3,37 +3,37 @@ package jscolendar.components;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import io.swagger.client.api.StudentsApi;
+import io.swagger.client.api.ClassroomApi;
+import io.swagger.client.model.ClassroomsList;
 import io.swagger.client.model.IDRequest;
 import io.swagger.client.model.SimpleSuccessResponse;
-import io.swagger.client.model.StudentListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import jscolendar.components.popup.CreateStudent;
-import jscolendar.models.Student;
+import jscolendar.components.popup.CreateRoom;
+import jscolendar.models.Classroom;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
 
 import java.util.stream.Collectors;
 
-public class Students extends AbstractTableView<Student> {
-  @FXML private JFXTreeTableColumn<Student, String> firstName, lastName, className;
+public class Classrooms extends AbstractTableView<Classroom> {
+  @FXML private JFXTreeTableColumn<Classroom, String> name;
+  @FXML private JFXTreeTableColumn<Classroom, Integer> capacity;
 
-  private final StudentsApi apiInstance = new StudentsApi();
-  private final FXApiService<Integer, StudentListResponse> fetchService = new FXApiService<>(
-    page -> apiInstance.studentsGet("", page)
+  private final ClassroomApi apiInstance = new ClassroomApi();
+  private final FXApiService<Integer, ClassroomsList> fetchService = new FXApiService<>(
+    page -> apiInstance.classroomsGet("", page)
   );
   private final FXApiService<IDRequest, SimpleSuccessResponse> deleteService = new FXApiService<>(
-    apiInstance::studentsDelete
+    apiInstance::classroomsDelete
   );
 
   @Override
   protected void initColumns () {
-    firstName.setCellValueFactory(param -> param.getValue().getValue().firstNameProperty());
-    lastName.setCellValueFactory(param -> param.getValue().getValue().lastNameProperty());
-    className.setCellValueFactory(param -> param.getValue().getValue().classNameProperty());
+    name.setCellValueFactory(param -> param.getValue().getValue().nameProperty());
+    capacity.setCellValueFactory(param -> param.getValue().getValue().capacityProperty().asObject());
   }
 
   @Override
@@ -44,14 +44,14 @@ public class Students extends AbstractTableView<Student> {
     fetchService.setOnSucceeded(event -> {
       var response = fetchService.getValue();
       total.set(response.getTotal());
-      var students = FXCollections.observableList(
-        response.getStudents().stream().map(Student::new).collect(Collectors.toList())
+      var classrooms = FXCollections.observableList(
+        response.getClassrooms().stream().map(Classroom::new).collect(Collectors.toList())
       );
-      table.setRoot(new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren));
+      table.setRoot(new RecursiveTreeItem<>(classrooms, RecursiveTreeObject::getChildren));
     });
 
     fetchService.setOnFailed(dontCare -> {
-      // @TODO
+       // @TODO
       System.out.println(APIErrorUtil.getErrorMessage(fetchService.getException()));
     });
 
@@ -65,11 +65,11 @@ public class Students extends AbstractTableView<Student> {
 
   @Override
   protected Region getModalContent () {
-    return new CreateStudent();
+    return new CreateRoom();
   }
 
   @Override
-  protected Region getDetailsView (Student item) {
+  protected Region getDetailsView (Classroom item) {
     // @TODO
     return new VBox();
   }
