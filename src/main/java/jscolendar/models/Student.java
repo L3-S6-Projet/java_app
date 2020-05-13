@@ -25,22 +25,22 @@ public class Student extends RecursiveTreeObject<Student> implements Selectable 
 
   @Override
   public BooleanProperty selectedProperty () {
-    return null;
+    return selected;
   }
 
   public boolean isSelected () {
     return selected.get();
   }
 
-  public StringProperty getFirstName () {
+  public StringProperty firstNameProperty () {
     return firstName;
   }
 
-  public StringProperty getLastName () {
+  public StringProperty lastNameProperty () {
     return lastName;
   }
 
-  public StringProperty getClassName () {
+  public StringProperty classNameProperty () {
     return className;
   }
 }
