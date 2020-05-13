@@ -131,7 +131,8 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
   private void updatePaginationLabel () {
     int last = page.get() * itemPerPage;
     int first = last - itemPerPage + 1;
-    paginationLabel.textProperty().set(String.format("%d-%d of %d", first, last, total.get()));
+    paginationLabel.textProperty().set(String.format(
+      "%d-%d of %d", first, Math.min(last, total.get()), total.get()));
   }
 
   @FXML protected void onPreviousPage () {
