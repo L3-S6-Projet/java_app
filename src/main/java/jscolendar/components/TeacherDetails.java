@@ -37,16 +37,19 @@ public class TeacherDetails extends StackPane {
   private final Integer id;
 
   public TeacherDetails (Integer id) {
-    FXUtil.loadFXML("/fxml/TeacherDetails.fxml", this, this, I18n.getBundle());
     this.id = id;
+    FXUtil.loadFXML("/fxml/TeacherDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
   private void initialize () {
     infoContent = new JFXListView<>();
+    select.getSelectionModel().selectLast();
     title.setText("Enseignant(e)");
+
     TeacherApi apiInstance = new TeacherApi();
     TeacherResponse result = null;
+
     try {
       result = apiInstance.teachersIdGet(id);
     } catch (ApiException e) {
