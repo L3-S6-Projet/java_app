@@ -34,9 +34,11 @@ public class DetailsView extends StackPane {
   private VBox info;
   @FXML
   private JFXListView<Label> infoContent;
+  private final Integer id;
 
-  public DetailsView () {
+  public DetailsView (Integer id) {
     FXUtil.loadFXML("/fxml/popup/enseign/DetailsView.fxml", this, this, I18n.getBundle());
+    this.id = id;
   }
 
   @FXML
@@ -46,7 +48,7 @@ public class DetailsView extends StackPane {
     TeacherApi apiInstance = new TeacherApi();
     TeacherResponse result = null;
     try {
-      result = apiInstance.teachersIdGet(10);
+      result = apiInstance.teachersIdGet(id);
     } catch (ApiException e) {
       System.err.println("Exception when calling TeacherApi#teachersGet");
       e.printStackTrace();
@@ -60,6 +62,16 @@ public class DetailsView extends StackPane {
     JFXDatePicker datePicker = new JFXDatePicker();
     datePicker.setOverLay(true);
     subLeft.getChildren().add(datePicker);
+  }
+
+  @FXML
+  private void returnToPrevView () {
+    ((StackPane) this.getParent()).getChildren().remove(this);
+  }
+
+  @FXML
+  private void selectCalendarType () {
+    //todo change calendar type
   }
 
 }

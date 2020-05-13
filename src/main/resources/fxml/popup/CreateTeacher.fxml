@@ -12,17 +12,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import jscolendar.components.popup.CreateTeacher?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-         type="jscolendar.components.popup.CreateTeacher">
+         type="jscolendar.components.popup.CreateTeacher" stylesheets="popup.css">
     <VBox GridPane.columnIndex="0">
-        <GridPane VBox.vgrow="ALWAYS">
-            <Label text="%poup.title.creation.teacher" GridPane.rowIndex="0"/>
-            <VBox GridPane.rowIndex="1" alignment="CENTER">
+        <GridPane VBox.vgrow="ALWAYS" styleClass="body">
+            <Label text="%poup.title.creation.teacher" GridPane.rowIndex="0" styleClass="title"/>
+            <VBox GridPane.rowIndex="1" alignment="CENTER" styleClass="fieldBox">
                 <HBox alignment="BASELINE_LEFT" spacing="10">
                     <Label fx:id="errorLabel"/>
                 </HBox>
                 <JFXTextField fx:id="firstName"
                               labelFloat="true"
-                              promptText="%popup.field.firstName" focusTraversable="false">
+                              promptText="%popup.field.firstName" focusTraversable="false" styleClass="field">
                     <validators>
                         <RequiredFieldValidator message="%popup.field.firstName.message.required"/>
                         <RegexValidator
@@ -32,7 +32,7 @@
                 </JFXTextField>
                 <JFXTextField fx:id="lastName"
                               labelFloat="true"
-                              promptText="%popup.field.name" focusTraversable="false">
+                              promptText="%popup.field.name" focusTraversable="false" styleClass="field">
                     <validators>
                         <RequiredFieldValidator message="%popup.field.name.message.required"/>
                         <RegexValidator
@@ -42,15 +42,15 @@
                 </JFXTextField>
                 <JFXTextField fx:id="email"
                               labelFloat="true"
-                              promptText="%popup.field.email" focusTraversable="false">
+                              promptText="%popup.field.email" focusTraversable="false" styleClass="field">
                 </JFXTextField>
                 <JFXTextField fx:id="phoneNumber"
                               labelFloat="true"
-                              promptText="%popup.field.phoneNumber" focusTraversable="false">
+                              promptText="%popup.field.phoneNumber" focusTraversable="false" styleClass="field">
                 </JFXTextField>
                 <JFXTextField fx:id="grade"
                               labelFloat="true"
-                              promptText="%popup.field.grade" focusTraversable="false">
+                              promptText="%popup.field.grade" focusTraversable="false" styleClass="field">
                     <validators>
                         <RequiredFieldValidator message="%popup.field.grade.message.required"/>
                         <RegexValidator
@@ -60,7 +60,7 @@
                 </JFXTextField>
             </VBox>
             <HBox GridPane.rowIndex="2" alignment="CENTER_RIGHT">
-                <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+                <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel" styleClass="button"/>
                 <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
             </HBox>
             <columnConstraints>

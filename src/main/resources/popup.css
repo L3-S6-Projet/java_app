@@ -1,0 +1,25 @@
+.title {
+    -fx-font-size: 1.5em;
+}
+
+.body {
+    -fx-padding: 2em 2em;
+}
+
+.field {
+    -fx-text-fill: rgba(0, 0, 0, 0.6);
+    -fx-font-size: 1.2em;
+    -fx-background-color: #E8E8E8;
+    -jfx-focus-color: rgba(0, 0, 0, 0.38);
+    -jfx-unfocus-color: #E8E8E8;
+}
+
+.fieldBox {
+    -fx-spacing: 3em;
+}
+
+.button {
+    -fx-font-size: 1.5em;
+    -fx-font-family: Roboto;
+    -fx-text-fill: #3F51B5;
+}
