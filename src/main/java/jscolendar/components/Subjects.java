@@ -10,7 +10,6 @@ import io.swagger.client.model.SubjectListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import jscolendar.components.popup.CreateSubject;
 import jscolendar.models.Subject;
 import jscolendar.util.APIErrorUtil;
@@ -67,6 +66,6 @@ public class Subjects extends AbstractTableView<Subject> {
   @Override
   protected Region getDetailsView (Subject item) {
     // @TODO
-    return new VBox();
+    return new UEDetails();
   }
 }

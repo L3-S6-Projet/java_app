@@ -10,7 +10,6 @@ import io.swagger.client.model.SimpleSuccessResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import jscolendar.components.popup.CreatePromo;
 import jscolendar.models.ClassModel;
 import jscolendar.util.APIErrorUtil;
@@ -70,6 +69,6 @@ public class Classes extends AbstractTableView<ClassModel> {
   @Override
   protected Region getDetailsView (ClassModel item) {
     // @TODO
-    return new VBox();
+    return new PromoDetails();
   }
 }
