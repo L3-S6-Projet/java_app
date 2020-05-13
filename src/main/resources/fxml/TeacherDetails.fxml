@@ -14,7 +14,7 @@
 
     <VBox GridPane.columnIndex="0" style="-fx-background-color: greenyellow">
         <GridPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-            <HBox id="header" GridPane.rowIndex="0">
+            <HBox id="header" GridPane.rowIndex="0" style="-fx-border-color: purple">
                 <JFXButton fx:id="returnButton" onAction="#returnToPrevView">
                     <graphic>
                         <FontIcon iconLiteral="mdi-arrow-left"/>
@@ -25,28 +25,28 @@
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <Label text="%calendar.type.day"/>
-                        <Label text="%calendar.type.week"/>
-                        <Label text="%calendar.type.month"/>
-                    </FXCollections>
-                </items>
-            </JFXComboBox>
-            <FontIcon iconLiteral="mdi-border-color"/>
-        </HBox>
-            <HBox GridPane.rowIndex="1">
-                <VBox fx:id="subLeft">
+                            <Label text="%calendar.type.week"/>
+                            <Label text="%calendar.type.month"/>
+                        </FXCollections>
+                    </items>
+                </JFXComboBox>
+                <FontIcon iconLiteral="mdi-border-color"/>
+            </HBox>
+            <HBox GridPane.rowIndex="1" style="-fx-border-color: red">
+                <VBox fx:id="subLeft" GridPane.columnIndex="0">
                     <VBox fx:id="info">
                         <Label text="%calendar.title.information"/>
-                        <JFXListView fx:id="infoContent">
+                        <JFXListView fx:id="infoContent" maxHeight="Infinity">
                             <HBox>
                                 <FontIcon iconLiteral="mdi-account-circle"/>
                                 <VBox>
                                     <Label fx:id="name"/>
                                     <Label text="%calendar.details.name"/>
                                 </VBox>
-                        </HBox>
-                        <VBox>
-                            <Label fx:id="userName"/>
-                            <Label text="%calendar.details.username"/>
+                            </HBox>
+                            <VBox>
+                                <Label fx:id="userName"/>
+                                <Label text="%calendar.details.username"/>
                         </VBox>
                         <HBox>
                             <FontIcon iconLiteral="mdi-email"/>
@@ -70,15 +70,15 @@
                         </JFXListView>
                     </VBox>
                 </VBox>
-                <VBox id="calendar"/>
+                <VBox id="calendar" GridPane.columnIndex="1" style="-fx-border-color: blue; -fx-pref-width: 400px;"/>
             </HBox>
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="250.0" percentWidth="100.0"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="70"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="20"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="80"/>
             </rowConstraints>
         </GridPane>
     </VBox>

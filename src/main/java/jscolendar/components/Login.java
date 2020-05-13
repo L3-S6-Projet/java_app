@@ -6,21 +6,15 @@ import io.swagger.client.api.AuthApi;
 import io.swagger.client.model.LoginRequest;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.SkinBase;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.robot.Robot;
 import jscolendar.UserSession;
 import jscolendar.router.AppRouter;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
-
-import javax.swing.*;
 
 public class Login extends StackPane {//extend just to test pop
   @FXML
@@ -85,8 +79,9 @@ public class Login extends StackPane {//extend just to test pop
   @FXML
   private void onSubmit () {
     if (!usernameField.validate() || !passwordField.validate()) return;
+    if (toggleButton.isDisabled()) return;
     setFormDisabled(true);
-    doLogin(usernameField.getText(), usernameField.getText());
+    doLogin(usernameField.getText(), passwordField.getText());
   }
 
   private void setFormDisabled (boolean disabled) {
