@@ -81,7 +81,7 @@ public class Nav {
         .withLinkTo("main/classes").withFXML("Classes")
         .withVisibilityRoles(Role.ADM).build(),
       new NavElement.Builder(I18n.get("sidebar.ue")).withIcon("mdi-library-books")
-        .withLinkTo("main/ue").withFXML("UE")
+        .withLinkTo("main/ue").withFXML("Subjects")
         .withVisibilityRoles(Role.ADM, Role.STU, Role.TEA).build(),
       new NavElement.Builder(I18n.get("sidebar.settings")).withIcon("mdi-settings")
         .withLinkTo("main/settings").withFXML("Settings")

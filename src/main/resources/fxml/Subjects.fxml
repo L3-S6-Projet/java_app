@@ -8,7 +8,7 @@
 
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-           fx:controller="jscolendar.components.Classes" fx:id="container"
+           fx:controller="jscolendar.components.Subjects" fx:id="container"
            styleClass="table-view-outer" stylesheets="table-view.css" VBox.vgrow="ALWAYS">
 
     <VBox>
@@ -28,7 +28,7 @@
                     </HBox>
                     <HBox fx:id="header" alignment="CENTER" styleClass="table-header">
                         <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
-                            <Label text="%class.title"/>
+                            <Label text="%subjects.title"/>
                         </HBox>
                         <VBox alignment="BOTTOM_RIGHT">
                             <TextField styleClass="search-input" />
@@ -44,8 +44,8 @@
                     </columnResizePolicy>
                     <columns>
                         <JFXTreeTableColumn fx:id="select"  styleClass="table-checked" resizable="false"/>
-                        <JFXTreeTableColumn text="%class.col.name" fx:id="name"/>
-                        <JFXTreeTableColumn text="%class.col.level" fx:id="level"/>
+                        <JFXTreeTableColumn text="%subjects.col.classname" fx:id="classname"/>
+                        <JFXTreeTableColumn text="%subjects.col.name" fx:id="name"/>
                     </columns>
                 </JFXTreeTableView>
             </center>
