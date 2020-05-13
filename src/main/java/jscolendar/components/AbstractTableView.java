@@ -85,7 +85,7 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
     checkbox.selectedProperty().addListener(((observable, oldValue, newValue) ->
       table.getRoot().getChildren().forEach(tTreeItem -> {
         ((Selectable) tTreeItem.getValue()).selectedProperty().set(newValue);
-        selectionCount.set(newValue ? itemPerPage : 0);
+        selectionCount.set(newValue ? table.getCurrentItemsCount() : 0);
       })
     ));
 
