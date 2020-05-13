@@ -2,7 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.control.Label?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import jscolendar.components.DetailsView?>
@@ -29,6 +30,41 @@
             <VBox fx:id="subLeft">
                 <VBox fx:id="info">
                     <Label text="%calendar.title.information"/>
+                    <JFXListView fx:id="infoContent">
+                        <items>
+                            <HBox>
+                                <FontIcon iconLiteral="mdi-account-circle"/>
+                                <VBox>
+                                    <Label fx:id="name"/>
+                                    <Label text="%calendar.details.name"/>
+                                </VBox>
+                            </HBox>
+                            <VBox>
+                                <Label fx:id="userName"/>
+                                <Label text="%calendar.details.username"/>
+                            </VBox>
+                            <HBox>
+                                <FontIcon iconLiteral="mdi-email"/>
+                                <VBox>
+                                    <Label fx:id="email"/>
+                                    <Label text="%calendar.details.email"/>
+                                </VBox>
+                            </HBox>
+                            <HBox>
+                                <FontIcon iconLiteral="mdi-phone"/>
+                                <VBox>
+                                    <Label fx:id="phoneNumber"/>
+                                    <Label text="%calendar.details.phone"/>
+                                </VBox>
+                            </HBox>
+                            <VBox>
+                                <Label fx:id="teacher"/>
+                                <Label text="%calendar.details.teacher"/>
+                            </VBox>
+
+
+                        </items>
+                    </JFXListView>
                 </VBox>
 
             </VBox>
