@@ -27,8 +27,7 @@
 }
 
 .nav-cell-container {
-    -fx-spacing: 1em;
-    -fx-padding: 0.4em;
+    -fx-padding: 6px 0 6px 32px;
 }
 
 .list-cell {
@@ -44,6 +43,7 @@
 
 .list-cell Label {
     -fx-text-fill: #BDBDBD;
+    -fx-padding: 0 0 0 8px;
 }
 
 .list-cell:odd {

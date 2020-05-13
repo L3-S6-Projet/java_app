@@ -2,27 +2,23 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
 <?import jscolendar.components.SideBar?>
 <fx:root xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          type="jscolendar.components.SideBar" styleClass="sidebar-outer">
 
-    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0"
-          alignment="CENTER" styleClass="sidebar-header">
-        <Label fx:id="username" styleClass="sidebar-username" >Brookline Fisher</Label>
-        <Label fx:id="userRoleLabel" styleClass="sidebar-user-role" >Administrateur à AMU</Label>
+    <VBox fx:id="column">
+        <VBox alignment="CENTER" styleClass="sidebar-header">
+            <Label fx:id="username" styleClass="sidebar-username" >Brookline Fisher</Label>
+            <Label fx:id="userRoleLabel" styleClass="sidebar-user-role" >Administrateur à AMU</Label>
+        </VBox>
+
+        <ListView VBox.vgrow="ALWAYS" fx:id="nav" styleClass="main-nav" />
+
+        <VBox alignment="BOTTOM_CENTER">
+            <Label text="%sidebar.copyright" styleClass="sidebar-copyright-text" />
+        </VBox>
     </VBox>
 
-    <ListView fx:id="nav" styleClass="main-nav" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-
-    <VBox GridPane.rowIndex="2" GridPane.columnIndex="0"
-          alignment="BOTTOM_CENTER">
-        <Label text="%sidebar.copyright" styleClass="sidebar-copyright-text" />
-    </VBox>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints vgrow="ALWAYS"/>
-    </rowConstraints>
 </fx:root>

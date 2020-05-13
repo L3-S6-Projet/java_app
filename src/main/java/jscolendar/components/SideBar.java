@@ -10,7 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 import jscolendar.UserSession;
 import jscolendar.models.Nav;
 import jscolendar.router.AppRouter;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 public class SideBar extends GridPane {
   @FXML private Label username, userRoleLabel;
   @FXML private ListView<Nav.NavElement> nav;
+  @FXML private VBox column;
 
   private static class NavElementListCell extends ListCell<Nav.NavElement> {
     private final HBox cellContent = new HBox();
@@ -76,5 +79,7 @@ public class SideBar extends GridPane {
     dropShadow.setOffsetY(0.0);
     dropShadow.setColor(new Color(0, 0, 0, .25));
     setEffect(dropShadow);
+
+    column.prefHeightProperty().bind(heightProperty());
   }
 }
