@@ -9,6 +9,7 @@ import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.TeacherResponse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.util.FXUtil;
@@ -19,19 +20,17 @@ public class TeacherDetails extends StackPane {
 
 
   @FXML
+  private HBox body, header;
+  @FXML
   private Label name, userName, email, phoneNumber, teacher;
   @FXML
   private Label title;
   @FXML
-  private VBox services;
+  private VBox services, subLeft, all, info;
   @FXML
-  private JFXButton returnButton;
+  private JFXButton returnButton, edit;
   @FXML
   private JFXComboBox<Label> select;
-  @FXML
-  private VBox subLeft;
-  @FXML
-  private VBox info;
   @FXML
   private JFXListView<Label> infoContent;
   private final Integer id;
@@ -70,6 +69,11 @@ public class TeacherDetails extends StackPane {
   @FXML
   private void returnToPrevView () {
     ((StackPane) this.getParent()).getChildren().remove(this);
+  }
+
+  @FXML
+  private void editButton () {
+
   }
 
   @FXML
