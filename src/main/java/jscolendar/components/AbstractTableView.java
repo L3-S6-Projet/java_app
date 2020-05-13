@@ -14,10 +14,12 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableCell;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import jscolendar.events.ModalEvent;
 import jscolendar.models.Selectable;
 
@@ -25,7 +27,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implements Initializable {
-  @FXML protected VBox teachersView;
+  @FXML protected StackPane container;
   @FXML protected HBox header, headerSelected;
   @FXML protected Label countLabel, paginationLabel;
   @FXML protected JFXTreeTableView<T> table;
@@ -96,6 +98,8 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
     table.setEditable(false);
     table.setPrefHeight((itemPerPage + 1) * table.getFixedCellSize() + 1);
 
+    table.addEventHandler(MouseEvent.MOUSE_CLICKED, this::showDetails);
+
     fetchData();
 
     page.addListener(((observable, oldValue, newValue) -> fetchData()));
@@ -107,6 +111,15 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
   protected abstract void fetchData ();
   protected abstract void delete ();
   protected abstract Region getModalContent ();
+  protected abstract Region getDetailsView (T item);
+
+  private void showDetails (MouseEvent event) {
+    if (!event.getButton().equals(MouseButton.PRIMARY)) return;
+    if (event.getClickCount() < 2) return;
+
+    var item = table.getSelectionModel().getSelectedItem().getValue();
+    container.getChildren().add(getDetailsView(item));
+  }
 
   @FXML protected void onNextPage () {
     page.set(page.get() + 1);
@@ -137,6 +150,6 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
 
   @FXML protected void onAdd (ActionEvent event) {
     event.consume();
-    teachersView.fireEvent(new ModalEvent(ModalEvent.OPEN, getModalContent()));
+    container.fireEvent(new ModalEvent(ModalEvent.OPEN, getModalContent()));
   }
 }

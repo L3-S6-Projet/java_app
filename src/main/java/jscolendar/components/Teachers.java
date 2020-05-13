@@ -1,5 +1,6 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -11,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import jscolendar.components.popup.CreateTeacher;
 import jscolendar.models.Teacher;
 import jscolendar.util.APIErrorUtil;
@@ -77,5 +79,10 @@ public class Teachers extends AbstractTableView<Teacher> {
   @Override
   protected Region getModalContent () {
     return new CreateTeacher();
+  }
+
+  @Override
+  protected Region getDetailsView (Teacher teacher) {
+    return new TeacherDetails(teacher.getId());
   }
 }
