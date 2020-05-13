@@ -1,57 +1,46 @@
 package jscolendar.models;
 
-import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import io.swagger.client.model.StudentListResponseStudents;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class Student {
+public class Student extends RecursiveTreeObject<Student> implements Selectable {
+  private final int id;
+  private final BooleanProperty selected = new SimpleBooleanProperty(false);
+  private final StringProperty firstName, lastName, className;
 
-  private JFXCheckBox isSelected;
-  private String id, firstName, lastName, className;
-
-  public Student (String id, String firstName, String lastName, String className) {
-    isSelected = new JFXCheckBox();
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.className = className;
+  public Student (StudentListResponseStudents student) {
+    this.id = student.getId();
+    this.firstName = new SimpleStringProperty(student.getFirstName());
+    this.lastName = new SimpleStringProperty(student.getLastName());
+    this.className = new SimpleStringProperty(student.getClassName());
   }
 
-  public JFXCheckBox getIsSelected () {
-    return isSelected;
-  }
-
-  public void setIsSelected (JFXCheckBox isSelected) {
-    this.isSelected = isSelected;
-  }
-
-  public String getId () {
+  public int getId () {
     return id;
   }
 
-  public void setId (String id) {
-    this.id = id;
+  @Override
+  public BooleanProperty selectedProperty () {
+    return null;
   }
 
-  public String getFirstName () {
+  public boolean isSelected () {
+    return selected.get();
+  }
+
+  public StringProperty getFirstName () {
     return firstName;
   }
 
-  public void setFirstName (String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName () {
+  public StringProperty getLastName () {
     return lastName;
   }
 
-  public void setLastName (String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getClassName () {
+  public StringProperty getClassName () {
     return className;
-  }
-
-  public void setClassName (String className) {
-    this.className = className;
   }
 }
