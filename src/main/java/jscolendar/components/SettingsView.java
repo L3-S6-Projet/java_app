@@ -5,6 +5,7 @@ import javafx.scene.layout.StackPane;
 import jscolendar.components.popup.ChangePassWord;
 import jscolendar.components.popup.ResetData;
 import jscolendar.events.ModalEvent;
+
 public class SettingsView extends StackPane {
 
   //todo add css to view
