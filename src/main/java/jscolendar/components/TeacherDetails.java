@@ -9,6 +9,7 @@ import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.TeacherResponse;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -63,7 +64,12 @@ public class TeacherDetails extends StackPane {
     teacher.setText("Professeur");
     JFXDatePicker datePicker = new JFXDatePicker();
     datePicker.setOverLay(true);
+    datePicker.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> dateListener());
     subLeft.getChildren().add(datePicker);
+  }
+
+  private void dateListener () {
+
   }
 
   @FXML
