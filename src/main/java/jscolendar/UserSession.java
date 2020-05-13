@@ -24,14 +24,24 @@ public class UserSession {
     configureApiClient();
   }
 
+  public void destroy() {
+    this.response = null;
+    unconfigureApiClient();
+  }
+
   private void configureApiClient() {
-    // TODO: change this if the client changes ony day
+    // TODO: change this if the way to obtain a client changes ony day
     ApiClient client = Configuration.getDefaultApiClient();
 
-    // TODO: undo this when logging out
     ApiKeyAuth auth = (ApiKeyAuth) client.getAuthentication("token");
     auth.setApiKey(response.getToken());
     auth.setApiKeyPrefix("Bearer");
+  }
+
+  private void unconfigureApiClient() {
+    ApiClient client = Configuration.getDefaultApiClient();
+    ApiKeyAuth auth = (ApiKeyAuth) client.getAuthentication("token");
+    auth.setApiKey("");
   }
 
   public boolean isValid() {

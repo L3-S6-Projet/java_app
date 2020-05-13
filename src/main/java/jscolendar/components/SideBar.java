@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
+import jscolendar.App;
 import jscolendar.UserSession;
 import jscolendar.models.Nav;
 import jscolendar.router.AppRouter;
@@ -70,8 +71,13 @@ public class SideBar extends GridPane {
       Nav.create().filter(Nav.visibilityFilter(user.getKind())).collect(Collectors.toList())
     ));
     // @TODO :: handle logout case
-    nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-      AppRouter.goTo(newValue.linkTo));
+    nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+      if (newValue.linkTo.equals("main/logout")) {
+        UserSession.getInstance().destroy();
+        AppRouter.goTo("/login");
+      } else
+        AppRouter.goTo(newValue.linkTo);
+    });
 
     DropShadow dropShadow = new DropShadow();
     dropShadow.setRadius(4.0);
