@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import com.jfoenix.controls.JFXButton?>
 
-<HBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml">
-    <Label>Classes view</Label>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="jscolendar.components.Classes" fx:id="container"
+           styleClass="table-view-outer" stylesheets="table-view.css" VBox.vgrow="ALWAYS">
 
-</HBox>
+    <VBox>
+        <BorderPane styleClass="table-view-container">
+            <top>
+                <StackPane minHeight="115">
+                    <HBox fx:id="headerSelected" styleClass="table-header-selection" alignment="CENTER_LEFT">
+                        <HBox HBox.hgrow="ALWAYS" spacing="10" alignment="CENTER_LEFT">
+                            <Label fx:id="countLabel" />
+                            <Label text="selectionnés" />
+                        </HBox>
+                        <JFXButton onAction="#onDelete" >
+                            <graphic>
+                                <FontIcon iconLiteral="mdi-delete" iconSize="26" iconColor="#FFF"/>
+                            </graphic>
+                        </JFXButton>
+                    </HBox>
+                    <HBox fx:id="header" alignment="CENTER" styleClass="table-header">
+                        <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+                            <Label text="%class.title"/>
+                        </HBox>
+                        <VBox alignment="BOTTOM_RIGHT">
+                            <TextField styleClass="search-input" />
+                        </VBox>
+
+                    </HBox>
+                </StackPane>
+            </top>
+            <center>
+                <JFXTreeTableView fx:id="table" HBox.hgrow="ALWAYS" fixedCellSize="51">
+                    <columnResizePolicy>
+                        <JFXTreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                    <columns>
+                        <JFXTreeTableColumn fx:id="select"  styleClass="table-checked" resizable="false"/>
+                        <JFXTreeTableColumn text="%class.col.name" fx:id="name"/>
+                        <JFXTreeTableColumn text="%class.col.level" fx:id="level"/>
+                    </columns>
+                </JFXTreeTableView>
+            </center>
+            <bottom>
+                <HBox styleClass="table-pagination" alignment="CENTER_RIGHT" spacing="5">
+                    <Label fx:id="paginationLabel" />
+                    <JFXButton fx:id="prevButton" onAction="#onPreviousPage" >
+                        <graphic>
+                            <FontIcon iconLiteral="mdi-chevron-left" iconSize="24"/>
+                        </graphic>
+                    </JFXButton>
+                    <JFXButton fx:id="nextButton" onAction="#onNextPage">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi-chevron-right" iconSize="24"/>
+                        </graphic>
+                    </JFXButton>
+                </HBox>
+            </bottom>
+        </BorderPane>
+        <VBox VBox.vgrow="ALWAYS" alignment="BOTTOM_RIGHT" styleClass="table-view-footer">
+            <JFXButton onAction="#onAdd" text="+" styleClass="add-button" visible="${header.visible}"/>
+        </VBox>
+    </VBox>
+</StackPane>
