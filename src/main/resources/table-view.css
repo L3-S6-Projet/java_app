@@ -9,6 +9,11 @@
 .table-header {
     -fx-background-color: #FAFAFA;
 }
+
+.search-input {
+    /*@TODO*/
+}
+
 .table-header-selection {
     -fx-font-size: 16px;
     -fx-background-color: #303F9F;

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import jscolendar.events.ModalEvent;
 
-public class CreateUE extends StackPane {
+public class CreateSubject extends StackPane {
   @FXML
   private JFXTextField name, promo, responsibleTeacher;
   @FXML
