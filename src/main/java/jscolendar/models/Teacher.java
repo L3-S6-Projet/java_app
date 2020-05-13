@@ -1,68 +1,51 @@
 package jscolendar.models;
 
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import io.swagger.client.model.TeacherListResponseTeachers;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class Teacher extends RecursiveTreeObject<Teacher> {
+public class Teacher extends RecursiveTreeObject<Teacher> implements Selectable {
+  public final int id;
+  private final BooleanProperty selected = new SimpleBooleanProperty(false);
+  private final StringProperty firstName, lastName, email, phoneNumber;
 
-  private JFXCheckBox isSelected;
-  private Integer id;
-  private String firstName, lastName, email, phoneNumber;
-
-  public Teacher (Integer id, String firstName, String lastName, String email, String phoneNumber) {
-    isSelected = new JFXCheckBox();
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.phoneNumber = phoneNumber;
+  public Teacher (TeacherListResponseTeachers response) {
+    this.id = response.getId();
+    this.firstName = new SimpleStringProperty(response.getFirstName());
+    this.lastName = new SimpleStringProperty(response.getLastName());
+    this.email = new SimpleStringProperty(response.getEmail());
+    this.phoneNumber = new SimpleStringProperty(response.getPhoneNumber());
   }
 
-  public Integer getId () {
+  public int getId () {
     return id;
   }
 
-  public void setId (Integer id) {
-    this.id = id;
+  @Override
+  public BooleanProperty selectedProperty () {
+    return selected;
   }
 
-  public JFXCheckBox getIsSelected () {
-    return isSelected;
+  public boolean isSelected () {
+    return selected.get();
   }
 
-  public void setIsSelected (JFXCheckBox isSelected) {
-    this.isSelected = isSelected;
-  }
-
-  public String getFirstName () {
+  public StringProperty firstNameProperty () {
     return firstName;
   }
 
-  public void setFirstName (String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName () {
+  public StringProperty lastNameProperty () {
     return lastName;
   }
 
-  public void setLastName (String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getEmail () {
+  public StringProperty emailProperty () {
     return email;
   }
 
-  public void setEmail (String email) {
-    this.email = email;
-  }
-
-  public String getPhoneNumber () {
+  public StringProperty phoneNumberProperty () {
     return phoneNumber;
-  }
-
-  public void setPhoneNumber (String phoneNumber) {
-    this.phoneNumber = phoneNumber;
   }
 }
