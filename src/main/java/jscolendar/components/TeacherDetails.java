@@ -15,7 +15,7 @@ import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
 
-public class DetailsView extends StackPane {
+public class TeacherDetails extends StackPane {
 
 
   @FXML
@@ -36,8 +36,8 @@ public class DetailsView extends StackPane {
   private JFXListView<Label> infoContent;
   private final Integer id;
 
-  public DetailsView (Integer id) {
-    FXUtil.loadFXML("/fxml/popup/enseign/DetailsView.fxml", this, this, I18n.getBundle());
+  public TeacherDetails (Integer id) {
+    FXUtil.loadFXML("/fxml/TeacherDetails.fxml", this, this, I18n.getBundle());
     this.id = id;
   }
 

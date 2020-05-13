@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import jscolendar.components.DetailsView?>
+<?import jscolendar.components.TeacherDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
-         type="jscolendar.components.DetailsView">
+         type="jscolendar.components.TeacherDetails">
 
     <VBox style="-fx-min-height: 500px;-fx-min-width: 500px">
         <HBox id="header">
