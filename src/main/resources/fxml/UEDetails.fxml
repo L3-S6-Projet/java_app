@@ -97,9 +97,9 @@
                         </VBox>
 
                     </VBox>
-                    <VBox id="calendar" prefHeight="${body.height}" prefWidth="${body.width}" GridPane.columnIndex="1"
+                    <VBox fx:id="calendar" prefHeight="${body.height}" prefWidth="${body.width}"
+                          GridPane.columnIndex="1"
                           GridPane.rowIndex="0">
-                        <Label text="JPP DE CE TRUC DE SES GRANDS MORTS LES STUNAMIS"/>
                     </VBox>
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="20.0"/>

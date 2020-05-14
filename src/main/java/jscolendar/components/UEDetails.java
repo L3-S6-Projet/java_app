@@ -16,6 +16,8 @@ import static jscolendar.util.datePickerContent.getContent;
 public class UEDetails extends StackPane {
 
   @FXML
+  private VBox calendar;
+  @FXML
   private VBox subLeft;
   @FXML
   private JFXTabPane menu;
@@ -29,6 +31,7 @@ public class UEDetails extends StackPane {
     Node datePicker = getContent();
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
+    calendar.getChildren().add(new CalendarRoute());
   }
 
   @FXML

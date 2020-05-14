@@ -77,9 +77,8 @@
                             </JFXListView>
                         </VBox>
                     </VBox>
-                    <VBox id="calendar" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="${body.width}"
+                    <VBox fx:id="calendar" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="${body.width}"
                           prefHeight="${body.height}">
-                        <Label text="JPP DE CE TRUC DE SES GRANDS MORTS LES STUNAMIS"/>
                     </VBox>
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="20.0"/>

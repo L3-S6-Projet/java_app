@@ -14,6 +14,8 @@ import static jscolendar.util.datePickerContent.getContent;
 public class StudentDetails extends StackPane {
 
   @FXML
+  private VBox calendar;
+  @FXML
   private VBox subLeft;
 
   public StudentDetails () {
@@ -25,6 +27,7 @@ public class StudentDetails extends StackPane {
     Node datePicker = getContent();
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
+    calendar.getChildren().add(new CalendarRoute());
   }
 
   @FXML
