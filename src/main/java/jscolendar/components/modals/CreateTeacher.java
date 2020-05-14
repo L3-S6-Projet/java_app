@@ -27,7 +27,7 @@ public class CreateTeacher extends VBox {
   @FXML
   private void onCancel () {
     this.fireEvent(
-      new ModalEvent(ModalEvent.CLOSE, new CreateTeacher())
+      new ModalEvent(ModalEvent.CLOSE)
     );
   }
 
