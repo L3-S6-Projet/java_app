@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import jscolendar.components.modals.EditTeacher;
+import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
@@ -79,9 +81,9 @@ public class TeacherDetails extends StackPane {
 
   @FXML
   private void editButton () {
-    /*this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, )
-    );*/
+    this.fireEvent(
+      new ModalEvent(ModalEvent.OPEN, new EditTeacher())
+    );
 
   }
 
