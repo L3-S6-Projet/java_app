@@ -8,8 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import jscolendar.components.modals.CreateStudent?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-         type="jscolendar.components.modals.CreateStudent">
-    <Label text="%popup.title.creation.student"/>
+         type="jscolendar.components.modals.CreateStudent"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+    <Label text="%popup.title.creation.student" styleClass="modal-title"/>
     <HBox alignment="BASELINE_LEFT" spacing="10">
         <Label fx:id="errorLabel"/>
     </HBox>
