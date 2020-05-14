@@ -1,12 +1,12 @@
 package jscolendar.components.modals;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
-public class EditTeacher extends StackPane {
+public class EditTeacher extends VBox {
   public EditTeacher () {
     FXUtil.loadFXML("/fxml/modals/EditTeacher.fxml", this, this, I18n.getBundle());
   }

@@ -1,12 +1,12 @@
 package jscolendar.components.modals;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
-public class ResetData extends StackPane {
+public class ResetData extends VBox {
 
 
   public ResetData () {
