@@ -3,21 +3,21 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import jscolendar.components.UEDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<fx:root xmlns:fx="http://javafx.com/fxml"
-         xmlns="http://javafx.com/javafx"
-         type="jscolendar.components.UEDetails">
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="jscolendar.components.UEDetails"
+         xmlns="http://javafx.com/javafx/10.0.2-internal">
 
     <VBox fx:id="all" style="-fx-background-color: #FAfAFA">
         <GridPane>
-            <HBox fx:id="header" GridPane.rowIndex="0" prefWidth="${all.width}" prefHeight="${all.height}">
+            <HBox fx:id="header" prefHeight="${all.height}" prefWidth="${all.width}" GridPane.rowIndex="0">
                 <GridPane>
-                    <HBox GridPane.columnIndex="0" prefWidth="${header.width}" prefHeight="${header.height}"
-                          style="-fx-alignment: center-left">
+                    <HBox prefHeight="${header.height}" prefWidth="${header.width}" style="-fx-alignment: center-left"
+                          GridPane.columnIndex="0">
                         <JFXButton fx:id="returnButton" onAction="#returnToPrevView">
                             <graphic>
                                 <FontIcon iconLiteral="mdi-arrow-left"/>
@@ -25,8 +25,8 @@
                         </JFXButton>
                         <Label fx:id="title"/>
                     </HBox>
-                    <HBox GridPane.columnIndex="1" prefWidth="${header.width}" prefHeight="${header.height}"
-                          style="-fx-alignment: center-right">
+                    <HBox prefHeight="${header.height}" prefWidth="${header.width}" style="-fx-alignment: center-right"
+                          GridPane.columnIndex="1">
                         <JFXComboBox fx:id="select" onAction="#selectCalendarType">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
@@ -43,7 +43,7 @@
                         </JFXButton>
                     </HBox>
                     <rowConstraints>
-                        <RowConstraints vgrow="ALWAYS" percentHeight="100"/>
+                        <RowConstraints percentHeight="100" vgrow="ALWAYS"/>
                     </rowConstraints>
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
@@ -52,33 +52,53 @@
                 </GridPane>
             </HBox>
 
-            <HBox fx:id="body" GridPane.rowIndex="1" prefWidth="${all.width}" prefHeight="${all.height}">
-                <GridPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                    <VBox fx:id="subLeft" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="${body.width}"
-                          prefHeight="${body.height}">
+            <HBox fx:id="body" prefHeight="${all.height}" prefWidth="${all.width}" GridPane.rowIndex="1">
+                <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="subLeft" prefHeight="${body.height}" prefWidth="${body.width}" GridPane.columnIndex="0"
+                          GridPane.rowIndex="0">
                         <VBox fx:id="info">
                             <Label text="%calendar.title.information"/>
-                            <JFXListView fx:id="infoContent">
-                                <HBox>
-                                    <FontIcon iconLiteral="mdi-account-circle"/>
-                                    <VBox>
-                                        <Label fx:id="name"/>
-                                        <Label text="%calendar.details.name"/>
-                                    </VBox>
-                                </HBox>
-                                <VBox>
-                                    <Label fx:id="promo"/>
-                                    <Label text="%calendar.details.promo"/>
-                                </VBox>
-                                <VBox>
-                                    <Label fx:id="services"/>
-                                    <Label text="%calendar.details.services"/>
-                                </VBox>
-                            </JFXListView>
+                            <JFXTabPane fx:id="menu">
+                                <tabs>
+                                    <Tab text="%calendar.details.ue.menu.info">
+                                        <content>
+                                            <JFXListView fx:id="infoContent">
+                                                <HBox>
+                                                    <FontIcon iconLiteral="mdi-account-circle"/>
+                                                    <VBox>
+                                                        <Label fx:id="name"/>
+                                                        <Label text="%calendar.details.name"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <VBox>
+                                                    <Label fx:id="promo"/>
+                                                    <Label text="%calendar.details.promo"/>
+                                                </VBox>
+                                                <VBox>
+                                                    <Label fx:id="services"/>
+                                                    <Label text="%calendar.details.services"/>
+                                                </VBox>
+                                            </JFXListView>
+                                        </content>
+                                    </Tab>
+                                    <Tab text="%calendar.details.ue.menu.teacher">
+                                        <content>
+                                            <Label text="lol"/>
+                                        </content>
+                                    </Tab>
+                                    <Tab text="%calendar.details.ue.menu.group">
+                                        <content>
+                                            <Label text="lol"/>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </JFXTabPane>
+
                         </VBox>
+
                     </VBox>
-                    <VBox id="calendar" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="${body.width}"
-                          prefHeight="${body.height}">
+                    <VBox id="calendar" prefHeight="${body.height}" prefWidth="${body.width}" GridPane.columnIndex="1"
+                          GridPane.rowIndex="0">
                         <Label text="JPP DE CE TRUC DE SES GRANDS MORTS LES STUNAMIS"/>
                     </VBox>
                     <columnConstraints>
@@ -86,17 +106,19 @@
                         <ColumnConstraints hgrow="ALWAYS" percentWidth="80.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints vgrow="ALWAYS" percentHeight="100"/>
+                        <RowConstraints percentHeight="100" vgrow="ALWAYS"/>
                     </rowConstraints>
                 </GridPane>
             </HBox>
 
             <rowConstraints>
-                <RowConstraints vgrow="ALWAYS" percentHeight="10"/>
-                <RowConstraints vgrow="ALWAYS" percentHeight="90"/>
+                <RowConstraints percentHeight="10" vgrow="ALWAYS"/>
+                <RowConstraints percentHeight="90" vgrow="ALWAYS"/>
             </rowConstraints>
+            <columnConstraints>
+                <ColumnConstraints/>
+            </columnConstraints>
         </GridPane>
     </VBox>
 
 </fx:root>
-

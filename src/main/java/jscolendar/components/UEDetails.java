@@ -1,5 +1,6 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -16,6 +17,8 @@ public class UEDetails extends StackPane {
 
   @FXML
   private VBox subLeft;
+  @FXML
+  private JFXTabPane menu;
 
   public UEDetails () {
     FXUtil.loadFXML("/fxml/UEDetails.fxml", this, this, I18n.getBundle());
