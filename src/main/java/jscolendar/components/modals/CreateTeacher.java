@@ -4,12 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
-public class CreateTeacher extends StackPane {
+public class CreateTeacher extends VBox {
 
 
   @FXML
@@ -22,12 +22,6 @@ public class CreateTeacher extends StackPane {
 
   public CreateTeacher () {
     FXUtil.loadFXML("/fxml/modals/CreateTeacher.fxml", this, this, I18n.getBundle());
-  }
-
-  @FXML
-  public void initialize () {
-    //this.getChildren().addAll(firstName,lastName,email,phoneNumber,grade,cancel,save);
-
   }
 
   @FXML

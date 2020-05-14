@@ -1,16 +1,17 @@
 .modal-content-outer {
     -fx-padding: 2em;
+    -fx-spacing: 2em;
 }
 
-.title {
-    -fx-font-size: 1.5em;
+.modal-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
-.body {
-    -fx-padding: 2em 2em;
-}
-
-.field {
+.modal-content-outer .jfx-text-field,
+.modal-content-outer .jfx-password-field {
+    -fx-pref-height: 50px;
+    -fx-min-width: 320px;
     -fx-text-fill: rgba(0, 0, 0, 0.6);
     -fx-font-size: 1.2em;
     -fx-background-color: #E8E8E8;
@@ -18,11 +19,7 @@
     -jfx-unfocus-color: #E8E8E8;
 }
 
-.fieldBox {
-    -fx-spacing: 3em;
-}
-
-.button {
+.modal-content-outer .jfx-button {
     -fx-font-size: 1.5em;
     -fx-font-family: Roboto;
     -fx-text-fill: #3F51B5;
