@@ -10,7 +10,6 @@ import io.swagger.client.model.StudentListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import jscolendar.components.modals.CreateStudent;
 import jscolendar.models.Student;
 import jscolendar.util.APIErrorUtil;
@@ -70,7 +69,6 @@ public class Students extends AbstractTableView<Student> {
 
   @Override
   protected Region getDetailsView (Student item) {
-    // @TODO
-    return new VBox();
+    return new StudentDetails();
   }
 }

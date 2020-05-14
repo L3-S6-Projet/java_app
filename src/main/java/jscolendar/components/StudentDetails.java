@@ -2,16 +2,15 @@ package jscolendar.components;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
-import jscolendar.components.modals.CreatePromo;
+import jscolendar.components.modals.CreateStudent;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
-public class PromoDetails extends StackPane {
+public class StudentDetails extends StackPane {
 
-
-  public PromoDetails () {
-    FXUtil.loadFXML("/fxml/PromoDetails.fxml", this, this, I18n.getBundle());
+  public StudentDetails () {
+    FXUtil.loadFXML("/fxml/StudentDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
@@ -30,7 +29,7 @@ public class PromoDetails extends StackPane {
   @FXML
   private void editButton () {
     this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new CreatePromo())
+      new ModalEvent(ModalEvent.OPEN, new CreateStudent())
     );
   }
 }
