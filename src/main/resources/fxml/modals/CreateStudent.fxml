@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import jscolendar.components.popup.CreateStudent?>
+<?import jscolendar.components.modals.CreateStudent?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
-         type="jscolendar.components.popup.CreateStudent">
+         type="jscolendar.components.modals.CreateStudent">
     <VBox GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
             <Label text="%popup.title.creation.student" GridPane.rowIndex="0"/>

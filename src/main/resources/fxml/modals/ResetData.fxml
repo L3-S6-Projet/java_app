@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import jscolendar.components.popup.ResetData?>
+<?import jscolendar.components.modals.ResetData?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
-         xmlns="http://javafx.com/javafx" type="jscolendar.components.popup.ResetData">
+         xmlns="http://javafx.com/javafx" type="jscolendar.components.modals.ResetData">
     <VBox>
         <Label text="%popup.title.confirmation"/>
         <Label text="%popup.confirmation.message"/>

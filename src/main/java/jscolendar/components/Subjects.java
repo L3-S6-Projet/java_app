@@ -10,7 +10,7 @@ import io.swagger.client.model.SubjectListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
-import jscolendar.components.popup.CreateSubject;
+import jscolendar.components.modals.CreateSubject;
 import jscolendar.models.Subject;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;

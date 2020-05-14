@@ -10,7 +10,7 @@ import io.swagger.client.model.SimpleSuccessResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
-import jscolendar.components.popup.CreatePromo;
+import jscolendar.components.modals.CreatePromo;
 import jscolendar.models.ClassModel;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;

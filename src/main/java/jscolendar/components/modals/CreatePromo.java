@@ -1,4 +1,4 @@
-package jscolendar.components.popup;
+package jscolendar.components.modals;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -7,10 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import jscolendar.events.ModalEvent;
 
-public class EditUE extends StackPane {
-
+public class CreatePromo extends StackPane {
   @FXML
-  private JFXTextField name, promo, responsibleTeacher;
+  private JFXTextField name, level;
   @FXML
   private Label errorLabel;
   @FXML
@@ -32,4 +31,5 @@ public class EditUE extends StackPane {
   private void onCreate () {
 
   }
+
 }

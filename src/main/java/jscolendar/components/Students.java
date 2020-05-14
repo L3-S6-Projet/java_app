@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import jscolendar.components.popup.CreateStudent;
+import jscolendar.components.modals.CreateStudent;
 import jscolendar.models.Student;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;

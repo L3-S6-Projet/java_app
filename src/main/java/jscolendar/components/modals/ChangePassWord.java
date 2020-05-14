@@ -1,4 +1,4 @@
-package jscolendar.components.popup;
+package jscolendar.components.modals;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;

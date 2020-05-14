@@ -1,4 +1,4 @@
-package jscolendar.components.popup;
+package jscolendar.components.modals;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;

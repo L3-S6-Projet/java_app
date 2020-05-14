@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
-import jscolendar.components.popup.CreateTeacher;
+import jscolendar.components.modals.CreateTeacher;
 import jscolendar.models.Teacher;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;

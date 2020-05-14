@@ -1,4 +1,4 @@
-package jscolendar.components.popup;
+package jscolendar.components.modals;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -7,13 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import jscolendar.events.ModalEvent;
 
-public class CreatePromo extends StackPane {
+public class CreateStudent extends StackPane {
+
   @FXML
-  private JFXTextField name, level;
+  private JFXTextField firstName, lastName, promo;
   @FXML
   private Label errorLabel;
   @FXML
   private JFXButton cancel, save;
+
 
   @FXML
   public void initialize () {
@@ -31,5 +33,4 @@ public class CreatePromo extends StackPane {
   private void onCreate () {
 
   }
-
 }

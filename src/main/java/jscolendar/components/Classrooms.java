@@ -10,7 +10,7 @@ import io.swagger.client.model.SimpleSuccessResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
-import jscolendar.components.popup.CreateRoom;
+import jscolendar.components.modals.CreateRoom;
 import jscolendar.models.Classroom;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;

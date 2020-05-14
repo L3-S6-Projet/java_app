@@ -1,4 +1,4 @@
-package jscolendar.components.popup;
+package jscolendar.components.modals;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -21,7 +21,7 @@ public class CreateTeacher extends StackPane {
 
 
   public CreateTeacher () {
-    FXUtil.loadFXML("/fxml/popup/CreateTeacher.fxml", this, this, I18n.getBundle());
+    FXUtil.loadFXML("/fxml/modals/CreateTeacher.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
