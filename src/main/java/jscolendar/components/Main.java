@@ -22,7 +22,7 @@ public class Main implements Initializable {
 
   public Main () {
     this.modal = new JFXDialog();
-    this.modal.setCacheContainer(true);
+    this.modal.setCacheContainer(false);
     this.modal.setOverlayClose(false);
   }
 
