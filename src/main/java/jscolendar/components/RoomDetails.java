@@ -1,14 +1,20 @@
 package jscolendar.components;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditRoom;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
+import static jscolendar.util.datePickerContent.getContent;
+
 public class RoomDetails extends StackPane {
 
+  @FXML
+  private VBox subLeft;
 
   public RoomDetails () {
     FXUtil.loadFXML("/fxml/RoomDetails.fxml", this, this, I18n.getBundle());
@@ -16,6 +22,9 @@ public class RoomDetails extends StackPane {
 
   @FXML
   private void initialize () {
+    Node datePicker = getContent();
+    if (datePicker != null)
+      subLeft.getChildren().add(datePicker);
   }
 
   @FXML

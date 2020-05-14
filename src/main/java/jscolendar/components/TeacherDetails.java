@@ -2,14 +2,13 @@ package jscolendar.components;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.TeacherResponse;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -17,6 +16,10 @@ import jscolendar.components.modals.EditTeacher;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
+
+import java.lang.reflect.InvocationTargetException;
+
+import static jscolendar.util.datePickerContent.getContent;
 
 
 public class TeacherDetails extends StackPane {
@@ -44,7 +47,7 @@ public class TeacherDetails extends StackPane {
   }
 
   @FXML
-  private void initialize () {
+  private void initialize () throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
     infoContent = new JFXListView<>();
     select.getSelectionModel().selectLast();
     title.setText("Enseignant(e)");
@@ -64,14 +67,14 @@ public class TeacherDetails extends StackPane {
     email.setText(result.getTeacher().getEmail());
     phoneNumber.setText(result.getTeacher().getPhoneNumber());
     teacher.setText("Professeur");
-    JFXDatePicker datePicker = new JFXDatePicker();
-    datePicker.setOverLay(true);
-    datePicker.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> dateListener());
-    subLeft.getChildren().add(datePicker);
+    Node datePicker = getContent();
+    if (datePicker != null)
+      subLeft.getChildren().add(datePicker);
   }
 
-  private void dateListener () {
 
+  private void dateListener () {
+    return;
   }
 
   @FXML

@@ -1,13 +1,20 @@
 package jscolendar.components;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditStudent;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
+import static jscolendar.util.datePickerContent.getContent;
+
 public class StudentDetails extends StackPane {
+
+  @FXML
+  private VBox subLeft;
 
   public StudentDetails () {
     FXUtil.loadFXML("/fxml/StudentDetails.fxml", this, this, I18n.getBundle());
@@ -15,6 +22,9 @@ public class StudentDetails extends StackPane {
 
   @FXML
   private void initialize () {
+    Node datePicker = getContent();
+    if (datePicker != null)
+      subLeft.getChildren().add(datePicker);
   }
 
   @FXML

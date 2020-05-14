@@ -1,0 +1,35 @@
+package jscolendar.util;
+
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.skins.JFXDatePickerSkin;
+import javafx.scene.Node;
+import javafx.scene.paint.Color;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class datePickerContent {
+
+  public static Node getContent () {
+    JFXDatePicker datePicker = new JFXDatePicker();
+    datePicker.setDefaultColor(Color.color(0.24609375, 0.31640625, 0.70703125, 1));
+    var datePickerSkin = new JFXDatePickerSkin(datePicker);
+    Class<?> clazz = datePickerSkin.getClass();
+    Method getPopupContent = null;
+    try {
+      getPopupContent = clazz.getDeclaredMethod("getPopupContent");
+    } catch (NoSuchMethodException e) {
+      e.printStackTrace();
+    }
+    getPopupContent.setAccessible(true);
+    try {
+      return (Node) getPopupContent.invoke(datePickerSkin);
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    } catch (InvocationTargetException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+}
