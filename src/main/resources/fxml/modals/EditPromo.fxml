@@ -11,7 +11,7 @@
          type="jscolendar.components.modals.EditPromo"
          styleClass="modal-content-outer" stylesheets="modals.css">
 
-    <Label text="Édition" styleClass="modal-title"/>
+    <Label text="%popup.title.edition" styleClass="modal-title"/>
 
     <HBox alignment="BASELINE_LEFT" spacing="10">
         <Label fx:id="errorLabel"/>
@@ -22,10 +22,10 @@
         <validators>
             <RequiredFieldValidator message="le nom est requis."/>
             <RegexValidator
-                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                                message="le nom doit avoir au moins 3 caractères."/>
-                    </validators>
-                </JFXTextField>
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="le nom doit avoir au moins 3 caractères."/>
+        </validators>
+    </JFXTextField>
     <JFXTextField fx:id="level"
                   labelFloat="true"
                   promptText="%popup.field.level" focusTraversable="false">
