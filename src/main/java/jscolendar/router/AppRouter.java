@@ -61,6 +61,7 @@ public class AppRouter {
   }
 
   public static void bind (String mountPath, ContentManageable container) {
+    AppRouter.unbind(mountPath);
     getInstance().routers.put(mountPath, new Router(container));
   }
 
