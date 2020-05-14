@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import jscolendar.events.ModalEvent;
+import jscolendar.util.FXUtil;
+import jscolendar.util.I18n;
 
 public class EditRoom extends StackPane {
 
@@ -15,6 +17,11 @@ public class EditRoom extends StackPane {
   private Label errorLabel;
   @FXML
   private JFXButton cancel, save;
+
+
+  public EditRoom () {
+    FXUtil.loadFXML("/fxml/modals/EditRoom.fxml", this, this, I18n.getBundle());
+  }
 
   @FXML
   public void initialize () {

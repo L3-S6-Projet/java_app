@@ -2,7 +2,7 @@ package jscolendar.components;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
-import jscolendar.components.modals.CreatePromo;
+import jscolendar.components.modals.EditPromo;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
@@ -30,7 +30,7 @@ public class PromoDetails extends StackPane {
   @FXML
   private void editButton () {
     this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new CreatePromo())
+      new ModalEvent(ModalEvent.OPEN, new EditPromo())
     );
   }
 }

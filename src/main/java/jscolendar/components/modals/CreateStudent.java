@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import jscolendar.events.ModalEvent;
+import jscolendar.util.FXUtil;
+import jscolendar.util.I18n;
 
 public class CreateStudent extends StackPane {
 
@@ -16,6 +18,10 @@ public class CreateStudent extends StackPane {
   @FXML
   private JFXButton cancel, save;
 
+
+  public CreateStudent () {
+    FXUtil.loadFXML("/fxml/modals/CreateStudent.fxml", this, this, I18n.getBundle());
+  }
 
   @FXML
   public void initialize () {

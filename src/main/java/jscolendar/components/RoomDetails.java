@@ -2,6 +2,8 @@ package jscolendar.components;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
+import jscolendar.components.modals.EditRoom;
+import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
@@ -27,6 +29,9 @@ public class RoomDetails extends StackPane {
 
   @FXML
   private void editButton () {
+    this.fireEvent(
+      new ModalEvent(ModalEvent.OPEN, new EditRoom())
+    );
   }
 
 

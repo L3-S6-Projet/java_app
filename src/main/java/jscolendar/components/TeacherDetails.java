@@ -79,6 +79,9 @@ public class TeacherDetails extends StackPane {
 
   @FXML
   private void editButton () {
+    /*this.fireEvent(
+      new ModalEvent(ModalEvent.OPEN, )
+    );*/
 
   }
 
