@@ -32,9 +32,7 @@ public class CreateTeacher extends VBox {
 
   @FXML
   private void onCancel () {
-    this.fireEvent(
-      new ModalEvent(ModalEvent.CLOSE)
-    );
+    this.fireEvent(new ModalEvent(ModalEvent.CLOSE));
   }
 
   @FXML
@@ -50,6 +48,7 @@ public class CreateTeacher extends VBox {
     doCreate(request);
   }
 
+  @SuppressWarnings("Duplicates")
   private void doCreate (TeacherCreationRequest request) {
     var apiInstance = new TeacherApi();
     var service = new FXApiService<>(apiInstance::teachersPost);
@@ -57,9 +56,9 @@ public class CreateTeacher extends VBox {
 
     service.setOnSucceeded(event -> {
       var response = service.getValue();
-        this.fireEvent(new ModalEvent(ModalEvent.CLOSE));
-        this.fireEvent(new ModalEvent(
-          ModalEvent.OPEN, new CreateUserSuccess(response.getUsername(), response.getPassword())));
+      this.fireEvent(new ModalEvent(ModalEvent.CLOSE));
+      this.fireEvent(new ModalEvent(
+        ModalEvent.OPEN, new CreateUserSuccess(response.getUsername(), response.getPassword())));
     });
 
     service.setOnFailed(dontCare -> {
