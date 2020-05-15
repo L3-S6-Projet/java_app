@@ -1,4 +1,12 @@
-.main {
+.main {}
+
+.jfx-snackbar-layout {}
+
+.jfx-snackbar-toast {
+    -fx-padding: .5em 2em;
+    -fx-font-size: 14px;
+    -fx-background-color: #202020;
+    -fx-text-fill: #FFFFFF;
 }
 
 .sidebar-outer {
