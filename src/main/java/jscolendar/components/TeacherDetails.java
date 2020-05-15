@@ -1,6 +1,5 @@
 package jscolendar.components;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
@@ -11,7 +10,6 @@ import io.swagger.client.model.TeacherResponseTeacherServices;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditTeacher;
@@ -24,25 +22,21 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class TeacherDetails extends StackPane {
 
+  private final Integer id;
   public Label serviceDetails;
   //todo add margin to infoContent witch don't have icons
   @FXML
   private VBox calendar;
   @FXML
-  private HBox body, header;
-  @FXML
   private Label name, userName, email, phoneNumber, teacher;
   @FXML
   private Label title;
   @FXML
-  private VBox services, subLeft, all, info;
-  @FXML
-  private JFXButton returnButton, edit;
+  private VBox subLeft;
   @FXML
   private JFXComboBox<Label> select;
   @FXML
   private JFXListView<Label> infoContent;
-  private final Integer id;
 
   public TeacherDetails (Integer id) {
     this.id = id;
@@ -76,31 +70,11 @@ public class TeacherDetails extends StackPane {
       System.out.println(services);
       StringBuilder serviceContent = new StringBuilder();
       for (TeacherResponseTeacherServices service : services) {
-        serviceContent.append(I18n.get("calendar.details.teacher.firstPart") + service.getClass().getName() + ',' + I18n.get("calendar.details.teacher.secondPart") + ',');
-        if (service.getCm() != 0) {
-          serviceContent.append(" " + service.getCm() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart") + " " + I18n.get("calendar.details.teacher.cm") + ',');
-        }
-        if (service.getTp() != 0) {
-          serviceContent.append(" " + service.getTp() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart") + " " + I18n.get("calendar.details.teacher.tp") + ',');
-        }
-        if (service.getTd() != 0) {
-          serviceContent.append(" " + service.getTd() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart") + " " + I18n.get("calendar.details.teacher.td") + ',');
-        }
-        if (service.getProject() != 0) {
-          serviceContent.append(" " + service.getProject() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart") + " " + I18n.get("calendar.details.teacher.projet") + ',');
-        }
-        if (service.getAdministration() != 0) {
-          serviceContent.append(" " + service.getAdministration() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart") + " " + I18n.get("calendar.details.teacher.admin") + ',');
-        }
-        if (service.getExternal() != 0) {
-          serviceContent.append(" " + service.getExternal() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart") + " " + I18n.get("calendar.details.teacher.extern") + ',');
-        }
-        serviceContent.substring(0, serviceContent.length() - 1);
-        serviceContent.append(".\n");
+        buildServiceString(serviceContent, service);
       }
-      serviceContent.append("\n" + I18n.get("calendar.details.services.value") + " " + result.getTeacher().getTotalService() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
-      serviceDetails.setWrapText(true);
+      serviceContent.append("\n").append(I18n.get("calendar.details.services.value")).append(" ").append(result.getTeacher().getTotalService()).append(I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
       serviceDetails.setText(serviceContent.toString());
+      serviceDetails.setWrapText(true);
     }
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
     jfxDatePicker.setOnAction(event -> {
@@ -115,6 +89,29 @@ public class TeacherDetails extends StackPane {
     calendar.getChildren().add(calendarRoute);
   }
 
+  private void buildServiceString (StringBuilder serviceContent, TeacherResponseTeacherServices service) {
+    serviceContent.append(I18n.get("calendar.details.teacher.firstPart")).append(service.getPropertyClass()).append(',').append(I18n.get("calendar.details.teacher.secondPart")).append(',');
+    if (service.getCm() != null && service.getCm() != 0) {
+      serviceContent.append(" ").append(service.getCm()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.cm")).append(',');
+    }
+    if (service.getTp() != null && service.getTp() != 0) {
+      serviceContent.append(" ").append(service.getTp()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.tp")).append(',');
+    }
+    if (service.getTd() != null && service.getTd() != 0) {
+      serviceContent.append(" ").append(service.getTd()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.td")).append(',');
+    }
+    if (service.getProject() != null && service.getProject() != 0) {
+      serviceContent.append(" ").append(service.getProject()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.projet")).append(',');
+    }
+    if (service.getAdministration() != null && service.getAdministration() != 0) {
+      serviceContent.append(" ").append(service.getAdministration()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.admin")).append(',');
+    }
+    if (service.getExternal() != null && service.getExternal() != 0) {
+      serviceContent.append(" ").append(service.getExternal()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.extern")).append(',');
+    }
+    serviceContent.deleteCharAt(serviceContent.length() - 1);
+    serviceContent.append(".\n");
+  }
 
 
   @FXML
