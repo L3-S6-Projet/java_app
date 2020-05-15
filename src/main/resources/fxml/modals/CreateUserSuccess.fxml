@@ -12,12 +12,12 @@
 <?import javafx.scene.text.Text?>
 <fx:root xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
-         type="jscolendar.components.modals.CreateTeacherSuccess"
+         type="jscolendar.components.modals.CreateUserSuccess"
          styleClass="modal-content-outer" stylesheets="modals.css">
 
-    <Label styleClass="modal-title" text="%modal.teacherCreate.success.title" />
+    <Label styleClass="modal-title" text="%modal.createUser.success.title" />
     <TextFlow>
-        <Text text="%modal.teacherCreate.success.content" />
+        <Text text="%modal.createUser.success.content" />
         <Text fx:id="username" />
         <Text fx:id="password" />
     </TextFlow>

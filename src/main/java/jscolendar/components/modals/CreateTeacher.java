@@ -59,7 +59,7 @@ public class CreateTeacher extends VBox {
       var response = service.getValue();
         this.fireEvent(new ModalEvent(ModalEvent.CLOSE));
         this.fireEvent(new ModalEvent(
-          ModalEvent.OPEN, new CreateTeacherSuccess(response.getUsername(), response.getPassword())));
+          ModalEvent.OPEN, new CreateUserSuccess(response.getUsername(), response.getPassword())));
     });
 
     service.setOnFailed(dontCare -> {

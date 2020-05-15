@@ -7,14 +7,14 @@ import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
-public class CreateTeacherSuccess extends VBox {
+public class CreateUserSuccess extends VBox {
   @FXML private Text username, password;
 
-  public CreateTeacherSuccess (String username, String password) {
-    FXUtil.loadFXML("/fxml/modals/CreateTeacherSuccess.fxml", this, this, I18n.getBundle());
-    this.username.setText(I18n.get("modal.teacherCreate.success.username")
+  public CreateUserSuccess (String username, String password) {
+    FXUtil.loadFXML("/fxml/modals/CreateUserSuccess.fxml", this, this, I18n.getBundle());
+    this.username.setText(I18n.get("modal.createUser.success.username")
       .concat(" ").concat(username).concat(System.lineSeparator()));
-    this.password.setText(I18n.get("modal.teacherCreate.success.password")
+    this.password.setText(I18n.get("modal.createUser.success.password")
       .concat(" ").concat(password).concat(System.lineSeparator()));
   }
 
