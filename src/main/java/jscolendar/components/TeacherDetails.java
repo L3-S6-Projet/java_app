@@ -51,7 +51,7 @@ public class TeacherDetails extends StackPane {
   private void initialize () {
     infoContent = new JFXListView<>();
     select.getSelectionModel().selectLast();
-    title.setText("Enseignant(e)");
+
 
     TeacherApi apiInstance = new TeacherApi();
     TeacherResponse result = null;
@@ -62,12 +62,14 @@ public class TeacherDetails extends StackPane {
       System.err.println("Exception when calling TeacherApi#teachersGet");
       e.printStackTrace();
     }
-    assert result != null;
-    name.setText(result.getTeacher().getFirstName() + " " + result.getTeacher().getLastName());
-    userName.setText(result.getTeacher().getUsername());
-    email.setText(result.getTeacher().getEmail());
-    phoneNumber.setText(result.getTeacher().getPhoneNumber());
-    teacher.setText("Professeur");
+    if (result != null) {
+      title.setText(I18n.get("calendar.title.enseinant") + " \"" + result.getTeacher().getFirstName() + " " + result.getTeacher().getLastName() + '\"');
+      name.setText(result.getTeacher().getFirstName() + " " + result.getTeacher().getLastName());
+      userName.setText(result.getTeacher().getUsername());
+      email.setText(result.getTeacher().getEmail());
+      phoneNumber.setText(result.getTeacher().getPhoneNumber());
+      teacher.setText("Professeur");
+    }
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
     jfxDatePicker.setOnAction(event -> {
       System.out.println(jfxDatePicker.getValue());

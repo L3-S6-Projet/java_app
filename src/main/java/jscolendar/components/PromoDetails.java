@@ -19,6 +19,7 @@ import static jscolendar.util.datePickerContent.getContent;
 public class PromoDetails extends StackPane {
 
   private final Integer id;
+  public Label title;
   @FXML
   private VBox calendar;
   @FXML
@@ -44,6 +45,7 @@ public class PromoDetails extends StackPane {
       e.printStackTrace();
     }
     if (result != null) {
+      title.setText(I18n.get("calendar.title.promo") + " \"" + result.getPropertyClass().getName() + '\"');
       name.setText(result.getPropertyClass().getName());
       level.setText(result.getPropertyClass().getLevel().name());
       services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getTotalService() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));

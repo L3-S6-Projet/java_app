@@ -20,6 +20,7 @@ public class StudentDetails extends StackPane {
 
 
   private final Integer id;
+  public Label title;
   @FXML
   private VBox calendar;
   @FXML
@@ -45,6 +46,7 @@ public class StudentDetails extends StackPane {
       e.printStackTrace();
     }
     if (result != null) {
+      title.setText(I18n.get("calendar.title.student") + " \"" + result.getStudent().getFirstName() + " " + result.getStudent().getLastName() + '\"');
       name.setText(result.getStudent().getFirstName() + " " + result.getStudent().getLastName());
       userName.setText(result.getStudent().getUsername());
 

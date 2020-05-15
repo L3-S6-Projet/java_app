@@ -20,6 +20,7 @@ public class RoomDetails extends StackPane {
 
 
   private final Integer id;
+  public Label title;
   @FXML
   private VBox calendar;
   @FXML
@@ -45,6 +46,7 @@ public class RoomDetails extends StackPane {
       e.printStackTrace();
     }
     if (result != null) {
+      title.setText(I18n.get("calendar.title.room") + " \"" + result.getClassroom().getName() + '\"');
       name.setText(result.getClassroom().getName());
       capacity.setText(String.valueOf(result.getClassroom().getCapacity()));
     }

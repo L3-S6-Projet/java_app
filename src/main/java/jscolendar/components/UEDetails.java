@@ -22,6 +22,7 @@ public class UEDetails extends StackPane {
 
   private final Integer id;
   public Label teacherName;
+  public Label title;
   @FXML
   private VBox calendar;
   @FXML
@@ -48,6 +49,7 @@ public class UEDetails extends StackPane {
       e.printStackTrace();
     }
     if (result != null) {
+      title.setText(I18n.get("calendar.title.ue") + " \"" + result.getSubject().getName() + '\"');
       name.setText(result.getSubject().getName());
       promo.setText(result.getSubject().getClassName());
       services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getSubject().getTotalHours() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
