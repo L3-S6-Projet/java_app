@@ -5,7 +5,8 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.*?>
 <?import jscolendar.components.UEDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -18,7 +19,7 @@
                 <GridPane>
                     <HBox prefHeight="${header.height}" prefWidth="${header.width}" style="-fx-alignment: center-left"
                           GridPane.columnIndex="0">
-                        <JFXButton fx:id="returnButton" onAction="#returnToPrevView">
+                        <JFXButton onAction="#returnToPrevView">
                             <graphic>
                                 <FontIcon iconLiteral="mdi-arrow-left"/>
                             </graphic>
@@ -27,7 +28,7 @@
                     </HBox>
                     <HBox prefHeight="${header.height}" prefWidth="${header.width}" style="-fx-alignment: center-right"
                           GridPane.columnIndex="1">
-                        <JFXComboBox fx:id="select" onAction="#selectCalendarType">
+                        <JFXComboBox onAction="#selectCalendarType">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <Label text="%calendar.type.day"/>
@@ -36,7 +37,7 @@
                                 </FXCollections>
                             </items>
                         </JFXComboBox>
-                        <JFXButton fx:id="edit" onAction="#editButton">
+                        <JFXButton onAction="#editButton">
                             <graphic>
                                 <FontIcon iconLiteral="mdi-border-color"/>
                             </graphic>
@@ -56,7 +57,7 @@
                 <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                     <VBox fx:id="subLeft" prefHeight="${body.height}" prefWidth="${body.width}" GridPane.columnIndex="0"
                           GridPane.rowIndex="0">
-                        <VBox fx:id="info">
+                        <VBox>
                             <Label text="%calendar.title.information"/>
                             <JFXTabPane fx:id="menu">
                                 <tabs>
@@ -83,17 +84,14 @@
                                             </JFXListView>
                                         </content>
                                     </Tab>
-                                    <Tab text="%calendar.details.ue.menu.teacher">
+                                    <Tab fx:id="menuEnseig" text="%calendar.details.ue.menu.teacher">
                                         <content>
-                                            <VBox>
-                                                <Label fx:id="teacherName"/>
-                                                <Label text="%calendar.details.name"/>
-                                            </VBox>
+
                                         </content>
                                     </Tab>
-                                    <Tab text="%calendar.details.ue.menu.group">
+                                    <Tab fx:id="menuGroup" text="%calendar.details.ue.menu.group">
                                         <content>
-                                            <Label text="lol"/>
+
                                         </content>
                                     </Tab>
                                 </tabs>

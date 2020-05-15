@@ -5,15 +5,19 @@ import com.jfoenix.controls.JFXTabPane;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.SubjectsApi;
 import io.swagger.client.model.SubjectResponse;
+import io.swagger.client.model.SubjectResponseSubjectGroups;
+import io.swagger.client.model.SubjectResponseSubjectTeachers;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditSubject;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import static jscolendar.util.datePickerContent.getContent;
 
@@ -23,6 +27,8 @@ public class UEDetails extends StackPane {
   private final Integer id;
   public Label teacherName;
   public Label title;
+  public Tab menuEnseig;
+  public Tab menuGroup;
   @FXML
   private VBox calendar;
   @FXML
@@ -53,7 +59,34 @@ public class UEDetails extends StackPane {
       name.setText(result.getSubject().getName());
       promo.setText(result.getSubject().getClassName());
       services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getSubject().getTotalHours() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      var enseign = result.getSubject().getTeachers();
+      for (SubjectResponseSubjectTeachers teachers : enseign) {
+        VBox content = new VBox();
+        if (teachers.getInCharge()) {
+          Label teacherName = new Label(teachers.getFirstName() + " " + teachers.getLastName());
+          Label responsibility = new Label(I18n.get("calendar.details.ue.menu.teacher.responsable"));
+          content.getChildren().addAll(teacherName, responsibility);
+        } else {
+          Label teacherName = new Label(teachers.getFirstName() + " " + teachers.getLastName());
+          teacherName.setGraphic(new FontIcon("mdi-delete"));
+          content.getChildren().addAll(teacherName);
+        }
+        menuEnseig.setContent(content);
+      }
+      var groups = result.getSubject().getGroups();
+      menuGroup.setContent(new Label(I18n.get("calendar.details.ue.menu.group.note")));
 
+      int nb = 0;
+      for (SubjectResponseSubjectGroups group : groups) {
+        VBox content = new VBox();
+        Label groupName = new Label(group.getName());
+        Label subtitle = new Label(group.getCount() + I18n.get("calendar.details.ue.menu.group.student"));
+        if (nb > 1) {
+          groupName.setGraphic(new FontIcon("mdi-delete"));
+        }
+        nb++;
+        content.getChildren().addAll(groupName, subtitle);
+      }
 
       //todo other menu
     }

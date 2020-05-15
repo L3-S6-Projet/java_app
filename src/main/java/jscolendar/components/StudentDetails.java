@@ -53,9 +53,6 @@ public class StudentDetails extends StackPane {
       name.setText(result.getStudent().getFirstName() + " " + result.getStudent().getLastName());
       userName.setText(result.getStudent().getUsername());
       promo.setText(classResult.getSubjects().get(0).getClassName());
-
-
-      //todo la classe
     }
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
