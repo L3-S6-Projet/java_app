@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.StudentsApi;
 import io.swagger.client.model.StudentResponse;
+import io.swagger.client.model.StudentSubjects;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -38,17 +39,21 @@ public class StudentDetails extends StackPane {
 
     StudentsApi apiInstance = new StudentsApi();
     StudentResponse result = null;
+    StudentSubjects classResult = null;
 
     try {
       result = apiInstance.studentsIdGet(id);
+      classResult = apiInstance.studentsIdSubjectsGet(id);
     } catch (ApiException e) {
       System.err.println("Exception when calling api");
       e.printStackTrace();
     }
-    if (result != null) {
+    if (result != null && classResult != null) {
       title.setText(I18n.get("calendar.title.student") + " \"" + result.getStudent().getFirstName() + " " + result.getStudent().getLastName() + '\"');
       name.setText(result.getStudent().getFirstName() + " " + result.getStudent().getLastName());
       userName.setText(result.getStudent().getUsername());
+      promo.setText(classResult.getSubjects().get(0).getClassName());
+
 
       //todo la classe
     }
