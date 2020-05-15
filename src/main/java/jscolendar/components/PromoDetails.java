@@ -1,5 +1,6 @@
 package jscolendar.components;
 
+import com.jfoenix.controls.JFXDatePicker;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
@@ -24,7 +25,12 @@ public class PromoDetails extends StackPane {
 
   @FXML
   private void initialize () {
-    Node datePicker = getContent();
+    JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setOnAction(event -> {
+      System.out.println(jfxDatePicker.getValue());
+
+    });
+    Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
     calendar.getChildren().add(new CalendarRoute());

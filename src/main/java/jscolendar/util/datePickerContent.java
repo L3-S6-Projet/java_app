@@ -10,8 +10,7 @@ import java.lang.reflect.Method;
 
 public class datePickerContent {
 
-  public static Node getContent () {
-    JFXDatePicker datePicker = new JFXDatePicker();
+  public static Node getContent (JFXDatePicker datePicker) {
     datePicker.setDefaultColor(Color.color(0.24609375, 0.31640625, 0.70703125, 1));
     var datePickerSkin = new JFXDatePickerSkin(datePicker);
     Class<?> clazz = datePickerSkin.getClass();

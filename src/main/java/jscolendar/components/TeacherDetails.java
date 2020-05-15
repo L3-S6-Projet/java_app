@@ -2,6 +2,7 @@ package jscolendar.components;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.TeacherApi;
@@ -24,6 +25,7 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class TeacherDetails extends StackPane {
 
+  //todo add margin to infoContent witch don't have icons
   @FXML
   private VBox calendar;
   @FXML
@@ -68,7 +70,13 @@ public class TeacherDetails extends StackPane {
     email.setText(result.getTeacher().getEmail());
     phoneNumber.setText(result.getTeacher().getPhoneNumber());
     teacher.setText("Professeur");
-    Node datePicker = getContent();
+    JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setOnAction(event -> {
+      System.out.println(jfxDatePicker.getValue());
+      //todo show the daily calendar
+
+    });
+    Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
     CalendarRoute calendarRoute = new CalendarRoute();
@@ -76,9 +84,6 @@ public class TeacherDetails extends StackPane {
   }
 
 
-  private void dateListener () {
-    return;
-  }
 
   @FXML
   private void returnToPrevView () {

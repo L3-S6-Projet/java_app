@@ -64,7 +64,9 @@
                                         <content>
                                             <JFXListView fx:id="infoContent">
                                                 <HBox>
-                                                    <FontIcon iconLiteral="mdi-account-circle"/>
+                                                    <VBox alignment="CENTER">
+                                                        <FontIcon iconLiteral="mdi-account-circle"/>
+                                                    </VBox>
                                                     <VBox>
                                                         <Label fx:id="name"/>
                                                         <Label text="%calendar.details.name"/>
