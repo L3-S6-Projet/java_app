@@ -1,6 +1,7 @@
 .modal-content-outer {
     -fx-padding: 2em;
     -fx-spacing: 2em;
+    -fx-font-size: 16px;
 }
 
 .modal-title {
@@ -8,19 +9,30 @@
     -fx-font-size: 20px;
 }
 
+.modal-content-outer .list-cell {
+    -fx-background: white;
+    -fx-background-color: transparent;
+}
+.modal-content-outer .list-cell:selected {}
+
+.modal-content-outer .combo-box-popup .list-view {}
+
 .modal-content-outer .jfx-text-field,
 .modal-content-outer .jfx-password-field {
     -fx-pref-height: 50px;
+}
+.modal-content-outer .jfx-text-field,
+.modal-content-outer .jfx-combo-box,
+.modal-content-outer .jfx-password-field {
     -fx-min-width: 320px;
     -fx-text-fill: rgba(0, 0, 0, 0.6);
-    -fx-font-size: 1.2em;
     -fx-background-color: #E8E8E8;
     -jfx-focus-color: rgba(0, 0, 0, 0.38);
     -jfx-unfocus-color: #E8E8E8;
 }
 
 .modal-content-outer .jfx-button {
-    -fx-font-size: 1.5em;
+    -fx-font-size: 14px;
     -fx-font-family: Roboto;
     -fx-text-fill: #3F51B5;
 }

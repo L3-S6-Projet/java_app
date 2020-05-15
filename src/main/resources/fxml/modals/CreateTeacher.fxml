@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import jscolendar.components.modals.CreateTeacher?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
          type="jscolendar.components.modals.CreateTeacher"
          styleClass="modal-content-outer" stylesheets="modals.css">
@@ -43,20 +44,17 @@
                   labelFloat="true"
                   promptText="%popup.field.phoneNumber">
     </JFXTextField>
-    <JFXTextField fx:id="grade"
+    <JFXComboBox fx:id="grade"
                   labelFloat="true"
                   promptText="%popup.field.grade">
         <validators>
-            <RequiredFieldValidator message="%popup.field.grade.message.required"/>
-            <RegexValidator
-                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
-                    message="%popup.field.grade.message.minLength"/>
+            <RequiredFieldValidator  message="%popup.field.grade.message.required"/>
         </validators>
-    </JFXTextField>
+    </JFXComboBox>
 
     <HBox alignment="CENTER_RIGHT">
         <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
-        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
+        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onSubmit"/>
     </HBox>
 
 </fx:root>
