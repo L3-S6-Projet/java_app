@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.StudentsApi;
 import io.swagger.client.model.StudentResponse;
+import io.swagger.client.model.StudentResponseStudentSubjects;
 import io.swagger.client.model.StudentSubjects;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -22,6 +23,7 @@ public class StudentDetails extends StackPane {
 
   private final Integer id;
   public Label title;
+  public Label subjectList;
   @FXML
   private VBox calendar;
   @FXML
@@ -53,6 +55,17 @@ public class StudentDetails extends StackPane {
       name.setText(result.getStudent().getFirstName() + " " + result.getStudent().getLastName());
       userName.setText(result.getStudent().getUsername());
       promo.setText(classResult.getSubjects().get(0).getClassName());
+
+      var listOfSubject = result.getStudent().getSubjects();
+      StringBuilder subjects = new StringBuilder();
+      subjects.append(I18n.get("calendar.details.student.enseign.firstLine"));
+      for (StudentResponseStudentSubjects subjet : listOfSubject) {
+        subjects.append("\n - " + subjet.getName() + ", " + subjet.getGroup());
+      }
+      subjects.append("\n" + I18n.get("calendar.details.student.enseign.secondLine") + " " + result.getStudent().getTotalHours() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      subjectList.setWrapText(true);
+      subjectList.setText(subjects.toString());
+
     }
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();

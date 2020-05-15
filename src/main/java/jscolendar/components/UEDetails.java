@@ -1,7 +1,7 @@
 package jscolendar.components;
 
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXListView;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.SubjectsApi;
 import io.swagger.client.model.SubjectResponse;
@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditSubject;
@@ -25,7 +26,6 @@ import static jscolendar.util.datePickerContent.getContent;
 public class UEDetails extends StackPane {
 
   private final Integer id;
-  public Label teacherName;
   public Label title;
   public Tab menuEnseig;
   public Tab menuGroup;
@@ -33,8 +33,6 @@ public class UEDetails extends StackPane {
   private VBox calendar;
   @FXML
   private VBox subLeft;
-  @FXML
-  private JFXTabPane menu;
   @FXML
   private Label name, promo, services;
 
@@ -60,6 +58,7 @@ public class UEDetails extends StackPane {
       promo.setText(result.getSubject().getClassName());
       services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getSubject().getTotalHours() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
       var enseign = result.getSubject().getTeachers();
+      JFXListView<VBox> enseignContent = new JFXListView<>();
       for (SubjectResponseSubjectTeachers teachers : enseign) {
         VBox content = new VBox();
         if (teachers.getInCharge()) {
@@ -68,27 +67,37 @@ public class UEDetails extends StackPane {
           content.getChildren().addAll(teacherName, responsibility);
         } else {
           Label teacherName = new Label(teachers.getFirstName() + " " + teachers.getLastName());
+          FontIcon icon = new FontIcon("mdi-delete");
+          icon.setOnMouseClicked(event -> supprElement(event));
           teacherName.setGraphic(new FontIcon("mdi-delete"));
           content.getChildren().addAll(teacherName);
         }
-        menuEnseig.setContent(content);
+        enseignContent.getItems().add(content);
       }
+      menuEnseig.setContent(enseignContent);
       var groups = result.getSubject().getGroups();
-      menuGroup.setContent(new Label(I18n.get("calendar.details.ue.menu.group.note")));
 
       int nb = 0;
+      JFXListView<VBox> groupContent = new JFXListView<>();
       for (SubjectResponseSubjectGroups group : groups) {
         VBox content = new VBox();
         Label groupName = new Label(group.getName());
         Label subtitle = new Label(group.getCount() + I18n.get("calendar.details.ue.menu.group.student"));
         if (nb > 1) {
+          FontIcon icon = new FontIcon("mdi-delete");
+          icon.setOnMouseClicked(event -> supprElement(event));
           groupName.setGraphic(new FontIcon("mdi-delete"));
         }
         nb++;
         content.getChildren().addAll(groupName, subtitle);
+        groupContent.getItems().add(content);
       }
-
-      //todo other menu
+      Label groupNote = new Label(I18n.get("calendar.details.ue.menu.group.note"));
+      groupNote.setWrapText(true);
+      groupNote.setStyle("-fx-alignment: top-left");
+      VBox box = new VBox();
+      box.getChildren().addAll(groupNote, groupContent);
+      menuGroup.setContent(box);
     }
 
 
@@ -101,6 +110,10 @@ public class UEDetails extends StackPane {
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
     calendar.getChildren().add(new CalendarRoute());
+  }
+
+  private void supprElement (MouseEvent event) {
+    //todo make suppr popup
   }
 
   @FXML

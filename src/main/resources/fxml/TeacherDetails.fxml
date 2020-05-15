@@ -94,6 +94,7 @@
                                     <Label text="%calendar.details.teacher"/>
                                 </VBox>
                                 <Label text="%calendar.details.services"/>
+                                <Label fx:id="serviceDetails"/>
                             </JFXListView>
                         </VBox>
                     </VBox>

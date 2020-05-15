@@ -78,6 +78,7 @@
                                     </VBox>
                                 </HBox>
                                 <Label text="%calendar.details.enseignement"/>
+                                <Label fx:id="subjectList"/>
                             </JFXListView>
                         </VBox>
                     </VBox>
