@@ -18,8 +18,6 @@ import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
-import java.lang.reflect.InvocationTargetException;
-
 import static jscolendar.util.datePickerContent.getContent;
 
 
@@ -50,7 +48,7 @@ public class TeacherDetails extends StackPane {
   }
 
   @FXML
-  private void initialize () throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+  private void initialize () {
     infoContent = new JFXListView<>();
     select.getSelectionModel().selectLast();
     title.setText("Enseignant(e)");

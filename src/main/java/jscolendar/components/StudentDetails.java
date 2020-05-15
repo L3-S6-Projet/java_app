@@ -1,8 +1,12 @@
 package jscolendar.components;
 
 import com.jfoenix.controls.JFXDatePicker;
+import io.swagger.client.ApiException;
+import io.swagger.client.api.StudentsApi;
+import io.swagger.client.model.StudentResponse;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditStudent;
@@ -14,17 +18,39 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class StudentDetails extends StackPane {
 
+
+  private final Integer id;
   @FXML
   private VBox calendar;
   @FXML
   private VBox subLeft;
+  @FXML
+  private Label name, userName, promo;
 
-  public StudentDetails () {
+  public StudentDetails (Integer id) {
+    this.id = id;
     FXUtil.loadFXML("/fxml/StudentDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
   private void initialize () {
+
+    StudentsApi apiInstance = new StudentsApi();
+    StudentResponse result = null;
+
+    try {
+      result = apiInstance.studentsIdGet(id);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling api");
+      e.printStackTrace();
+    }
+    if (result != null) {
+      name.setText(result.getStudent().getFirstName() + " " + result.getStudent().getLastName());
+      userName.setText(result.getStudent().getUsername());
+
+      //todo la classe
+    }
+
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
     jfxDatePicker.setOnAction(event -> {
       System.out.println(jfxDatePicker.getValue());

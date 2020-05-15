@@ -1,8 +1,12 @@
 package jscolendar.components;
 
 import com.jfoenix.controls.JFXDatePicker;
+import io.swagger.client.ApiException;
+import io.swagger.client.api.ClassesApi;
+import io.swagger.client.model.ClassResponse;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditPromo;
@@ -14,17 +18,37 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class PromoDetails extends StackPane {
 
+  private final Integer id;
   @FXML
   private VBox calendar;
   @FXML
   private VBox subLeft;
+  @FXML
+  private Label name, level, services;
 
-  public PromoDetails () {
+  public PromoDetails (Integer id) {
+    this.id = id;
     FXUtil.loadFXML("/fxml/PromoDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
   private void initialize () {
+
+    ClassesApi apiInstance = new ClassesApi();
+    ClassResponse result = null;
+
+    try {
+      result = apiInstance.classesIdGet(id);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling api");
+      e.printStackTrace();
+    }
+    if (result != null) {
+      name.setText(result.getPropertyClass().getName());
+      level.setText(result.getPropertyClass().getLevel().name());
+      services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getTotalService() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+    }
+
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
     jfxDatePicker.setOnAction(event -> {
       System.out.println(jfxDatePicker.getValue());

@@ -1,8 +1,12 @@
 package jscolendar.components;
 
 import com.jfoenix.controls.JFXDatePicker;
+import io.swagger.client.ApiException;
+import io.swagger.client.api.ClassroomApi;
+import io.swagger.client.model.ClassroomGetResponse;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.modals.EditRoom;
@@ -14,17 +18,36 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class RoomDetails extends StackPane {
 
+
+  private final Integer id;
   @FXML
   private VBox calendar;
   @FXML
   private VBox subLeft;
+  @FXML
+  private Label name, capacity;
 
-  public RoomDetails () {
+  public RoomDetails (Integer id) {
+    this.id = id;
     FXUtil.loadFXML("/fxml/RoomDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
   private void initialize () {
+
+    ClassroomApi apiInstance = new ClassroomApi();
+    ClassroomGetResponse result = null;
+
+    try {
+      result = apiInstance.classroomsIdGet(id);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling api");
+      e.printStackTrace();
+    }
+    if (result != null) {
+      name.setText(result.getClassroom().getName());
+      capacity.setText(String.valueOf(result.getClassroom().getCapacity()));
+    }
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
     jfxDatePicker.setOnAction(event -> {
       System.out.println(jfxDatePicker.getValue());

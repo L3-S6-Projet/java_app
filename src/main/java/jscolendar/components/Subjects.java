@@ -66,6 +66,6 @@ public class Subjects extends AbstractTableView<Subject> {
   @Override
   protected Region getDetailsView (Subject item) {
     // @TODO
-    return new UEDetails();
+    return new UEDetails(item.getId());
   }
 }

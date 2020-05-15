@@ -70,6 +70,6 @@ public class Classrooms extends AbstractTableView<Classroom> {
   @Override
   protected Region getDetailsView (Classroom item) {
     // @TODO
-    return new RoomDetails();
+    return new RoomDetails(item.id);
   }
 }

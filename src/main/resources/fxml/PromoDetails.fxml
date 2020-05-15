@@ -73,8 +73,8 @@
                                     <Label text="%calendar.details.level"/>
                                 </VBox>
                                 <VBox>
-                                    <Label fx:id="services"/>
                                     <Label text="%calendar.details.services"/>
+                                    <Label fx:id="services"/>
                                 </VBox>
                             </JFXListView>
                         </VBox>

@@ -77,15 +77,18 @@
                                                     <Label text="%calendar.details.promo"/>
                                                 </VBox>
                                                 <VBox>
-                                                    <Label fx:id="services"/>
                                                     <Label text="%calendar.details.services"/>
+                                                    <Label fx:id="services"/>
                                                 </VBox>
                                             </JFXListView>
                                         </content>
                                     </Tab>
                                     <Tab text="%calendar.details.ue.menu.teacher">
                                         <content>
-                                            <Label text="lol"/>
+                                            <VBox>
+                                                <Label fx:id="teacherName"/>
+                                                <Label text="%calendar.details.name"/>
+                                            </VBox>
                                         </content>
                                     </Tab>
                                     <Tab text="%calendar.details.ue.menu.group">
