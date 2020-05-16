@@ -11,11 +11,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
+import jscolendar.components.AutoCompleteBox;
 import jscolendar.events.ModalEvent;
-import jscolendar.events.NotificationEvent;
 import jscolendar.models.ClassModel;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
@@ -24,17 +23,11 @@ import jscolendar.util.I18n;
 
 import java.util.stream.Collectors;
 
-// @TODO :: a lot
 public class CreateStudent extends VBox {
   @FXML private JFXTextField firstName, lastName;
   @FXML private JFXComboBox<ClassModel> comboBox;
   @FXML private Label errorLabel;
   @FXML private JFXButton cancel, save;
-
-  private final ClassesApi apiInstance = new ClassesApi();
-  private final FXApiService<String, ClassesList> fetchService = new FXApiService<>(
-    query -> apiInstance.classesGet(query, 1)
-  );
 
   public CreateStudent () {
     FXUtil.loadFXML("/fxml/modals/CreateStudent.fxml", this, this, I18n.getBundle());
@@ -69,48 +62,17 @@ public class CreateStudent extends VBox {
       }
     });
 
-    comboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->
-      comboBox.getSelectionModel().select(newValue.intValue()));
+    var apiInstance = new ClassesApi();
+    FXApiService<String, ClassesList> service = new FXApiService<>(
+      query -> apiInstance.classesGet(query, 1)
+    );
+    var autoComplete = new AutoCompleteBox<>(comboBox, service, classesList ->
+      comboBox.setItems(FXCollections.observableList(service.getValue().getClasses().stream()
+        .map(ClassModel::new).collect(Collectors.toList())))
+    );
 
-    comboBox.getEditor().focusedProperty().addListener(((observable, oldValue, newValue) -> {
-      if (newValue) {
-        comboBox.show();
-      } else {
-        if (comboBox.getSelectionModel().isEmpty())
-         comboBox.getEditor().setText("");
-        comboBox.hide();
-      }
-    }));
-
-    comboBox.setOnKeyReleased(event -> {
-      comboBox.hide();
-      var keyCode = event.getCode();
-      if (keyCode == KeyCode.UP || keyCode == KeyCode.DOWN ||
-        keyCode == KeyCode.RIGHT || keyCode == KeyCode.LEFT ||
-        keyCode == KeyCode.TAB || keyCode == KeyCode.ENTER) return;
-
-      if (keyCode == KeyCode.BACK_SPACE)
-        comboBox.getSelectionModel().clearSelection();
-
-      if (keyCode == KeyCode.SPACE && comboBox.getSelectionModel().getSelectedIndex() != -1) {
-        comboBox.getEditor().positionCaret(comboBox.getEditor().getText().length());
-        return;
-      }
-
-      fetchService.reset();
-      fetchService.setRequest(comboBox.getEditor().getText());
-      fetchService.setOnSucceeded(dontCare -> {
-        comboBox.setItems(FXCollections.observableList(fetchService.getValue().getClasses().stream()
-          .map(ClassModel::new).collect(Collectors.toList())));
-        comboBox.show();
-        comboBox.getEditor().positionCaret(comboBox.getEditor().getText().length());
-      });
-
-      fetchService.setOnFailed(dontCare ->
-        errorLabel.setText(APIErrorUtil.getErrorMessage(fetchService.getException())));
-
-      fetchService.start();
-    });
+    autoComplete.textProperty.addListener((observable, oldValue, newValue) ->
+      errorLabel.setText(newValue));
   }
 
   @FXML
@@ -142,10 +104,9 @@ public class CreateStudent extends VBox {
         ModalEvent.OPEN, new CreateUserSuccess(response.getUsername(), response.getPassword())));
     });
 
-    service.setOnFailed(dontCare -> {
-      this.fireEvent(new ModalEvent(ModalEvent.CLOSE));
-      this.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(service.getException())));
-    });
+    service.setOnFailed(dontCare ->
+      errorLabel.setText(APIErrorUtil.getErrorMessage(service.getException()))
+    );
 
     service.start();
   }
