@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import jscolendar.events.ModalEvent;
@@ -42,7 +43,6 @@ public class CreateStudent extends VBox {
   @FXML
   public void initialize () {
     comboBox.setEditable(true);
-    comboBox.setItems(FXCollections.observableArrayList());
     comboBox.setConverter(new StringConverter<>() {
       @Override
       public String toString (ClassModel classModel) {
@@ -73,30 +73,41 @@ public class CreateStudent extends VBox {
       comboBox.getSelectionModel().select(newValue.intValue()));
 
     comboBox.getEditor().focusedProperty().addListener(((observable, oldValue, newValue) -> {
-      if (newValue)
+      if (newValue) {
         comboBox.show();
-      else
+      } else {
+        if (comboBox.getSelectionModel().isEmpty())
+         comboBox.getEditor().setText("");
         comboBox.hide();
+      }
     }));
 
-    comboBox.getEditor().setOnKeyPressed(event -> comboBox.hide());
+    comboBox.setOnKeyReleased(event -> {
+      comboBox.hide();
+      var keyCode = event.getCode();
+      if (keyCode == KeyCode.UP || keyCode == KeyCode.DOWN ||
+        keyCode == KeyCode.RIGHT || keyCode == KeyCode.LEFT ||
+        keyCode == KeyCode.TAB || keyCode == KeyCode.ENTER) return;
 
-    comboBox.getEditor().setOnKeyReleased(event -> {
+      if (keyCode == KeyCode.BACK_SPACE)
+        comboBox.getSelectionModel().clearSelection();
+
+      if (keyCode == KeyCode.SPACE && comboBox.getSelectionModel().getSelectedIndex() != -1) {
+        comboBox.getEditor().positionCaret(comboBox.getEditor().getText().length());
+        return;
+      }
+
       fetchService.reset();
-      fetchService.setRequest(comboBox.getEditor().getCharacters().toString());
-      fetchService.setOnScheduled(dontCare -> comboBox.hide());
+      fetchService.setRequest(comboBox.getEditor().getText());
       fetchService.setOnSucceeded(dontCare -> {
-        comboBox.getItems().clear();
-        comboBox.getItems().addAll(fetchService.getValue().getClasses().stream()
-          .map(ClassModel::new).collect(Collectors.toList()));
+        comboBox.setItems(FXCollections.observableList(fetchService.getValue().getClasses().stream()
+          .map(ClassModel::new).collect(Collectors.toList())));
         comboBox.show();
+        comboBox.getEditor().positionCaret(comboBox.getEditor().getText().length());
       });
 
-      fetchService.setOnFailed(dontCare -> {
-        this.fireEvent(new ModalEvent(ModalEvent.CLOSE));
-        this.fireEvent(new NotificationEvent(
-          APIErrorUtil.getErrorMessage(fetchService.getException())));
-      });
+      fetchService.setOnFailed(dontCare ->
+        errorLabel.setText(APIErrorUtil.getErrorMessage(fetchService.getException())));
 
       fetchService.start();
     });
