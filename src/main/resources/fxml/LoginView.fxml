@@ -12,7 +12,7 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <GridPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="jscolendar.components.Login" stylesheets="styles.css" styleClass="login-box">
+          fx:controller="jscolendar.routes.Login" stylesheets="styles.css" styleClass="login-box">
     <VBox styleClass="login-main" GridPane.columnIndex="0">
         <GridPane VBox.vgrow="ALWAYS">
             <VBox styleClass="login-title-outer" GridPane.rowIndex="0">

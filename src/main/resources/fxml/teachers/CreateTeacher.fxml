@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import jscolendar.routes.teachers.CreateTeacher?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+         type="jscolendar.routes.teachers.CreateTeacher"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+    <Label text="%poup.title.creation.teacher" styleClass="modal-title"/>
+    <HBox alignment="BASELINE_LEFT" spacing="10">
+        <Label fx:id="errorLabel"/>
+    </HBox>
+    <JFXTextField fx:id="firstName"
+                  labelFloat="true"
+                  promptText="%popup.field.firstName">
+        <validators>
+            <RequiredFieldValidator message="%popup.field.firstName.message.required"/>
+            <RegexValidator
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="%popup.field.firstName.message.minLength"/>
+        </validators>
+    </JFXTextField>
+    <JFXTextField fx:id="lastName"
+                  labelFloat="true"
+                  promptText="%popup.field.name">
+        <validators>
+            <RequiredFieldValidator message="%popup.field.name.message.required"/>
+            <RegexValidator
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="%popup.field.name.message.minLength"/>
+        </validators>
+    </JFXTextField>
+    <JFXTextField fx:id="email"
+                  labelFloat="true"
+                  promptText="%popup.field.email">
+    </JFXTextField>
+    <JFXTextField fx:id="phoneNumber"
+                  labelFloat="true"
+                  promptText="%popup.field.phoneNumber">
+    </JFXTextField>
+    <JFXComboBox fx:id="grade"
+                  labelFloat="true"
+                  promptText="%popup.field.grade">
+        <validators>
+            <RequiredFieldValidator  message="%popup.field.grade.message.required"/>
+        </validators>
+    </JFXComboBox>
+
+    <HBox alignment="CENTER_RIGHT">
+        <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onSubmit"/>
+    </HBox>
+
+</fx:root>
