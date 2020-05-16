@@ -34,7 +34,9 @@ public class CreateStudent extends VBox {
     FXUtil.loadFXML("/fxml/students/CreateStudent.fxml", this, this, I18n.getBundle());
   }
 
+
   @FXML
+  @SuppressWarnings("Duplicates")
   public void initialize () {
     comboBox.setEditable(true);
     comboBox.setConverter(new StringConverter<>() {

@@ -47,7 +47,7 @@
     </VBox>
     <HBox GridPane.rowIndex="2" alignment="CENTER_RIGHT">
         <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
-        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
+        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onSubmit"/>
     </HBox>
 
 </fx:root>
