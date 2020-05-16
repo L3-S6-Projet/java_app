@@ -8,8 +8,8 @@
 
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="jscolendar.components.Teachers" fx:id="container"
-      styleClass="table-view-outer" stylesheets="table-view.css" VBox.vgrow="ALWAYS">
+           fx:controller="jscolendar.routes.teachers.Teachers" fx:id="container"
+           styleClass="table-view-outer" stylesheets="table-view.css" VBox.vgrow="ALWAYS">
 
    <VBox>
         <BorderPane styleClass="table-view-container">

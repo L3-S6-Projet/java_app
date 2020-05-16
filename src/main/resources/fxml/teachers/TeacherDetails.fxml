@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import jscolendar.routes.teachers.TeacherDetails?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="jscolendar.routes.teachers.TeacherDetails">
+    <VBox fx:id="all" style="-fx-background-color: #FAfAFA">
+        <GridPane>
+            <HBox fx:id="header" GridPane.rowIndex="0" prefWidth="${all.width}" prefHeight="${all.height}">
+                <GridPane>
+                    <HBox GridPane.columnIndex="0" prefWidth="${header.width}" prefHeight="${header.height}"
+                          style="-fx-alignment: center-left">
+                        <JFXButton onAction="#returnToPrevView">
+                            <graphic>
+                                <FontIcon iconLiteral="mdi-arrow-left"/>
+                            </graphic>
+                        </JFXButton>
+                        <Label fx:id="title"/>
+                    </HBox>
+                    <HBox GridPane.columnIndex="1" prefWidth="${header.width}" prefHeight="${header.height}"
+                          style="-fx-alignment: center-right">
+                        <JFXComboBox fx:id="select" onAction="#selectCalendarType">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Label text="%calendar.type.day"/>
+                                    <Label text="%calendar.type.week"/>
+                                    <Label text="%calendar.type.month"/>
+                                </FXCollections>
+                            </items>
+                        </JFXComboBox>
+                        <JFXButton fx:id="edit" onAction="#editButton">
+                            <graphic>
+                                <FontIcon iconLiteral="mdi-border-color"/>
+                            </graphic>
+                        </JFXButton>
+                    </HBox>
+                    <rowConstraints>
+                        <RowConstraints vgrow="ALWAYS" percentHeight="100"/>
+                    </rowConstraints>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50"/>
+                    </columnConstraints>
+                </GridPane>
+            </HBox>
+
+            <HBox fx:id="body" GridPane.rowIndex="1" prefWidth="${all.width}" prefHeight="${all.height}">
+                <GridPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                    <VBox fx:id="subLeft" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="${body.width}"
+                          prefHeight="${body.height}">
+                        <VBox fx:id="info">
+                            <Label text="%calendar.title.information"/>
+                            <JFXListView fx:id="infoContent">
+                                <HBox>
+                                    <VBox alignment="CENTER">
+                                        <FontIcon iconLiteral="mdi-account-circle"/>
+                                    </VBox>
+                                    <VBox>
+                                        <Label fx:id="name"/>
+                                        <Label text="%calendar.details.name"/>
+                                    </VBox>
+                                </HBox>
+                                <VBox>
+                                    <Label fx:id="userName"/>
+                                    <Label text="%calendar.details.username"/>
+                                </VBox>
+                                <HBox>
+                                    <VBox alignment="CENTER">
+                                        <FontIcon iconLiteral="mdi-email"/>
+                                    </VBox>
+                                    <VBox>
+                                        <Label fx:id="email"/>
+                                        <Label text="%calendar.details.email"/>
+                                    </VBox>
+                                </HBox>
+                                <HBox>
+                                    <VBox alignment="CENTER">
+                                        <FontIcon iconLiteral="mdi-phone"/>
+                                    </VBox>
+                                    <VBox>
+                                        <Label fx:id="phoneNumber"/>
+                                        <Label text="%calendar.details.phone"/>
+                                    </VBox>
+                                </HBox>
+                                <VBox>
+                                    <Label fx:id="teacher"/>
+                                    <Label text="%calendar.details.teacher"/>
+                                </VBox>
+                                <Label text="%calendar.details.services"/>
+                                <Label fx:id="serviceDetails"/>
+                            </JFXListView>
+                        </VBox>
+                    </VBox>
+                    <VBox fx:id="calendar" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="${body.width}"
+                          prefHeight="${body.height}">
+                    </VBox>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="20.0"/>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="80.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="ALWAYS" percentHeight="100"/>
+                    </rowConstraints>
+                </GridPane>
+            </HBox>
+
+            <rowConstraints>
+                <RowConstraints vgrow="ALWAYS" percentHeight="10"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="90"/>
+            </rowConstraints>
+        </GridPane>
+
+    </VBox>
+</fx:root>
+
+
