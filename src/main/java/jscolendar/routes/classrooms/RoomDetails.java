@@ -27,7 +27,7 @@ public class RoomDetails extends StackPane {
   private HBox header;
   @FXML
   private VBox subLeft, calendar;
-  @FXML
+    @FXML
   private Label title, name, capacity;
 
   public RoomDetails (Integer id) {

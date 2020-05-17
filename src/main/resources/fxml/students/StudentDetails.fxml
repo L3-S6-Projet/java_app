@@ -57,7 +57,7 @@
                           prefHeight="${body.height}">
                         <VBox fx:id="info">
                             <Label text="%calendar.title.information"/>
-                            <JFXListView fx:id="infoContent">
+                            <JFXListView fx:id="infoContent" prefHeight="${info.height}">
                                 <HBox>
                                     <VBox alignment="CENTER">
                                         <FontIcon iconLiteral="mdi-account-circle"/>
@@ -77,8 +77,10 @@
                                         <Label text="%calendar.details.promo"/>
                                     </VBox>
                                 </HBox>
-                                <Label text="%calendar.details.enseignement"/>
-                                <Label fx:id="subjectList"/>
+                                <VBox>
+                                    <Label text="%calendar.details.enseignement"/>
+                                    <Label fx:id="subjectList"/>
+                                </VBox>
                             </JFXListView>
                         </VBox>
                     </VBox>

@@ -18,7 +18,7 @@
                 <GridPane>
                     <HBox GridPane.columnIndex="0" prefWidth="${header.width}" prefHeight="${header.height}"
                           style="-fx-alignment: center-left">
-                        <JFXButton fx:id="returnButton" onAction="#returnToPrevView">
+                        <JFXButton onAction="#returnToPrevView">
                             <graphic>
                                 <FontIcon iconLiteral="mdi-arrow-left"/>
                             </graphic>
@@ -27,7 +27,7 @@
                     </HBox>
                     <HBox GridPane.columnIndex="1" prefWidth="${header.width}" prefHeight="${header.height}"
                           style="-fx-alignment: center-right">
-                        <JFXComboBox fx:id="select" onAction="#selectCalendarType">
+                        <JFXComboBox onAction="#selectCalendarType">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <Label text="%calendar.type.day"/>
@@ -36,7 +36,7 @@
                                 </FXCollections>
                             </items>
                         </JFXComboBox>
-                        <JFXButton fx:id="edit" onAction="#editButton">
+                        <JFXButton onAction="#editButton">
                             <graphic>
                                 <FontIcon iconLiteral="mdi-border-color"/>
                             </graphic>
@@ -56,9 +56,9 @@
                 <GridPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                     <VBox fx:id="subLeft" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="${body.width}"
                           prefHeight="${body.height}">
-                        <VBox fx:id="info">
+                        <VBox fx:id="info" prefHeight="${subLeft.height}">
                             <Label text="%calendar.title.information"/>
-                            <JFXListView fx:id="infoContent">
+                            <JFXListView>
                                 <HBox>
                                     <VBox alignment="CENTER">
                                         <FontIcon iconLiteral="mdi-account-circle"/>

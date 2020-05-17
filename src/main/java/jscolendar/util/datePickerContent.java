@@ -12,7 +12,7 @@ public class datePickerContent {
 
   public static Node getContent (JFXDatePicker datePicker) {
     datePicker.setDefaultColor(Color.color(0.24609375, 0.31640625, 0.70703125, 1));
-    datePicker.setStyle("-fx-alignment: bottom-center");
+    datePicker.setStyle("-fx-alignment: bottom-center;");
     var datePickerSkin = new JFXDatePickerSkin(datePicker);
     Class<?> clazz = datePickerSkin.getClass();
     Method getPopupContent = null;
@@ -21,12 +21,11 @@ public class datePickerContent {
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     }
+    assert getPopupContent != null;
     getPopupContent.setAccessible(true);
     try {
       return (Node) getPopupContent.invoke(datePickerSkin);
-    } catch (IllegalAccessException e) {
-      e.printStackTrace();
-    } catch (InvocationTargetException e) {
+    } catch (IllegalAccessException | InvocationTargetException e) {
       e.printStackTrace();
     }
     return null;
