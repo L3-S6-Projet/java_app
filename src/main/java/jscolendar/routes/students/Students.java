@@ -9,12 +9,15 @@ import io.swagger.client.model.SimpleSuccessResponse;
 import io.swagger.client.model.StudentListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.Student;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
+import jscolendar.util.I18n;
 
 import java.util.stream.Collectors;
 
@@ -50,17 +53,34 @@ public class Students extends AbstractTableView<Student> {
       table.setRoot(new RecursiveTreeItem<>(students, RecursiveTreeObject::getChildren));
     });
 
-    fetchService.setOnFailed(dontCare -> {
-      // @TODO
-      System.out.println(APIErrorUtil.getErrorMessage(fetchService.getException()));
-    });
+    fetchService.setOnFailed(dontCare -> container.fireEvent(
+      new NotificationEvent(APIErrorUtil.getErrorMessage(fetchService.getException()))));
 
     fetchService.start();
   }
 
+  @SuppressWarnings("Duplicates")
   @Override
   protected void delete () {
-    // @TODO
+    deleteService.reset();
+
+    var idRequest = new IDRequest();
+    idRequest.addAll(table.getRoot().getChildren()
+      .stream()
+      .map(TreeItem::getValue)
+      .filter(Student::isSelected)
+      .map(Student::getId)
+      .collect(Collectors.toList()));
+    deleteService.setRequest(idRequest);
+    deleteService.setOnSucceeded(event -> {
+      container.fireEvent(new NotificationEvent(I18n.get("students.delete.success")));
+      fetchData();
+      clearSelection();
+    });
+    deleteService.setOnFailed(dontCare ->
+      container.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(deleteService.getException()))));
+
+    deleteService.start();
   }
 
   @Override

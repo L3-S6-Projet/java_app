@@ -9,12 +9,15 @@ import io.swagger.client.model.IDRequest;
 import io.swagger.client.model.SimpleSuccessResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.Classroom;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
+import jscolendar.util.I18n;
 
 import java.util.stream.Collectors;
 
@@ -50,17 +53,34 @@ public class Classrooms extends AbstractTableView<Classroom> {
       table.setRoot(new RecursiveTreeItem<>(classrooms, RecursiveTreeObject::getChildren));
     });
 
-    fetchService.setOnFailed(dontCare -> {
-       // @TODO
-      System.out.println(APIErrorUtil.getErrorMessage(fetchService.getException()));
-    });
+    deleteService.setOnFailed(dontCare ->
+      container.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(deleteService.getException()))));
 
     fetchService.start();
   }
 
+  @SuppressWarnings("Duplicates")
   @Override
   protected void delete () {
-    // @TODO
+    deleteService.reset();
+
+    var idRequest = new IDRequest();
+    idRequest.addAll(table.getRoot().getChildren()
+      .stream()
+      .map(TreeItem::getValue)
+      .filter(Classroom::isSelected)
+      .map(Classroom::getId)
+      .collect(Collectors.toList()));
+    deleteService.setRequest(idRequest);
+    deleteService.setOnSucceeded(event -> {
+      container.fireEvent(new NotificationEvent(I18n.get("classRooms.delete.success")));
+      fetchData();
+      clearSelection();
+    });
+    deleteService.setOnFailed(dontCare ->
+      container.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(deleteService.getException()))));
+
+    deleteService.start();
   }
 
   @Override
@@ -70,7 +90,6 @@ public class Classrooms extends AbstractTableView<Classroom> {
 
   @Override
   protected Region getDetailsView (Classroom item) {
-    // @TODO
     return new RoomDetails(item.id);
   }
 }

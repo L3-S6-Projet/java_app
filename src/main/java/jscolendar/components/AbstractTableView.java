@@ -37,7 +37,7 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
   @FXML protected JFXTreeTableColumn<T, Boolean> select;
   @FXML protected JFXButton prevButton, nextButton;
 
-  private final IntegerProperty selectionCount = new SimpleIntegerProperty(0);
+  protected final IntegerProperty selectionCount = new SimpleIntegerProperty(0);
   protected final IntegerProperty page = new SimpleIntegerProperty(1);
   protected final IntegerProperty total = new SimpleIntegerProperty(0);
   private final int itemPerPage = 10;
@@ -140,7 +140,7 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
 
   private void updatePaginationLabel () {
     int last = page.get() * itemPerPage;
-    int first = last - itemPerPage + 1; // FIXME :: handle empty table
+    int first = total.greaterThan(0).get() ? last - itemPerPage + 1 : total.get();
     paginationLabel.textProperty().set(String.format(
       "%d-%d of %d", first, Math.min(last, total.get()), total.get()));
   }
@@ -151,7 +151,7 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
     updatePaginationLabel();
   }
 
-  private void clearSelection () {
+  protected void clearSelection () {
     ((CheckBox) select.getGraphic()).selectedProperty().set(false);
     selectionCount.set(0);
   }
