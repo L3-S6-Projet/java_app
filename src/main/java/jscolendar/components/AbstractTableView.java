@@ -2,11 +2,13 @@ package jscolendar.components;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,6 +32,7 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
   @FXML protected StackPane container;
   @FXML protected HBox header, headerSelected;
   @FXML protected Label countLabel, paginationLabel;
+  @FXML protected JFXTextField search;
   @FXML protected JFXTreeTableView<T> table;
   @FXML protected JFXTreeTableColumn<T, Boolean> select;
   @FXML protected JFXButton prevButton, nextButton;
@@ -103,10 +106,17 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
 
     fetchData();
 
-    page.addListener(((observable, oldValue, newValue) -> fetchData()));
+    ChangeListener<Number> pageChangeHandler = (observable, oldValue, newValue) -> fetchData();
+    page.addListener(pageChangeHandler);
     total.addListener(((observable, oldValue, newValue) -> updatePaginationLabel()));
     prevButton.disableProperty().bind(page.isEqualTo(1));
     nextButton.disableProperty().bind(page.multiply(itemPerPage).greaterThanOrEqualTo(total));
+    search.textProperty().addListener((observable, oldValue, newValue) -> {
+      page.removeListener(pageChangeHandler);
+      page.set(1);
+      fetchData();
+      page.addListener(pageChangeHandler);
+    });
   }
   protected abstract void initColumns ();
   protected abstract void fetchData ();
@@ -130,7 +140,7 @@ public abstract class AbstractTableView<T extends RecursiveTreeObject<T>> implem
 
   private void updatePaginationLabel () {
     int last = page.get() * itemPerPage;
-    int first = last - itemPerPage + 1;
+    int first = last - itemPerPage + 1; // FIXME :: handle empty table
     paginationLabel.textProperty().set(String.format(
       "%d-%d of %d", first, Math.min(last, total.get()), total.get()));
   }

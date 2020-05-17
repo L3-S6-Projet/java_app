@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
 import jscolendar.models.Teacher;
 import jscolendar.util.APIErrorUtil;
@@ -22,8 +23,8 @@ public class Teachers extends AbstractTableView<Teacher> {
   @FXML private JFXTreeTableColumn<Teacher, String> firstName, lastName, email, phoneNumber;
 
   private final TeacherApi apiInstance = new TeacherApi();
-  private final FXApiService<Integer, TeacherListResponse> fetchService = new FXApiService<>(
-    page -> apiInstance.teachersGet("", page)
+  private final FXApiService<Pair<String, Integer>, TeacherListResponse> fetchService = new FXApiService<>(
+    request -> apiInstance.teachersGet(request.getKey(), request.getValue())
   );
   private final FXApiService<IDRequest, SimpleSuccessResponse> deleteService = new FXApiService<>(
     apiInstance::teachersDelete);
@@ -38,9 +39,9 @@ public class Teachers extends AbstractTableView<Teacher> {
 
   @Override
   protected void fetchData () {
+    var request = new Pair<>(search.getText(), page.get());
     fetchService.reset();
-
-    fetchService.setRequest(page.get());
+    fetchService.setRequest(request);
     fetchService.setOnSucceeded(event -> {
       var response = fetchService.getValue();
       total.set(response.getTotal());
