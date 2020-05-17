@@ -20,6 +20,10 @@ public class Classroom extends RecursiveTreeObject<Classroom> implements Selecta
     this.capacity.set(classroom.getCapacity());
   }
 
+  public int getId () {
+    return id;
+  }
+
   @Override
   public BooleanProperty selectedProperty () {
     return selected;

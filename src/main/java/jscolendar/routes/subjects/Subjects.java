@@ -9,12 +9,15 @@ import io.swagger.client.model.SimpleSuccessResponse;
 import io.swagger.client.model.SubjectListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.Subject;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
+import jscolendar.util.I18n;
 
 import java.util.stream.Collectors;
 
@@ -49,14 +52,32 @@ public class Subjects extends AbstractTableView<Subject> {
       table.setRoot(new RecursiveTreeItem<>(subjects, RecursiveTreeObject::getChildren));
     });
 
-    fetchService.setOnFailed(dontCare -> System.out.println(APIErrorUtil.getErrorMessage(fetchService.getException())));
+    fetchService.setOnFailed(dontCare -> container.fireEvent(
+      new NotificationEvent(APIErrorUtil.getErrorMessage(fetchService.getException()))));
     fetchService.start();
   }
 
+  @SuppressWarnings("Duplicates")
   @Override
   protected void delete () {
-    // @TODO
     deleteService.reset();
+    var idRequest = new IDRequest();
+    idRequest.addAll(table.getRoot().getChildren()
+      .stream()
+      .map(TreeItem::getValue)
+      .filter(Subject::isSelected)
+      .map(Subject::getId)
+      .collect(Collectors.toList()));
+    deleteService.setRequest(idRequest);
+    deleteService.setOnSucceeded(event -> {
+      container.fireEvent(new NotificationEvent(I18n.get("subjects.delete.success")));
+      fetchData();
+      clearSelection();
+    });
+    deleteService.setOnFailed(dontCare ->
+      container.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(deleteService.getException()))));
+
+    deleteService.start();
   }
 
   @Override
@@ -66,7 +87,6 @@ public class Subjects extends AbstractTableView<Subject> {
 
   @Override
   protected Region getDetailsView (Subject item) {
-    // @TODO
     return new SubjectDetails(item.getId());
   }
 }

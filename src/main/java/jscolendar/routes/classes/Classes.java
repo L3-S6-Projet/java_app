@@ -9,12 +9,15 @@ import io.swagger.client.model.IDRequest;
 import io.swagger.client.model.SimpleSuccessResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeItem;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.ClassModel;
 import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
+import jscolendar.util.I18n;
 
 import java.util.stream.Collectors;
 
@@ -49,17 +52,34 @@ public class Classes extends AbstractTableView<ClassModel> {
       table.setRoot(new RecursiveTreeItem<>(classes, RecursiveTreeObject::getChildren));
     });
 
-    fetchService.setOnFailed(dontCare -> {
-        // @TODO
-      System.out.println(APIErrorUtil.getErrorMessage(fetchService.getException()));
-    });
+    deleteService.setOnFailed(dontCare ->
+      container.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(deleteService.getException()))));
 
     fetchService.start();
   }
 
+  @SuppressWarnings("Duplicates")
   @Override
   protected void delete () {
-    // @TODO
+    deleteService.reset();
+
+    var idRequest = new IDRequest();
+    idRequest.addAll(table.getRoot().getChildren()
+      .stream()
+      .map(TreeItem::getValue)
+      .filter(ClassModel::isSelected)
+      .map(ClassModel::getId)
+      .collect(Collectors.toList()));
+    deleteService.setRequest(idRequest);
+    deleteService.setOnSucceeded(event -> {
+      container.fireEvent(new NotificationEvent(I18n.get("class.delete.success")));
+      fetchData();
+      clearSelection();
+    });
+    deleteService.setOnFailed(dontCare ->
+      container.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(deleteService.getException()))));
+
+    deleteService.start();
   }
 
   @Override
@@ -69,7 +89,6 @@ public class Classes extends AbstractTableView<ClassModel> {
 
   @Override
   protected Region getDetailsView (ClassModel item) {
-    // @TODO
     return new PromoDetails(item.id);
   }
 }
