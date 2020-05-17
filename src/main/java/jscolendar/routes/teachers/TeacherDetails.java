@@ -10,6 +10,7 @@ import io.swagger.client.model.TeacherResponseTeacherServices;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.CalendarRoute;
@@ -23,16 +24,13 @@ import static jscolendar.util.datePickerContent.getContent;
 public class TeacherDetails extends StackPane {
 
   private final Integer id;
-  public Label serviceDetails;
+  public HBox header;
   //todo add margin to infoContent witch don't have icons
+
   @FXML
-  private VBox calendar;
+  private Label title, serviceDetails, name, userName, email, phoneNumber, teacher;
   @FXML
-  private Label name, userName, email, phoneNumber, teacher;
-  @FXML
-  private Label title;
-  @FXML
-  private VBox subLeft;
+  private VBox calendar, subLeft;
   @FXML
   private JFXComboBox<Label> select;
   @FXML
@@ -67,7 +65,6 @@ public class TeacherDetails extends StackPane {
       teacher.setText("Professeur");
 
       var services = result.getTeacher().getServices();
-      System.out.println(services);
       StringBuilder serviceContent = new StringBuilder();
       for (TeacherResponseTeacherServices service : services) {
         buildServiceString(serviceContent, service);
@@ -90,7 +87,7 @@ public class TeacherDetails extends StackPane {
   }
 
   private void buildServiceString (StringBuilder serviceContent, TeacherResponseTeacherServices service) {
-    serviceContent.append(I18n.get("calendar.details.teacher.firstPart")).append(service.getPropertyClass()).append(',').append(I18n.get("calendar.details.teacher.secondPart")).append(',');
+    serviceContent.append(I18n.get("calendar.details.teacher.firstPart")).append(service.getPropertyClass()).append(',').append(I18n.get("calendar.details.teacher.secondPart")).append(",\n");
     if (service.getCm() != null && service.getCm() != 0) {
       serviceContent.append(" ").append(service.getCm()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.cm")).append(',');
     }

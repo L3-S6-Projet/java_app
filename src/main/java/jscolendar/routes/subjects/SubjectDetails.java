@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.CalendarRoute;
@@ -26,15 +27,17 @@ import static jscolendar.util.datePickerContent.getContent;
 public class SubjectDetails extends StackPane {
 
   private final Integer id;
-  public Label title;
-  public Tab menuEnseig;
-  public Tab menuGroup;
+
   @FXML
-  private VBox calendar;
+  private Tab menuEnseig, menuGroup;
+
   @FXML
-  private VBox subLeft;
+  private HBox header;
+
   @FXML
-  private Label name, promo, services;
+  private VBox calendar, subLeft;
+  @FXML
+  private Label title, name, promo, services;
 
   public SubjectDetails (Integer id) {
     this.id = id;

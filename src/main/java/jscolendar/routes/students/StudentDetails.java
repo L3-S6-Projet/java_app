@@ -9,6 +9,7 @@ import io.swagger.client.model.StudentSubjects;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.CalendarRoute;
@@ -22,14 +23,12 @@ public class StudentDetails extends StackPane {
 
 
   private final Integer id;
-  public Label title;
-  public Label subjectList;
   @FXML
-  private VBox calendar;
+  private HBox header;
   @FXML
-  private VBox subLeft;
+  private VBox calendar, subLeft;
   @FXML
-  private Label name, userName, promo;
+  private Label title, subjectList, name, userName, promo;
 
   public StudentDetails (Integer id) {
     this.id = id;

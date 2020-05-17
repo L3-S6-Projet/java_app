@@ -7,6 +7,7 @@ import io.swagger.client.model.ClassroomGetResponse;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import jscolendar.components.CalendarRoute;
@@ -20,13 +21,14 @@ public class RoomDetails extends StackPane {
 
 
   private final Integer id;
-  public Label title;
+
+
   @FXML
-  private VBox calendar;
+  private HBox header;
   @FXML
-  private VBox subLeft;
+  private VBox subLeft, calendar;
   @FXML
-  private Label name, capacity;
+  private Label title, name, capacity;
 
   public RoomDetails (Integer id) {
     this.id = id;
