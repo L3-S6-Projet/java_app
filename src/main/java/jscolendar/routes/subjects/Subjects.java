@@ -10,6 +10,7 @@ import io.swagger.client.model.SubjectListResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
 import jscolendar.models.Subject;
 import jscolendar.util.APIErrorUtil;
@@ -21,8 +22,8 @@ public class Subjects extends AbstractTableView<Subject> {
   @FXML private JFXTreeTableColumn<Subject, String> classname, name;
 
   private final SubjectsApi apiInstance = new SubjectsApi();
-  private final FXApiService<Integer, SubjectListResponse> fetchService = new FXApiService<>(
-    page -> apiInstance.subjectsGet("", page)
+  private final FXApiService<Pair<String, Integer>, SubjectListResponse> fetchService = new FXApiService<>(
+    request -> apiInstance.subjectsGet(request.getKey(), request.getValue())
   );
   private final FXApiService<IDRequest, SimpleSuccessResponse> deleteService = new FXApiService<>(
     apiInstance::subjectsDelete
@@ -36,9 +37,9 @@ public class Subjects extends AbstractTableView<Subject> {
 
   @Override
   protected void fetchData () {
+    var request = new Pair<>(search.getText(), page.get());
     fetchService.reset();
-
-    fetchService.setRequest(page.get());
+    fetchService.setRequest(request);
     fetchService.setOnSucceeded(event -> {
       var response = fetchService.getValue();
       total.set(response.getTotal());

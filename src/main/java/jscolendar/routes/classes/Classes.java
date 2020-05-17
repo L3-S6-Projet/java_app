@@ -10,6 +10,7 @@ import io.swagger.client.model.SimpleSuccessResponse;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 import jscolendar.components.AbstractTableView;
 import jscolendar.models.ClassModel;
 import jscolendar.util.APIErrorUtil;
@@ -21,8 +22,8 @@ public class Classes extends AbstractTableView<ClassModel> {
   @FXML private JFXTreeTableColumn<ClassModel, String> name, level;
 
   private final ClassesApi apiInstance = new ClassesApi();
-  private final FXApiService<Integer, ClassesList> fetchService = new FXApiService<>(
-    page -> apiInstance.classesGet("", page)
+  private final FXApiService<Pair<String, Integer>, ClassesList> fetchService = new FXApiService<>(
+    request -> apiInstance.classesGet(request.getKey(), request.getValue())
   );
   private final FXApiService<IDRequest, SimpleSuccessResponse> deleteService = new FXApiService<>(
     apiInstance::classesDelete
@@ -36,9 +37,9 @@ public class Classes extends AbstractTableView<ClassModel> {
 
   @Override
   protected void fetchData () {
+    var request = new Pair<>(search.getText(), page.get());
     fetchService.reset();
-
-    fetchService.setRequest(page.get());
+    fetchService.setRequest(request);
     fetchService.setOnSucceeded(event -> {
       var response = fetchService.getValue();
       total.set(response.getTotal());
