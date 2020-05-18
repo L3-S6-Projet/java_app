@@ -9,7 +9,7 @@
           fx:id="root" fx:controller="jscolendar.routes.Main">
     <GridPane>
         <SideBar GridPane.columnIndex="0"/>
-        <VBox fx:id="viewContainer" GridPane.columnIndex="1"/>
+        <VBox fx:id="viewContainer" GridPane.columnIndex="1" styleClass="view-outer"/>
 
         <rowConstraints>
             <RowConstraints vgrow="ALWAYS"/>

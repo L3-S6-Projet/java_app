@@ -1,9 +1,9 @@
 .table-view-container {
-    -fx-padding: .4em 4em;
+    -fx-padding: 0 4em;
 }
 
 .table-header, .table-header-selection {
-    -fx-padding: 2em 0 2em 1em;
+    -fx-padding: 0 0 2em 1em;
 }
 
 .table-header {

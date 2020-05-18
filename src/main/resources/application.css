@@ -1,4 +1,10 @@
-.main {}
+.main {
+    -fx-background-color: #FAFAFA;
+}
+
+.view-outer {
+    -fx-padding: 1em 2em;
+}
 
 .jfx-snackbar-layout {}
 
@@ -35,38 +41,40 @@
 }
 
 .nav-cell-container {
-    -fx-padding: 6px 0 6px 32px;
+    -fx-padding: 6px 0 6px 16px;
 }
 
-.list-cell {
+.main-nav .list-cell {
     -fx-control-inner-background: #3F51B5;
     -fx-border-width: 0 0 0 4;
     -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #3F51B5;
     -fx-background-insets: 0;
 }
 
-.list-cell .ikonli-font-icon {
+.main-nav .list-cell .ikonli-font-icon {
     -fx-icon-color: #BDBDBD;
 }
 
-.list-cell Label {
+.main-nav .list-cell .label {
     -fx-text-fill: #BDBDBD;
     -fx-padding: 0 0 0 8px;
 }
 
-.list-cell:odd {
+.main-nav .list-cell:odd {
     -fx-background-color: #3F51B5;
 }
 
-.list-cell:hover .ikonli-font-icon, .list-cell:selected .ikonli-font-icon {
+.main-nav .list-cell:hover .ikonli-font-icon,
+.main-nav .list-cell:selected .ikonli-font-icon {
     -fx-icon-color: #FFFFFF;
 }
 
-.list-cell:hover Label, .list-cell:selected Label {
+.main-nav .list-cell:hover .label,
+.main-nav .list-cell:selected .label {
     -fx-text-fill: #FFFFFF;
 }
 
-.list-cell:filled:selected:focused {
+.main-nav .list-cell:filled:selected:focused {
     -fx-background-color: #3F51B5;
     -fx-border-width: 0 0 0 4;
     -fx-border-color: #3F51B5 #3F51B5 #3F51B5 #303F9F;
