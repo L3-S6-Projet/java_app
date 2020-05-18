@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="jscolendar.routes.settings.SettingsView">
+      fx:controller="jscolendar.routes.settings.SettingsView" fx:id="container">
 
     <Label text="%sidebar.settings" styleClass="login-title-outer"/>
     <JFXButton text="%sidebar.settings.changePassword" onAction="#changePassWord"/>

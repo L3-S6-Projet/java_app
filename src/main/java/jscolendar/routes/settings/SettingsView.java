@@ -1,22 +1,29 @@
 package jscolendar.routes.settings;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import jscolendar.events.ModalEvent;
 
-public class SettingsView extends StackPane {
+public class SettingsView {
+
+  @FXML
+  private VBox container;
+/*
+  public SettingsView () {
+    FXUtil.loadFXML("/fxml/Settings.fxml",this,this, I18n.getBundle());
+  }*/
 
   //todo add css to view
   @FXML
   private void changePassWord () {
-    this.fireEvent(
+    container.fireEvent(
       new ModalEvent(ModalEvent.OPEN, new ChangePassWord())
     );
   }
 
   @FXML
   private void resetData () {
-    this.fireEvent(
+    container.fireEvent(
       new ModalEvent(ModalEvent.OPEN, new ResetData())
     );
   }

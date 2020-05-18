@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx" fx:controller="jscolendar.routes.HomeStudent" fx:id="container"
+      style="-fx-border-color: blue">
+
+    <GridPane>
+        <Label fx:id="header" text="%home.student.header.first" GridPane.rowIndex="0" style="-fx-border-color: red"/>
+        <VBox GridPane.rowIndex="1" style="-fx-border-color: yellowgreen">
+            <Label text="pourcentage"/>
+        </VBox>
+        <HBox GridPane.rowIndex="2" style="-fx-border-color: purple">
+            <JFXButton>
+                <graphic>
+                    <FontIcon iconLiteral="mdi-menu-left"/>
+                </graphic>
+            </JFXButton>
+            <VBox style="-fx-border-color: yellow">
+                <Label text="body"/>
+            </VBox>
+            <JFXButton>
+                <graphic>
+                    <FontIcon iconLiteral="mdi-menu-right"/>
+                </graphic>
+            </JFXButton>
+        </HBox>
+        <Label text="footer" GridPane.rowIndex="3" style="-fx-border-color: orangered"/>
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" percentWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" percentHeight="20"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="10"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="40"/>
+            <RowConstraints vgrow="ALWAYS" percentHeight="30"/>
+        </rowConstraints>
+    </GridPane>
+
+</VBox>

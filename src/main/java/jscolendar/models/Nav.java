@@ -63,7 +63,7 @@ public class Nav {
   public static Stream<NavElement> create () {
     return Stream.of(
       new NavElement.Builder(I18n.get("sidebar.home")).withIcon("mdi-home")
-        .withLinkTo("main/home").withFXML("Home")
+        .withLinkTo("main/home").withFXML("HomeStudent")
         .withVisibilityRoles(Role.STU, Role.TEA).build(),
       new NavElement.Builder(I18n.get("sidebar.calendar")).withIcon("mdi-calendar-blank")
         .withLinkTo("main/calendar").withFXML("Calendar")

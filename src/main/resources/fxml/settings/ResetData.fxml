@@ -12,7 +12,7 @@
     <Label text="%popup.confirmation.message"/>
     <HBox>
         <JFXButton text="%popup.button.cancel" onAction="#onCancel"/>
-        <JFXButton text="%popup.button.save" onAction="#onCreate"/>
+        <JFXButton text="%popup.button.confirm" onAction="#onCreate"/>
     </HBox>
 
 </fx:root>
