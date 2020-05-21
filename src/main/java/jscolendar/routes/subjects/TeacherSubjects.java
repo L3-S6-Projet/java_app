@@ -23,7 +23,7 @@ public class TeacherSubjects extends VBox {
   @FXML
   private Label promo, name, title;
 
-  private Integer id;
+  private final Integer id;
 
   public TeacherSubjects(Integer id) {
     this.id = id;
@@ -79,7 +79,7 @@ public class TeacherSubjects extends VBox {
         nb++;
         text.getChildren().addAll(groupName, subtitle);
         JFXButton button = new JFXButton();
-        button.setGraphic(new FontIcon("mdi-calendar-blank"));
+        button.setGraphic(new FontIcon("mdi-calendar-blank"));//todo add listener on button
         content.getChildren().addAll(text, button);
         groupContent.getItems().add(content);
       }

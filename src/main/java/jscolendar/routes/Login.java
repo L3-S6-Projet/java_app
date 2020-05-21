@@ -28,7 +28,7 @@ public class Login extends StackPane {//extend just to test pop
 
   @FXML
   public void initialize () {
-    doLogin("user.admin","user.admin");
+    doLogin("user.student", "user.student");
     accessiblePassword.textProperty().bindBidirectional(passwordField.textProperty());
     accessiblePassword.getValidators().addAll(passwordField.getValidators());
 
