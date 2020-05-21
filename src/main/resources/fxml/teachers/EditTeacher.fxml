@@ -17,7 +17,7 @@
 
     <Label text="%popup.title.edition" styleClass="modal-title"/>
 
-    <HBox alignment="BASELINE_LEFT" spacing="10">
+    <HBox alignment="TOP_CENTER" spacing="10">
         <Label fx:id="errorLabel"/>
     </HBox>
     <JFXTextField fx:id="firstName"
