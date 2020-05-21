@@ -1,8 +1,13 @@
 package jscolendar.routes.students;
 
+import com.calendarfx.view.CalendarView;
+import com.calendarfx.view.print.ViewType;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.StudentsApi;
+import io.swagger.client.api.TeacherApi;
+import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.StudentResponse;
 import io.swagger.client.model.StudentResponseStudentSubjects;
 import io.swagger.client.model.StudentSubjects;
@@ -14,8 +19,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.util.Pair;
+import jscolendar.UserSession;
+import jscolendar.components.CalendarComponent;
 import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
+import jscolendar.models.Calendar;
+import jscolendar.models.CalendarDataManager;
+import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
@@ -35,6 +46,8 @@ public class StudentDetails extends StackPane {
   private Label title, name, userName, promo;
   @FXML
   private TextFlow subjectList;
+  @FXML
+  private JFXComboBox<Label> select;
 
   public StudentDetails (Integer id) {
     this.id = id;
@@ -81,7 +94,35 @@ public class StudentDetails extends StackPane {
     Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
-    calendar.getChildren().add(new CalendarRoute());
+
+
+
+    FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
+    var studentApi = new StudentsApi();
+    service = new FXApiService<>(request ->
+      studentApi.studentsIdOccupanciesGet(id, request.getKey(), request.getValue(), 0));
+    var manager = new CalendarDataManager(new Calendar(), service);
+    CalendarComponent calendarComponent = new CalendarComponent(manager);
+    CalendarView calendarView = calendarComponent.getView();
+
+
+    select.getSelectionModel().select(2);
+
+    select.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->  {
+      switch (newValue.getId()) {
+        case "day":
+          if (calendarView.getSelectedPage().getPrintViewType() == ViewType.DAY_VIEW) return;
+          calendarView.showDayPage(); break;
+        case "week":
+          if (calendarView.getSelectedPage().getPrintViewType() == ViewType.WEEK_VIEW) return;
+          calendarView.showWeekPage(); break;
+        case "month":
+          if (calendarView.getSelectedPage().getPrintViewType() == ViewType.MONTH_VIEW) return;
+          calendarView.showMonthPage(); break;
+      }
+    });
+
+    calendar.getChildren().add(calendarView);
   }
 
   @FXML

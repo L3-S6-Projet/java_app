@@ -27,12 +27,12 @@
                     </HBox>
                     <HBox GridPane.columnIndex="1" prefWidth="${header.width}" prefHeight="${header.height}"
                           style="-fx-alignment: center-right">
-                        <JFXComboBox onAction="#selectCalendarType">
+                        <JFXComboBox onAction="#selectCalendarType" fx:id="select">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <Label text="%calendar.type.day"/>
-                                    <Label text="%calendar.type.week"/>
-                                    <Label text="%calendar.type.month"/>
+                                    <Label text="%calendar.type.day" id="day"/>
+                                    <Label text="%calendar.type.week" id="week"/>
+                                    <Label text="%calendar.type.month" id="month"/>
                                 </FXCollections>
                             </items>
                         </JFXComboBox>
