@@ -42,7 +42,7 @@ public class CalendarRoute extends VBox {
   private JFXComboBox<Label> select;
 
   public CalendarRoute () {
-    FXUtil.loadFXML("/fxml/Calendar.fxml", this, this, I18n.getBundle());
+    FXUtil.loadFXML("/fxml/CalendarDetails.fxml", this, this, I18n.getBundle());
   }
 
   private static Region spacer () {

@@ -70,7 +70,8 @@ public class SideBar extends GridPane {
     nav.setItems(FXCollections.observableList(
       Nav.create().filter(Nav.visibilityFilter(user.getKind())).collect(Collectors.toList())
     ));
-    // @TODO :: handle logout case
+
+    nav.getSelectionModel().select(0);
     nav.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       if (newValue.linkTo.equals("main/logout")) {
         UserSession.getInstance().destroy();

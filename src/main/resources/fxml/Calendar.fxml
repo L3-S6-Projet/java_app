@@ -1,45 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import jscolendar.components.CalendarRoute?>
-<fx:root xmlns:fx="http://javafx.com/fxml"
-         xmlns="http://javafx.com/javafx" type="jscolendar.components.CalendarRoute">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.collections.FXCollections?>
 
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:id="container"
+      fx:controller="jscolendar.routes.calendar.CalendarRoute"
+      styleClass="calendar-outer" spacing="4" stylesheets="calendar.css"
+      VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
 
-    <StackPane fx:id="header">
-        <!--<HBox style="-fx-padding: 28px;">
-            <JFXButton styleClass="today-button" text="AUJOURD'HUI"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <JFXComboBox fx:id="select" styleClass="select">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <Label id="jour" text="Jour"/>
-                        <Label id="semaine" text="Semaine"/>
-                        <Label id="mois" text="Mois"/>
-                    </FXCollections>
-                </items>
-            </JFXComboBox>
+    <HBox styleClass="calendar-header" alignment="CENTER">
+        <JFXButton styleClass="today-button" text="%calendar.today" onAction="#goToday"/>
+        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <HBox>
+                <JFXButton fx:id="back" onAction="#goBack">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-left" iconSize="24"/>
+                    </graphic>
+                </JFXButton>
+                <VBox alignment="CENTER">
+                    <Label fx:id="dateLabel" styleClass="date-label" />
+                    <Label fx:id="dateSubtitleLabel" styleClass="date-subtitle"/>
+                </VBox>
+
+                <JFXButton fx:id="forward" onAction="#goForward">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-right" iconSize="24"/>
+                    </graphic>
+                </JFXButton>
+            </HBox>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="48">
-            <Region HBox.hgrow="ALWAYS"/>
-            <JFXButton style="-fx-padding: 0 16px 0 0;">
-                <graphic>
-                    <FontIcon iconSize="24" iconLiteral="mdi-chevron-left"/>
-                </graphic>
-            </JFXButton>
-            <VBox alignment="CENTER">
-                <Label style="-fx-font-size: 24px;">Avril</Label>
-                <Label style="-fx-font-size: 18px; -fx-text-fill: #757575;">2020</Label>
-            </VBox>
-            <JFXButton style="-fx-padding: 0 0 0 16px;">
-                <graphic>
-                    <FontIcon iconSize="24" iconLiteral="mdi-chevron-right"/>
-                </graphic>
-            </JFXButton>
-            <Region HBox.hgrow="ALWAYS"/>
-        </HBox>-->
-    </StackPane>
-    <GridPane fx:id="days"/>
-    <GridPane fx:id="pane"/>
-</fx:root>
+
+        <JFXComboBox fx:id="select">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <Label id="day" text="%calendar.comboItem.day" />
+                    <Label id="week" text="%calendar.comboItem.week"/>
+                    <Label id="month" text="%calendar.comboItem.month" />
+                </FXCollections>
+            </items>
+        </JFXComboBox>
+    </HBox>
+</VBox>

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbar.SnackbarEvent;
 import com.jfoenix.controls.JFXSnackbarLayout;
+import io.swagger.client.model.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -47,6 +48,11 @@ public class Main implements Initializable {
     Nav.create()
       .filter(Nav.visibilityFilter(UserSession.getInstance().getUser().getKind()))
       .forEach(navElement -> AppRouter.when(navElement.linkTo, navElement.fxml));
+
+    if (UserSession.getInstance().getUser().getKind() == Role.ADM)
+      AppRouter.goTo("main/calendar");
+    else
+      AppRouter.goTo("main/home");
   }
 
   private void onOpenModalRequest (ModalEvent event) {

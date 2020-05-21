@@ -1,0 +1,53 @@
+.calendar-outer {}
+
+.calendar-page, .week-page, .calendar-view, .detailed-week-view, .day-page {
+    -fx-background-color: transparent;
+}
+
+.calendar-header {}
+
+.calendar-header .jfx-combo-box {
+    -fx-alignment: center;
+    -fx-pref-height: 40px;
+    -fx-text-fill: rgba(0, 0, 0, 0.6);
+    -jfx-focus-color: rgba(0, 0, 0, 0.38);
+    -jfx-unfocus-color: #E8E8E8;
+}
+
+.calendar-outer .list-view .list-cell:filled,
+.calendar-outer .list-view .list-cell:filled:hover,
+.calendar-outer .list-view .list-cell:filled:selected {
+    -fx-background-color: white;
+}
+
+.calendar-outer .list-cell,
+.calendar-outer .list-cell:selected {
+    -fx-background-color: transparent;
+}
+
+
+.calendar-outer .list-cell .label,
+.calendar-outer .list-cell:selected .label {
+    -fx-text-fill: black;
+}
+
+.calendar-outer .list-view .list-cell:filled .label,
+.calendar-outer .list-view .list-cell:filled:hover .label,
+.calendar-outer .list-view .list-cell:filled:selected .label {
+    -fx-text-fill: black;
+}
+
+.custom-entry {
+    -fx-background-color: #FAFAFA !important;
+    -fx-border-width: 1px 1px 1px 1px !important;
+    -fx-border-radius: 5px !important;
+    -fx-border-color: black !important;
+}
+
+.default-style-entry {}
+
+.today-button {}
+
+.date-label {}
+
+.date-subtitle {}

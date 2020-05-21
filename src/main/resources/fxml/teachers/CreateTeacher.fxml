@@ -8,14 +8,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import jscolendar.routes.teachers.CreateTeacher?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.layout.VBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
          type="jscolendar.routes.teachers.CreateTeacher"
          styleClass="modal-content-outer" stylesheets="modals.css">
 
     <Label text="%poup.title.creation.teacher" styleClass="modal-title"/>
-    <HBox alignment="BASELINE_LEFT" spacing="10">
-        <Label fx:id="errorLabel"/>
-    </HBox>
+<!--    <HBox alignment="BASELINE_LEFT" spacing="10">-->
+<!--        <Label fx:id="errorLabel"/>-->
+<!--    </HBox>-->
+    <VBox spacing="60">
     <JFXTextField fx:id="firstName"
                   labelFloat="true"
                   promptText="%popup.field.firstName">
@@ -51,7 +53,7 @@
             <RequiredFieldValidator  message="%popup.field.grade.message.required"/>
         </validators>
     </JFXComboBox>
-
+    </VBox>
     <HBox alignment="CENTER_RIGHT">
         <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
         <JFXButton fx:id="save" text="%popup.button.save" onAction="#onSubmit"/>
