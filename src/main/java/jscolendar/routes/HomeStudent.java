@@ -1,6 +1,9 @@
 package jscolendar.routes;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import jscolendar.util.I18n;
@@ -10,6 +13,7 @@ public class HomeStudent {
 
   public VBox container;
   public Label header;
+  public VBox graph;
 
 
   @FXML
@@ -23,5 +27,13 @@ public class HomeStudent {
     header.setText(headerContent);
     header.setWrapText(true);
 
+
+    ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
+      new PieChart.Data("", 33),
+      new PieChart.Data("77%", 77));
+    // create a pieChart with valueList data.
+    PieChart pieChart = new PieChart(valueList);
+    pieChart.setTitle(I18n.get("home.student.graph.first"));
+    graph.getChildren().addAll(pieChart, new Label(I18n.get("home.student.graph.second")));
   }
 }

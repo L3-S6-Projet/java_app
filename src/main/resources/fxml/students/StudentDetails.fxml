@@ -6,6 +6,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.TextFlow?>
 <?import jscolendar.routes.students.StudentDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
@@ -77,10 +78,7 @@
                                         <Label text="%calendar.details.promo"/>
                                     </VBox>
                                 </HBox>
-                                <VBox>
-                                    <Label text="%calendar.details.enseignement"/>
-                                    <Label fx:id="subjectList"/>
-                                </VBox>
+                                <TextFlow fx:id="subjectList"/>
                             </JFXListView>
                         </VBox>
                     </VBox>

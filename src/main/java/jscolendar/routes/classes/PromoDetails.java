@@ -49,6 +49,7 @@ public class PromoDetails extends StackPane {
       name.setText(result.getPropertyClass().getName());
       level.setText(result.getPropertyClass().getLevel().name());
       services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getTotalService() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      services.setWrapText(true);
     }
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();

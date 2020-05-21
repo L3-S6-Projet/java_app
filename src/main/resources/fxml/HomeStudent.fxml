@@ -14,8 +14,7 @@
 
     <GridPane>
         <Label fx:id="header" text="%home.student.header.first" GridPane.rowIndex="0" style="-fx-border-color: red"/>
-        <VBox GridPane.rowIndex="1" style="-fx-border-color: yellowgreen">
-            <Label text="pourcentage"/>
+        <VBox GridPane.rowIndex="1" style="-fx-border-color: yellowgreen" fx:id="graph">
         </VBox>
         <HBox GridPane.rowIndex="2" style="-fx-border-color: purple">
             <JFXButton>

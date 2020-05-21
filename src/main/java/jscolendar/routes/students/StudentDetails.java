@@ -12,10 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
+
+import java.util.List;
 
 import static jscolendar.util.datePickerContent.getContent;
 
@@ -28,7 +32,9 @@ public class StudentDetails extends StackPane {
   @FXML
   private VBox calendar, subLeft;
   @FXML
-  private Label title, subjectList, name, userName, promo;
+  private Label title, name, userName, promo;
+  @FXML
+  private TextFlow subjectList;
 
   public StudentDetails (Integer id) {
     this.id = id;
@@ -55,16 +61,16 @@ public class StudentDetails extends StackPane {
       userName.setText(result.getStudent().getUsername());
       promo.setText(classResult.getSubjects().get(0).getClassName());
 
-      var listOfSubject = result.getStudent().getSubjects();
+      List<StudentResponseStudentSubjects> listOfSubject = result.getStudent().getSubjects();
       StringBuilder subjects = new StringBuilder();
+      subjects.append(I18n.get("calendar.details.enseignement")).append('\n');
       subjects.append(I18n.get("calendar.details.student.enseign.firstLine"));
       for (StudentResponseStudentSubjects subjet : listOfSubject) {
-        subjects.append("\n - " + subjet.getName() + ", " + subjet.getGroup());
+        subjects.append("\n - ").append(subjet.getName()).append(", ").append(subjet.getGroup());
       }
-      subjects.append("\n" + I18n.get("calendar.details.student.enseign.secondLine") + " " + result.getStudent().getTotalHours() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
-      subjectList.setWrapText(true);
-      subjectList.setText(subjects.toString());
-
+      subjects.append("\n").append(I18n.get("calendar.details.student.enseign.secondLine")).append(" ")
+        .append(result.getStudent().getTotalHours()).append(I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      subjectList.getChildren().add(new Text(subjects.toString()));
     }
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();

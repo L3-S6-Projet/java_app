@@ -6,20 +6,21 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.TextFlow?>
 <?import jscolendar.routes.teachers.TeacherDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
          type="jscolendar.routes.teachers.TeacherDetails">
-    <VBox fx:id="all" style="-fx-background-color: #FAfAFA">
+    <VBox fx:id="all" styleClass="detailBody">
         <GridPane>
             <HBox fx:id="header" GridPane.rowIndex="0" prefWidth="${all.width}" prefHeight="${all.height}">
                 <GridPane>
                     <HBox GridPane.columnIndex="0" prefWidth="${header.width}" prefHeight="${header.height}"
-                          style="-fx-alignment: center-left">
+                          style="    -fx-alignment: center-left">
                         <JFXButton onAction="#returnToPrevView">
                             <graphic>
-                                <FontIcon iconLiteral="mdi-arrow-left"/>
+                                <FontIcon iconLiteral="mdi-arrow-left" styleClass="icon"/>
                             </graphic>
                         </JFXButton>
                         <Label fx:id="title"/>
@@ -55,9 +56,10 @@
                 <GridPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                     <VBox fx:id="subLeft" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="${body.width}"
                           prefHeight="${body.height}">
-                        <VBox fx:id="info" style="-fx-border-color: yellowgreen">
+                        <VBox fx:id="info">
                             <Label text="%calendar.title.information"/>
-                            <JFXListView fx:id="infoContent" prefHeight="${subLeft.height}">
+                            <JFXListView fx:id="infoContent" prefHeight="${subLeft.height}"
+                                         onMouseClicked="#selectElement">
                                 <HBox>
                                     <VBox alignment="CENTER">
                                         <FontIcon iconLiteral="mdi-account-circle"/>
@@ -67,10 +69,12 @@
                                         <Label text="%calendar.details.name"/>
                                     </VBox>
                                 </HBox>
-                                <VBox>
-                                    <Label fx:id="userName"/>
-                                    <Label text="%calendar.details.username"/>
-                                </VBox>
+                                <HBox>
+                                    <VBox>
+                                        <Label fx:id="userName"/>
+                                        <Label text="%calendar.details.username"/>
+                                    </VBox>
+                                </HBox>
                                 <HBox>
                                     <VBox alignment="CENTER">
                                         <FontIcon iconLiteral="mdi-email"/>
@@ -89,12 +93,18 @@
                                         <Label text="%calendar.details.phone"/>
                                     </VBox>
                                 </HBox>
-                                <VBox>
-                                    <Label fx:id="teacher"/>
-                                    <Label text="%calendar.details.teacher"/>
-                                </VBox>
-                                <Label text="%calendar.details.services"/>
-                                <Label fx:id="serviceDetails"/>
+                                <HBox>
+                                    <VBox>
+                                        <Label fx:id="teacher"/>
+                                        <Label text="%calendar.details.teacher"/>
+                                    </VBox>
+                                </HBox>
+                                <HBox>
+                                    <VBox>
+                                        <TextFlow fx:id="serviceDetails"/>
+                                    </VBox>
+                                </HBox>
+
                             </JFXListView>
                         </VBox>
                     </VBox>

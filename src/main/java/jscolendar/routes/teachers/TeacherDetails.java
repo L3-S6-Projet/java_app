@@ -10,9 +10,13 @@ import io.swagger.client.model.TeacherResponseTeacherServices;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
 import jscolendar.util.FXUtil;
@@ -23,18 +27,20 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class TeacherDetails extends StackPane {
 
+
   private final Integer id;
   public HBox header;
   //todo add margin to infoContent witch don't have icons
-
   @FXML
-  private Label title, serviceDetails, name, userName, email, phoneNumber, teacher;
+  TextFlow serviceDetails;
+  @FXML
+  private Label title, name, userName, email, phoneNumber, teacher;
   @FXML
   private VBox calendar, subLeft;
   @FXML
   private JFXComboBox<Label> select;
   @FXML
-  private JFXListView<Label> infoContent;
+  private JFXListView<HBox> infoContent;
 
   public TeacherDetails (Integer id) {
     this.id = id;
@@ -66,12 +72,12 @@ public class TeacherDetails extends StackPane {
 
       var services = result.getTeacher().getServices();
       StringBuilder serviceContent = new StringBuilder();
+      serviceContent.append(I18n.get("calendar.details.services")).append('\n');
       for (TeacherResponseTeacherServices service : services) {
         buildServiceString(serviceContent, service);
       }
       serviceContent.append("\n").append(I18n.get("calendar.details.services.value")).append(" ").append(result.getTeacher().getTotalService()).append(I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
-      serviceDetails.setText(serviceContent.toString());
-      serviceDetails.setWrapText(true);
+      serviceDetails.getChildren().add(new Text(serviceContent.toString()));
     }
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
     jfxDatePicker.setOnAction(event -> {
@@ -127,6 +133,20 @@ public class TeacherDetails extends StackPane {
   @FXML
   private void selectCalendarType () {
     //todo change calendar type
+  }
+
+  @FXML
+  private void selectElement () {
+    final Clipboard clipboard = Clipboard.getSystemClipboard();
+    final ClipboardContent content = new ClipboardContent();
+    System.out.println(infoContent.getItems());
+    /*VBox item =(VBox) infoContent.getSelectionModel().getSelectedItem().getChildren().get(infoContent.getSelectionModel().getSelectedItem().getChildren().size()-1);
+    Label itemLabel = (Label)item.getChildren().get(item.getChildren().size()-1);
+    content.putString(itemLabel.getText());
+    System.out.println();
+    content.putHtml("<b>"+itemLabel.getText()+"</b>");
+    clipboard.setContent(content);
+    System.out.println(clipboard);*/
   }
 
 }
