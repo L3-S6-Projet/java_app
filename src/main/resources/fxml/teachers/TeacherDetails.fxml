@@ -27,7 +27,7 @@
                     </HBox>
                     <HBox GridPane.columnIndex="1" prefWidth="${header.width}" prefHeight="${header.height}"
                           style="-fx-alignment: center-right">
-                        <JFXComboBox fx:id="select" onAction="#selectCalendarType">
+                        <JFXComboBox fx:id="select">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <Label text="%calendar.type.day" id="day"/>

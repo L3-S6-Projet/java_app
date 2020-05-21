@@ -117,14 +117,7 @@ public class SubjectDetails extends StackPane {
     }
 
 
-    JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      System.out.println(jfxDatePicker.getValue());
 
-    });
-    Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
 
 
     FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
@@ -152,6 +145,14 @@ public class SubjectDetails extends StackPane {
       }
     });
 
+    JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setOnAction(event -> {
+      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
+
+    });
+    Node datePicker = getContent(jfxDatePicker);
+    if (datePicker != null)
+      subLeft.getChildren().add(datePicker);
     calendar.getChildren().add(calendarView);
   }
 
@@ -164,9 +165,6 @@ public class SubjectDetails extends StackPane {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
-  @FXML
-  private void selectCalendarType () {
-  }
 
   @FXML
   private void editButton () {

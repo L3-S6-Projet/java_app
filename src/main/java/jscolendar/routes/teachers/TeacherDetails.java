@@ -50,6 +50,7 @@ public class TeacherDetails extends StackPane {
   private JFXComboBox<Label> select;
   @FXML
   private JFXListView<HBox> infoContent;
+  @FXML
   private CalendarComponent calendarComponent;
   private CalendarView calendarView;
 
@@ -91,15 +92,8 @@ public class TeacherDetails extends StackPane {
       serviceContent.append("\n").append(I18n.get("calendar.details.services.value")).append(" ").append(result.getTeacher().getTotalService()).append(I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
       serviceDetails.getChildren().add(new Text(serviceContent.toString()));
     }
-    JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      System.out.println(jfxDatePicker.getValue());
-      //todo show the daily calendar
 
-    });
-    Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
+
 
     var user = UserSession.getInstance().getUser();
     FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
@@ -127,6 +121,13 @@ public class TeacherDetails extends StackPane {
       }
     });
 
+    JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setOnAction(event -> {
+      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
+    });
+    Node datePicker = getContent(jfxDatePicker);
+    if (datePicker != null)
+      subLeft.getChildren().add(datePicker);
     calendar.getChildren().add(calendarView);
   }
 
@@ -168,10 +169,6 @@ public class TeacherDetails extends StackPane {
 
   }
 
-  @FXML
-  private void selectCalendarType () {
-    //todo change calendar type
-  }
 
   @FXML
   private void selectElement () {

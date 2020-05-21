@@ -65,15 +65,6 @@ public class RoomDetails extends StackPane {
       name.setText(result.getClassroom().getName());
       capacity.setText(String.valueOf(result.getClassroom().getCapacity()));
     }
-    JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      System.out.println(jfxDatePicker.getValue());
-
-    });
-    Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
-
 
 
     FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
@@ -103,6 +94,14 @@ public class RoomDetails extends StackPane {
           calendarView.showMonthPage(); break;
       }
     });
+    JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setOnAction(event -> {
+      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
+
+    });
+    Node datePicker = getContent(jfxDatePicker);
+    if (datePicker != null)
+      subLeft.getChildren().add(datePicker);
 
     calendar.getChildren().add(calendarView);
   }
@@ -112,9 +111,6 @@ public class RoomDetails extends StackPane {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
-  @FXML
-  private void selectCalendarType () {
-  }
 
   @FXML
   private void editButton () {
