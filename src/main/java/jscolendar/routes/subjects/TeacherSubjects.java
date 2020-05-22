@@ -47,7 +47,6 @@ public class TeacherSubjects extends AbstractSmallTableView<TeacherSubject> {
 
   @Override
   protected Region getDetailsView (TeacherSubject item) {
-    // @TODO
-    return null;
+    return new TeacherSubjectDetails(item);
   }
 }

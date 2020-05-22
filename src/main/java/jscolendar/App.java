@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import java.util.concurrent.ExecutorService;
+
 public class App extends Application {
 
   public static void main (String[] args) {
@@ -39,5 +41,6 @@ public class App extends Application {
   @Override
   public void stop () throws Exception {
     super.stop();
+    ((ExecutorService) AppExecutor.getInstance()).shutdownNow();
   }
 }

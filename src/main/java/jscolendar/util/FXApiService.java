@@ -5,6 +5,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import jscolendar.AppExecutor;
 
 public class FXApiService<Request, Response> extends Service<Response> {
 
@@ -17,6 +18,7 @@ public class FXApiService<Request, Response> extends Service<Response> {
 
   public FXApiService(APIHandler<Request, Response> method) {
     this.method = method;
+    this.setExecutor(AppExecutor.getInstance());
   }
 
   public void setRequest(Request request) {

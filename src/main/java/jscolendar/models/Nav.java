@@ -64,7 +64,10 @@ public class Nav {
     return Stream.of(
       new NavElement.Builder(I18n.get("sidebar.home")).withIcon("mdi-home")
         .withLinkTo("main/home").withFXML("HomeStudent")
-        .withVisibilityRoles(Role.STU, Role.TEA).build(),
+        .withVisibilityRoles(Role.STU).build(),
+      new NavElement.Builder(I18n.get("sidebar.home")).withIcon("mdi-home")
+        .withLinkTo("main/home").withFXML("HomeTeacher")
+        .withVisibilityRoles(Role.TEA).build(),
       new NavElement.Builder(I18n.get("sidebar.calendar")).withIcon("mdi-calendar-blank")
         .withLinkTo("main/calendar").withFXML("Calendar")
         .withVisibilityRoles(Role.ADM, Role.STU, Role.TEA).build(),

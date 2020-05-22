@@ -10,21 +10,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import jscolendar.models.StudentSubject;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 public class StudentSubjectDetails extends VBox {
+  @FXML private JFXListView<VBox> infoContent, groupContent, enseignContent;
+  @FXML private Label promo, name, title;
+  private final StudentSubject subject;
 
-  @FXML
-  private JFXListView<VBox> infoContent, groupContent, enseignContent;
-  @FXML
-  private Label promo, name, title;
-
-  private Integer id;
-
-  public StudentSubjectDetails (Integer id) {
-    this.id = id;
+  public StudentSubjectDetails (StudentSubject subject) {
+    this.subject = subject;
     FXUtil.loadFXML("/fxml/subjects/StudentSubjectDetails.fxml", this, this, I18n.getBundle());
   }
 
@@ -34,7 +31,7 @@ public class StudentSubjectDetails extends VBox {
     SubjectResponse result = null;
 
     try {
-      result = apiInstance.subjectsIdGet(id);
+      result = apiInstance.subjectsIdGet(0);
     } catch (ApiException e) {
       System.err.println("Exception when calling api");
       e.printStackTrace();
