@@ -1,87 +1,53 @@
 package jscolendar.routes.subjects;
 
-import com.jfoenix.controls.JFXListView;
-import io.swagger.client.ApiException;
-import io.swagger.client.api.SubjectsApi;
-import io.swagger.client.model.SubjectResponse;
-import io.swagger.client.model.SubjectResponseSubjectGroups;
-import io.swagger.client.model.SubjectResponseSubjectTeachers;
+import com.jfoenix.controls.JFXTreeTableColumn;
+import io.swagger.client.api.StudentsApi;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import jscolendar.util.FXUtil;
-import jscolendar.util.I18n;
-import org.kordamp.ikonli.javafx.FontIcon;
+import javafx.scene.layout.Region;
+import jscolendar.UserSession;
+import jscolendar.components.AbstractSmallTableView;
+import jscolendar.events.NotificationEvent;
+import jscolendar.models.StudentSubject;
+import jscolendar.util.APIErrorUtil;
+import jscolendar.util.FXApiService;
 
-public class StudentSubjects extends VBox {
+import java.util.stream.Collectors;
 
-  @FXML
-  private JFXListView<VBox> infoContent, groupContent, enseignContent;
-  @FXML
-  private Label promo, name, title;
+public class StudentSubjects extends AbstractSmallTableView<StudentSubject> {
+  @FXML private JFXTreeTableColumn<StudentSubject, String> classname, name;
 
-  private Integer id;
+  private final StudentsApi api = new StudentsApi();
+  private final FXApiService<Integer, io.swagger.client.model.StudentSubjects> service = new FXApiService<>(
+    api::studentsIdSubjectsGet
+  );
 
-  public StudentSubjects(Integer id) {
-    this.id = id;
-    FXUtil.loadFXML("/fxml/subjects/StudentSubject.fxml", this, this, I18n.getBundle());
+  @Override
+  protected void initColumns () {
+    classname.setCellValueFactory(param -> param.getValue().getValue().classnameProperty());
+    name.setCellValueFactory(param -> param.getValue().getValue().nameProperty());
   }
 
-  @FXML
-  private void initialize() {
-    SubjectsApi apiInstance = new SubjectsApi();
-    SubjectResponse result = null;
+  @SuppressWarnings("Duplicates")
+  @Override
+  protected void fetchData () {
+    service.setRequest(UserSession.getInstance().getUser().getId());
+    service.setOnSucceeded(event ->  {
+      var response = service.getValue();
+      total.set(response.getSubjects().size());
+      items = response.getSubjects().stream().map(StudentSubject::new).collect(Collectors.toList());
+      setItems();
+    });
 
-    try {
-      result = apiInstance.subjectsIdGet(id);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling api");
-      e.printStackTrace();
-    }
-    if (result != null) {
-      title.setText(I18n.get("calendar.title.ue") + " \"" + result.getSubject().getName() + '\"');
-      name.setText(result.getSubject().getName());
-      promo.setText(result.getSubject().getClassName());
+    service.setOnFailed(dontCare -> container.fireEvent(
+      new NotificationEvent(APIErrorUtil.getErrorMessage(service.getException()))
+    ));
 
-      var enseign = result.getSubject().getTeachers();
-      for (SubjectResponseSubjectTeachers teachers : enseign) {
-        VBox content = new VBox();
-        if (teachers.getInCharge()) {
-          Label teacherName = new Label(teachers.getFirstName() + " " + teachers.getLastName());
-          Label responsibility = new Label(I18n.get("calendar.details.ue.menu.teacher.responsable"));
-          content.getChildren().addAll(teacherName, responsibility);
-        } else {
-          Label teacherName = new Label(teachers.getFirstName() + " " + teachers.getLastName());
-          FontIcon icon = new FontIcon("mdi-delete");
-          icon.setOnMouseClicked(event -> supprElement(event));
-          teacherName.setGraphic(new FontIcon("mdi-delete"));
-          content.getChildren().addAll(teacherName);
-        }
-        enseignContent.getItems().add(content);
-      }
-      var groups = result.getSubject().getGroups();
-      int nb = 0;
-      JFXListView<VBox> groupContent = new JFXListView<>();
-      for (SubjectResponseSubjectGroups group : groups) {
-        VBox content = new VBox();
-        Label groupName = new Label(group.getName());
-        Label subtitle = new Label(group.getCount() + I18n.get("calendar.details.ue.menu.group.student"));
-        if (nb > 1) {
-          FontIcon icon = new FontIcon("mdi-delete");
-          icon.setOnMouseClicked(event -> supprElement(event));
-          groupName.setGraphic(new FontIcon("mdi-delete"));
-        }
-        nb++;
-        content.getChildren().addAll(groupName, subtitle);
-        groupContent.getItems().add(content);
-      }
-    }
-
-
+    service.start();
   }
 
-  private void supprElement(MouseEvent event) {
-    //todo make suppr popup
+  @Override
+  protected Region getDetailsView (StudentSubject item) {
+    // @TODO
+    return null;
   }
 }

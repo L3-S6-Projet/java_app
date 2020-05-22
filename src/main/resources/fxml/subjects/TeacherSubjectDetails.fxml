@@ -3,11 +3,10 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import jscolendar.routes.subjects.TeacherSubjects?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
-         type="jscolendar.routes.subjects.TeacherSubjects">
+         type="jscolendar.routes.subjects.TeacherSubjectDetails">
 
     <HBox>
         <JFXButton onAction="#returnToPrevView">
