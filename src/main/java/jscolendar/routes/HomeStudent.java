@@ -45,7 +45,22 @@ public class HomeStudent {
     this.id = UserSession.getInstance().getUser().getId();
     setHeader();
     setLastModifications();
+    CalendarView calendarView = setCalendar();
+    setProgressContent();
+    setContactsAndLinks();
 
+    linksContent.setOnMouseClicked(event -> {
+      //todo make links
+    });
+    contactContent.setOnMouseClicked(event -> {
+      //todo make links
+    });
+
+    body.getChildren().addAll(calendarView);
+  }
+
+
+  private CalendarView setCalendar() {
     FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
     var subjectApi = new SubjectsApi();
     service = new FXApiService<>(request ->
@@ -54,15 +69,18 @@ public class HomeStudent {
     CalendarComponent calendarComponent = new CalendarComponent(manager);
     CalendarView calendarView = calendarComponent.getView();
     calendarView.showDayPage();
+    return calendarView;
+  }
 
+  private void setProgressContent() {
     ProgressBar bar = new ProgressBar();
     int pourcent = 50;//todo make link with API when api can answer this request
     bar.setProgress(pourcent * 0.01);
     graphText.setText(MessageFormat.format(I18n.get("home.student.graph"), pourcent));
     graph.getChildren().addAll(bar);
+  }
 
-
-
+  private void setContactsAndLinks() {
     var roleStudentApi = new RolestudentApi();
     try {
       var results = roleStudentApi.studentsIdSubjectsGet(id);
@@ -75,8 +93,6 @@ public class HomeStudent {
     } catch (ApiException e) {
       e.printStackTrace();
     }
-
-    body.getChildren().addAll(calendarView);
   }
 
   private void setLastModifications() {
