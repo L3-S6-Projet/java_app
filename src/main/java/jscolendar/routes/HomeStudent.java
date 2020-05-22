@@ -35,69 +35,14 @@ public class HomeStudent {
   @FXML
   private HBox body;
   @FXML
-  private JFXListView<VBox> linksContent, modificationsContent, contactContent;
+  private JFXListView<VBox> modificationsContent;
+  @FXML
+  private JFXListView<Label> linksContent, contactContent;
 
   @FXML
   public void initialize() {
-    ///profile/last-occupancies-modifications
     setHeader();
-
-    var roleStudentApi = new RolestudentApi();
-    try {
-      ProfileRecentModifications result = roleStudentApi.profileLastOccupanciesModificationsGet();
-      for (ProfileRecentModificationsModifications modifications : result.getModifications()) {
-        VBox body = new VBox();
-        HBox header = new HBox();
-        Label title = new Label(modifications.getOccupancy().getSubjectName());
-        Date priviousStartHour = new Date((long) modifications.getOccupancy().getPreviousOccupancyStart() * 1000);
-        Date priviousEndHour = new Date((long) modifications.getOccupancy().getPreviousOccupancyEnd() * 1000);
-        SimpleDateFormat sdf = new SimpleDateFormat("kk:mm");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-        SimpleDateFormat year = new SimpleDateFormat("dd/MM/yyyy");
-        year.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-        String startTime = sdf.format(priviousStartHour);
-        String endTime = sdf.format(priviousEndHour);
-        String priviousDate = year.format(priviousStartHour);
-
-        Date newStartHour = new Date((long) modifications.getOccupancy().getOccupancyStart() * 1000);
-        Date newEndHour = new Date((long) modifications.getOccupancy().getOccupancyEnd() * 1000);
-        String newStart = sdf.format(newStartHour);
-        String newEnd = sdf.format(newEndHour);
-        String newDate = year.format(newStartHour);
-        Date modificationDate = new Date((long) modifications.getModificationTimestamp());
-        String modificationDateString = year.format(modificationDate);
-
-        Label date = new Label(modificationDateString);
-
-
-        String endOfText = "";
-        switch (modifications.getModificationType()) {
-          case EDIT:
-            endOfText = I18n.get("home.student.modifaication.item.modif") + MessageFormat.format(I18n.get("home.student.modification.modif.date"), newStart, newEnd, newDate);
-            break;
-          case CREATE:
-            endOfText = I18n.get("home.student.modifaication.item.create");
-            break;
-          case DELETE:
-            endOfText = I18n.get("home.student.modifaication.item.supp");
-            break;
-          default:
-            break;
-        }
-
-        Label text = new Label(MessageFormat.format(I18n.get("home.student.modifaication.item"), priviousDate, startTime, endTime) + endOfText);
-
-
-        header.getChildren().addAll(title, date);
-
-        body.getChildren().addAll(header, text);
-        modificationsContent.getItems().addAll(body);
-      }
-    } catch (ApiException e) {
-      e.printStackTrace();
-    }
-
+    setLastModifications();
 
     FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
     var subjectApi = new SubjectsApi();
@@ -106,14 +51,92 @@ public class HomeStudent {
     var manager = new CalendarDataManager(new Calendar(), service);
     CalendarComponent calendarComponent = new CalendarComponent(manager);
     CalendarView calendarView = calendarComponent.getView();
-    //todo make calendar in daily format
+    calendarView.showDayPage();
 
     ProgressBar bar = new ProgressBar();
-    bar.setProgress(0.63);
+    int pourcent = 50;//todo make link with API when api can answer this request
+    bar.setProgress(pourcent * 0.01);
+    graphText.setText(MessageFormat.format(I18n.get("home.student.graph"), pourcent));
     graph.getChildren().addAll(bar);
     body.getChildren().addAll(calendarView);
 
 
+    var roleStudentApi = new RolestudentApi();
+    try {
+      var results = roleStudentApi.studentsIdSubjectsGet(id);
+      for (StudentSubjectsSubjects result : results.getSubjects()) {
+        for (TeacherSubjectsTeachers teacher : result.getTeachers()) {
+          contactContent.getItems().add(new Label(teacher.getLastName() + " " + teacher.getFirstName()));
+        }
+        linksContent.getItems().add(new Label(result.getName()));
+      }
+    } catch (ApiException e) {
+      e.printStackTrace();
+    }
+
+
+  }
+
+  private void setLastModifications() {
+    var roleStudentApi = new RolestudentApi();
+    try {
+      ProfileRecentModifications result = roleStudentApi.profileLastOccupanciesModificationsGet();
+      for (ProfileRecentModificationsModifications modifications : result.getModifications()) {
+        createModificationField(modifications);
+      }
+    } catch (ApiException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void createModificationField(ProfileRecentModificationsModifications modifications) {
+    VBox body = new VBox();
+    HBox header = new HBox();
+    Label title = new Label(modifications.getOccupancy().getSubjectName());
+    Date priviousStartHour = new Date((long) modifications.getOccupancy().getPreviousOccupancyStart() * 1000);
+    Date priviousEndHour = new Date((long) modifications.getOccupancy().getPreviousOccupancyEnd() * 1000);
+    SimpleDateFormat sdf = new SimpleDateFormat("kk:mm");
+    sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+    SimpleDateFormat year = new SimpleDateFormat("dd/MM/yyyy");
+    year.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+    String startTime = sdf.format(priviousStartHour);
+    String endTime = sdf.format(priviousEndHour);
+    String priviousDate = year.format(priviousStartHour);
+
+    Date newStartHour = new Date((long) modifications.getOccupancy().getOccupancyStart() * 1000);
+    Date newEndHour = new Date((long) modifications.getOccupancy().getOccupancyEnd() * 1000);
+    String newStart = sdf.format(newStartHour);
+    String newEnd = sdf.format(newEndHour);
+    String newDate = year.format(newStartHour);
+    Date modificationDate = new Date((long) modifications.getModificationTimestamp());
+    String modificationDateString = year.format(modificationDate);
+
+    Label date = new Label(modificationDateString);
+
+
+    String endOfText = "";
+    switch (modifications.getModificationType()) {
+      case EDIT:
+        endOfText = I18n.get("home.student.modifaication.item.modif") + MessageFormat.format(I18n.get("home.student.modification.modif.date"), newStart, newEnd, newDate);
+        break;
+      case CREATE:
+        endOfText = I18n.get("home.student.modifaication.item.create");
+        break;
+      case DELETE:
+        endOfText = I18n.get("home.student.modifaication.item.supp");
+        break;
+      default:
+        break;
+    }
+
+    Label text = new Label(MessageFormat.format(I18n.get("home.student.modifaication.item"), priviousDate, startTime, endTime) + endOfText);
+
+
+    header.getChildren().addAll(title, date);
+
+    body.getChildren().addAll(header, text);
+    modificationsContent.getItems().addAll(body);
   }
 
   private void setHeader() {
