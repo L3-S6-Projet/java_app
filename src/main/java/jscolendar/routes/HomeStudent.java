@@ -12,6 +12,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
+import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
@@ -27,7 +28,7 @@ import java.util.TimeZone;
 public class HomeStudent {
 
 
-  private final Integer id = 2;//todo set id value
+  private Integer id;
   @FXML
   private VBox graph;
   @FXML
@@ -41,6 +42,7 @@ public class HomeStudent {
 
   @FXML
   public void initialize() {
+    this.id = UserSession.getInstance().getUser().getId();
     setHeader();
     setLastModifications();
 
@@ -58,7 +60,7 @@ public class HomeStudent {
     bar.setProgress(pourcent * 0.01);
     graphText.setText(MessageFormat.format(I18n.get("home.student.graph"), pourcent));
     graph.getChildren().addAll(bar);
-    body.getChildren().addAll(calendarView);
+
 
 
     var roleStudentApi = new RolestudentApi();
@@ -74,7 +76,7 @@ public class HomeStudent {
       e.printStackTrace();
     }
 
-
+    body.getChildren().addAll(calendarView);
   }
 
   private void setLastModifications() {
