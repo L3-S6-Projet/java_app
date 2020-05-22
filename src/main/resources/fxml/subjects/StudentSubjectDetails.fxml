@@ -4,15 +4,16 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import jscolendar.routes.subjects.StudentSubjectDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          type="jscolendar.routes.subjects.StudentSubjectDetails">
 
     <HBox>
-        <JFXButton onAction="#returnToPrevView">
+        <JFXButton>
             <graphic>
-                <FontIcon iconLiteral="mdi-arrow-left"/>
+                <FontIcon iconLiteral="mdi-arrow-left" onMouseClicked="#returnButton"/>
             </graphic>
         </JFXButton>
         <Label fx:id="title"/>

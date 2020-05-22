@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import jscolendar.UserSession;
 import jscolendar.models.TeacherSubject;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
@@ -34,7 +35,7 @@ public class TeacherSubjectDetails extends VBox {
     SubjectResponse result = null;
 
     try {
-      result = apiInstance.subjectsIdGet(0);
+      result = apiInstance.subjectsIdGet(UserSession.getInstance().getUser().getId());
     } catch (ApiException e) {
       System.err.println("Exception when calling api");
       e.printStackTrace();
