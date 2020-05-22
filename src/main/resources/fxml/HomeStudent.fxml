@@ -46,7 +46,7 @@
                         <Tab text="%home.student.title.contact">
                             <content>
                                 <JFXListView fx:id="contactContent">
-                                    <Label text="liens à faire"/>
+                                    <Label text="%home.student.modifaication.item.modif"/>
                                 </JFXListView>
                             </content>
                         </Tab>
