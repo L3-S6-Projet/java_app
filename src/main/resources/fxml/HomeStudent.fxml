@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx" fx:controller="jscolendar.routes.HomeStudent" fx:id="container"
-      style="-fx-border-color: blue">
+      xmlns="http://javafx.com/javafx" fx:controller="jscolendar.routes.HomeStudent">
 
     <HBox fx:id="body">
         <VBox>
-            <Label text="%home.student.header.first"/>
+
             <HBox>
                 <Label fx:id="header"/>
-                <VBox>
-                    <Label text="%home.student.title.link"/>
-                    <JFXListView>
-                        <Label text="liens à faire"/>
-                    </JFXListView>
-                </VBox>
+                <JFXTabPane>
+                    <Tab text="%home.student.title.link">
+                        <content>
+                            <JFXListView fx:id="linksContent">
+                                <Label text="liens à faire"/>
+                            </JFXListView>
+                        </content>
+                    </Tab>
+
+                </JFXTabPane>
 
             </HBox>
             <HBox>
-                <VBox fx:id="lastModifications">
-                    <Label text="list à voir avec quel object c'est le mieux"/>
+                <JFXTabPane>
+                    <tabs>
+                        <Tab text="%home.student.title.modification">
+                            <content>
+                                <JFXListView fx:id="modificationsContent">
 
-                </VBox>
+                                </JFXListView>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </JFXTabPane>
+
                 <VBox>
                     <VBox fx:id="graph">
                         <Label text="%home.student.graph.title"/>
                         <Label fx:id="graphText"/>
 
                     </VBox>
-                    <VBox>
-                        <Label text="%home.student.title.contact"/>
-                        <JFXListView>
-                            <Label text="liens à faire"/>
-                        </JFXListView>
-                    </VBox>
+                    <JFXTabPane>
+                        <Tab text="%home.student.title.contact">
+                            <content>
+                                <JFXListView fx:id="contactContent">
+                                    <Label text="liens à faire"/>
+                                </JFXListView>
+                            </content>
+                        </Tab>
+                    </JFXTabPane>
                 </VBox>
             </HBox>
         </VBox>
