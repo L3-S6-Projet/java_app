@@ -16,22 +16,25 @@
     <HBox styleClass="calendar-header" alignment="CENTER">
         <JFXButton styleClass="today-button" text="%calendar.today" onAction="#goToday"/>
         <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
-            <HBox>
+            <HBox spacing="10">
+                <VBox alignment="CENTER">
                 <JFXButton fx:id="back" onAction="#goBack">
                     <graphic>
                         <FontIcon iconLiteral="mdi-chevron-left" iconSize="24"/>
                     </graphic>
                 </JFXButton>
+                </VBox>
                 <VBox alignment="CENTER">
                     <Label fx:id="dateLabel" styleClass="date-label" />
                     <Label fx:id="dateSubtitleLabel" styleClass="date-subtitle"/>
                 </VBox>
-
+                <VBox alignment="CENTER">
                 <JFXButton fx:id="forward" onAction="#goForward">
                     <graphic>
                         <FontIcon iconLiteral="mdi-chevron-right" iconSize="24"/>
                     </graphic>
                 </JFXButton>
+                </VBox>
             </HBox>
         </HBox>
 

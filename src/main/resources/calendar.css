@@ -4,7 +4,28 @@
     -fx-background-color: transparent !important;
 }
 
-.calendar-header {}
+.calendar-header {
+    -fx-padding: 2em;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.today-button {
+    -fx-padding: .5em 2em;
+    -fx-font-size: 14px;
+    -fx-background-color: #C5CAE9;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 200px;
+}
+
+.date-label {
+    -fx-font-size: 24px;
+}
+
+.date-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #757575;
+}
 
 .calendar-header .jfx-combo-box {
     -fx-alignment: center;
@@ -55,9 +76,3 @@
     -fx-border-radius: 5px;
     -fx-border-color: black;
 }
-
-.today-button {}
-
-.date-label {}
-
-.date-subtitle {}
