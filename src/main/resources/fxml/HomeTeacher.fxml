@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx" fx:controller="jscolendar.routes.HomeTeacher">
+      xmlns="http://javafx.com/javafx" fx:controller="jscolendar.routes.HomeTeacher" fx:id="container">
 
     <HBox fx:id="body">
         <VBox>

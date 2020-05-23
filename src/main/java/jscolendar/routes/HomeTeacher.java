@@ -16,6 +16,7 @@ import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.routes.subjects.TeacherSubjectDetails;
 import jscolendar.util.FXApiService;
 import jscolendar.util.I18n;
 
@@ -25,12 +26,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class HomeTeacher {
+public class HomeTeacher extends VBox {
 
 
   private Integer id;
   @FXML
-  private VBox graph;
+  private VBox graph, container;
   @FXML
   private Label header, graphText;
   @FXML
@@ -51,12 +52,6 @@ public class HomeTeacher {
 
     body.getChildren().addAll(calendarView);
 
-    linksContent.setOnMouseClicked(event -> {
-      //todo make links
-    });
-    contactContent.setOnMouseClicked(event -> {
-      //todo make links
-    });
   }
 
   private void setContactsAndLinks() {
@@ -65,9 +60,20 @@ public class HomeTeacher {
       var results = roleTeacherApi.teachersIdSubjectsGet(id);
       for (TeacherSubjectsSubjects result : results.getSubjects()) {
         for (TeacherSubjectsTeachers teacher : result.getTeachers()) {
-          contactContent.getItems().add(new Label(teacher.getLastName() + " " + teacher.getFirstName()));
+          Label contact = new Label(teacher.getLastName() + " " + teacher.getFirstName());
+          contact.setOnMouseClicked(event -> {
+            container.getChildren().clear();
+            container.getChildren().add(new TeacherSubjectDetails(result));
+
+          });
+          contactContent.getItems().add(contact);
         }
-        linksContent.getItems().add(new Label(result.getName()));
+        Label link = new Label(result.getName());
+        link.setOnMouseClicked(event -> {
+          container.getChildren().clear();
+          container.getChildren().add(new TeacherSubjectDetails(result));
+        });
+        linksContent.getItems().add(link);
       }
     } catch (ApiException e) {
       e.printStackTrace();

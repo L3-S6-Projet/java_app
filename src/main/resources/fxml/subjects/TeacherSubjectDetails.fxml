@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import jscolendar.routes.subjects.TeacherSubjectDetails?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
          type="jscolendar.routes.subjects.TeacherSubjectDetails">
 
-    <HBox>
-        <JFXButton onAction="#returnToPrevView">
-            <graphic>
-                <FontIcon iconLiteral="mdi-arrow-left"/>
-            </graphic>
-        </JFXButton>
-        <Label fx:id="title"/>
-        <JFXButton>
-            <graphic>
-                <FontIcon iconLiteral="mdi-calendar-blank"/>
-            </graphic>
-        </JFXButton>
-    </HBox>
+    <HBox fx:id="header"/>
     <VBox>
         <Label text="%calendar.title.information"/>
         <JFXListView fx:id="infoContent">

@@ -1,19 +1,27 @@
 package jscolendar.routes.subjects;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import io.swagger.client.model.TeacherSubjectsGroups;
 import io.swagger.client.model.TeacherSubjectsSubjects;
 import io.swagger.client.model.TeacherSubjectsTeachers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import jscolendar.router.AppRouter;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TeacherSubjectDetails extends VBox {
-  @FXML private JFXListView<VBox> infoContent, groupContent, enseignContent;
-  @FXML private Label promo, name, title;
+  @FXML
+  private HBox header;
+  @FXML
+  private JFXListView<VBox> infoContent, groupContent, enseignContent;
+  @FXML
+  private Label promo, name;
   private final TeacherSubjectsSubjects subject;
 
   public TeacherSubjectDetails(TeacherSubjectsSubjects subject) {
@@ -25,10 +33,15 @@ public class TeacherSubjectDetails extends VBox {
   @FXML
   private void initialize() {
 
-    title.setText(I18n.get("calendar.title.ue") + " \"" + subject.getName() + '\"');
+    JFXButton arrow = new JFXButton();
+    arrow.setGraphic(new FontIcon("mdi-arrow-left"));
+    arrow.setOnAction(event -> {
+      AppRouter.goTo("main/home");
+    });
+    Label title = new Label(I18n.get("calendar.title.ue") + " \"" + subject.getName() + '\"');
     name.setText(subject.getName());
     promo.setText(subject.getClassName());
-
+    header.getChildren().addAll(arrow, title);
     var enseign = subject.getTeachers();
     for (TeacherSubjectsTeachers teachers : enseign) {
       VBox content = new VBox();
