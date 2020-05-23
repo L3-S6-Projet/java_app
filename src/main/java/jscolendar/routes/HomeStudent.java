@@ -26,12 +26,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class HomeStudent {
+public class HomeStudent extends VBox {
 
 
   private Integer id;
   @FXML
-  private VBox graph;
+  private VBox graph, container;
   @FXML
   private Label header, graphText;
   @FXML
@@ -82,13 +82,16 @@ public class HomeStudent {
         for (TeacherSubjectsTeachers teacher : result.getTeachers()) {
           Label contact = new Label(teacher.getLastName() + " " + teacher.getFirstName());
           contact.setOnMouseClicked(event -> {
-            new StudentSubjectDetails(result);
+            container.getChildren().clear();
+            container.getChildren().add(new StudentSubjectDetails(result));
+
           });
           contactContent.getItems().add(contact);
         }
         Label link = new Label(result.getName());
         link.setOnMouseClicked(event -> {
-          new StudentSubjectDetails(result);
+          container.getChildren().clear();
+          container.getChildren().add(new StudentSubjectDetails(result));
         });
         linksContent.getItems().add(link);
       }
