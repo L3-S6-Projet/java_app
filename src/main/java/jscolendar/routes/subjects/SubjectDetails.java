@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.SubjectsApi;
-import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.SubjectResponse;
 import io.swagger.client.model.SubjectResponseSubjectGroups;
@@ -21,9 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
-import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
@@ -31,6 +28,8 @@ import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.text.MessageFormat;
 
 import static jscolendar.util.datePickerContent.getContent;
 
@@ -52,13 +51,13 @@ public class SubjectDetails extends StackPane {
   @FXML
   private Label title, name, promo, services;
 
-  public SubjectDetails (Integer id) {
+  public SubjectDetails(Integer id) {
     this.id = id;
     FXUtil.loadFXML("/fxml/subjects/SubjectDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
-  private void initialize () {
+  private void initialize() {
     SubjectsApi apiInstance = new SubjectsApi();
     SubjectResponse result = null;
 
@@ -72,7 +71,7 @@ public class SubjectDetails extends StackPane {
       title.setText(I18n.get("calendar.title.ue") + " \"" + result.getSubject().getName() + '\"');
       name.setText(result.getSubject().getName());
       promo.setText(result.getSubject().getClassName());
-      services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getSubject().getTotalHours() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      services.setText(MessageFormat.format(I18n.get("calendar.details.ue.menu.info.service"), result.getSubject().getTotalHours()));
       var enseign = result.getSubject().getTeachers();
       JFXListView<VBox> enseignContent = new JFXListView<>();
       for (SubjectResponseSubjectTeachers teachers : enseign) {
@@ -117,9 +116,6 @@ public class SubjectDetails extends StackPane {
     }
 
 
-
-
-
     FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
     var subjectApi = new SubjectsApi();
     service = new FXApiService<>(request ->
@@ -131,17 +127,20 @@ public class SubjectDetails extends StackPane {
 
     select.getSelectionModel().select(2);
 
-    select.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->  {
+    select.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
       switch (newValue.getId()) {
         case "day":
           if (calendarView.getSelectedPage().getPrintViewType() == ViewType.DAY_VIEW) return;
-          calendarView.showDayPage(); break;
+          calendarView.showDayPage();
+          break;
         case "week":
           if (calendarView.getSelectedPage().getPrintViewType() == ViewType.WEEK_VIEW) return;
-          calendarView.showWeekPage(); break;
+          calendarView.showWeekPage();
+          break;
         case "month":
           if (calendarView.getSelectedPage().getPrintViewType() == ViewType.MONTH_VIEW) return;
-          calendarView.showMonthPage(); break;
+          calendarView.showMonthPage();
+          break;
       }
     });
 
@@ -156,18 +155,18 @@ public class SubjectDetails extends StackPane {
     calendar.getChildren().add(calendarView);
   }
 
-  private void supprElement (MouseEvent event) {
+  private void supprElement(MouseEvent event) {
     //todo make suppr popup
   }
 
   @FXML
-  private void returnToPrevView () {
+  private void returnToPrevView() {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
 
   @FXML
-  private void editButton () {
+  private void editButton() {
     this.fireEvent(
       new ModalEvent(ModalEvent.OPEN, new EditSubject())
     );

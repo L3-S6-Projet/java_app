@@ -142,19 +142,19 @@ public class HomeTeacher extends VBox {
     String endOfText = "";
     switch (modifications.getModificationType()) {
       case EDIT:
-        endOfText = I18n.get("home.student.modifaication.item.modif") + MessageFormat.format(I18n.get("home.student.modification.modif.date"), newStart, newEnd, newDate);
+        endOfText = I18n.get("home.student.modification.item.modif") + MessageFormat.format(I18n.get("home.student.modification.modif.date"), newStart, newEnd, newDate);
         break;
       case CREATE:
-        endOfText = I18n.get("home.student.modifaication.item.create");
+        endOfText = I18n.get("home.student.modification.item.create");
         break;
       case DELETE:
-        endOfText = I18n.get("home.student.modifaication.item.supp");
+        endOfText = I18n.get("home.student.modification.item.supp");
         break;
       default:
         break;
     }
 
-    Label text = new Label(MessageFormat.format(I18n.get("home.student.modifaication.item"), priviousDate, startTime, endTime) + endOfText);
+    Label text = new Label(MessageFormat.format(I18n.get("home.student.modification.item"), priviousDate, startTime, endTime) + endOfText);
 
 
     header.getChildren().addAll(title, date);

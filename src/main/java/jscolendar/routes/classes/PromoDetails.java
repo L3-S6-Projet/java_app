@@ -6,8 +6,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.ClassesApi;
-import io.swagger.client.api.ClassroomApi;
-import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.ClassResponse;
 import io.swagger.client.model.Occupancies;
 import javafx.fxml.FXML;
@@ -16,15 +14,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
-import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
 import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
+
+import java.text.MessageFormat;
 
 import static jscolendar.util.datePickerContent.getContent;
 
@@ -62,7 +60,7 @@ public class PromoDetails extends StackPane {
       title.setText(I18n.get("calendar.title.promo") + " \"" + result.getPropertyClass().getName() + '\"');
       name.setText(result.getPropertyClass().getName());
       level.setText(result.getPropertyClass().getLevel().name());
-      services.setText(I18n.get("calendar.details.ue.menu.info.serviceFirstPart") + " " + result.getTotalService() + I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      services.setText(MessageFormat.format(I18n.get("calendar.details.ue.menu.info.service"), result.getTotalService()));
       services.setWrapText(true);
     }
 
