@@ -37,6 +37,8 @@ public class CalendarComponent {
     public PopOverContent (Entry<?> entry) {
       getStyleClass().add("custom-entry-popover");
       var event = (Occupancy) entry.getUserObject();
+      if (event == null) return;
+
       var header = new VBox();
       var title = new Label();
       var date = new Label();
@@ -48,6 +50,7 @@ public class CalendarComponent {
       date.setId("entry-popover-data-info");
       title.setId("entry-popover-title");
       title.setText(event.subjectName.get());
+
       header.setAlignment(Pos.CENTER);
       header.getChildren().addAll(title, date);
 
