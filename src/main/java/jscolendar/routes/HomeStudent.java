@@ -16,6 +16,7 @@ import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.routes.subjects.StudentSubjectDetails;
 import jscolendar.util.FXApiService;
 import jscolendar.util.I18n;
 
@@ -49,13 +50,6 @@ public class HomeStudent {
     setProgressContent();
     setContactsAndLinks();
 
-    linksContent.setOnMouseClicked(event -> {
-      //todo make links
-    });
-    contactContent.setOnMouseClicked(event -> {
-      //todo make links
-    });
-
     body.getChildren().addAll(calendarView);
   }
 
@@ -86,9 +80,17 @@ public class HomeStudent {
       var results = roleStudentApi.studentsIdSubjectsGet(id);
       for (StudentSubjectsSubjects result : results.getSubjects()) {
         for (TeacherSubjectsTeachers teacher : result.getTeachers()) {
-          contactContent.getItems().add(new Label(teacher.getLastName() + " " + teacher.getFirstName()));
+          Label contact = new Label(teacher.getLastName() + " " + teacher.getFirstName());
+          contact.setOnMouseClicked(event -> {
+            new StudentSubjectDetails(result);
+          });
+          contactContent.getItems().add(contact);
         }
-        linksContent.getItems().add(new Label(result.getName()));
+        Label link = new Label(result.getName());
+        link.setOnMouseClicked(event -> {
+          new StudentSubjectDetails(result);
+        });
+        linksContent.getItems().add(link);
       }
     } catch (ApiException e) {
       e.printStackTrace();

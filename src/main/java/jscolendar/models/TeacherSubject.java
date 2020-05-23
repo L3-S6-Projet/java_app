@@ -2,6 +2,7 @@ package jscolendar.models;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import io.swagger.client.model.TeacherSubjectsGroups;
+import io.swagger.client.model.TeacherSubjectsSubjects;
 import io.swagger.client.model.TeacherSubjectsTeachers;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -15,6 +16,7 @@ public class TeacherSubject extends RecursiveTreeObject<TeacherSubject> {
   private final StringProperty classname, name;
   private final ObjectProperty<List<TeacherSubjectsTeachers>> teachers;
   private final ObjectProperty<List<TeacherSubjectsGroups>> groups;
+  private final TeacherSubjectsSubjects teacherSubjectsSubjects;
 
   public TeacherSubject (io.swagger.client.model.TeacherSubjectsSubjects subject) {
     this.id = subject.getId();
@@ -22,6 +24,7 @@ public class TeacherSubject extends RecursiveTreeObject<TeacherSubject> {
     this.name = new SimpleStringProperty(subject.getName());
     this.teachers = new SimpleObjectProperty<>(subject.getTeachers());
     this.groups = new SimpleObjectProperty<>(subject.getGroups());
+    this.teacherSubjectsSubjects = subject;
   }
 
   public StringProperty classnameProperty () {
@@ -32,11 +35,15 @@ public class TeacherSubject extends RecursiveTreeObject<TeacherSubject> {
     return name;
   }
 
-  public ObjectProperty<List<TeacherSubjectsTeachers>> teachersProperty () {
+  public ObjectProperty<List<TeacherSubjectsTeachers>> teachersProperty() {
     return teachers;
   }
 
-  public ObjectProperty<List<TeacherSubjectsGroups>> groupsProperty () {
+  public ObjectProperty<List<TeacherSubjectsGroups>> groupsProperty() {
     return groups;
+  }
+
+  public TeacherSubjectsSubjects getTeacherSubjectsSubjects() {
+    return teacherSubjectsSubjects;
   }
 }

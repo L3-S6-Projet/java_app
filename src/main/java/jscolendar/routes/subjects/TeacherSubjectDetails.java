@@ -2,21 +2,21 @@ package jscolendar.routes.subjects;
 
 import com.jfoenix.controls.JFXListView;
 import io.swagger.client.model.TeacherSubjectsGroups;
+import io.swagger.client.model.TeacherSubjectsSubjects;
 import io.swagger.client.model.TeacherSubjectsTeachers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import jscolendar.models.TeacherSubject;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
 public class TeacherSubjectDetails extends VBox {
   @FXML private JFXListView<VBox> infoContent, groupContent, enseignContent;
   @FXML private Label promo, name, title;
-  private final TeacherSubject subject;
+  private final TeacherSubjectsSubjects subject;
 
-  public TeacherSubjectDetails (TeacherSubject subject) {
+  public TeacherSubjectDetails(TeacherSubjectsSubjects subject) {
     this.subject = subject;
     FXUtil.loadFXML("/fxml/subjects/TeacherSubjectDetails.fxml", this, this, I18n.getBundle());
   }
@@ -25,11 +25,11 @@ public class TeacherSubjectDetails extends VBox {
   @FXML
   private void initialize() {
 
-    title.setText(I18n.get("calendar.title.ue") + " \"" + subject.nameProperty().get() + '\"');
-    name.setText(subject.nameProperty().get());
-    promo.setText(subject.classnameProperty().get());
+    title.setText(I18n.get("calendar.title.ue") + " \"" + subject.getName() + '\"');
+    name.setText(subject.getName());
+    promo.setText(subject.getClassName());
 
-    var enseign = subject.teachersProperty().get();
+    var enseign = subject.getTeachers();
     for (TeacherSubjectsTeachers teachers : enseign) {
       VBox content = new VBox();
       if (teachers.getInCharge()) {
@@ -43,7 +43,7 @@ public class TeacherSubjectDetails extends VBox {
       enseignContent.getItems().add(content);
     }
 
-    var groups = subject.groupsProperty().get();
+    var groups = subject.getGroups();
     for (TeacherSubjectsGroups group : groups) {
       System.out.println(group);
       VBox content = new VBox();
