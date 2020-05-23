@@ -37,7 +37,7 @@ public class StudentSubjectDetails extends VBox {
     JFXButton arrow = new JFXButton();
     arrow.setGraphic(new FontIcon("mdi-arrow-left"));
     arrow.setOnAction(event -> {
-      AppRouter.goTo("main/home");
+      AppRouter.goTo("main/ue");
     });
     Label title = new Label(I18n.get("calendar.title.ue") + " \"" + subject.nameProperty().get() + '\"');
     name.setText(subject.nameProperty().get());
