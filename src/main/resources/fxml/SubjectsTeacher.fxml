@@ -14,7 +14,7 @@
     <VBox>
         <BorderPane styleClass="table-view-container">
             <top>
-                <HBox fx:id="header" alignment="CENTER_LEFT" styleClass="table-header">
+                <HBox fx:id="header" alignment="CENTER_LEFT" styleClass="table-header" minHeight="115">
                     <Label text="%subjects.teacher.title"/>
                 </HBox>
             </top>

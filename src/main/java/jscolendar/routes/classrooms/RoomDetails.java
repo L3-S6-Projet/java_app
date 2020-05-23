@@ -6,19 +6,17 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.ClassroomApi;
-import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.ClassroomGetResponse;
 import io.swagger.client.model.Occupancies;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
-import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
@@ -28,20 +26,12 @@ import jscolendar.util.I18n;
 
 import static jscolendar.util.datePickerContent.getContent;
 
-public class RoomDetails extends StackPane {
-
-
+public class RoomDetails extends BorderPane {
   private final Integer id;
-
-
-  @FXML
-  private HBox header;
-  @FXML
-  private VBox subLeft, calendar;
-    @FXML
-  private Label title, name, capacity;
-  @FXML
-  private JFXComboBox<Label> select;
+  @FXML private HBox header;
+  @FXML private VBox subLeft;
+  @FXML private Label title, name, capacity;
+  @FXML private JFXComboBox<Label> select;
 
   public RoomDetails (Integer id) {
     this.id = id;
@@ -50,7 +40,6 @@ public class RoomDetails extends StackPane {
 
   @FXML
   private void initialize () {
-
     ClassroomApi apiInstance = new ClassroomApi();
     ClassroomGetResponse result = null;
 
@@ -77,8 +66,6 @@ public class RoomDetails extends StackPane {
     CalendarComponent calendarComponent = new CalendarComponent(manager);
     CalendarView calendarView = calendarComponent.getView();
 
-
-
     select.getSelectionModel().select(2);
 
     select.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->  {
@@ -103,7 +90,7 @@ public class RoomDetails extends StackPane {
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
 
-    calendar.getChildren().add(calendarView);
+    setCenter(calendarView);
   }
 
   @FXML

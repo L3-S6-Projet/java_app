@@ -1,12 +1,12 @@
 package jscolendar.routes.students;
 
 import com.calendarfx.view.CalendarView;
+import com.calendarfx.view.YearMonthView;
 import com.calendarfx.view.print.ViewType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.StudentsApi;
-import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.StudentResponse;
 import io.swagger.client.model.StudentResponseStudentSubjects;
@@ -14,15 +14,13 @@ import io.swagger.client.model.StudentSubjects;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Pair;
-import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
-import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
@@ -30,24 +28,17 @@ import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import static jscolendar.util.datePickerContent.getContent;
 
-public class StudentDetails extends StackPane {
-
-
+public class StudentDetails extends BorderPane {
   private final Integer id;
-  @FXML
-  private HBox header;
-  @FXML
-  private VBox calendar, subLeft;
-  @FXML
-  private Label title, name, userName, promo;
-  @FXML
-  private TextFlow subjectList;
-  @FXML
-  private JFXComboBox<Label> select;
+  @FXML private VBox subLeft;
+  @FXML private Label title, name, userName, promo;
+  @FXML private TextFlow subjectList;
+  @FXML private JFXComboBox<Label> select;
 
   public StudentDetails (Integer id) {
     this.id = id;
@@ -56,7 +47,6 @@ public class StudentDetails extends StackPane {
 
   @FXML
   private void initialize () {
-
     StudentsApi apiInstance = new StudentsApi();
     StudentResponse result = null;
     StudentSubjects classResult = null;
@@ -81,8 +71,7 @@ public class StudentDetails extends StackPane {
       for (StudentResponseStudentSubjects subjet : listOfSubject) {
         subjects.append("\n - ").append(subjet.getName()).append(", ").append(subjet.getGroup());
       }
-      subjects.append("\n").append(I18n.get("calendar.details.student.enseign.secondLine")).append(" ")
-        .append(result.getStudent().getTotalHours()).append(I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      subjects.append("\n").append(MessageFormat.format(I18n.get("calendar.details.student.enseign.secondLine"),result.getStudent().getTotalHours()));
       subjectList.getChildren().add(new Text(subjects.toString()));
     }
 
@@ -121,7 +110,7 @@ public class StudentDetails extends StackPane {
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
 
-    calendar.getChildren().add(calendarView);
+    setCenter(calendarView);
   }
 
   @FXML

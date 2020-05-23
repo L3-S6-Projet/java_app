@@ -1,13 +1,25 @@
 .table-view-container {
-    -fx-padding: 0 4em;
+    -fx-padding: 2em 4em;
+    -fx-background-color: transparent;
+}
+
+.table-view-outer {
+    /*-fx-background-color: #FAFAFA;*/
+    /*-fx-padding: 20px 0 0 0;*/
 }
 
 .table-header, .table-header-selection {
-    -fx-padding: 0 0 2em 1em;
+    /*-fx-padding: 0 0 2em 1em;*/
 }
 
 .table-header {
     -fx-background-color: #FAFAFA;
+}
+
+#search-input-outer {
+    -fx-padding: 1em 0;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }
 
 .search-input {
@@ -72,11 +84,6 @@
 
 .table-check-box {
     -jfx-checked-color: #DADADA;
-}
-
-.table-view-outer {
-    -fx-background-color: #FAFAFA;
-    -fx-padding: 20px 0 0 0;
 }
 
 .add-button {

@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -31,27 +32,20 @@ import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
+import java.text.MessageFormat;
+
 import static jscolendar.util.datePickerContent.getContent;
 
 
-public class TeacherDetails extends StackPane {
-
-
+public class TeacherDetails extends BorderPane {
   private final Integer id;
   public HBox header;
   //todo add margin to infoContent witch don't have icons
-  @FXML
-  TextFlow serviceDetails;
-  @FXML
-  private Label title, name, userName, email, phoneNumber, teacher;
-  @FXML
-  private VBox calendar, subLeft;
-  @FXML
-  private JFXComboBox<Label> select;
-  @FXML
-  private JFXListView<HBox> infoContent;
-  @FXML
-  private CalendarComponent calendarComponent;
+  @FXML private TextFlow serviceDetails;
+  @FXML private Label title, name, userName, email, phoneNumber, teacher;
+  @FXML private VBox subLeft;
+  @FXML private JFXComboBox<Label> select;
+  @FXML private JFXListView<HBox> infoContent;
   private CalendarView calendarView;
 
 
@@ -89,10 +83,9 @@ public class TeacherDetails extends StackPane {
       for (TeacherResponseTeacherServices service : services) {
         buildServiceString(serviceContent, service);
       }
-      serviceContent.append("\n").append(I18n.get("calendar.details.services.value")).append(" ").append(result.getTeacher().getTotalService()).append(I18n.get("calendar.details.ue.menu.info.serviceSecondPart"));
+      serviceContent.append("\n").append(MessageFormat.format(I18n.get("calendar.details.services.value"),result.getTeacher().getTotalService()));
       serviceDetails.getChildren().add(new Text(serviceContent.toString()));
     }
-
 
 
     var user = UserSession.getInstance().getUser();
@@ -101,7 +94,7 @@ public class TeacherDetails extends StackPane {
     service = new FXApiService<>(request ->
       teacherApi.teachersIdOccupanciesGet(user.getId(), request.getKey(), request.getValue(), 0));
     var manager = new CalendarDataManager(new Calendar(), service);
-    calendarComponent = new CalendarComponent(manager);
+    var calendarComponent = new CalendarComponent(manager);
     calendarView = calendarComponent.getView();
 
 
@@ -128,7 +121,8 @@ public class TeacherDetails extends StackPane {
     Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
-    calendar.getChildren().add(calendarView);
+
+    setCenter(calendarView);
   }
 
   private void buildServiceString (StringBuilder serviceContent, TeacherResponseTeacherServices service) {

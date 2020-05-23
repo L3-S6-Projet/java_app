@@ -10,15 +10,16 @@
 <?import javafx.scene.layout.*?>
 <?import jscolendar.routes.subjects.SubjectDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" type="jscolendar.routes.subjects.SubjectDetails"
-         xmlns="http://javafx.com/javafx/10.0.2-internal">
+<fx:root xmlns:fx="http://javafx.com/fxml/1"
+         type="jscolendar.routes.subjects.SubjectDetails" fx:id="all"
+         xmlns="http://javafx.com/javafx/10.0.2-internal"
+         stylesheets="details.css" styleClass="details-outer">
 
-    <VBox fx:id="all" style="-fx-background-color: #FAfAFA">
         <GridPane>
             <HBox fx:id="header" prefHeight="${all.height}" prefWidth="${all.width}" GridPane.rowIndex="0">
                 <GridPane>
                     <HBox prefHeight="${header.height}" prefWidth="${header.width}" style="-fx-alignment: center-left"
-                          GridPane.columnIndex="0">
+                          id="details-header" GridPane.columnIndex="0">
                         <JFXButton onAction="#returnToPrevView">
                             <graphic>
                                 <FontIcon iconLiteral="mdi-arrow-left"/>
@@ -121,6 +122,4 @@
                 <ColumnConstraints/>
             </columnConstraints>
         </GridPane>
-    </VBox>
-
 </fx:root>

@@ -11,6 +11,7 @@ import io.swagger.client.model.Occupancies;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
@@ -26,18 +27,12 @@ import java.text.MessageFormat;
 
 import static jscolendar.util.datePickerContent.getContent;
 
-public class PromoDetails extends StackPane {
-
+public class PromoDetails extends BorderPane {
   private final Integer id;
-  public Label title;
-  @FXML
-  private VBox calendar;
-  @FXML
-  private VBox subLeft;
-  @FXML
-  private Label name, level, services;
-  @FXML
-  private JFXComboBox<Label> select;
+  @FXML private Label title;
+  @FXML private VBox subLeft;
+  @FXML private Label name, level, services;
+  @FXML private JFXComboBox<Label> select;
 
   public PromoDetails (Integer id) {
     this.id = id;
@@ -46,7 +41,6 @@ public class PromoDetails extends StackPane {
 
   @FXML
   private void initialize () {
-
     ClassesApi apiInstance = new ClassesApi();
     ClassResponse result = null;
 
@@ -101,7 +95,7 @@ public class PromoDetails extends StackPane {
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
 
-    calendar.getChildren().add(calendarView);
+    setCenter(calendarView);
   }
 
   @FXML

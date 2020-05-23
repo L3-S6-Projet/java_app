@@ -31,7 +31,7 @@
                         <HBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
                             <Label text="%class.title"/>
                         </HBox>
-                        <VBox alignment="BOTTOM_RIGHT">
+                        <VBox alignment="BOTTOM_RIGHT" id="search-input-outer">
                             <JFXTextField fx:id="search" styleClass="search-input" />
                         </VBox>
 
