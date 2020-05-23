@@ -1,19 +1,26 @@
 package jscolendar.components;
 
 import com.calendarfx.model.CalendarSource;
+import com.calendarfx.model.Entry;
 import com.calendarfx.model.LoadEvent;
 import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.DayViewBase;
 import com.calendarfx.view.page.DayPage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import jscolendar.events.NotificationEvent;
 import jscolendar.events.ScolendarCalendarEvent;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.models.Occupancy;
 import jscolendar.util.I18n;
+import org.kordamp.ikonli.javafx.FontIcon;
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +33,45 @@ public class CalendarComponent {
   public final StringProperty currentDateProperty = new SimpleStringProperty();
   public final StringProperty currentDateSubtitleProperty = new SimpleStringProperty();
 
+  public static class PopOverContent extends VBox {
+    public PopOverContent (Entry<?> entry) {
+      getStyleClass().add("custom-entry-popover");
+      var event = (Occupancy) entry.getUserObject();
+      var header = new VBox();
+      var title = new Label();
+      var date = new Label();
+
+      date.setText(String.format("%s . %s - %s", DateTimeFormatter.ofPattern("EEEE dd MMM").format(entry.getStartDate()),
+        DateTimeFormatter.ofPattern("HH:mm").format(entry.getStartTime()),
+        DateTimeFormatter.ofPattern("HH:mm").format(entry.getEndTime())
+        ));
+      date.setId("entry-popover-data-info");
+      title.setId("entry-popover-title");
+      title.setText(event.subjectName.get());
+      header.setAlignment(Pos.CENTER);
+      header.getChildren().addAll(title, date);
+
+      getChildren().addAll(
+        header,
+        itemCreate("mdi-account-multiple", event.groupName.get()),
+        itemCreate("mdi-format-list-bulleted", event.classname.get()),
+        itemCreate("mdi-account-circle", event.teacherName.get()),
+        itemCreate("mdi-map-marker", event.classroomName.get())
+      );
+      setSpacing(5);
+    }
+
+    private Node itemCreate (String iconLiteral, String title) {
+      var box = new HBox();
+      box.getStyleClass().add("entry-popover-item");
+      box.setSpacing(10);
+      box.setAlignment(Pos.CENTER_LEFT);
+      var icon = new FontIcon(iconLiteral);
+      var label = new Label(title);
+      box.getChildren().addAll(icon, label);
+      return box;
+    }
+  }
 
   public CalendarComponent (CalendarDataManager manager) {
     this.manager = manager;
@@ -40,6 +86,11 @@ public class CalendarComponent {
     calendarSource.getCalendars().add(manager.getCalendar());
     calendarView.getCalendarSources().clear();
     calendarView.getCalendarSources().add(calendarSource);
+
+    calendarView.getWeekPage().getDetailedWeekView().showTimeScaleViewProperty().set(false);
+    calendarView.getMonthPage().getMonthView().showCurrentWeekProperty().set(false);
+
+    calendarView.setEntryDetailsPopOverContentCallback(param -> new PopOverContent(param.getEntry()));
 
     calendarView.getDayPage().setShowDayPageLayoutControls(false);
     calendarView.getDayPage().setShowNavigation(false);
@@ -76,6 +127,7 @@ public class CalendarComponent {
     calendarView.dateProperty().addListener((observable, oldValue, newValue) -> updateCurrentDate(newValue));
     calendarView.getMonthPage().addEventFilter(LoadEvent.LOAD, manager);
 
+    calendarView.getStylesheets().add("calendar.css");
     calendarView.showMonthPage();
     calendarView.setDate(LocalDate.now());
     updateCurrentDate(calendarView.getDate());

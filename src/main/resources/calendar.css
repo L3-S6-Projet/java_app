@@ -76,3 +76,21 @@
     -fx-border-radius: 5px;
     -fx-border-color: black;
 }
+
+.custom-entry-popover {
+    -fx-padding: 1em 2em 2em 2em;
+}
+
+#entry-popover-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#entry-popover-data-info {
+    -fx-font-size: 14px;
+    -fx-text-fill: #757575;
+}
+
+.entry-popover-item {
+    -fx-font-size: 18px;
+}

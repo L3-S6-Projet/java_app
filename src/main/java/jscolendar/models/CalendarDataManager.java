@@ -39,7 +39,7 @@ public class CalendarDataManager implements EventHandler<LoadEvent> {
         .filter(this::isNotLoaded)
         .collect(Collectors.toList());
 
-      if (occupancies.size() == 0) return;
+      if (occupancies.isEmpty()) return;
 
       calendar.startBatchUpdates();
       occupancies.stream().map(OccupancyEntryMapper::map).forEach(calendar::addEntry);
