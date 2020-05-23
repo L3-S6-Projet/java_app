@@ -16,6 +16,7 @@ import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.models.StudentSubject;
 import jscolendar.routes.subjects.StudentSubjectDetails;
 import jscolendar.util.FXApiService;
 import jscolendar.util.I18n;
@@ -83,7 +84,7 @@ public class HomeStudent extends VBox {
           Label contact = new Label(teacher.getLastName() + " " + teacher.getFirstName());
           contact.setOnMouseClicked(event -> {
             container.getChildren().clear();
-            container.getChildren().add(new StudentSubjectDetails(result));
+            container.getChildren().add(new StudentSubjectDetails(new StudentSubject(result)));
 
           });
           contactContent.getItems().add(contact);
@@ -91,7 +92,7 @@ public class HomeStudent extends VBox {
         Label link = new Label(result.getName());
         link.setOnMouseClicked(event -> {
           container.getChildren().clear();
-          container.getChildren().add(new StudentSubjectDetails(result));
+          container.getChildren().add(new StudentSubjectDetails(new StudentSubject(result)));
         });
         linksContent.getItems().add(link);
       }
