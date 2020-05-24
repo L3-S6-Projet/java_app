@@ -1,10 +1,8 @@
 package jscolendar.routes.classes;
 
-import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.print.ViewType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
-import io.swagger.client.ApiException;
 import io.swagger.client.api.ClassesApi;
 import io.swagger.client.model.ClassResponse;
 import io.swagger.client.model.Occupancies;
@@ -17,8 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import jscolendar.components.CalendarComponent;
 import jscolendar.events.ModalEvent;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.models.ClassModel;
+import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
@@ -28,48 +29,42 @@ import java.text.MessageFormat;
 import static jscolendar.util.datePickerContent.getContent;
 
 public class PromoDetails extends BorderPane {
-  private final Integer id;
+  private final ClassModel classModel;
   @FXML private Label title;
   @FXML private VBox subLeft;
   @FXML private Label name, level, services;
   @FXML private JFXComboBox<Label> select;
 
-  public PromoDetails (Integer id) {
-    this.id = id;
+  public PromoDetails (ClassModel classModel) {
+    this.classModel = classModel;
     FXUtil.loadFXML("/fxml/classes/PromoDetails.fxml", this, this, I18n.getBundle());
   }
 
+  @SuppressWarnings("Duplicates")
   @FXML
   private void initialize () {
-    ClassesApi apiInstance = new ClassesApi();
-    ClassResponse result = null;
+    title.setText(I18n.get("calendar.title.promo") + " \"" + classModel.nameProperty().get() + '\"');
+    name.setText(classModel.nameProperty().get());
+    level.setText(classModel.levelProperty().get().name());
 
-    try {
-      result = apiInstance.classesIdGet(id);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling api");
-      e.printStackTrace();
-    }
-    if (result != null) {
-      title.setText(I18n.get("calendar.title.promo") + " \"" + result.getPropertyClass().getName() + '\"');
-      name.setText(result.getPropertyClass().getName());
-      level.setText(result.getPropertyClass().getLevel().name());
-      services.setText(MessageFormat.format(I18n.get("calendar.details.ue.menu.info.service"), result.getTotalService()));
-      services.setWrapText(true);
-    }
+    var apiInstance = new ClassesApi();
+    FXApiService<Integer, ClassResponse> classesService = new FXApiService<>(apiInstance::classesIdGet);
 
+    classesService.setOnSucceeded(_e ->
+      services.setText(MessageFormat.format(
+        I18n.get("calendar.details.ue.menu.info.service"), classesService.getValue().getTotalService())));
 
+    classesService.setOnFailed(_e ->
+      this.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(classesService.getException()))));
 
-    FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
-    var promoAPI = new ClassesApi();
-    service = new FXApiService<>(request ->
-      promoAPI.classesIdOccupanciesGet(id, request.getKey(), request.getValue(), 0));
+    classesService.setRequest(classModel.getId());
+    classesService.start();
 
-
+    FXApiService<Pair<Integer, Integer>, Occupancies> service = new FXApiService<>(request ->
+      apiInstance.classesIdOccupanciesGet(classModel.getId(), request.getKey(), request.getValue(), 0));
     var manager = new CalendarDataManager(new Calendar(), service);
-    CalendarComponent calendarComponent = new CalendarComponent(manager);
-    CalendarView calendarView = calendarComponent.getView();
-
+    var calendarComponent = new CalendarComponent(manager);
+    var calendarView = calendarComponent.getView();
 
     select.getSelectionModel().select(2);
 
@@ -87,10 +82,7 @@ public class PromoDetails extends BorderPane {
       }
     });
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
-
-    });
+    jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
@@ -103,11 +95,8 @@ public class PromoDetails extends BorderPane {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
-
   @FXML
   private void editButton () {
-    this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new EditPromo())
-    );
+    this.fireEvent(new ModalEvent(ModalEvent.OPEN, new EditPromo()));
   }
 }

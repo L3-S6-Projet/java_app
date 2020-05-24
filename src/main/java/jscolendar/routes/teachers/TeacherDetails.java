@@ -1,11 +1,8 @@
 package jscolendar.routes.teachers;
 
-import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.print.ViewType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
-import io.swagger.client.ApiException;
 import io.swagger.client.api.TeacherApi;
 import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.TeacherResponse;
@@ -13,21 +10,17 @@ import io.swagger.client.model.TeacherResponseTeacherServices;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.util.Pair;
-import jscolendar.UserSession;
 import jscolendar.components.CalendarComponent;
-import jscolendar.components.CalendarRoute;
 import jscolendar.events.ModalEvent;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.models.Teacher;
+import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
@@ -38,65 +31,55 @@ import static jscolendar.util.datePickerContent.getContent;
 
 
 public class TeacherDetails extends BorderPane {
-  private final Integer id;
-  public HBox header;
-  //todo add margin to infoContent witch don't have icons
-  @FXML private TextFlow serviceDetails;
-  @FXML private Label title, name, userName, email, phoneNumber, teacher;
-  @FXML private VBox subLeft;
+  private final Teacher teacher;
+  @FXML private Label title, name, userName, email, phoneNumber, rank;
+  @FXML private VBox subLeft, serviceDetails;
   @FXML private JFXComboBox<Label> select;
-  @FXML private JFXListView<HBox> infoContent;
-  private CalendarView calendarView;
 
-
-  public TeacherDetails (Integer id) {
-    this.id = id;
+  public TeacherDetails (Teacher teacher) {
+    this.teacher = teacher;
     FXUtil.loadFXML("/fxml/teachers/TeacherDetails.fxml", this, this, I18n.getBundle());
   }
 
+  @SuppressWarnings("Duplicates")
   @FXML
   private void initialize () {
-    infoContent = new JFXListView<>();
     select.getSelectionModel().selectLast();
-
+    title.setText(I18n.get("calendar.title.enseinant") + " \"" + teacher.firstNameProperty().get() +
+      " " + teacher.lastNameProperty().get() + '\"');
+    name.setText(teacher.firstNameProperty().get() + " " + teacher.lastNameProperty().get());
+    email.setText(teacher.emailProperty().get());
+    phoneNumber.setText(teacher.phoneNumberProperty().get());
 
     TeacherApi apiInstance = new TeacherApi();
-    TeacherResponse result = null;
+    FXApiService<Integer, TeacherResponse> teacherService = new FXApiService<>(apiInstance::teachersIdGet);
 
-    try {
-      result = apiInstance.teachersIdGet(id);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling TeacherApi#teachersGet");
-      e.printStackTrace();
-    }
-    if (result != null) {
-      title.setText(I18n.get("calendar.title.enseinant") + " \"" + result.getTeacher().getFirstName() + " " + result.getTeacher().getLastName() + '\"');
-      name.setText(result.getTeacher().getFirstName() + " " + result.getTeacher().getLastName());
-      userName.setText(result.getTeacher().getUsername());
-      email.setText(result.getTeacher().getEmail());
-      phoneNumber.setText(result.getTeacher().getPhoneNumber());
-      teacher.setText("Professeur");
+    teacherService.setOnSucceeded(_e -> {
+      var response = teacherService.getValue().getTeacher();
+      userName.setText(response.getUsername());
+      rank.setText("Professeur"); // @TODO :: use response.getRank(), Rank model and toString method
 
-      var services = result.getTeacher().getServices();
-      StringBuilder serviceContent = new StringBuilder();
-      serviceContent.append(I18n.get("calendar.details.services")).append('\n');
-      for (TeacherResponseTeacherServices service : services) {
-        buildServiceString(serviceContent, service);
-      }
-      serviceContent.append("\n").append(MessageFormat.format(I18n.get("calendar.details.services.value"),result.getTeacher().getTotalService()));
-      serviceDetails.getChildren().add(new Text(serviceContent.toString()));
-    }
+      response.getServices().forEach(service ->
+        serviceDetails.getChildren().add(new Label(buildServiceString(service)))
+      );
+
+      serviceDetails.getChildren().add(new Label(MessageFormat.format(
+        I18n.get("calendar.details.services.value"), response.getTotalService())));
+    });
+
+    teacherService.setOnFailed(_e ->
+      this.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(teacherService.getException()))));
+
+    teacherService.setRequest(teacher.getId());
+    teacherService.start();
 
 
-    var user = UserSession.getInstance().getUser();
-    FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
-    var teacherApi = new TeacherApi();
-    service = new FXApiService<>(request ->
-      teacherApi.teachersIdOccupanciesGet(user.getId(), request.getKey(), request.getValue(), 0));
+    FXApiService<Pair<Integer, Integer>, Occupancies> service = new FXApiService<>(request ->
+      apiInstance.teachersIdOccupanciesGet(teacher.getId(), request.getKey(), request.getValue(), 0));
+
     var manager = new CalendarDataManager(new Calendar(), service);
     var calendarComponent = new CalendarComponent(manager);
-    calendarView = calendarComponent.getView();
-
+    var calendarView = calendarComponent.getView();
 
     select.getSelectionModel().select(2);
 
@@ -115,9 +98,7 @@ public class TeacherDetails extends BorderPane {
     });
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
-    });
+    jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
@@ -125,30 +106,42 @@ public class TeacherDetails extends BorderPane {
     setCenter(calendarView);
   }
 
-  private void buildServiceString (StringBuilder serviceContent, TeacherResponseTeacherServices service) {
-    serviceContent.append(I18n.get("calendar.details.teacher.firstPart")).append(service.getPropertyClass()).append(',').append(I18n.get("calendar.details.teacher.secondPart")).append(",\n");
-    if (service.getCm() != null && service.getCm() != 0) {
-      serviceContent.append(" ").append(service.getCm()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.cm")).append(',');
+  private String buildServiceString (TeacherResponseTeacherServices service) {
+    var sb = new StringBuilder();
+    sb.append(I18n.get("calendar.details.teacher.firstPart")).append(service.getPropertyClass())
+      .append(',').append(I18n.get("calendar.details.teacher.secondPart")).append(",");
+    if (service.getCm() != null) {
+      sb.append(" ").append(service.getCm()).append(I18n.get("calendar.details.teacher.hours"))
+        .append(" ").append(I18n.get("calendar.details.teacher.cm")).append(',');
     }
-    if (service.getTp() != null && service.getTp() != 0) {
-      serviceContent.append(" ").append(service.getTp()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.tp")).append(',');
+    if (service.getTp() != null) {
+      sb.append(" ").append(service.getTp()).append(I18n.get("calendar.details.teacher.hours"))
+        .append(" ").append(I18n.get("calendar.details.teacher.tp")).append(',');
     }
-    if (service.getTd() != null && service.getTd() != 0) {
-      serviceContent.append(" ").append(service.getTd()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.td")).append(',');
+    if (service.getTd() != null) {
+      sb.append(" ").append(service.getTd()).append(I18n.get("calendar.details.teacher.hours"))
+        .append(" ").append(I18n.get("calendar.details.teacher.td")).append(',');
     }
-    if (service.getProject() != null && service.getProject() != 0) {
-      serviceContent.append(" ").append(service.getProject()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.projet")).append(',');
+    if (service.getProject() != null) {
+      sb.append(" ").append(service.getProject())
+        .append(I18n.get("calendar.details.teacher.hours")).append(" ")
+        .append(I18n.get("calendar.details.teacher.projet")).append(',');
     }
-    if (service.getAdministration() != null && service.getAdministration() != 0) {
-      serviceContent.append(" ").append(service.getAdministration()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.admin")).append(',');
+    if (service.getAdministration() != null) {
+      sb.append(" ").append(service.getAdministration())
+        .append(I18n.get("calendar.details.teacher.hours")).append(" ")
+        .append(I18n.get("calendar.details.teacher.admin")).append(',');
     }
-    if (service.getExternal() != null && service.getExternal() != 0) {
-      serviceContent.append(" ").append(service.getExternal()).append(I18n.get("calendar.details.teacher.hours")).append(" ").append(I18n.get("calendar.details.teacher.extern")).append(',');
+    if (service.getExternal() != null) {
+      sb.append(" ").append(service.getExternal())
+        .append(I18n.get("calendar.details.teacher.hours")).append(" ")
+        .append(I18n.get("calendar.details.teacher.extern")).append(',');
     }
-    serviceContent.deleteCharAt(serviceContent.length() - 1);
-    serviceContent.append(".\n");
-  }
+    sb.deleteCharAt(sb.length() - 1);
+    sb.append('.');
 
+    return sb.toString();
+  }
 
   @FXML
   private void returnToPrevView () {
@@ -157,25 +150,6 @@ public class TeacherDetails extends BorderPane {
 
   @FXML
   private void editButton () {
-    this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new EditTeacher())
-    );
-
+    this.fireEvent(new ModalEvent(ModalEvent.OPEN, new EditTeacher()));
   }
-
-
-  @FXML
-  private void selectElement () {
-    final Clipboard clipboard = Clipboard.getSystemClipboard();
-    final ClipboardContent content = new ClipboardContent();
-    System.out.println(infoContent.getItems());
-    /*VBox item =(VBox) infoContent.getSelectionModel().getSelectedItem().getChildren().get(infoContent.getSelectionModel().getSelectedItem().getChildren().size()-1);
-    Label itemLabel = (Label)item.getChildren().get(item.getChildren().size()-1);
-    content.putString(itemLabel.getText());
-    System.out.println();
-    content.putHtml("<b>"+itemLabel.getText()+"</b>");
-    clipboard.setContent(content);
-    System.out.println(clipboard);*/
-  }
-
 }

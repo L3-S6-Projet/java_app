@@ -4,15 +4,12 @@ import com.calendarfx.view.CalendarView;
 import com.calendarfx.view.print.ViewType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
-import io.swagger.client.ApiException;
 import io.swagger.client.api.ClassroomApi;
-import io.swagger.client.model.ClassroomGetResponse;
 import io.swagger.client.model.Occupancies;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
@@ -20,6 +17,7 @@ import jscolendar.components.CalendarComponent;
 import jscolendar.events.ModalEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.models.Classroom;
 import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
@@ -27,40 +25,27 @@ import jscolendar.util.I18n;
 import static jscolendar.util.datePickerContent.getContent;
 
 public class RoomDetails extends BorderPane {
-  private final Integer id;
-  @FXML private HBox header;
+  private final Classroom room;
   @FXML private VBox subLeft;
   @FXML private Label title, name, capacity;
   @FXML private JFXComboBox<Label> select;
 
-  public RoomDetails (Integer id) {
-    this.id = id;
+  public RoomDetails (Classroom room) {
+    this.room = room;
     FXUtil.loadFXML("/fxml/classrooms/RoomDetails.fxml", this, this, I18n.getBundle());
   }
 
+  @SuppressWarnings("Duplicates")
   @FXML
   private void initialize () {
+    title.setText(I18n.get("calendar.title.room") + " \"" + room.nameProperty().get() + '\"');
+    name.setText(room.nameProperty().get());
+    capacity.setText(String.valueOf(room.capacityProperty().get()));
+
     ClassroomApi apiInstance = new ClassroomApi();
-    ClassroomGetResponse result = null;
 
-    try {
-      result = apiInstance.classroomsIdGet(id);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling api");
-      e.printStackTrace();
-    }
-    if (result != null) {
-      title.setText(I18n.get("calendar.title.room") + " \"" + result.getClassroom().getName() + '\"');
-      name.setText(result.getClassroom().getName());
-      capacity.setText(String.valueOf(result.getClassroom().getCapacity()));
-    }
-
-
-    FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
-    var promoAPI = new ClassroomApi();
-    service = new FXApiService<>(request ->
-      promoAPI.classroomsIdOccupanciesGet(id, request.getKey(), request.getValue(), 0));
-
+    FXApiService<Pair<Integer, Integer>, Occupancies> service = new FXApiService<>(request ->
+      apiInstance.classroomsIdOccupanciesGet(room.getId(), request.getKey(), request.getValue(), 0));
 
     var manager = new CalendarDataManager(new Calendar(), service);
     CalendarComponent calendarComponent = new CalendarComponent(manager);
@@ -82,10 +67,7 @@ public class RoomDetails extends BorderPane {
       }
     });
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
-
-    });
+    jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);
@@ -98,13 +80,8 @@ public class RoomDetails extends BorderPane {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
-
   @FXML
   private void editButton () {
-    this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new EditRoom())
-    );
+    this.fireEvent(new ModalEvent(ModalEvent.OPEN, new EditRoom()));
   }
-
-
 }

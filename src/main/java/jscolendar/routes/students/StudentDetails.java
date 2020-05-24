@@ -1,90 +1,77 @@
 package jscolendar.routes.students;
 
 import com.calendarfx.view.CalendarView;
-import com.calendarfx.view.YearMonthView;
 import com.calendarfx.view.print.ViewType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
-import io.swagger.client.ApiException;
 import io.swagger.client.api.StudentsApi;
 import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.StudentResponse;
-import io.swagger.client.model.StudentResponseStudentSubjects;
-import io.swagger.client.model.StudentSubjects;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.util.Pair;
 import jscolendar.components.CalendarComponent;
 import jscolendar.events.ModalEvent;
+import jscolendar.events.NotificationEvent;
 import jscolendar.models.Calendar;
 import jscolendar.models.CalendarDataManager;
+import jscolendar.models.Student;
+import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
 
 import java.text.MessageFormat;
-import java.util.List;
 
 import static jscolendar.util.datePickerContent.getContent;
 
 public class StudentDetails extends BorderPane {
-  private final Integer id;
-  @FXML private VBox subLeft;
+  private final Student student;
+  @FXML private VBox subLeft, subjects;
   @FXML private Label title, name, userName, promo;
-  @FXML private TextFlow subjectList;
   @FXML private JFXComboBox<Label> select;
 
-  public StudentDetails (Integer id) {
-    this.id = id;
+  public StudentDetails (Student student) {
+    this.student = student;
     FXUtil.loadFXML("/fxml/students/StudentDetails.fxml", this, this, I18n.getBundle());
   }
 
   @FXML
   private void initialize () {
+     title.setText(I18n.get("calendar.title.student") + " \"" + student.firstNameProperty().get() +
+       " " + student.lastNameProperty().get() + '\"');
+     name.setText(student.firstNameProperty().get() + " " + student.lastNameProperty().get());
+     promo.setText(student.classNameProperty().get());
+
     StudentsApi apiInstance = new StudentsApi();
-    StudentResponse result = null;
-    StudentSubjects classResult = null;
+    FXApiService<Integer, StudentResponse> userService = new FXApiService<>(apiInstance::studentsIdGet);
+    userService.setOnSucceeded(event -> {
+      var response = userService.getValue().getStudent();
+      userName.setText(response.getUsername());
 
-    try {
-      result = apiInstance.studentsIdGet(id);
-      classResult = apiInstance.studentsIdSubjectsGet(id);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling api");
-      e.printStackTrace();
-    }
-    if (result != null && classResult != null) {
-      title.setText(I18n.get("calendar.title.student") + " \"" + result.getStudent().getFirstName() + " " + result.getStudent().getLastName() + '\"');
-      name.setText(result.getStudent().getFirstName() + " " + result.getStudent().getLastName());
-      userName.setText(result.getStudent().getUsername());
-      promo.setText(classResult.getSubjects().get(0).getClassName());
+      response.getSubjects().forEach(subject ->
+        subjects.getChildren().add(
+          new Label(" - ".concat(subject.getName()).concat(", ").concat(subject.getGroup()))));
 
-      List<StudentResponseStudentSubjects> listOfSubject = result.getStudent().getSubjects();
-      StringBuilder subjects = new StringBuilder();
-      subjects.append(I18n.get("calendar.details.enseignement")).append('\n');
-      subjects.append(I18n.get("calendar.details.student.enseign.firstLine"));
-      for (StudentResponseStudentSubjects subjet : listOfSubject) {
-        subjects.append("\n - ").append(subjet.getName()).append(", ").append(subjet.getGroup());
-      }
-      subjects.append("\n").append(MessageFormat.format(I18n.get("calendar.details.student.enseign.secondLine"),result.getStudent().getTotalHours()));
-      subjectList.getChildren().add(new Text(subjects.toString()));
-    }
+      subjects.getChildren().add(new Label(MessageFormat.format(
+        I18n.get("calendar.details.student.enseign.secondLine"), response.getTotalHours())));
+    });
 
+    userService.setOnFailed(_e ->
+      this.fireEvent(new NotificationEvent(APIErrorUtil.getErrorMessage(userService.getException()))));
 
+    userService.setRequest(student.getId());
+    userService.start();
 
-    FXApiService<Pair<Integer, Integer>, Occupancies> service = null;
-    var studentApi = new StudentsApi();
-    service = new FXApiService<>(request ->
-      studentApi.studentsIdOccupanciesGet(id, request.getKey(), request.getValue(), 0));
+    FXApiService<Pair<Integer, Integer>, Occupancies> service = new FXApiService<>(request ->
+      apiInstance.studentsIdOccupanciesGet(student.getId(), request.getKey(), request.getValue(), 0));
     var manager = new CalendarDataManager(new Calendar(), service);
     CalendarComponent calendarComponent = new CalendarComponent(manager);
     CalendarView calendarView = calendarComponent.getView();
-
 
     select.getSelectionModel().select(2);
 
@@ -101,11 +88,9 @@ public class StudentDetails extends BorderPane {
           calendarView.showMonthPage(); break;
       }
     });
-    JFXDatePicker jfxDatePicker = new JFXDatePicker();
-    jfxDatePicker.setOnAction(event -> {
-      calendarView.getSelectedPage().setDate(jfxDatePicker.getValue());
 
-    });
+    JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
     if (datePicker != null)
       subLeft.getChildren().add(datePicker);

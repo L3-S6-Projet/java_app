@@ -2,12 +2,12 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import jscolendar.routes.classrooms.RoomDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
          type="jscolendar.routes.classrooms.RoomDetails"
@@ -44,25 +44,27 @@
 
     <left>
         <VBox fx:id="subLeft" id="details-sidebar" spacing="5">
-            <Label text="%calendar.title.information" id="details-list-title"/>
-            <JFXListView fx:id="infoContent" prefHeight="${subLeft.height}">
-                <HBox>
-                    <VBox alignment="CENTER" prefWidth="50">
-                        <FontIcon iconLiteral="mdi-account-circle" iconSize="24" iconColor="gray"/>
-                    </VBox>
-                    <VBox>
-                        <Label fx:id="name" styleClass="details-item-header"/>
-                        <Label text="%calendar.details.name" styleClass="details-item"/>
-                    </VBox>
-                </HBox>
-                <HBox>
-                    <VBox alignment="CENTER" prefWidth="50"/>
-                    <VBox>
-                        <Label fx:id="capacity" styleClass="details-item-header"/>
-                        <Label text="%calendar.details.capacity" styleClass="details"/>
-                    </VBox>
-                </HBox>
-            </JFXListView>
+            <ScrollPane VBox.vgrow="ALWAYS" pannable="true">
+                <VBox spacing="9" id="details-scroll-inner">
+                    <Label text="%calendar.title.information" styleClass="details-section-title"/>
+                    <HBox>
+                        <VBox alignment="CENTER" prefWidth="50">
+                            <FontIcon iconLiteral="mdi-account-circle" iconSize="24" iconColor="gray"/>
+                        </VBox>
+                        <VBox>
+                            <Label fx:id="name" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.name" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                    <HBox>
+                        <VBox alignment="CENTER" prefWidth="50"/>
+                        <VBox>
+                            <Label fx:id="capacity" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.capacity" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
         </VBox>
     </left>
     <center />

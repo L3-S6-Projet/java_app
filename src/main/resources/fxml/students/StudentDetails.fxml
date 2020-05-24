@@ -2,22 +2,22 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.TextFlow?>
 <?import jscolendar.routes.students.StudentDetails?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.ScrollPane?>
+
 <fx:root xmlns:fx="http://javafx.com/fxml"
          xmlns="http://javafx.com/javafx"
          type="jscolendar.routes.students.StudentDetails"
          stylesheets="details.css" styleClass="details-outer" VBox.vgrow="ALWAYS" >
 
     <top>
-        <HBox fx:id="header" id="details-header" alignment="CENTER">
+        <HBox id="details-header" alignment="CENTER">
             <HBox HBox.hgrow="ALWAYS" id="details-header-title" alignment="CENTER_LEFT">
-                <JFXButton fx:id="returnButton" onAction="#returnToPrevView">
+                <JFXButton onAction="#returnToPrevView">
                     <graphic>
                         <FontIcon iconLiteral="mdi-arrow-left"/>
                     </graphic>
@@ -34,7 +34,7 @@
                         </FXCollections>
                     </items>
                 </JFXComboBox>
-                <JFXButton fx:id="edit" onAction="#editButton">
+                <JFXButton onAction="#editButton">
                     <graphic>
                         <FontIcon iconLiteral="mdi-border-color"/>
                     </graphic>
@@ -45,39 +45,39 @@
 
     <left>
         <VBox fx:id="subLeft" id="details-sidebar" spacing="5">
-            <Label text="%calendar.title.information" id="details-list-title"/>
-            <JFXListView fx:id="infoContent" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-                <HBox>
-                    <VBox alignment="CENTER" prefWidth="50">
-                        <FontIcon iconLiteral="mdi-account-circle" iconSize="24" iconColor="gray"/>
-                    </VBox>
-                    <VBox HBox.hgrow="ALWAYS">
-                        <Label fx:id="name" styleClass="details-item-header"/>
-                        <Label text="%calendar.details.name" styleClass="details-item"/>
-                    </VBox>
-                </HBox>
-                <HBox>
-                    <VBox alignment="CENTER" prefWidth="50"/>
-                <VBox>
-                    <Label fx:id="userName" styleClass="details-item-header"/>
-                    <Label text="%calendar.details.username" styleClass="details-item"/>
+            <ScrollPane VBox.vgrow="ALWAYS" pannable="true">
+                <VBox spacing="9" id="details-scroll-inner">
+                    <Label text="%calendar.title.information" styleClass="details-section-title"/>
+                    <HBox HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER" prefWidth="50">
+                            <FontIcon iconLiteral="mdi-account-circle" iconSize="24" iconColor="gray"/>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label fx:id="name" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.name" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                    <HBox>
+                        <VBox alignment="CENTER" prefWidth="50"/>
+                        <VBox>
+                            <Label fx:id="userName" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.username" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                    <HBox HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER" prefWidth="50"/>
+                        <VBox>
+                            <Label fx:id="promo" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.promo" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                    <Label styleClass="details-section-title" text="%calendar.details.enseignement"/>
+                    <Label styleClass="details-section-subtitle" text="%calendar.details.student.enseign.firstLine" />
+                    <VBox fx:id="subjects" spacing="4"/>
                 </VBox>
-                </HBox>
-                <HBox HBox.hgrow="ALWAYS">
-                    <VBox alignment="CENTER" prefWidth="50"/>
-                    <VBox>
-                        <Label fx:id="promo" styleClass="details-item-header"/>
-                        <Label text="%calendar.details.promo" styleClass="details-item"/>
-                    </VBox>
-                </HBox>
-                <HBox HBox.hgrow="ALWAYS">
-                    <TextFlow fx:id="subjectList"/>
-                </HBox>
-                </JFXListView>
-            </VBox>
-        </left>
+            </ScrollPane>
+        </VBox>
+    </left>
 
-        <center>
-<!--            <VBox fx:id="calendar" VBox.vgrow="ALWAYS" HBox.hgrow="SOMETIMES"/>-->
-        </center>
+    <center/>
 </fx:root>

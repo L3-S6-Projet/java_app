@@ -89,6 +89,6 @@ public class Classes extends AbstractTableView<ClassModel> {
 
   @Override
   protected Region getDetailsView (ClassModel item) {
-    return new PromoDetails(item.id);
+    return new PromoDetails(item);
   }
 }
