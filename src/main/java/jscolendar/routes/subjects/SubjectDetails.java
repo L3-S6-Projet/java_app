@@ -220,7 +220,7 @@ public class SubjectDetails extends BorderPane {
 
   @FXML
   private void onAddGroup () {
-    // @TODO
-    this.fireEvent(new NotificationEvent("Not yet implemented."));
+    this.fireEvent(new ModalEvent(ModalEvent.OPEN, new AddSubjectGroup(subject.id)));
+    // @TODO :: refresh
   }
 }

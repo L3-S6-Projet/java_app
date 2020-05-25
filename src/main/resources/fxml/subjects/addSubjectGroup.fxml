@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<fx:root xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         type="jscolendar.routes.subjects.AddSubjectGroup"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+        <Label text="%modal.addSubjectGroup" styleClass="modal-title"/>
+        <HBox alignment="BASELINE_LEFT" spacing="10">
+            <Label fx:id="errorLabel"/>
+        </HBox>
+        <HBox GridPane.rowIndex="2" alignment="CENTER">
+            <JFXButton text="%popup.button.cancel" onAction="#onCancel"/>
+            <JFXButton text="%popup.button.save" onAction="#onSubmit"/>
+        </HBox>
+</fx:root>
