@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import jscolendar.components.SideBar?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          styleClass="main" stylesheets="styles.css, application.css"
+          fx:id="root" fx:controller="jscolendar.routes.Main">
+    <GridPane>
+        <SideBar GridPane.columnIndex="0"/>
+        <VBox fx:id="viewContainer" GridPane.columnIndex="1" styleClass="view-outer"/>
+
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+</GridPane>
+</StackPane>

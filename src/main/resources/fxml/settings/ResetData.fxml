@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import jscolendar.routes.settings.ResetData?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx" type="jscolendar.routes.settings.ResetData"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+    <Label text="%popup.title.confirmation"/>
+    <Label text="%popup.confirmation.message"/>
+    <HBox>
+        <JFXButton text="%popup.button.cancel" onAction="#onCancel"/>
+        <JFXButton text="%popup.button.confirm" onAction="#onCreate"/>
+    </HBox>
+
+</fx:root>

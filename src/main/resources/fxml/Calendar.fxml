@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.collections.FXCollections?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:id="container"
+      fx:controller="jscolendar.routes.calendar.CalendarRoute"
+      styleClass="calendar-outer" spacing="4" stylesheets="calendar.css"
+      VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+
+    <HBox styleClass="calendar-header" alignment="CENTER">
+        <JFXButton styleClass="today-button" text="%calendar.today" onAction="#goToday"/>
+        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+            <HBox spacing="10">
+                <VBox alignment="CENTER">
+                <JFXButton fx:id="back" onAction="#goBack">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-left" iconSize="24"/>
+                    </graphic>
+                </JFXButton>
+                </VBox>
+                <VBox alignment="CENTER">
+                    <Label fx:id="dateLabel" styleClass="date-label" />
+                    <Label fx:id="dateSubtitleLabel" styleClass="date-subtitle"/>
+                </VBox>
+                <VBox alignment="CENTER">
+                <JFXButton fx:id="forward" onAction="#goForward">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-chevron-right" iconSize="24"/>
+                    </graphic>
+                </JFXButton>
+                </VBox>
+            </HBox>
+        </HBox>
+
+        <JFXComboBox fx:id="select">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <Label id="day" text="%calendar.comboItem.day" />
+                    <Label id="week" text="%calendar.comboItem.week"/>
+                    <Label id="month" text="%calendar.comboItem.month" />
+                </FXCollections>
+            </items>
+        </JFXComboBox>
+    </HBox>
+</VBox>

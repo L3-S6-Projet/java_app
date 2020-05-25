@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import com.jfoenix.controls.JFXTreeTableColumn?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="jscolendar.routes.subjects.StudentSubjects" fx:id="container"
+           styleClass="table-view-outer" stylesheets="table-view.css" VBox.vgrow="ALWAYS">
+
+    <VBox>
+        <BorderPane styleClass="table-view-container">
+            <top>
+                <HBox fx:id="header" alignment="CENTER_LEFT" styleClass="table-header" minHeight="115">
+                    <Label text="%subjects.student.title"/>
+                </HBox>
+            </top>
+            <center>
+                <JFXTreeTableView fx:id="table" HBox.hgrow="ALWAYS" fixedCellSize="51">
+                    <columnResizePolicy>
+                        <JFXTreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                    <columns>
+                        <JFXTreeTableColumn text="%subjects.col.classname" fx:id="classname"/>
+                        <JFXTreeTableColumn text="%subjects.col.name" fx:id="name"/>
+                    </columns>
+                </JFXTreeTableView>
+            </center>
+            <bottom>
+                <HBox styleClass="table-pagination" alignment="CENTER_RIGHT" spacing="5">
+                    <Label fx:id="paginationLabel" />
+                    <JFXButton fx:id="prevButton" onAction="#onPreviousPage" >
+                        <graphic>
+                            <FontIcon iconLiteral="mdi-chevron-left" iconSize="24"/>
+                        </graphic>
+                    </JFXButton>
+                    <JFXButton fx:id="nextButton" onAction="#onNextPage">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi-chevron-right" iconSize="24"/>
+                        </graphic>
+                    </JFXButton>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </VBox>
+</StackPane>
+

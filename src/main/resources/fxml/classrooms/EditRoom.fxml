@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import jscolendar.routes.classrooms.EditRoom?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+         type="jscolendar.routes.classrooms.EditRoom"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+
+    <Label text="%popup.title.edition" styleClass="modal-title"/>
+
+    <HBox alignment="BASELINE_LEFT" spacing="10">
+        <Label fx:id="errorLabel"/>
+    </HBox>
+    <JFXTextField fx:id="name"
+                  labelFloat="true"
+                  promptText="%popup.field.name" focusTraversable="false">
+        <validators>
+            <RequiredFieldValidator message="%popup.field.name.message.required"/>
+            <RegexValidator
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="%popup.field.name.message.minLength"/>
+        </validators>
+    </JFXTextField>
+
+    <HBox alignment="CENTER_RIGHT">
+        <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
+    </HBox>
+
+</fx:root>

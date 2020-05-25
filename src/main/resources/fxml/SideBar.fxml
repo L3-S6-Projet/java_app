@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import jscolendar.components.SideBar?>
+<fx:root xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         type="jscolendar.components.SideBar" styleClass="sidebar-outer">
+
+    <VBox fx:id="column">
+        <VBox alignment="CENTER" styleClass="sidebar-header">
+            <Label fx:id="username" styleClass="sidebar-username" >Brookline Fisher</Label>
+            <Label fx:id="userRoleLabel" styleClass="sidebar-user-role" >Administrateur à AMU</Label>
+        </VBox>
+
+        <ListView VBox.vgrow="ALWAYS" fx:id="nav" styleClass="main-nav" />
+
+        <VBox alignment="BOTTOM_CENTER">
+            <Label text="%sidebar.copyright" styleClass="sidebar-copyright-text" />
+        </VBox>
+    </VBox>
+
+</fx:root>

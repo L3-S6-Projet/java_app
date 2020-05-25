@@ -1,0 +1,42 @@
+#settings-outer {
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-color: #FAFAFA;
+ }
+
+#settings-inner {
+    -fx-padding: 2em 4em;
+    -fx-background-color: transparent;
+}
+
+#settings-header {
+    -fx-alignment: center-left;
+    -fx-min-height: 115px;
+}
+
+.page-title {
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-font-size: 24px;
+}
+
+.settings-item-outer {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 1.0, 4, 0, 2);
+}
+
+.settings-item {
+    -fx-alignment: center-left;
+    -fx-pref-height: 60px;
+}
+
+.settings-item-separator {
+    -fx-background-color: #BDBDBD;
+}
+
+.settings-item .jfx-button {
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(0, 0, 0, 0.6);
+}
+
+

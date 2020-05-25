@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import jscolendar.routes.teachers.EditTeacher?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+         type="jscolendar.routes.teachers.EditTeacher"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+    <Label text="%popup.title.edition" styleClass="modal-title"/>
+
+    <HBox alignment="TOP_CENTER" spacing="10">
+        <Label fx:id="errorLabel"/>
+    </HBox>
+    <JFXTextField fx:id="firstName"
+                  labelFloat="true"
+                  promptText="%popup.field.firstName">
+        <validators>
+            <RequiredFieldValidator message="%popup.field.firstName.message.required"/>
+            <RegexValidator
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="%popup.field.firstName.message.minLength"/>
+        </validators>
+    </JFXTextField>
+    <JFXTextField fx:id="lastName"
+                  labelFloat="true"
+                  promptText="%popup.field.name">
+        <validators>
+            <RequiredFieldValidator message="%popup.field.name.message.required"/>
+            <RegexValidator
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="%popup.field.name.message.minLength"/>
+        </validators>
+    </JFXTextField>
+    <JFXTextField fx:id="email"
+                  labelFloat="true"
+                  promptText="%popup.field.email">
+    </JFXTextField>
+    <JFXTextField fx:id="phoneNumber"
+                  labelFloat="true"
+                  promptText="%popup.field.phoneNumber">
+    </JFXTextField>
+    <JFXTextField fx:id="grade"
+                  labelFloat="true"
+                  promptText="%popup.field.grade">
+        <validators>
+            <RequiredFieldValidator message="%popup.field.grade.message.required"/>
+            <RegexValidator
+                    regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                    message="%popup.field.grade.message.minLength"/>
+        </validators>
+    </JFXTextField>
+    <StackPane>
+        <StackPane>
+            <JFXTextField fx:id="accessiblePassword" visible="${toggleButton.selected}"
+                          labelFloat="true"
+                          focusTraversable="false"
+                          promptText="${passwordField.promptText}"/>
+            <JFXPasswordField fx:id="passwordField" visible="${!accessiblePassword.visible}"
+                              labelFloat="true"
+                              focusTraversable="false"
+                              promptText="%login.password.prompt">
+                <validators>
+                    <RequiredFieldValidator message="%login.password.message.required"/>
+                    <RegexValidator
+                            regexPattern=".{3,}"
+                            message="%login.password.message.minLength"/>
+                </validators>
+            </JFXPasswordField>
+
+        </StackPane>
+        <ToggleButton fx:id="toggleButton" styleClass="password-reveal-button"
+                      StackPane.alignment="CENTER_RIGHT">
+            <graphic>
+                <FontIcon iconLiteral="mdi-eye" iconSize="22"/>
+            </graphic>
+        </ToggleButton>
+    </StackPane>
+    <Label text="%popup.field.password.message"/>
+
+    <HBox alignment="CENTER_RIGHT">
+        <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+        <JFXButton fx:id="save" text="%popup.button.save" onAction="#onCreate"/>
+    </HBox>
+
+</fx:root>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import jscolendar.routes.classrooms.RoomDetails?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.ScrollPane?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx"
+         type="jscolendar.routes.classrooms.RoomDetails"
+         stylesheets="details.css" styleClass="details-outer" VBox.vgrow="ALWAYS">
+
+    <top>
+        <HBox fx:id="header" id="details-header" alignment="CENTER">
+            <HBox id="details-header-title" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+                <JFXButton fx:id="returnButton" onAction="#returnToPrevView">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-arrow-left"/>
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="title"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <JFXComboBox fx:id="select">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <Label text="%calendar.type.day" id="day"/>
+                            <Label text="%calendar.type.week" id="week"/>
+                            <Label text="%calendar.type.month" id="month"/>
+                        </FXCollections>
+                    </items>
+                </JFXComboBox>
+                <JFXButton fx:id="edit" onAction="#editButton">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-border-color"/>
+                    </graphic>
+                </JFXButton>
+            </HBox>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox fx:id="subLeft" id="details-sidebar" spacing="5">
+            <ScrollPane VBox.vgrow="ALWAYS" pannable="true">
+                <VBox spacing="9" id="details-scroll-inner">
+                    <Label text="%calendar.title.information" styleClass="details-section-title"/>
+                    <HBox>
+                        <VBox alignment="CENTER" prefWidth="50">
+                            <FontIcon iconLiteral="mdi-account-circle" iconSize="24" iconColor="gray"/>
+                        </VBox>
+                        <VBox>
+                            <Label fx:id="name" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.name" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                    <HBox>
+                        <VBox alignment="CENTER" prefWidth="50"/>
+                        <VBox>
+                            <Label fx:id="capacity" styleClass="details-item-header"/>
+                            <Label text="%calendar.details.capacity" styleClass="details-item"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </left>
+    <center />
+</fx:root>

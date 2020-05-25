@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import jscolendar.routes.subjects.StudentSubjectDetails?>
+<fx:root xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         type="jscolendar.routes.subjects.StudentSubjectDetails">
+
+    <HBox fx:id="header"/>
+    <VBox>
+        <Label text="%calendar.title.information"/>
+        <JFXListView fx:id="infoContent">
+            <HBox>
+                <VBox>
+                    <Label fx:id="name"/>
+                    <Label text="%calendar.details.name"/>
+                </VBox>
+            </HBox>
+            <VBox>
+                <Label fx:id="promo"/>
+                <Label text="%calendar.details.promo"/>
+            </VBox>
+        </JFXListView>
+    </VBox>
+    <HBox>
+        <VBox>
+            <Label text="%sidebar.teachers"/>
+            <JFXListView fx:id="enseigContent"/>
+        </VBox>
+        <VBox>
+            <Label text="%title.group"/>
+            <JFXListView fx:id="groupContent"/>
+        </VBox>
+    </HBox>
+
+</fx:root>

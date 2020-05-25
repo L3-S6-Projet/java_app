@@ -1,0 +1,91 @@
+.table-view-container {
+    -fx-padding: 2em 4em;
+    -fx-background-color: transparent;
+}
+
+.table-view-outer {}
+
+.table-header, .table-header-selection {}
+
+.table-header {
+    -fx-background-color: #FAFAFA;
+}
+
+#search-input-outer {
+    -fx-padding: 1em 0;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.search-input {
+    /*@TODO*/
+}
+
+.table-header-selection {
+    -fx-padding: 1em;
+    -fx-font-size: 16px;
+    -fx-background-radius: 3px 3px 0 0;
+    -fx-background-color: #303F9F;
+}
+
+.table-header Label {
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-font-size: 24px;
+}
+.table-header-selection Label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.table-pagination {
+    -fx-border-width: 0 1px 1px 1px;
+    -fx-border-color: #BDBDBD;
+}
+
+.table-view-footer {
+    -fx-padding: 3em;
+}
+
+.tree-table-row-cell {
+    -fx-border-width: 1px 0 0 0;
+    -fx-border-color: #BDBDBD;
+}
+
+.column-header-background {
+    -fx-border-width: 0 0 0 0;
+}
+
+.tree-table-row-cell:empty {
+    -fx-border-color: transparent;
+}
+
+.column-header {
+    -fx-border-color: transparent;
+}
+
+.column-header Label {
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+    -fx-text-alignment: left;
+    -fx-alignment: center-left;
+}
+
+.table-checked  {
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.table-checked Label {
+    -fx-alignment: center;
+}
+
+.table-check-box {
+    -jfx-checked-color: #DADADA;
+}
+
+.add-button {
+    -jfx-button-type: RAISED;
+    -fx-font-size: 26px;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 50%, 50%;
+    -fx-background-color: #FF9800;
+}

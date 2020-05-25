@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<GridPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="jscolendar.routes.Login" stylesheets="styles.css" styleClass="login-box">
+    <VBox styleClass="login-main" GridPane.columnIndex="0">
+        <GridPane VBox.vgrow="ALWAYS">
+            <VBox styleClass="login-title-outer" GridPane.rowIndex="0">
+                <Label text="Scolendar" styleClass="login-title" />
+                <Label text="%login.subtitle" styleClass="login-subtitle" />
+            </VBox>
+            <VBox styleClass="login-form-outer" GridPane.rowIndex="1" alignment="CENTER">
+                <HBox alignment="BASELINE_LEFT" spacing="10">
+                    <Label fx:id="errorLabel" />
+                </HBox>
+
+                <JFXTextField fx:id="usernameField"
+                    labelFloat="true"
+                    promptText="%login.username.prompt" focusTraversable="false">
+                    <validators>
+                        <RequiredFieldValidator message="%login.username.message.required"/>
+                        <RegexValidator
+                                regexPattern="[_A-Za-z0-9-+\.]{3,}"
+                                message="%login.username.message.minLength" />
+                    </validators>
+                </JFXTextField>
+                <StackPane>
+                    <StackPane>
+                        <JFXTextField fx:id="accessiblePassword" visible="${toggleButton.selected}"
+                                      labelFloat="true"
+                                      focusTraversable="false"
+                                      promptText="${passwordField.promptText}"/>
+                        <JFXPasswordField fx:id="passwordField" visible="${!accessiblePassword.visible}"
+                            labelFloat="true"
+                            focusTraversable="false"
+                            promptText="%login.password.prompt">
+                            <validators>
+                                <RequiredFieldValidator message="%login.password.message.required" />
+                                <RegexValidator
+                                    regexPattern=".{3,}"
+                                    message="%login.password.message.minLength" />
+                            </validators>
+                        </JFXPasswordField>
+
+                    </StackPane>
+                    <ToggleButton fx:id="toggleButton" styleClass="password-reveal-button"
+                          StackPane.alignment="CENTER_RIGHT">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi-eye" iconSize="22" />
+                        </graphic>
+                    </ToggleButton>
+                </StackPane>
+                <HBox alignment="BASELINE_LEFT" spacing="10">
+                    <JFXButton text="%login.submit" onAction="#onSubmit" styleClass="login-button"/>
+                    <Hyperlink text="%login.forgottenPassword" />
+                </HBox>
+            </VBox>
+            <VBox GridPane.rowIndex="2" alignment="BOTTOM_LEFT">
+                <TextFlow>
+                    <Text text="%login.footer.message" />
+                    <Hyperlink text="%login.footer.terms"/>
+                    <Text>.</Text>
+                </TextFlow>
+                <Text text="%login.footer.copyright"/>
+            </VBox>
+
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" minWidth="250.0" percentWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+                <RowConstraints vgrow="ALWAYS" percentHeight="33.3"/>
+            </rowConstraints>
+        </GridPane>
+    </VBox>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" percentWidth="50.0" prefWidth="250.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="50.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+    </rowConstraints>
+</GridPane>

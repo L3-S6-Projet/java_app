@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.*?>
+<?import jscolendar.routes.subjects.SubjectDetails?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.ScrollPane?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1"
+         type="jscolendar.routes.subjects.SubjectDetails"
+         xmlns="http://javafx.com/javafx/10.0.2-internal"
+         stylesheets="details.css" styleClass="details-outer">
+
+    <top>
+        <HBox id="details-header" alignment="CENTER">
+            <HBox HBox.hgrow="ALWAYS" id="details-header-title" alignment="CENTER_LEFT">
+                <JFXButton onAction="#returnToPrevView">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-arrow-left"/>
+                    </graphic>
+                </JFXButton>
+                <Label fx:id="title"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <JFXComboBox fx:id="select">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <Label text="%calendar.type.day" id="day"/>
+                            <Label text="%calendar.type.week" id="week"/>
+                            <Label text="%calendar.type.month" id="month"/>
+                        </FXCollections>
+                    </items>
+                </JFXComboBox>
+                <JFXButton onAction="#editButton">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-border-color"/>
+                    </graphic>
+                </JFXButton>
+            </HBox>
+        </HBox>
+    </top>
+    <left>
+        <VBox fx:id="subLeft" id="details-sidebar" spacing="5">
+            <JFXTabPane VBox.vgrow="ALWAYS">
+                <tabs>
+                    <Tab text="%calendar.details.ue.menu.info">
+                        <content>
+                            <ScrollPane VBox.vgrow="ALWAYS" pannable="true">
+                                <VBox spacing="9" styleClass="details-scroll-inner">
+                                    <Label text="%calendar.title.information" styleClass="details-section-title"/>
+                                    <HBox>
+                                        <VBox alignment="CENTER" prefWidth="50">
+                                            <FontIcon iconLiteral="mdi-account-circle" iconSize="24" iconColor="gray"/>
+                                        </VBox>
+                                        <VBox>
+                                            <Label fx:id="name" styleClass="details-item-header"/>
+                                            <Label text="%calendar.details.name" styleClass="details-item"/>
+                                        </VBox>
+                                    </HBox>
+                                    <HBox>
+                                        <VBox alignment="CENTER" prefWidth="50"/>
+                                        <VBox>
+                                            <Label fx:id="promo" styleClass="details-item-header"/>
+                                            <Label text="%calendar.details.promo" styleClass="details-item"/>
+                                        </VBox>
+                                    </HBox>
+                                    <HBox>
+                                        <VBox alignment="CENTER" prefWidth="50"/>
+                                        <VBox>
+                                            <Label fx:id="services" styleClass="details-item-header"/>
+                                            <Label text="%calendar.details.services" styleClass="details-item"/>
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                            </ScrollPane>
+                        </content>
+                    </Tab>
+                    <Tab text="%calendar.details.ue.menu.teacher">
+                        <content>
+                            <VBox>
+                                 <ScrollPane VBox.vgrow="ALWAYS" pannable="true">
+                                    <VBox spacing="9" styleClass="details-scroll-inner" fx:id="teachersTarget"/>
+                                 </ScrollPane>
+                                <HBox alignment="CENTER_RIGHT" styleClass="details-tool-box">
+                                    <JFXButton text="+" styleClass="add-button" onAction="#onAddTeacher"/>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </Tab>
+                    <Tab text="%calendar.details.ue.menu.group">
+                        <content>
+                            <VBox>
+                                <ScrollPane VBox.vgrow="ALWAYS" pannable="true">
+                                    <VBox fx:id="groupsTarget" spacing="9" styleClass="details-scroll-inner">
+                                        <Label text="%calendar.details.ue.menu.group.note" styleClass="details-note" />
+                                    </VBox>
+                                </ScrollPane>
+                                <HBox alignment="CENTER_RIGHT" styleClass="details-tool-box">
+                                    <JFXButton text="+" styleClass="add-button" onAction="#onAddGroup"/>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </JFXTabPane>
+        </VBox>
+    </left>
+</fx:root>

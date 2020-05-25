@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx" fx:controller="jscolendar.routes.HomeTeacher" fx:id="container">
+
+    <HBox fx:id="body">
+        <VBox>
+
+            <HBox>
+                <Label fx:id="header"/>
+                <JFXTabPane>
+                    <Tab text="%home.student.title.link">
+                        <content>
+                            <JFXListView fx:id="linksContent">
+                            </JFXListView>
+                        </content>
+                    </Tab>
+
+                </JFXTabPane>
+
+            </HBox>
+            <HBox>
+                <JFXTabPane>
+                    <tabs>
+                        <Tab text="%home.student.title.modification">
+                            <content>
+                                <JFXListView fx:id="modificationsContent">
+
+                                </JFXListView>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </JFXTabPane>
+
+                <VBox>
+                    <VBox fx:id="graph">
+                        <Label text="%home.student.graph.title"/>
+                        <Label fx:id="graphText"/>
+
+                    </VBox>
+                    <JFXTabPane>
+                        <Tab text="%home.student.title.contact">
+                            <content>
+                                <JFXListView fx:id="contactContent">
+                                </JFXListView>
+                            </content>
+                        </Tab>
+                    </JFXTabPane>
+                </VBox>
+            </HBox>
+        </VBox>
+
+    </HBox>
+
+
+</VBox>
