@@ -202,7 +202,7 @@ public class SubjectDetails extends BorderPane {
     deleteGroupService.setOnFailed(dontCare -> this.fireEvent(
       new NotificationEvent(APIErrorUtil.getErrorMessage(deleteTeacherService.getException()))));
 
-    deleteGroupService.setRequest(((ListElement) node).id);
+    deleteGroupService.setRequest(subject.getId());
     deleteGroupService.restart();
   }
 
@@ -214,8 +214,8 @@ public class SubjectDetails extends BorderPane {
 
   @FXML
   private void onAddTeacher () {
-    // @TODO
-    this.fireEvent(new NotificationEvent("Not yet implemented."));
+    this.fireEvent(new ModalEvent(ModalEvent.OPEN, new AddSubjectTeacher(subject.id)));
+    // TODO :: refresh
   }
 
   @FXML

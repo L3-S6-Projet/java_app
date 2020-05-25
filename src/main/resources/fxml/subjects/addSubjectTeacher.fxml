@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<fx:root xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         type="jscolendar.routes.subjects.AddSubjectTeacher"
+         styleClass="modal-content-outer" stylesheets="modals.css">
+
+        <Label text="%modal.addSubjectTeacher" styleClass="modal-title" />
+        <HBox alignment="BASELINE_LEFT" spacing="10">
+            <Label fx:id="errorLabel"/>
+        </HBox>
+        <JFXComboBox fx:id="teacher"
+                     labelFloat="true"
+                     promptText="%modal.addSubjectTeacher.prompt">
+            <validators>
+                <RequiredFieldValidator message="%popup.field.promo.message.required"/>
+            </validators>
+        </JFXComboBox>
+        <HBox alignment="CENTER_RIGHT">
+            <JFXButton fx:id="cancel" text="%popup.button.cancel" onAction="#onCancel"/>
+            <JFXButton fx:id="save" text="%popup.button.save" onAction="#onSubmit"/>
+        </HBox>
+</fx:root>
