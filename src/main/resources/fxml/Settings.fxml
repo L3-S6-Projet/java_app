@@ -2,13 +2,31 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx"
-      fx:controller="jscolendar.routes.settings.SettingsView" fx:id="container">
+      fx:controller="jscolendar.routes.settings.SettingsView"
+      id="settings-outer" fx:id="container" stylesheets="settings.css">
 
-    <Label text="%sidebar.settings" styleClass="login-title-outer"/>
-    <JFXButton text="%sidebar.settings.changePassword" onAction="#changePassWord"/>
-    <JFXButton text="%sidebar.settings.resetData" onAction="#resetData"/>
-
+    <BorderPane id="settings-inner">
+    <top>
+        <HBox id="settings-header" alignment="CENTER_LEFT">
+            <Label text="%sidebar.settings" styleClass="page-title"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox styleClass="settings-item-outer">
+            <HBox styleClass="settings-item">
+                <JFXButton text="%sidebar.settings.changePassword" onAction="#changePassWord"/>
+            </HBox>
+            <Separator styleClass="settings-item-separator" />
+            <HBox styleClass="settings-item">
+                <JFXButton text="%sidebar.settings.resetData" onAction="#resetData"/>
+            </HBox>
+        </VBox>
+    </center>
+    </BorderPane>
 </VBox>
