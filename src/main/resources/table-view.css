@@ -3,14 +3,9 @@
     -fx-background-color: transparent;
 }
 
-.table-view-outer {
-    /*-fx-background-color: #FAFAFA;*/
-    /*-fx-padding: 20px 0 0 0;*/
-}
+.table-view-outer {}
 
-.table-header, .table-header-selection {
-    /*-fx-padding: 0 0 2em 1em;*/
-}
+.table-header, .table-header-selection {}
 
 .table-header {
     -fx-background-color: #FAFAFA;
@@ -27,6 +22,7 @@
 }
 
 .table-header-selection {
+    -fx-padding: 1em;
     -fx-font-size: 16px;
     -fx-background-radius: 3px 3px 0 0;
     -fx-background-color: #303F9F;

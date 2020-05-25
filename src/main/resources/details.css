@@ -35,7 +35,7 @@
     -fx-background-color: transparent;
 }
 
-#details-scroll-inner {
+#details-scroll-inner, .details-scroll-inner {
     -fx-background-color: #FAFAFA;
 }
 
@@ -51,8 +51,9 @@
 }
 .details-item-header {
     -fx-font-size: 14px;
-    -fx-text-fill: rgba(0, 0, 0, 0.87);;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
 }
+
 .details-item {
     -fx-font-size: 12px;
     -fx-text-fill: #757575;
@@ -61,4 +62,55 @@
 #details-header-title {
     -fx-text-fill: rgba(0, 0, 0, 0.87);
     -fx-font-size: 24px;
+}
+
+#details-sidebar .jfx-tab-pane {
+    -fx-max-width: 350px;
+}
+
+#details-sidebar .jfx-tab-pane .tab-header-background {
+    -fx-background-color: #FAFAFA;
+}
+
+#details-sidebar .jfx-tab-pane .tab-header-area .tab-down-button {
+    -fx-min-width: 0.8em;
+    -fx-max-width: 0.8em;
+    -fx-min-height: 1.3em;
+    -fx-max-height: 1.3em;
+}
+
+#details-sidebar .jfx-tab-pane .headers-region .tab-selected-line {
+    -fx-background-color: #3F51B5;
+}
+
+#details-sidebar .jfx-tab-pane .headers-region .tab .tab-container .tab-label {
+    -fx-text-fill: rgba(0, 0, 0, 0.6);
+    -fx-font-weight: BOLD;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 16;
+}
+
+#details-sidebar .jfx-tab-pane .headers-region .tab:closable .tab-container .tab-label {
+    -fx-padding: 0 8 0 6;
+}
+
+#details-sidebar .jfx-tab-pane .headers-region .tab:selected .tab-container .tab-label {
+    -fx-text-fill: #3F51B5;
+}
+
+.details-tool-box {
+    -fx-min-height: 80px;
+    -fx-padding: 0 10px 0 0;
+}
+
+.add-button {
+    -jfx-button-type: RAISED;
+    -fx-font-size: 24px;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 50%, 50%;
+    -fx-background-color: #FF9800;
+}
+
+.details-note {
+    -fx-font-weight: bold;
 }

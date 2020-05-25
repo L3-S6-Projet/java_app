@@ -87,6 +87,6 @@ public class Subjects extends AbstractTableView<Subject> {
 
   @Override
   protected Region getDetailsView (Subject item) {
-    return new SubjectDetails(item.getId());
+    return new SubjectDetails(item);
   }
 }
