@@ -15,7 +15,7 @@
          type="jscolendar.routes.students.EditStudent"
          styleClass="modal-content-outer" stylesheets="modals.css">
 
-    <Label text="%popup.title.creation.student" styleClass="modal-title"/>
+    <Label text="%popup.title.edition" styleClass="modal-title"/>
 
     <HBox alignment="BASELINE_LEFT" spacing="10">
         <Label fx:id="errorLabel"/>
