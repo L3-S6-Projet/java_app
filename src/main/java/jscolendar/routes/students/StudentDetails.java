@@ -8,6 +8,8 @@ import io.swagger.client.api.StudentsApi;
 import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.StudentResponse;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -24,22 +26,23 @@ import jscolendar.util.APIErrorUtil;
 import jscolendar.util.FXApiService;
 import jscolendar.util.FXUtil;
 import jscolendar.util.I18n;
-
 import java.text.MessageFormat;
 
 import static jscolendar.util.datePickerContent.getContent;
 
 public class StudentDetails extends BorderPane {
   private final Student student;
-  @FXML private VBox subLeft, subjects;
+  @FXML private VBox subjects;
   @FXML private Label title, name, userName, promo;
   @FXML private JFXComboBox<Label> select;
+  @FXML private StackPane datePickerPane;
 
   public StudentDetails (Student student) {
     this.student = student;
     FXUtil.loadFXML("/fxml/students/StudentDetails.fxml", this, this, I18n.getBundle());
   }
 
+  @SuppressWarnings("Duplicates")
   @FXML
   private void initialize () {
      title.setText(I18n.get("calendar.title.student") + " \"" + student.firstNameProperty().get() +
@@ -88,14 +91,18 @@ public class StudentDetails extends BorderPane {
           calendarView.showMonthPage(); break;
       }
     });
-
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setDialogParent(datePickerPane);
     jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
+
+    if (datePicker != null) {
+      StackPane.setAlignment(datePicker, Pos.BOTTOM_LEFT);
+      datePickerPane.getChildren().add(datePicker);
+    }
 
     setCenter(calendarView);
+    BorderPane.setMargin(calendarView, new Insets(0, 0, 15, 0));
   }
 
   @FXML
@@ -103,11 +110,8 @@ public class StudentDetails extends BorderPane {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
-
   @FXML
   private void editButton () {
-    this.fireEvent(
-      new ModalEvent(ModalEvent.OPEN, new EditStudent())
-    );
+    this.fireEvent(new ModalEvent(ModalEvent.OPEN, new EditStudent()));
   }
 }

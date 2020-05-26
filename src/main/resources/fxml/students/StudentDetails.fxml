@@ -76,6 +76,7 @@
                     <VBox fx:id="subjects" spacing="4"/>
                 </VBox>
             </ScrollPane>
+            <StackPane fx:id="datePickerPane" id="date-picker-pane"/>
         </VBox>
     </left>
 

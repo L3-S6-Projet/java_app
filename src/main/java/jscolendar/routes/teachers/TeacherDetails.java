@@ -8,6 +8,8 @@ import io.swagger.client.model.Occupancies;
 import io.swagger.client.model.TeacherResponse;
 import io.swagger.client.model.TeacherResponseTeacherServices;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -33,8 +35,9 @@ import static jscolendar.util.datePickerContent.getContent;
 public class TeacherDetails extends BorderPane {
   private final Teacher teacher;
   @FXML private Label title, name, userName, email, phoneNumber, rank;
-  @FXML private VBox subLeft, serviceDetails;
+  @FXML private VBox serviceDetails;
   @FXML private JFXComboBox<Label> select;
+  @FXML private StackPane datePickerPane;
 
   public TeacherDetails (Teacher teacher) {
     this.teacher = teacher;
@@ -98,12 +101,17 @@ public class TeacherDetails extends BorderPane {
     });
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setDialogParent(datePickerPane);
     jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
+
+    if (datePicker != null) {
+      StackPane.setAlignment(datePicker, Pos.BOTTOM_LEFT);
+      datePickerPane.getChildren().add(datePicker);
+    }
 
     setCenter(calendarView);
+    BorderPane.setMargin(calendarView, new Insets(0, 0, 15, 0));
   }
 
   private String buildServiceString (TeacherResponseTeacherServices service) {

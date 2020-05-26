@@ -107,6 +107,7 @@
                     </Tab>
                 </tabs>
             </JFXTabPane>
+            <StackPane fx:id="datePickerPane"/>
         </VBox>
     </left>
 </fx:root>
