@@ -7,11 +7,12 @@ import com.jfoenix.controls.JFXDatePicker;
 import io.swagger.client.api.ClassroomApi;
 import io.swagger.client.model.Occupancies;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import jscolendar.components.CalendarComponent;
 import jscolendar.events.ModalEvent;
@@ -26,7 +27,7 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class RoomDetails extends BorderPane {
   private final Classroom room;
-  @FXML private VBox subLeft;
+  @FXML private StackPane datePickerPane;
   @FXML private Label title, name, capacity;
   @FXML private JFXComboBox<Label> select;
 
@@ -66,13 +67,19 @@ public class RoomDetails extends BorderPane {
           calendarView.showMonthPage(); break;
       }
     });
+
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setDialogParent(datePickerPane);
     jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
+
+    if (datePicker != null) {
+      StackPane.setAlignment(datePicker, Pos.BOTTOM_LEFT);
+      datePickerPane.getChildren().add(datePicker);
+    }
 
     setCenter(calendarView);
+    BorderPane.setMargin(calendarView, new Insets(0, 0, 15, 0));
   }
 
   @FXML

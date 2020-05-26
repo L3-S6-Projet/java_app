@@ -4,6 +4,22 @@
     -fx-background-color: transparent !important;
 }
 
+.month-view .today {
+    -fx-border-color: #FF9800 !important;
+}
+
+.label.today {
+    -fx-text-fill: #FF9800 !important;
+}
+
+.today {
+    -fx-background-color: transparent !important;
+}
+
+.weekend-day {
+    -fx-background-color: transparent !important;
+}
+
 .calendar-header {
     -fx-padding: 2em;
     -fx-border-insets: 5px;
@@ -46,7 +62,6 @@
     -fx-background-color: transparent;
 }
 
-
 .calendar-outer .list-cell .label,
 .calendar-outer .list-cell:selected .label {
     -fx-text-fill: black;
@@ -64,7 +79,6 @@
     -fx-border-radius: 5px !important;
     -fx-border-color: black !important;
 }
-
 
 .custom-entry:selected .custom-entry-title-label {
     -fx-text-fill: black !important;

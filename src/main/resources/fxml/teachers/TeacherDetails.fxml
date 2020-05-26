@@ -91,6 +91,7 @@
                     <VBox fx:id="serviceDetails" spacing="5"/>
                 </VBox>
             </ScrollPane>
+            <StackPane fx:id="datePickerPane" />
         </VBox>
     </left>
     <center/>

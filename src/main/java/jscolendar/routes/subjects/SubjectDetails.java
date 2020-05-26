@@ -41,8 +41,9 @@ import static jscolendar.util.datePickerContent.getContent;
 
 public class SubjectDetails extends BorderPane {
   @FXML private JFXComboBox<Label> select;
-  @FXML private VBox subLeft, teachersTarget, groupsTarget;
+  @FXML private VBox teachersTarget, groupsTarget;
   @FXML private Label title, name, promo, services;
+  @FXML private StackPane datePickerPane;
 
   private final Subject subject;
   private final SubjectsApi api = new SubjectsApi();
@@ -97,7 +98,7 @@ public class SubjectDetails extends BorderPane {
     }
   }
 
-  public SubjectDetails(Subject subject) {
+  public SubjectDetails (Subject subject) {
     this.subject = subject;
     deleteTeacherService = new FXApiService<>(request ->
       api.subjectsIdTeachersDelete(subject.getId(), request));
@@ -107,7 +108,7 @@ public class SubjectDetails extends BorderPane {
   }
 
   @FXML
-  private void initialize() {
+  private void initialize () {
     title.setText(I18n.get("calendar.title.ue") + " \"" + subject.nameProperty().get() + '\"');
     name.setText(subject.nameProperty().get());
     promo.setText(subject.classNameProperty().get());
@@ -169,16 +170,20 @@ public class SubjectDetails extends BorderPane {
     });
 
     JFXDatePicker jfxDatePicker = new JFXDatePicker();
+    jfxDatePicker.setDialogParent(datePickerPane);
     jfxDatePicker.setOnAction(event -> calendarView.getSelectedPage().setDate(jfxDatePicker.getValue()));
     Node datePicker = getContent(jfxDatePicker);
-    if (datePicker != null)
-      subLeft.getChildren().add(datePicker);
+
+    if (datePicker != null) {
+    StackPane.setAlignment(datePicker, Pos.BOTTOM_LEFT);
+    datePickerPane.getChildren().add(datePicker);
+    }
 
     setCenter(calendarView);
   }
 
   @FXML
-  private void returnToPrevView() {
+  private void returnToPrevView () {
     ((StackPane) this.getParent()).getChildren().remove(this);
   }
 
@@ -206,9 +211,8 @@ public class SubjectDetails extends BorderPane {
     deleteGroupService.restart();
   }
 
-
   @FXML
-  private void editButton() {
+  private void editButton () {
     this.fireEvent(new ModalEvent(ModalEvent.OPEN, new EditSubject()));
   }
 

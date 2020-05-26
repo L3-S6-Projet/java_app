@@ -71,6 +71,7 @@
                     </HBox>
                 </VBox>
             </ScrollPane>
+            <StackPane fx:id="datePickerPane"/>
         </VBox>
     </left>
 </fx:root>
