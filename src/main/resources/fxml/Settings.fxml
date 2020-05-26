@@ -18,12 +18,12 @@
         </HBox>
     </top>
     <center>
-        <VBox styleClass="settings-item-outer">
+        <VBox fx:id="itemContainer" styleClass="settings-item-outer">
             <HBox styleClass="settings-item">
                 <JFXButton text="%sidebar.settings.changePassword" onAction="#changePassWord"/>
             </HBox>
-            <Separator styleClass="settings-item-separator" />
-            <HBox styleClass="settings-item">
+            <Separator fx:id="separator" styleClass="settings-item-separator" />
+            <HBox fx:id="resetData" styleClass="settings-item">
                 <JFXButton text="%sidebar.settings.resetData" onAction="#resetData"/>
             </HBox>
         </VBox>
