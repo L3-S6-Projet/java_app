@@ -25,7 +25,7 @@ javafx {
 dependencies {
     implementation 'com.calendarfx:view:11.8.3'  exclude group: 'org.openjfx', module: ''
     implementation 'com.jfoenix:jfoenix:9.0.8',
-            'org.kordamp.ikonli:ikonli-core:11.3.3',
+            'org.kordamp.ikonli:ikonli-core:11.5.0',
             'org.kordamp.ikonli:ikonli-javafx:11.3.5',
             'org.kordamp.ikonli:ikonli-materialdesign-pack:11.4.0',
             'io.swagger:swagger-java-client:1.0.0',
